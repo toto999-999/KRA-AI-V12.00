@@ -83,7 +83,7 @@
             width: 75px; padding: 6px 8px; border: 2px solid #cbd5e1; border-radius: 8px;
             font-size: 0.95rem; font-weight: 900; text-align: center; color: #0f172a; outline: none;
         }
-        .odds-input:focus { border-color: #0284c7; }
+        .odds-input:focus { border-color: #0284c7; background: #f0f9ff; }
         .ev-badge {
             font-size: 0.7rem; font-weight: 900; padding: 2px 6px; border-radius: 4px;
         }
@@ -123,11 +123,10 @@
                 <select id="raceSelect" onchange="changeRace()"></select>
             </div>
 
-            <!-- 결과 복기 바 (경기 종료 시에만 표출) -->
             <div id="resultBar" class="result-bar"></div>
 
             <!-- 🎯 7대 승식 실시간 마권 추천 패널 -->
-            <div class="bet-matrix-card">
+            <div class="bet-matrix-card" id="matrixCard">
                 <div class="matrix-title">
                     <span>👑 실시간 7대 승식 최적 마권</span>
                     <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">더비온 배당 입력 시 즉시 갱신</span>
@@ -166,13 +165,13 @@
 
             <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between;">
                 <span>🐎 출전마 (AI 순수 승률)</span>
-                <span>더비온 단승 배당 입력 👇</span>
+                <span>더비온 배당 입력 (엔터시 다음칸) 👇</span>
             </div>
 
             <div id="horseList"></div>
 
             <p class="sub-desc">
-                💡 <strong>사용법</strong>: 더비온 2.0에서 본 단승 배당 숫자를 우측 칸에 입력하시면, AI가 잠재 확률과 곱해 <strong>+EV(가치 꿀배당)</strong> 여부를 판정하고 상단 7대 승식 마권을 실시간으로 조합합니다.
+                💡 <strong>사용법</strong>: 더비온 2.0에서 본 단승 배당 숫자를 입력하고 <strong>[엔터(Enter)]</strong>를 치시면 다음 말 입력칸으로 자동 이동합니다. 입력하는 즉시 상단 7대 승식 마권이 자동으로 완성됩니다.
             </p>
         </div>
     </div>
@@ -182,7 +181,8 @@
             if (localStorage.getItem('app_authenticated') === 'true') {
                 unlockApp();
             } else {
-                document.getElementById('pinInput').focus();
+                const el = document.getElementById('pinInput');
+                if (el) el.focus();
             }
         });
 
@@ -278,7 +278,9 @@
                             </div>
                         </div>
                         <div class="odds-input-box">
-                            <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="단승배당" oninput="calculateMatrix()">
+                            <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="단승배당" 
+                                   oninput="calculateMatrix()" 
+                                   onkeydown="handleOddsKey(event, ${i}, ${race.horses.length})">
                             <span class="ev-badge" id="ev_${i}" style="display:none;">-</span>
                         </div>
                     </div>
@@ -288,7 +290,23 @@
             calculateMatrix();
         }
 
-        // 🎯 [핵심] 더비온 배당 입력 시 실시간 7대 승식 계산기
+        // 🎯 [신규 기능 1] 엔터 치면 아래 말 배당칸으로 자동 이동 (마지막 칸에서는 상단 매트릭스로 스크롤)
+        function handleOddsKey(e, index, totalCount) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextInput = document.getElementById(`odds_${index + 1}`);
+                if (nextInput) {
+                    nextInput.focus();
+                    nextInput.select();
+                } else {
+                    // 마지막 말 입력 완료 시 포커스 해제 및 상단 추천 마권으로 부드럽게 이동
+                    document.activeElement.blur();
+                    document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        // 🎯 [핵심] 더비온 배당 입력 시 실시간 7대 승식 실시간 계산기
         function calculateMatrix() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -304,7 +322,6 @@
                 cardEl.className = 'horse-card';
 
                 if (!isNaN(oddsVal) && oddsVal > 0) {
-                    // EV 계산 = 승률(소수) * 배당
                     const ev = (h.win_prob / 100.0) * oddsVal;
                     evBadge.style.display = 'block';
 
@@ -332,7 +349,6 @@
                     });
                 } else {
                     evBadge.style.display = 'none';
-                    // 배당 미입력 시 순수 AI 확률 기준 기본 배치
                     horsesWithEV.push({
                         gate: h.gate,
                         name: h.name,
@@ -344,16 +360,15 @@
                 }
             });
 
-            // EV 높은 순으로 정렬
+            // 정렬
             const sortedByEV = [...horsesWithEV].sort((a, b) => b.ev - a.ev);
-            // 승률 높은 순으로 정렬 (안전축)
             const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
 
-            const h1 = sortedByEV[0]; // 가치 1순위
+            const h1 = sortedByEV[0]; // 가치 1순위 (기대값 최고마)
             const h2 = sortedByProb[0].gate !== h1.gate ? sortedByProb[0] : sortedByProb[1]; // 실력 대항마
             const h3 = sortedByEV.find(h => h.gate !== h1.gate && h.gate !== h2.gate) || sortedByProb[2]; // 가치 복병
 
-            // 🎯 7대 승식 실시간 추천 표출!
+            // 🎯 7대 승식 실시간 마권 표출
             document.getElementById('recWin').textContent = `[${h1.gate}번 ${h1.name}]`;
             document.getElementById('recPlace').textContent = `[${h2.gate}번 ${h2.name}] (입상률 ${h2.place_prob}%)`;
             document.getElementById('recQuinella').textContent = `[${h1.gate}번] ✖ [${h2.gate}번]`;
