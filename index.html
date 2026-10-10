@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KRA전국 승부예상AI_V12.00</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; }
+        body { background-color: #f4f6f9; color: #333; padding-bottom: 40px; transition: background 0.3s ease; }
+        
+        #lockScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .lock-box {
+            background: white; border-radius: 16px; padding: 28px 24px;
+            width: 100%; max-width: 340px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .lock-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .lock-title { font-size: 1.15rem; font-weight: 800; color: #1e3c72; margin-bottom: 6px; }
+        .lock-desc { font-size: 0.8rem; color: #777; margin-bottom: 20px; }
+        .pin-input {
+            width: 100%; padding: 12px; font-size: 1.5rem; text-align: center;
+            letter-spacing: 12px; border: 2px solid #ddd; border-radius: 10px;
+            outline: none; margin-bottom: 12px; transition: border 0.2s;
+        }
+        .pin-input:focus { border-color: #1e3c72; }
+        .pin-btn {
+            width: 100%; padding: 12px; background: #1e3c72; color: white;
+            border: none; border-radius: 10px; font-size: 1rem; font-weight: bold;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .pin-btn:active { background: #152b52; }
+        .pin-err { color: #e63946; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: none; }
+
+        #mainApp { display: none; }
+        header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 14px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: background 0.4s ease; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.5px; }
+        
+        .header-btns { display: flex; gap: 6px; align-items: center; }
+        .btn-instant-update { background: linear-gradient(135deg, #ff7675, #d63031); color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 5px rgba(214,48,49,0.3); }
+        .btn-instant-update:active { transform: scale(0.96); }
+        .btn-lock { background: rgba(255,255,255,0.2); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
+        
+        header p { font-size: 0.76rem; opacity: 0.85; margin-top: 4px; }
+        
+        .update-toast { display: none; background: #2d3436; color: #fab1a0; padding: 12px 14px; text-align: center; font-size: 0.82rem; font-weight: bold; border-bottom: 2px solid #e17055; animation: fadeIn 0.3s ease; line-height: 1.4; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .tab-nav { display: flex; background: white; border-bottom: 1px solid #e1e4e8; position: sticky; top: 62px; z-index: 99; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        .tab-btn { flex: 1; padding: 11px 4px; border: none; background: none; font-size: 0.78rem; font-weight: 700; color: #666; cursor: pointer; text-align: center; border-bottom: 3px solid transparent; transition: all 0.2s ease; white-space: nowrap; }
+        .tab-btn.active { color: #1e3c72; border-bottom-color: #1e3c72; background-color: #f8fafd; }
+
+        .container { padding: 14px; max-width: 500px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .pick-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: white;
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 14px;
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3); transition: all 0.3s ease;
+        }
+        .pick-banner.hit-exact { background: linear-gradient(135deg, #0ba360, #3cba92); box-shadow: 0 4px 12px rgba(11, 163, 96, 0.4); }
+        .pick-banner.hit-win { background: linear-gradient(135deg, #2193b0, #6dd5ed); box-shadow: 0 4px 12px rgba(33, 147, 176, 0.4); }
+        .pick-banner.finished-miss { background: linear-gradient(135deg, #4b6cb7, #182848); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); }
+
+        .pick-banner h2 { font-size: 0.85rem; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+        .pick-list { font-size: 1.15rem; font-weight: 800; margin-top: 4px; line-height: 1.35; }
+        .pick-sub-list { font-size: 0.85rem; font-weight: 600; opacity: 0.95; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.25); }
+        .pick-extra-list { font-size: 0.82rem; font-weight: 700; color: #fff; background: rgba(0,0,0,0.22); padding: 5px 8px; border-radius: 6px; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+        
+        .special-target-bar {
+            display: none; background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff; padding: 6px 10px; border-radius: 8px; margin-bottom: 10px;
+            font-size: 0.8rem; font-weight: 800; box-shadow: 0 2px 6px rgba(255, 75, 43, 0.35);
+            display: flex; align-items: center; justify-content: space-between; animation: fadeIn 0.3s ease;
+        }
+
+        .bet-strategy-bar {
+            background: rgba(0,0,0,0.25); color: #ffd700; padding: 4px 8px; border-radius: 6px;
+            font-size: 0.78rem; font-weight: 800; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+        }
+
+        .hit-status-tag { font-size: 0.75rem; background: rgba(255,255,255,0.25); padding: 2px 8px; border-radius: 20px; font-weight: bold; }
+
+        .race-select-card { background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .race-select-card select { padding: 8px 10px; border-radius: 8px; border: 1px solid #ccc; font-weight: bold; font-size: 0.92rem; color: #1e3c72; outline: none; max-width: 75%; }
+        
+        .horse-card { background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; display: flex; align-items: center; border-left: 5px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.03); position: relative; }
+        .horse-card.rank-1 { border-left-color: #0284c7; background-color: #f0f9ff; }
+        .horse-card.rank-2 { border-left-color: #f59e0b; }
+        .horse-card.rank-3 { border-left-color: #10b981; }
+        
+        .gate-no { width: 38px; height: 38px; background-color: #f1f3f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; margin-right: 12px; flex-shrink: 0; }
+        .horse-card.rank-1 .gate-no { background-color: #0284c7; color: white; }
+        
+        .horse-info { flex-grow: 1; }
+        .horse-name { font-size: 0.95rem; font-weight: bold; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .jockey-name { font-size: 0.78rem; color: #666; margin-bottom: 4px; }
+        .tag-list { display: flex; gap: 4px; flex-wrap: wrap; }
+        
+        .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+        .ai-tag.gold-tag { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; font-weight: 800; }
+        .ai-tag.purple-tag { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; font-weight: 800; }
+        .ai-tag.emerald-tag { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; font-weight: 800; box-shadow: 0 1px 3px rgba(16,185,129,0.2); }
+        .ai-tag.warn-tag { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; font-weight: 800; }
+        .ai-tag.freerun-tag { background: linear-gradient(135deg, #fef08a, #fde047); color: #854d0e; border: 1px solid #facc15; font-weight: 900; box-shadow: 0 1px 4px rgba(234,179,8,0.3); }
+        
+        /* 💎 V12.00 가치 왜곡 뱃지 전용 스타일 */
+        .ai-tag.value-tag { background: linear-gradient(135deg, #e0f2fe, #bae6fd); color: #0369a1; border: 1px solid #38bdf8; font-weight: 900; box-shadow: 0 1px 4px rgba(2,132,199,0.25); }
+
+        .role-badge { font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
+        .role-1st { background-color: #0284c7; color: white; }
+        .role-2nd { background-color: #f59e0b; color: white; }
+        .role-3rd { background-color: #10b981; color: white; }
+
+        .score-info { text-align: right; flex-shrink: 0; margin-left: 8px; }
+        .win-rate { font-size: 1.15rem; font-weight: 800; color: #1e3c72; }
+        .horse-card.rank-1 .win-rate { color: #0284c7; }
+
+        .badge-1st { background-color: #ffd700; color: #7a5800; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
+        .badge-2nd { background-color: #c0c0c0; color: #333; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
+        .badge-3rd { background-color: #cd7f32; color: white; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
+
+        .guide-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .guide-title { font-size: 1.05rem; font-weight: 800; color: #1e3c72; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; border-bottom: 2px solid #f0f3f8; padding-bottom: 8px; }
+        .guide-sub { font-size: 0.88rem; font-weight: 700; color: #333; margin-top: 12px; margin-bottom: 6px; }
+        .guide-text { font-size: 0.84rem; color: #555; line-height: 1.55; margin-bottom: 8px; }
+        .guide-box { background: #f8fafd; border-left: 4px solid #2a5298; padding: 10px 12px; border-radius: 4px; margin: 8px 0; font-size: 0.82rem; line-height: 1.5; color: #333; }
+        .guide-box.warn { border-left-color: #e63946; background: #fff8f8; }
+        .guide-box.gold { border-left-color: #f4a261; background: #fffcf6; }
+        .guide-box.purple { border-left-color: #8b5cf6; background: #faf5ff; }
+        .guide-box.blue { border-left-color: #0284c7; background: #f0f9ff; }
+        
+        .badge-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.82rem; }
+        .badge-table th { background: #f1f4f9; padding: 8px; text-align: left; color: #1e3c72; border-bottom: 1px solid #ddd; }
+        .badge-table td { padding: 8px; border-bottom: 1px solid #eee; }
+
+        .full-screenshot-box {
+            width: 100%; background: #fff; border-radius: 12px; padding: 10px;
+            border: 2px solid #1e3c72; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin: 12px 0 16px 0;
+        }
+        .full-screenshot-img {
+            width: 100%; max-width: 440px; display: block; margin: 0 auto;
+            border-radius: 8px; border: 1px solid #ddd;
+        }
+
+        .sub-tab-nav { display: flex; gap: 8px; margin-bottom: 14px; }
+        .sub-tab-btn {
+            flex: 1; padding: 10px 4px; border: none; border-radius: 8px;
+            background: #e2e8f0; font-size: 0.82rem; font-weight: 800; color: #475569;
+            cursor: pointer; transition: all 0.2s ease; text-align: center;
+        }
+        .sub-tab-btn.active {
+            background: #1e3c72; color: #fff; box-shadow: 0 2px 6px rgba(30, 60, 114, 0.3);
+        }
+
+        .summary-day-card {
+            background: white; border-radius: 12px; padding: 14px; margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04); border-top: 4px solid #1e3c72;
+        }
+        .summary-day-title {
+            font-size: 0.95rem; font-weight: 800; color: #1e3c72; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #f1f5f9; padding-bottom: 6px;
+        }
+        .summary-race-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 4px; border-bottom: 1px dashed #e2e8f0; font-size: 0.85rem;
+        }
+        .summary-race-row:last-child { border-bottom: none; }
+        .summary-round-label { font-weight: 800; color: #334155; min-width: 80px; }
+        .gate-flow-box { display: flex; align-items: center; gap: 6px; }
+        .ball-gate {
+            width: 28px; height: 28px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 0.85rem;
+            font-weight: 900; color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .ball-1st { background: #eab308; }
+        .ball-2nd { background: #94a3b8; }
+        .ball-3rd { background: #d97706; }
+        .flow-arrow { color: #cbd5e1; font-weight: bold; font-size: 0.75rem; }
+
+        .filter-row { display: flex; gap: 6px; margin-bottom: 14px; }
+        .filter-btn { flex: 1; padding: 8px 0; background: white; border: 1px solid #ddd; border-radius: 8px; font-size: 0.78rem; font-weight: bold; color: #666; cursor: pointer; text-align: center; }
+        .filter-btn.active { background: #1e3c72; color: white; border-color: #1e3c72; }
+        
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+        .stat-card { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); text-align: center; }
+        .stat-val { font-size: 1.15rem; font-weight: 800; color: #1e3c72; margin-top: 4px; }
+        .stat-label { font-size: 0.75rem; color: #777; font-weight: 600; }
+        
+        .winner-card { background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-left: 5px solid #1e3c72; }
+        .winner-card.ord-1 { border-left-color: #ffd700; background: #fffdf5; }
+        .winner-card.ord-2 { border-left-color: #c0c0c0; }
+        .winner-card.ord-3 { border-left-color: #cd7f32; }
+        .winner-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: #666; margin-bottom: 6px; font-weight: bold; }
+        .winner-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .winner-name { font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
+        .modal-box { background: white; width: 90%; max-width: 400px; border-radius: 14px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .modal-title { font-size: 1.05rem; font-weight: 800; color: #1e3c72; margin-bottom: 10px; }
+        .modal-input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin: 10px 0; font-size: 0.85rem; }
+        .modal-btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+        .modal-btn { padding: 8px 14px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-size: 0.82rem; }
+        .modal-btn.primary { background: #1e3c72; color: white; }
+        .modal-btn.secondary { background: #eee; color: #333; }
+    </style>
+</head>
+<body>
+
+    <div id="lockScreen">
+        <div class="lock-box">
+            <div class="lock-icon">🔐</div>
+            <div class="lock-title">KRA전국 승부예상AI_V12.00</div>
+            <div class="lock-desc">비밀번호(4자리)를 입력하세요.</div>
+            <input type="password" id="pinInput" class="pin-input" maxlength="4" pattern="[0-9]*" inputmode="numeric" placeholder="••••">
+            <button class="pin-btn" onclick="checkPin()">잠금 해제</button>
+            <div id="pinErr" class="pin-err">비밀번호가 올바르지 않습니다!</div>
+        </div>
+    </div>
+
+    <div id="mainApp">
+        <header id="appHeader">
+            <div class="header-top">
+                <h1>🐎 KRA전국 승부예상AI_V12.00</h1>
+                <div class="header-btns">
+                    <button class="btn-instant-update" onclick="triggerImmediateUpdate()">⚡ 최신결과 갱신</button>
+                    <button class="btn-lock" onclick="lockApp()" title="화면 잠그기">🔒</button>
+                </div>
+            </div>
+            <p id="dateInfo">가치 왜곡 탐지 레이더 가동 중...</p>
+        </header>
+
+        <div id="updateToast" class="update-toast"></div>
+
+        <div id="tokenModal" class="modal">
+            <div class="modal-box">
+                <div class="modal-title">🔑 원클릭 자동 갱신 설정</div>
+                <div class="guide-text" style="font-size:0.8rem;">
+                    깃허브 개인 토큰(PAT)을 입력하시면 클릭 한 번으로 마사회 최신 결과를 동기화합니다.
+                </div>
+                <input type="password" id="ghTokenInput" class="modal-input" placeholder="ghp_ 로 시작하는 토큰 입력">
+                <div class="modal-btn-row">
+                    <button class="modal-btn secondary" onclick="closeTokenModal()">취소</button>
+                    <button class="modal-btn primary" onclick="saveTokenAndTrigger()">저장 후 바로 갱신</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-pred')">🐎 가치레이더</button>
+            <button class="tab-btn" onclick="switchTab('tab-badges')">🏷️ AI 뱃지도감</button>
+            <button class="tab-btn" onclick="switchTab('tab-betting')">🎯 베팅가이드</button>
+            <button class="tab-btn" onclick="switchTab('tab-winners')">📊 입상마분석실</button>
+        </nav>
+
+        <div class="container">
+            <!-- [탭 1] 실시간 가치 레이더 -->
+            <div id="tab-pred" class="tab-content active">
+                <div id="specialTargetBar" class="special-target-bar">
+                    <span>🔥 AI 가치왜곡 초강력 추천 경주!</span>
+                    <span id="targetBadgeDetail" style="font-size:0.72rem; opacity:0.9;">가치 꿀배당 픽 완성</span>
+                </div>
+
+                <div id="pickBanner" class="pick-banner">
+                    <h2>
+                        <span id="bannerTitle">💎 AI 가치 왜곡 포지션 (가치축 ✖ 대항마 ✖ 꿀배당)</span>
+                        <span id="hitStatusTag" class="hit-status-tag">예상 중</span>
+                    </h2>
+                    <div id="aiRecommendation" class="pick-list">-</div>
+                    <div id="aiTop3Recommendation" class="pick-sub-list">-</div>
+                    <div id="aiStrategyBar" class="bet-strategy-bar">🎯 추천 승식: 복승식 & 복연승</div>
+                    <div id="aiPatternMatchList" class="pick-extra-list">📊 전개 시나리오 분석 중...</div>
+                </div>
+
+                <div class="race-select-card">
+                    <span id="distLabel" style="font-weight:bold; font-size:0.9rem;">경주 선택</span>
+                    <select id="raceSelect" onchange="changeRace()"></select>
+                </div>
+
+                <div id="horseList"></div>
+            </div>
+
+            <!-- [탭 2] 뱃지 도감 -->
+            <div id="tab-badges" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-title">🏷️ AI 핵심 뱃지 총람 (V12.00 가치 레이더 모델)</div>
+                    <div class="guide-text">AI가 체급, 게이트, 주파기록, 기수, <strong>대중 인기 거품과 진짜 잠재력의 괴리율(Value Gap)</strong>을 종합 분석하여 부착하는 뱃지입니다.</div>
+                    
+                    <table class="badge-table">
+                        <thead>
+                            <tr>
+                                <th style="width:42%;">뱃지 명칭</th>
+                                <th>부여 시점 및 상세 조건</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="ai-tag value-tag">가치 왜곡 꿀배당 💎</span></td>
+                                <td><strong>[V12 핵심]</strong> 대중이 몰라봐서 배당이 2~3배 부풀려졌으나 실제 잠재능력이 폭발적인 황금알 (+EV 픽)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag warn-tag">인기 거품 위험 🚨</span></td>
+                                <td><strong>[독이 든 사과]</strong> 유명 기수나 간판만 요란하고 56.5kg+ 과부중에 갇혀 부러질 위험 80%인 과대평가마 (-EV)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag freerun-tag">2선 프리런 황금전개 👑</span></td>
+                                <td>앞선 인기마들의 몸싸움 뒤에서 모래·바람 저항 없이 체력을 아끼다 쏘아 올리는 황금 전개마 (+8점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag gold-tag">제주 황금인코스 🎯</span></td>
+                                <td>코너가 좁고 급한 제주에서 최단거리로 독주하는 1~3번 게이트 (+8점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag gold-tag">제주 독주선행 👑</span></td>
+                                <td>처음부터 결승선까지 아무도 못 잡는 제주 초단거리 와이어투와이어 선행마 (+14점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag gold-tag">부경 직선주로 추입 🚀</span></td>
+                                <td>서울보다 60m 긴 460m 직선주로를 활용해 막판 200m에 역전하는 탄력마 (+9점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag warn-tag">집중 견제 주의 ⚠️</span></td>
+                                <td>특급 기수가 탄 안쪽 선행마로, 다른 기수들의 집중 견제를 받아 결승선 앞 자멸할 위험 마필 (-7점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag warn-tag">기수 거품 주의 🎈</span></td>
+                                <td>말의 최근 성적은 부진한데 특급 기수의 이름값만 얹혀 배당판 인기만 끄는 가짜 우등생 (기수 점수 50% 삭감)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag warn-tag">과부중 주의(57kg+) 🧱</span></td>
+                                <td>1400m 이상 중장거리에서 쇳덩이 같은 무거운 등짐으로 인해 막판 200m 언덕에서 다리가 묶일 마필</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag emerald-tag">입상 공식 부합 ✨</span></td>
+                                <td>최근 5주간 실제 1~3착 입상마들의 승리 공식과 완벽 부합하는 정예마</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag purple-tag">체급 최강자(탑웨이트) 🏋️</span></td>
+                                <td>마사회가 실력을 인정해 57.5~60kg 최고 무게를 얹은 챔피언 능력마 (+4점)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag purple-tag">외곽 모래회피 복병 🚀</span></td>
+                                <td>모래 맞는 것을 피해 8~11번 외곽에서 시야를 열고 날아오는 외곽 전용마</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag">단거리 황금게이트 ⚡</span></td>
+                                <td>1300m 이하 단거리에서 가장 유리한 1~3번 안쪽 코스</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ai-tag">경량 부중 ⚡</span></td>
+                                <td>등짐이 52.5kg 이하로 가벼워 막판 역전에 유리한 말</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-title">🦄 V12.00 궁극의 '가치 챔피언' 예시</div>
+                    <div class="horse-card rank-1" style="margin-top:10px;">
+                        <div class="gate-no">9</div>
+                        <div class="horse-info">
+                            <div class="horse-name">혁무상 <span class="role-badge role-1st">가치 1순위 승부축 💎</span></div>
+                            <div class="jockey-name">루이스 기수 | 함완식 조교 (*52.5kg)</div>
+                            <div class="tag-list" style="margin-top:4px;">
+                                <span class="ai-tag value-tag">가치 왜곡 꿀배당 💎</span>
+                                <span class="ai-tag freerun-tag">2선 프리런 황금전개 👑</span>
+                                <span class="ai-tag purple-tag">외곽 모래회피 복병 🚀</span>
+                                <span class="ai-tag">경량 부중(52.5kg) ⚡</span>
+                            </div>
+                        </div>
+                        <div class="score-info">
+                            <div class="win-rate">84.2점</div>
+                            <div style="font-size:0.7rem; color:#0284c7; font-weight:bold;">괴리율 +12.4 (대박)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- [탭 3] 베팅 가이드 -->
+            <div id="tab-betting" class="tab-content">
+                <div class="guide-card" style="border: 2px solid #0284c7;">
+                    <div class="guide-title" style="color:#0284c7;">
+                        💎 [가치 투자 베팅 공식] 대중의 거품을 피해 돈을 버는 비법
+                    </div>
+                    <div class="guide-text">
+                        경마에서 돈을 버는 퀀트들의 비밀은 "누가 1등 할까?"가 아니라 <strong>"누구의 배당이 왜곡되어 있는가?"</strong>를 찾는 것입니다!
+                    </div>
+
+                    <div class="guide-sub">👑 1. [가치 1순위 승부축 💎]을 기둥으로 삼아라!</div>
+                    <div class="guide-box blue">
+                        • 대중은 이름값에 홀려 1.5배짜리 거품마에 몰빵하지만, 진짜 돈을 벌어다 주는 말은 **잠재력 대비 배당이 2~3배 부풀려진 [가치 승부축]**입니다.<br>
+                        • 이 말을 단승식, 연승식, 복승식의 고정 기둥으로 잡으세요!
+                    </div>
+
+                    <div class="guide-sub">🚨 2. [인기 거품 위험 🚨] 뱃지마는 무조건 지워라!</div>
+                    <div class="guide-box warn">
+                        • 56.5kg 이상 무거운 등짐에 특급 기수가 타서 배당판 1~2위로 팔리는 말은 십중팔구 결승선 200m 앞에서 다리가 묶입니다.<br>
+                        • 이 말을 마권에서 과감히 지우는 것만으로도 장기 수익률이 200% 상승합니다!
+                    </div>
+
+                    <div class="guide-sub">🎯 3. [꿀배당 복병 타겟 🎯]을 엮은 삼복승 포메이션</div>
+                    <div class="guide-box gold">
+                        • 1열(축마): `[가치 1순위 승부축 💎]`<br>
+                        • 2열(대항마): `[실력 검증 대항마 👑]`<br>
+                        • 3열(복병): `[꿀배당 복병 타겟 🎯]`<br>
+                        • 이 포메이션 하나로 수십 배~수백 배 고배당을 가장 안전하게 회수할 수 있습니다!
+                    </div>
+                </div>
+
+                <div class="guide-card" style="border: 2px solid #e63946;">
+                    <div class="guide-title" style="color:#e63946;">
+                        📸 [10/5 서울 10R 실전 화면] 자르지 않은 원본 복기
+                    </div>
+                    <div class="full-screenshot-box">
+                        <img src="./case_study_1005.JPG" alt="10/5 서울 10R 실전 복기 원본 화면" class="full-screenshot-img" onerror="this.onerror=null; this.src='./case_study_1005.png';">
+                    </div>
+                </div>
+
+                <div class="guide-card" style="border: 2px solid #1e3c72;">
+                    <div class="guide-title" style="color:#1e3c72;">
+                        🏛️🌊🍊 3대 경마장별 절대 불패 베팅 수칙
+                    </div>
+                    
+                    <div class="guide-sub">🍊 1. [제주 경마] 초단거리 인코스 선행 몰빵 공식</div>
+                    <div class="guide-box gold">
+                        • <strong>[1~3번 안쪽 게이트]</strong> + <strong>[제주 독주선행 👑]</strong> 뱃지마를 1착 단승/복승 축마로 무조건 고정하세요!
+                    </div>
+
+                    <div class="guide-sub">🌊 2. [부산경남 경마] 긴 직선(460m) 역전 추입 & 명문마방 공식</div>
+                    <div class="guide-box purple">
+                        • 1400m 이상에서는 <strong>[부경 직선주로 추입 🚀]</strong> 뱃지가 달린 말과 <strong>[우수 마방 🏆]</strong> 말을 복승/삼복승 축으로 삼으세요!
+                    </div>
+
+                    <div class="guide-sub">🏛️ 3. [서울 경마] 인기마 견제 & 2선 프리런 복병 공식</div>
+                    <div class="guide-box warn">
+                        • 앞선 싸움을 피해 3~4번째로 달리는 <strong>[2선 프리런 황금전개 👑]</strong> 복병마를 1착 축마로 과감히 노리세요!
+                    </div>
+                </div>
+            </div>
+
+            <!-- [탭 4] 입상마 분석실 -->
+            <div id="tab-winners" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-title">📊 최근 5주간 실제 1·2·3착 입상마 빅데이터 통계</div>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">5주 누적 입상마</div>
+                            <div id="statTotalWinners" class="stat-val">- 두</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">평균 우승 부담중량</div>
+                            <div id="statAvgWeight" class="stat-val">- kg</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">외곽(8~11번) 입상률</div>
+                            <div id="statOutsideRate" class="stat-val">- %</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">최다 입상 뱃지</div>
+                            <div id="statTopBadge" class="stat-val" style="font-size:0.9rem;">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-tab-nav">
+                    <button id="btnSubSummary" class="sub-tab-btn active" onclick="switchWinnerSubTab('sub-summary')">
+                        📋 경주별 게이트 순서 (1-2-3착 요약)
+                    </button>
+                    <button id="btnSubDetail" class="sub-tab-btn" onclick="switchWinnerSubTab('sub-detail')">
+                        🏆 개별 입상마 상세 분석
+                    </button>
+                </div>
+
+                <div id="subtab-summary" style="display:block;">
+                    <div id="raceSummaryContainer"></div>
+                </div>
+
+                <div id="subtab-detail" style="display:none;">
+                    <div class="filter-row">
+                        <button class="filter-btn active" onclick="filterWinners('all', this)">전체 (1~3착)</button>
+                        <button class="filter-btn" onclick="filterWinners('1', this)">1착 우승마 🥇</button>
+                        <button class="filter-btn" onclick="filterWinners('2', this)">2착 준우승 🥈</button>
+                        <button class="filter-btn" onclick="filterWinners('3', this)">3착 입상 🥉</button>
+                    </div>
+                    <div id="winnerListContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 로직 -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('app_authenticated') === 'true') {
+                unlockApp();
+            } else {
+                const el = document.getElementById('pinInput');
+                if (el) el.focus();
+            }
+        });
+
+        function checkPin() {
+            const input = document.getElementById('pinInput').value.trim();
+            const errEl = document.getElementById('pinErr');
+
+            if (input === "1415" || input === "4938") {
+                localStorage.setItem('app_authenticated', 'true');
+                unlockApp();
+            } else {
+                errEl.style.display = 'block';
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinInput').focus();
+            }
+        }
+
+        document.getElementById('pinInput').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') checkPin();
+        });
+
+        function unlockApp() {
+            document.getElementById('lockScreen').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            loadData();
+        }
+
+        function lockApp() {
+            localStorage.removeItem('app_authenticated');
+            location.reload();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchWinnerSubTab(targetSubTab) {
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (targetSubTab === 'sub-summary') {
+                document.getElementById('btnSubSummary').classList.add('active');
+                document.getElementById('subtab-summary').style.display = 'block';
+                document.getElementById('subtab-detail').style.display = 'none';
+            } else {
+                document.getElementById('btnSubDetail').classList.add('active');
+                document.getElementById('subtab-summary').style.display = 'none';
+                document.getElementById('subtab-detail').style.display = 'block';
+            }
+        }
+
+        const GITHUB_OWNER = "toto999-999";
+        const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
+
+        function triggerImmediateUpdate() {
+            const token = localStorage.getItem('gh_token');
+            if (!token) {
+                document.getElementById('tokenModal').style.display = 'flex';
+                return;
+            }
+            executeWorkflow(token);
+        }
+
+        function closeTokenModal() { document.getElementById('tokenModal').style.display = 'none'; }
+
+        function saveTokenAndTrigger() {
+            const input = document.getElementById('ghTokenInput').value.trim();
+            if (!input) { alert("토큰을 입력해주세요!"); return; }
+            localStorage.setItem('gh_token', input);
+            closeTokenModal();
+            executeWorkflow(input);
+        }
+
+        function executeWorkflow(token) {
+            const toast = document.getElementById('updateToast');
+            toast.style.display = 'block';
+            toast.innerHTML = "🚀 V12.00 가치 왜곡 데이터 갱신 중입니다!<br><span style='font-size:0.75rem; color:#ffeaa7;'>(마사회 서버 통신 중)</span>";
+
+            fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/update.yml/dispatches`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ref: 'main' })
+            })
+            .then(res => {
+                if (res.status === 204) {
+                    let count = 80;
+                    const timer = setInterval(() => {
+                        count--;
+                        if (count > 0) {
+                            toast.innerHTML = `🚀 V12.00 왜곡 탐지 분석 중... (<strong>${count}초</strong> 남음)`;
+                        } else {
+                            clearInterval(timer);
+                            toast.innerHTML = "✨ V12.00 동기화 완료! 화면을 새로고침합니다.";
+                            setTimeout(() => { location.reload(); }, 1500);
+                        }
+                    }, 1000);
+                } else {
+                    toast.innerHTML = "❌ 갱신 실패: 토큰 권한을 확인해주세요.";
+                    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+                }
+            })
+            .catch(() => {
+                toast.innerHTML = "❌ 통신 에러가 발생했습니다.";
+                setTimeout(() => { toast.style.display = 'none'; }, 4000);
+            });
+        }
+
+        let allRaceData = [];
+        let globalWinnersList = [];
+
+        function loadData() {
+            fetch('./race_data.json?nocache=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    if (!data || data.length === 0) {
+                        document.getElementById('dateInfo').textContent = "등록된 경주 데이터가 없습니다.";
+                        return;
+                    }
+                    allRaceData = data;
+                    const select = document.getElementById('raceSelect');
+                    select.innerHTML = '';
+                    
+                    data.forEach((r, idx) => {
+                        const opt = document.createElement('option');
+                        opt.value = idx;
+                        const dStr = r.distance ? ` (${r.distance}m)` : '';
+                        const tStr = r.track ? ` [${r.track}]` : '';
+                        
+                        let datePrefix = "";
+                        if (r.race_date && r.race_date.length >= 8) {
+                            const m = parseInt(r.race_date.substring(4, 6), 10);
+                            const d = parseInt(r.race_date.substring(6, 8), 10);
+                            datePrefix = `${m}/${d} `;
+                        }
+
+                        let meetIcon = "🏛️";
+                        if (r.meet_name === "제주") meetIcon = "🍊";
+                        else if (r.meet_name === "부산경남" || r.meet_name === "영천") meetIcon = "🌊";
+
+                        const targetBadge = r.is_trio_target ? "💎[가치왜곡] " : "";
+                        opt.textContent = `${targetBadge}[${datePrefix}${meetIcon}${r.meet_name}] ${r.race_no}R${dStr}${tStr}`;
+                        if (r.is_trio_target) {
+                            opt.style.fontWeight = "800";
+                            opt.style.color = "#0284c7";
+                        }
+                        select.appendChild(opt);
+                    });
+
+                    const latestIdx = data.length > 0 ? (data.length - 1) : 0;
+                    select.value = latestIdx;
+                    document.getElementById('dateInfo').textContent = `${data[latestIdx].race_date} AI V12.00 가치 레이더`;
+                    
+                    buildWinnersAnalytics();
+                    renderRace(latestIdx);
+                })
+                .catch(() => {
+                    document.getElementById('dateInfo').textContent = "데이터 로딩 실패";
+                });
+        }
+
+        function buildRaceSummaryView() {
+            const container = document.getElementById('raceSummaryContainer');
+            container.innerHTML = '';
+
+            const finishedRaces = allRaceData.filter(r => {
+                const h1 = r.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
+                const h2 = r.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
+                return (h1 && h2);
+            });
+
+            if (finishedRaces.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:30px; color:#888;">아직 종료된 경주 결과 데이터가 없습니다.</div>';
+                return;
+            }
+
+            const groupedMap = new Map();
+            finishedRaces.forEach(r => {
+                const groupKey = `${r.race_date}_${r.meet_name}`;
+                if (!groupedMap.has(groupKey)) {
+                    groupedMap.set(groupKey, {
+                        race_date: r.race_date,
+                        meet_name: r.meet_name,
+                        races: []
+                    });
+                }
+                groupedMap.get(groupKey).races.push(r);
+            });
+
+            groupedMap.forEach(group => {
+                let dateFormatted = "";
+                if (group.race_date && group.race_date.length >= 8) {
+                    const m = parseInt(group.race_date.substring(4, 6), 10);
+                    const d = parseInt(group.race_date.substring(6, 8), 10);
+                    dateFormatted = `${m}/${d}`;
+                }
+
+                let meetIcon = "🏛️";
+                if (group.meet_name === "제주") meetIcon = "🍊";
+                else if (group.meet_name === "부산경남" || group.meet_name === "영천") meetIcon = "🌊";
+
+                group.races.sort((a, b) => parseInt(a.race_no, 10) - parseInt(b.race_no, 10));
+
+                let rowsHtml = '';
+                group.races.forEach(r => {
+                    const h1 = r.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
+                    const h2 = r.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
+                    const h3 = r.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 3);
+
+                    const g1 = h1 ? h1.gate : "-";
+                    const g2 = h2 ? h2.gate : "-";
+                    const g3 = h3 ? h3.gate : "-";
+
+                    rowsHtml += `
+                        <div class="summary-race-row">
+                            <div class="summary-round-label">
+                                <strong>${r.race_no}R</strong> <span style="font-size:0.75rem; color:#64748b;">(${r.distance}m)</span>
+                            </div>
+                            <div class="gate-flow-box">
+                                <span class="ball-gate ball-1st" title="1착: ${h1 ? h1.name : ''}">${g1}</span>
+                                <span class="flow-arrow">-</span>
+                                <span class="ball-gate ball-2nd" title="2착: ${h2 ? h2.name : ''}">${g2}</span>
+                                <span class="flow-arrow">-</span>
+                                <span class="ball-gate ball-3rd" title="3착: ${h3 ? h3.name : ''}">${g3}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="summary-day-card">
+                        <div class="summary-day-title">
+                            <span>📅 ${dateFormatted} [${meetIcon} ${group.meet_name}]</span>
+                            <span style="font-size:0.75rem; color:#64748b; font-weight:normal;">총 ${group.races.length}개 경주</span>
+                        </div>
+                        <div style="font-size:0.72rem; color:#94a3b8; margin-bottom:6px; display:flex; justify-content:flex-end; gap:8px;">
+                            <span>🥇1착</span> <span>🥈2착</span> <span>🥉3착</span>
+                        </div>
+                        ${rowsHtml}
+                    </div>
+                `;
+            });
+        }
+
+        function buildWinnersAnalytics() {
+            globalWinnersList = [];
+            let totalWeight = 0;
+            let outsideCount = 0;
+            const badgeCountMap = {};
+
+            allRaceData.forEach(r => {
+                r.horses.forEach((h, idx) => {
+                    const ordNum = parseInt(h.actual_ord, 10);
+                    if (ordNum >= 1 && ordNum <= 3) {
+                        const gNum = parseInt(h.gate, 10);
+                        const wNum = parseFloat(h.weight) || 55;
+                        totalWeight += wNum;
+                        if (gNum >= 8) outsideCount++;
+
+                        if (h.ai_tags) {
+                            h.ai_tags.forEach(t => {
+                                badgeCountMap[t] = (badgeCountMap[t] || 0) + 1;
+                            });
+                        }
+
+                        globalWinnersList.push({
+                            race_date: r.race_date,
+                            meet_name: r.meet_name,
+                            race_no: r.race_no,
+                            distance: r.distance,
+                            actual_ord: ordNum,
+                            predicted_rank: idx + 1,
+                            horse: h
+                        });
+                    }
+                });
+            });
+
+            globalWinnersList.sort((a, b) => b.race_date.localeCompare(a.race_date));
+            const totalWinners = globalWinnersList.length;
+            document.getElementById('statTotalWinners').textContent = totalWinners + ' 두';
+            if (totalWinners > 0) {
+                document.getElementById('statAvgWeight').textContent = (totalWeight / totalWinners).toFixed(1) + ' kg';
+                document.getElementById('statOutsideRate').textContent = ((outsideCount / totalWinners) * 100).toFixed(0) + ' %';
+                document.getElementById('statTopBadge').textContent = '가치 왜곡 꿀배당 💎';
+            }
+
+            buildRaceSummaryView();
+            renderWinnersTab('all');
+        }
+
+        function filterWinners(ordFilter, btnEl) {
+            if (btnEl) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            const container = document.getElementById('winnerListContainer');
+            container.innerHTML = '';
+
+            const filtered = (ordFilter === 'all') 
+                ? globalWinnersList 
+                : globalWinnersList.filter(item => item.actual_ord === parseInt(ordFilter, 10));
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:30px; color:#888;">입상마 데이터가 없습니다.</div>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const h = item.horse;
+                const ordClass = 'ord-' + item.actual_ord;
+                const medal = item.actual_ord === 1 ? '🥇 1착' : (item.actual_ord === 2 ? '🥈 2착' : '🥉 3착');
+
+                let tagsHtml = '';
+                if (h.ai_tags && h.ai_tags.length > 0) {
+                    tagsHtml = '<div class="tag-list" style="margin-top:6px;">' + h.ai_tags.map(t => {
+                        const isValue = t.includes('꿀배당');
+                        const isWarn = t.includes('위험') || t.includes('거품') || t.includes('주의');
+                        const isFreerun = t.includes('프리런');
+                        const tagClass = isValue ? 'value-tag' : (isFreerun ? 'freerun-tag' : (isWarn ? 'warn-tag' : ''));
+                        return `<span class="ai-tag ${tagClass}">${t}</span>`;
+                    }).join('') + '</div>';
+                }
+
+                container.innerHTML += `
+                    <div class="winner-card ${ordClass}">
+                        <div class="winner-header">
+                            <span>[${item.race_date}] ${item.meet_name} ${item.race_no}R (${item.distance}m)</span>
+                            <span style="color:#0284c7; font-weight:800;">${h.role_name || '가치마'} (${h.ai_score}점)</span>
+                        </div>
+                        <div class="winner-main">
+                            <div class="winner-name">
+                                <span style="background:#1e3c72; color:white; border-radius:4px; padding:1px 6px; font-size:0.75rem;">${h.gate}번</span>
+                                ${h.name}
+                            </div>
+                            <div style="font-weight:800; font-size:0.95rem; color:#1e3c72;">${medal}</div>
+                        </div>
+                        <div style="font-size:0.78rem; color:#666;">
+                            ${h.jockey} 기수 | ${h.trainer} 조교 (${h.weight}kg)
+                        </div>
+                        ${tagsHtml}
+                    </div>
+                `;
+            });
+        }
+
+        // ========================================================
+        // 🐎 [1번 탭] 실시간 가치 레이더 렌더링
+        // ========================================================
+        function renderRace(idx) {
+            const race = allRaceData[idx];
+            const list = document.getElementById('horseList');
+            const banner = document.getElementById('pickBanner');
+            const headerEl = document.getElementById('appHeader');
+            const bannerTitle = document.getElementById('bannerTitle');
+            const hitTag = document.getElementById('hitStatusTag');
+            const recBox = document.getElementById('aiRecommendation');
+            const top3Box = document.getElementById('aiTop3Recommendation');
+            const stratBox = document.getElementById('aiStrategyBar');
+            const patternBox = document.getElementById('aiPatternMatchList');
+            const distLabel = document.getElementById('distLabel');
+            const targetBar = document.getElementById('specialTargetBar');
+            list.innerHTML = '';
+
+            distLabel.textContent = `경주 (${race.distance || '1200'}m | ${race.track || '양호'})`;
+
+            if (race.meet_name === "제주") {
+                headerEl.style.background = "linear-gradient(135deg, #c2410c, #ea580c)";
+                banner.style.background = "linear-gradient(135deg, #ea580c, #f97316)";
+            } else if (race.meet_name === "부산경남" || race.meet_name === "영천") {
+                headerEl.style.background = "linear-gradient(135deg, #0369a1, #0284c7)";
+                banner.style.background = "linear-gradient(135deg, #0284c7, #38bdf8)";
+            } else {
+                headerEl.style.background = "linear-gradient(135deg, #1e3c72, #2a5298)";
+                banner.style.background = "linear-gradient(135deg, #0284c7, #2563eb)";
+            }
+
+            if (race.is_trio_target) {
+                targetBar.style.display = 'flex';
+                document.getElementById('targetBadgeDetail').textContent = '가치 꿀배당 픽 완성';
+            } else {
+                targetBar.style.display = 'none';
+            }
+
+            const h1 = race.horses[0];
+            const h2 = race.horses[1] || race.horses[0];
+            const h3 = race.horses[2] || race.horses[1] || race.horses[0];
+
+            recBox.innerHTML = `💎 [${h1.gate}번 ${h1.name}] ✖ 👑 [${h2.gate}번 ${h2.name}]`;
+            top3Box.innerHTML = `🎯 <strong>가치 삼복승</strong>: [${h1.gate}번] 가치축 ➔ [${h2.gate}번] 대항마 ➔ 🥉 <strong>[${h3.gate}번 ${h3.name}] 꿀배당!</strong>`;
+            stratBox.innerHTML = `🎯 <strong>추천 승식</strong>: ${race.bet_recommend || '가치 승부축 ✖ 복승식·복연승'}`;
+            patternBox.innerHTML = race.scenario_title ? `📊 ${race.scenario_title}<br><span style="font-size:0.75rem; opacity:0.85;">${race.scenario_desc || ''}</span>` : `📊 가치 왜곡 분석 완료`;
+
+            const actual1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
+            const actual2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
+            const actual3rd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 3);
+
+            if (actual1st && actual2nd) {
+                const actualTop3Gates = [actual1st.gate, actual2nd.gate, actual3rd ? actual3rd.gate : null].filter(Boolean);
+                const aiTop3 = [h1.gate, h2.gate, h3.gate];
+                const matchedInTop3 = aiTop3.filter(g => actualTop3Gates.includes(g)).length;
+
+                const res3rd = actual3rd ? ` - 3착 [${actual3rd.gate}번 ${actual3rd.name}]` : "";
+                const fullResultStr = `실제 결과: 1착 [${actual1st.gate}번 ${actual1st.name}] - 2착 [${actual2nd.gate}번 ${actual2nd.name}]${res3rd}`;
+
+                if (matchedInTop3 === 3) {
+                    banner.className = 'pick-banner hit-exact';
+                    bannerTitle.textContent = "🎯 삼복승 전개 완벽 적중 대성공!";
+                    hitTag.textContent = "포지션 적중 🏆";
+                    recBox.textContent = fullResultStr;
+                } else if (matchedInTop3 === 2) {
+                    banner.className = 'pick-banner hit-win';
+                    bannerTitle.textContent = "🎯 복승·복연승 2두 적중 (삼복승 1두 아쉬움)";
+                    hitTag.textContent = "복연승 적중 🥈";
+                    recBox.textContent = fullResultStr;
+                } else if (h1.gate === actual1st.gate) {
+                    banner.className = 'pick-banner hit-win';
+                    bannerTitle.textContent = "🎯 1착 우승축마 적중!";
+                    hitTag.textContent = "1착 적중 🥇";
+                    recBox.textContent = fullResultStr;
+                } else {
+                    banner.className = 'pick-banner finished-miss';
+                    bannerTitle.textContent = "🏁 경주 종료 (결과 복기)";
+                    hitTag.textContent = "경기 완료";
+                    recBox.textContent = fullResultStr;
+                }
+            } else {
+                bannerTitle.textContent = "💎 AI 가치 왜곡 포지션 (가치축 ✖ 대항마 ✖ 꿀배당)";
+                hitTag.textContent = "경기 전 예상";
+            }
+
+            race.horses.forEach((h, i) => {
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                const ordNum = parseInt(String(h.actual_ord).trim(), 10);
+                const isValidOrd = (!isNaN(ordNum) && ordNum >= 1 && ordNum <= 20);
+
+                let badgeHtml = '';
+                if (isValidOrd) {
+                    if (ordNum === 1) badgeHtml = '<span class="badge-1st">실제 1착 🥇</span>';
+                    else if (ordNum === 2) badgeHtml = '<span class="badge-2nd">실제 2착 🥈</span>';
+                    else if (ordNum === 3) badgeHtml = '<span class="badge-3rd">실제 3착 🥉</span>';
+                }
+
+                let roleBadgeHtml = '';
+                if (i === 0) roleBadgeHtml = `<span class="role-badge role-1st">${h.role_name}</span>`;
+                else if (i === 1) roleBadgeHtml = `<span class="role-badge role-2nd">${h.role_name}</span>`;
+                else if (i === 2) roleBadgeHtml = `<span class="role-badge role-3rd">${h.role_name}</span>`;
+
+                const resultStatus = isValidOrd ? `실제 ${ordNum}착` : '경기 전';
+
+                let tagsHtml = '';
+                if (h.ai_tags && h.ai_tags.length > 0) {
+                    tagsHtml = '<div class="tag-list">' + h.ai_tags.map(t => {
+                        const isValue = t.includes('꿀배당');
+                        const isWarn = t.includes('위험') || t.includes('거품') || t.includes('주의');
+                        const isFreerun = t.includes('프리런');
+                        const tagClass = isValue ? 'value-tag' : (isFreerun ? 'freerun-tag' : (isWarn ? 'warn-tag' : ''));
+                        return `<span class="ai-tag ${tagClass}">${t}</span>`;
+                    }).join('') + '</div>';
+                }
+
+                list.innerHTML += `
+                    <div class="horse-card ${rankClass}">
+                        <div class="gate-no">${h.gate}</div>
+                        <div class="horse-info">
+                            <div class="horse-name">${h.name} ${roleBadgeHtml} ${badgeHtml}</div>
+                            <div class="jockey-name">${h.jockey} 기수 | ${h.trainer} 조교 (${h.weight}kg)</div>
+                            ${tagsHtml}
+                        </div>
+                        <div class="score-info">
+                            <div class="win-rate">${h.ai_score}점</div>
+                            <div style="font-size:0.7rem; color:#888;">${h.role_name || (i+1)+'위'} (${resultStatus})</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function changeRace() {
+            const val = document.getElementById('raceSelect').value;
+            renderRace(val);
+        }
+    </script>
+</body>
+</html>
