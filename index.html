@@ -38,9 +38,25 @@
         .btn-update { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; cursor: pointer; }
         .btn-lock { background: rgba(255,255,255,0.15); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
 
+        /* 🎯 상단 탭 네비게이션 */
+        .tab-nav {
+            display: flex; background: white; border-bottom: 1px solid #cbd5e1;
+            position: sticky; top: 58px; z-index: 99; box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .tab-btn {
+            flex: 1; padding: 12px 6px; border: none; background: none; font-size: 0.85rem;
+            font-weight: 800; color: #64748b; cursor: pointer; text-align: center;
+            border-bottom: 3px solid transparent; transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            color: #0284c7; border-bottom-color: #0284c7; background-color: #f0f9ff;
+        }
+
         .container { padding: 14px; max-width: 500px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         
-        /* 🎯 [신규] 날짜 ➔ 경주 2분할 셀렉터 */
+        /* 2분할 날짜/경주 선택기 */
         .race-select-card {
             background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;
             display: flex; gap: 8px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -101,6 +117,41 @@
         .ev-badge.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
         .sub-desc { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 15px; line-height: 1.4; }
+
+        /* ======================================================== */
+        /* 🎯 [신규] 베팅가이드 전용 카드 & 스타일 */
+        /* ======================================================== */
+        .guide-card {
+            background: white; border-radius: 14px; padding: 18px 16px; margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 4px solid #0284c7;
+        }
+        .guide-title {
+            font-size: 1.05rem; font-weight: 900; color: #0f172a; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
+        }
+        .guide-sub {
+            font-size: 0.88rem; font-weight: 900; color: #0284c7; margin-top: 14px; margin-bottom: 6px;
+        }
+        .guide-text {
+            font-size: 0.84rem; color: #475569; line-height: 1.55; margin-bottom: 8px;
+        }
+        .guide-box {
+            padding: 12px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.82rem; line-height: 1.5;
+        }
+        .guide-box.blue { background: #f0f9ff; border-left: 4px solid #0284c7; color: #0c4a6e; }
+        .guide-box.green { background: #f0fdf4; border-left: 4px solid #16a34a; color: #14532d; }
+        .guide-box.red { background: #fef2f2; border-left: 4px solid #ef4444; color: #7f1d1d; }
+        .guide-box.gold { background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+
+        .guide-table {
+            width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem;
+        }
+        .guide-table th {
+            background: #f8fafc; padding: 9px 8px; text-align: left; color: #334155; font-weight: 800; border-bottom: 2px solid #cbd5e1;
+        }
+        .guide-table td {
+            padding: 9px 8px; border-bottom: 1px solid #e2e8f0; color: #1e293b;
+        }
     </style>
 </head>
 <body>
@@ -127,72 +178,188 @@
             </div>
         </header>
 
+        <!-- 🎯 상단 2대 탭 네비게이션 -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
+            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·7대승식</button>
+        </nav>
+
         <div class="container">
-            <!-- 🎯 [신규] 날짜 ➔ 경주 연동 선택 바 -->
-            <div class="race-select-card">
-                <div class="select-group" style="max-width: 42%;">
-                    <span class="select-label">📅 날짜 선택</span>
-                    <select id="dateSelect" onchange="changeDate()"></select>
+            <!-- ======================================================== -->
+            <!-- [탭 1] 실시간 가치 계산기 화면 -->
+            <!-- ======================================================== -->
+            <div id="tab-calc" class="tab-content active">
+                <div class="race-select-card">
+                    <div class="select-group" style="max-width: 42%;">
+                        <span class="select-label">📅 날짜 선택</span>
+                        <select id="dateSelect" onchange="changeDate()"></select>
+                    </div>
+                    <div class="select-group">
+                        <span class="select-label">🐎 경주 선택</span>
+                        <select id="raceSelect" onchange="changeRace()"></select>
+                    </div>
                 </div>
-                <div class="select-group">
-                    <span class="select-label" id="raceCountLabel">🐎 경주 선택</span>
-                    <select id="raceSelect" onchange="changeRace()"></select>
+
+                <div id="resultBar" class="result-bar"></div>
+
+                <div class="bet-matrix-card" id="matrixCard">
+                    <div class="matrix-title">
+                        <span>👑 실시간 7대 승식 최적 마권</span>
+                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">더비온 배당 입력 시 즉시 갱신</span>
+                    </div>
+                    <div class="matrix-grid">
+                        <div class="matrix-item">
+                            <div class="matrix-label">🥇 단승식 (1착 우승)</div>
+                            <div id="recWin" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">🛡️ 연승식 (1~3착 안전)</div>
+                            <div id="recPlace" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">🎯 복승식 (1-2착)</div>
+                            <div id="recQuinella" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">⚡ 쌍승식 (1착➔2착)</div>
+                            <div id="recExacta" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">💰 복연승식 (1~3착 2두 묶음 / 강력추천!)</div>
+                            <div id="recWide" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">👑 삼복승식 (1-2-3착 황금 포메이션)</div>
+                            <div id="recTrio" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">🚀 삼쌍승식 (1착➔2착➔3착 순서 고정)</div>
+                            <div id="recTrifecta" class="matrix-val">-</div>
+                        </div>
+                    </div>
                 </div>
+
+                <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between;">
+                    <span>🐎 출전마 (AI 순수 승률)</span>
+                    <span>더비온 배당 입력 (엔터시 다음칸) 👇</span>
+                </div>
+
+                <div id="horseList"></div>
+
+                <p class="sub-desc">
+                    💡 <strong>사용법</strong>: 더비온 2.0에서 본 단승 배당 숫자를 입력하고 <strong>[엔터(Enter)]</strong>를 치시면 다음 칸으로 자동 이동합니다.
+                </p>
             </div>
 
-            <div id="resultBar" class="result-bar"></div>
+            <!-- ======================================================== -->
+            <!-- [탭 2] 베팅가이드 (2단계 EV 원리 & 4단계 7대 승식 공식 탑재!) -->
+            <!-- ======================================================== -->
+            <div id="tab-guide" class="tab-content">
+                
+                <!-- 🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준 -->
+                <div class="guide-card">
+                    <div class="guide-title">
+                        🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준
+                    </div>
+                    <div class="guide-text">
+                        경마에서 돈을 버는 퀀트들의 비밀은 "어떤 말이 1등 할까?"가 아니라 <strong>"누구의 배당이 수학적으로 왜곡되어 있는가?"</strong>를 찾는 것입니다.
+                    </div>
 
-            <!-- 🎯 7대 승식 실시간 마권 추천 패널 -->
-            <div class="bet-matrix-card" id="matrixCard">
-                <div class="matrix-title">
-                    <span>👑 실시간 7대 승식 최적 마권</span>
-                    <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">더비온 배당 입력 시 즉시 갱신</span>
+                    <div class="guide-box blue">
+                        <strong>기대값(Expected Value, EV) 핵심 공식:</strong><br>
+                        <span style="font-size:0.95rem; font-weight:900;">EV = [ AI 잠재 승률(%) ÷ 100 ] × 더비온 단승 배당</span>
+                    </div>
+
+                    <div class="guide-sub">💎 +EV (가치 꿀배당 / 1.25 이상) ➔ 초록불 켜짐</div>
+                    <div class="guide-box green">
+                        • <strong>원리</strong>: AI 추정 승률은 15%(0.15)인데, 대중이 몰라봐서 배당이 16.0배인 경우!<br>
+                        • <strong>계산</strong>: 0.15 × 16.0 = <strong>기대값 2.40 (초대박!)</strong><br>
+                        • <strong>판정</strong>: 마사회 수수료를 떼고도 장기적으로 무조건 돈을 버는 <strong>황금알 마필</strong>입니다. 복연승·삼복승 축마로 확정!
+                    </div>
+
+                    <div class="guide-sub">🚨 -EV (인기 거품 함정 / 0.75 이하) ➔ 빨간불 켜짐</div>
+                    <div class="guide-box red">
+                        • <strong>원리</strong>: 실제 승률은 25%(0.25)에 불과한데, 기수 이름값에 대중이 몰려 배당이 1.8배로 바닥인 경우!<br>
+                        • <strong>계산</strong>: 0.25 × 1.8 = <strong>기대값 0.45 (함정!)</strong><br>
+                        • <strong>판정</strong>: 10번 중 7번은 부러지는 독이 든 사과입니다. <strong>마권에서 과감히 지우는 것만으로도 장기 손실이 70% 차단</strong>됩니다.
+                    </div>
+
+                    <div class="guide-sub">👑 3대 핵심 마필 선발 기준</div>
+                    <div class="guide-text">
+                        • <strong>🥇 h1 (가치 1순위 승부축)</strong>: 출전마 전체 중 기대값(EV)이 가장 높은 가성비 1등마<br>
+                        • <strong>🥈 h2 (실력 검증 대항마)</strong>: 배당과 무관하게 순수 AI 승률(실력) 자체가 가장 높은 든든한 안정마<br>
+                        • <strong>🥉 h3 (꿀배당 복병 타겟)</strong>: h1, h2를 제외하고 기대값이 가장 높은 알짜배기 고배당 복병마
+                    </div>
                 </div>
-                <div class="matrix-grid">
-                    <div class="matrix-item">
-                        <div class="matrix-label">🥇 단승식 (1착 우승)</div>
-                        <div id="recWin" class="matrix-val">-</div>
+
+                <!-- 👑 [4단계] 7대 승식 최적 조합 공식 및 수학적 이유 -->
+                <div class="guide-card" style="border-top-color: #f59e0b;">
+                    <div class="guide-title" style="color:#b45309;">
+                        👑 [4단계] 7대 승식 최적 조합 공식 및 수학적 이유
                     </div>
-                    <div class="matrix-item">
-                        <div class="matrix-label">🛡️ 연승식 (1~3착 안전)</div>
-                        <div id="recPlace" class="matrix-val">-</div>
+                    <div class="guide-text">
+                        입력하신 단승 배당을 바탕으로, 수학적 기대값이 가장 높은 <strong>7대 승식 최적 마권 포메이션</strong>이 상단 패널에 1초 만에 완성되는 원리입니다.
                     </div>
-                    <div class="matrix-item">
-                        <div class="matrix-label">🎯 복승식 (1-2착)</div>
-                        <div id="recQuinella" class="matrix-val">-</div>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-label">⚡ 쌍승식 (1착➔2착)</div>
-                        <div id="recExacta" class="matrix-val">-</div>
-                    </div>
-                    <div class="matrix-item full">
-                        <div class="matrix-label">💰 복연승식 (1~3착 2두 묶음 / 강력추천!)</div>
-                        <div id="recWide" class="matrix-val">-</div>
-                    </div>
-                    <div class="matrix-item full">
-                        <div class="matrix-label">👑 삼복승식 (1-2-3착 황금 포메이션)</div>
-                        <div id="recTrio" class="matrix-val">-</div>
-                    </div>
-                    <div class="matrix-item full">
-                        <div class="matrix-label">🚀 삼쌍승식 (1착➔2착➔3착 순서 고정)</div>
-                        <div id="recTrifecta" class="matrix-val">-</div>
+
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th style="width:25%;">승식 구분</th>
+                                <th style="width:30%;">추천 조합</th>
+                                <th>추천하는 수학적 이유</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🥇 단승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(1착 우승)</span></td>
+                                <td><span style="color:#0284c7; font-weight:900;">[h1]</span></td>
+                                <td>기대값(EV)이 가장 높아 단통으로 찔렀을 때 자본 회수율이 가장 큼</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🛡️ 연승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(1~3착 안전)</span></td>
+                                <td><span style="color:#0284c7; font-weight:900;">[h2]</span></td>
+                                <td>순수 입상 확률이 가장 높아 1~3착 원금 보존 확률이 압도적으로 높음</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🎯 복승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(1-2착 순서무관)</span></td>
+                                <td><strong>[h1] ✖ [h2]</strong></td>
+                                <td>가치 1등(h1)과 실력 1등(h2)이 함께 들어올 가장 정석적인 2두 묶음</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚡ 쌍승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(1착 ➔ 2착)</span></td>
+                                <td><strong>[h1] ➔ [h2]</strong></td>
+                                <td>가치축(h1)을 1착에 고정하고 실력마(h2)를 2착에 꽂는 고배당 승부</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💰 복연승식</strong><br><span style="font-size:0.7rem; color:#e11d48; font-weight:900;">(강력추천!)</span></td>
+                                <td><strong>[h1] ✖ [h3]<br>[h1] ✖ [h2]</strong></td>
+                                <td><strong>프로들의 주력!</strong> 가치축에 꿀배당 복병을 엮어 가장 안전하게 수십 배를 쓸어 담는 승식</td>
+                            </tr>
+                            <tr>
+                                <td><strong>👑 삼복승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(1-2-3착)</span></td>
+                                <td><strong>[h1] ➕ [h2]<br>➕ [h3]</strong></td>
+                                <td>가치축 + 실력마 + 꿀배당 복병의 완벽한 황금 삼각편대 포메이션</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🚀 삼쌍승식</strong><br><span style="font-size:0.7rem; color:#64748b;">(순서 고정)</span></td>
+                                <td><strong>[h1] ➔ [h2]<br>➔ [h3]</strong></td>
+                                <td>h1(1착) ➔ h2(2착) ➔ h3(3착) 순서 그대로 고정하는 인생 역전 대박 마권</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="guide-box gold" style="margin-top:14px;">
+                        <strong>💡 프로들의 자금 관리 황금수칙:</strong><br>
+                        • 무리한 삼쌍승 몰빵을 피하고, <strong>복연승식([h1] ✖ [h3])을 메인 주력</strong>으로 삼으세요.<br>
+                        • 하루 예산은 1~2만 원으로 정하고, 경주당 1,000~2,000원씩 분산 베팅할 때 장기적으로 수학이 승리합니다!
                     </div>
                 </div>
+
             </div>
-
-            <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between;">
-                <span>🐎 출전마 (AI 순수 승률)</span>
-                <span>더비온 배당 입력 (엔터시 다음칸) 👇</span>
-            </div>
-
-            <div id="horseList"></div>
-
-            <p class="sub-desc">
-                💡 <strong>사용법</strong>: 왼쪽에서 날짜를 고르고, 더비온 2.0에서 본 단승 배당 숫자를 입력 후 <strong>[엔터(Enter)]</strong>를 치시면 다음 칸으로 자동 이동합니다.
-            </p>
         </div>
     </div>
 
+    <!-- 스크립트 로직 -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
@@ -229,10 +396,19 @@
             location.reload();
         }
 
+        // 🎯 상단 2대 탭 전환 함수
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         let allRaceData = [];
         let currentRaceIdx = 0;
 
-        // 🎯 날짜 포맷팅 헬퍼 (20261010 -> 10/10 (토))
         function formatDateLabel(dStr) {
             if (!dStr || dStr.length < 8) return dStr;
             const y = parseInt(dStr.substring(0, 4), 10);
@@ -240,8 +416,7 @@
             const d = parseInt(dStr.substring(6, 8), 10);
             const dateObj = new Date(y, m - 1, d);
             const days = ['일', '월', '화', '수', '목', '금', '토'];
-            const dayName = days[dateObj.getDay()];
-            return `${m}/${d} (${dayName})`;
+            return `${m}/${d} (${days[dateObj.getDay()]})`;
         }
 
         function loadData() {
@@ -251,9 +426,7 @@
                     allRaceData = data;
                     if (!data || data.length === 0) return;
 
-                    // 1. 등록된 고유 날짜들 추출 (오름차순)
                     const uniqueDates = [...new Set(data.map(r => r.race_date))].filter(Boolean);
-                    
                     const dateSelect = document.getElementById('dateSelect');
                     dateSelect.innerHTML = '';
                     uniqueDates.forEach(dt => {
@@ -263,26 +436,20 @@
                         dateSelect.appendChild(opt);
                     });
 
-                    // 기본값: 가장 최신(마지막) 날짜 선택!
                     const latestDate = uniqueDates[uniqueDates.length - 1];
                     dateSelect.value = latestDate;
-
-                    // 해당 날짜의 경주들로 오른쪽 셀렉트 채우기
                     populateRaceSelect(latestDate);
                 });
         }
 
-        // 🎯 선택된 날짜의 경주들만 오른쪽 드롭다운에 채우기
         function populateRaceSelect(selectedDate) {
             const raceSelect = document.getElementById('raceSelect');
             raceSelect.innerHTML = '';
-
             let firstIdxOfDate = -1;
 
             allRaceData.forEach((r, idx) => {
                 if (r.race_date === selectedDate) {
                     if (firstIdxOfDate === -1) firstIdxOfDate = idx;
-
                     const opt = document.createElement('option');
                     opt.value = idx;
                     opt.textContent = `[${r.meet_name}] ${r.race_no}R (${r.distance}m)`;
@@ -297,8 +464,7 @@
         }
 
         function changeDate() {
-            const selectedDate = document.getElementById('dateSelect').value;
-            populateRaceSelect(selectedDate);
+            populateRaceSelect(document.getElementById('dateSelect').value);
         }
 
         function changeRace() {
@@ -311,7 +477,6 @@
             const race = allRaceData[idx];
             if (!race) return;
 
-            // 결과 복기
             const resBar = document.getElementById('resultBar');
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -357,7 +522,6 @@
             calculateMatrix();
         }
 
-        // 🎯 엔터 키 치면 아래 말 배당칸으로 자동 이동
         function handleOddsKey(e, index, totalCount) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -372,7 +536,6 @@
             }
         }
 
-        // 🎯 더비온 배당 입력 시 실시간 7대 승식 계산기
         function calculateMatrix() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -406,22 +569,12 @@
                     }
 
                     horsesWithEV.push({
-                        gate: h.gate,
-                        name: h.name,
-                        prob: h.win_prob,
-                        place_prob: h.place_prob,
-                        odds: oddsVal,
-                        ev: ev
+                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: oddsVal, ev: ev
                     });
                 } else {
                     evBadge.style.display = 'none';
                     horsesWithEV.push({
-                        gate: h.gate,
-                        name: h.name,
-                        prob: h.win_prob,
-                        place_prob: h.place_prob,
-                        odds: 0,
-                        ev: (h.win_prob / 100.0) * 1.0
+                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: 0, ev: (h.win_prob / 100.0) * 1.0
                     });
                 }
             });
