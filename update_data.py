@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (가치 배당 & 왜곡 탐지 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (퀀트 가치 배당 계산기 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -25,7 +25,7 @@ MEET_CONFIG = [
 ]
 
 OFFICIAL_DISTANCES = {
-    # 10월 3일 (토)
+    # 10월 3일 ~ 10월 11일 공식 편성 거리 보장
     ("20261003", "서울", "1"): "1000", ("20261003", "서울", "2"): "1200",
     ("20261003", "서울", "3"): "1400", ("20261003", "서울", "4"): "1300",
     ("20261003", "서울", "5"): "1200", ("20261003", "서울", "6"): "1700",
@@ -35,7 +35,6 @@ OFFICIAL_DISTANCES = {
     ("20261003", "제주", "3"): "1000", ("20261003", "제주", "4"): "1110",
     ("20261003", "제주", "5"): "1110", ("20261003", "제주", "6"): "1200", ("20261003", "제주", "7"): "1300",
 
-    # 10월 4일 (일)
     ("20261004", "영천", "1"): "1200", ("20261004", "영천", "2"): "1400",
     ("20261004", "영천", "3"): "1400", ("20261004", "영천", "4"): "1800",
     ("20261004", "영천", "5"): "1200", ("20261004", "영천", "6"): "1200",
@@ -45,7 +44,6 @@ OFFICIAL_DISTANCES = {
     ("20261004", "서울", "7"): "1800", ("20261004", "서울", "8"): "2000",
     ("20261004", "서울", "9"): "1200", ("20261004", "서울", "10"): "1400", ("20261004", "서울", "11"): "1200",
 
-    # 10월 5일 (월 대체공휴일)
     ("20261005", "서울", "1"): "1000", ("20261005", "서울", "2"): "1300",
     ("20261005", "서울", "3"): "1200", ("20261005", "서울", "4"): "1400",
     ("20261005", "서울", "5"): "1400", ("20261005", "서울", "6"): "1200",
@@ -55,7 +53,6 @@ OFFICIAL_DISTANCES = {
     ("20261005", "제주", "3"): "1000", ("20261005", "제주", "4"): "1110",
     ("20261005", "제주", "5"): "1200", ("20261005", "제주", "6"): "1300", ("20261005", "제주", "7"): "1300",
 
-    # 10월 9일 (금)
     ("20261009", "부산경남", "1"): "1000", ("20261009", "부산경남", "2"): "1200",
     ("20261009", "부산경남", "3"): "1600", ("20261009", "부산경남", "4"): "1600",
     ("20261009", "부산경남", "5"): "1400", ("20261009", "부산경남", "6"): "1200",
@@ -64,7 +61,6 @@ OFFICIAL_DISTANCES = {
     ("20261009", "제주", "3"): "1000", ("20261009", "제주", "4"): "1000",
     ("20261009", "제주", "5"): "1110", ("20261009", "제주", "6"): "1200", ("20261009", "제주", "7"): "1400",
 
-    # 10월 10일 (토)
     ("20261010", "서울", "1"): "1000", ("20261010", "서울", "2"): "1200",
     ("20261010", "서울", "3"): "1300", ("20261010", "서울", "4"): "1400",
     ("20261010", "서울", "5"): "1800", ("20261010", "서울", "6"): "1200",
@@ -74,7 +70,6 @@ OFFICIAL_DISTANCES = {
     ("20261010", "제주", "3"): "1000", ("20261010", "제주", "4"): "1110",
     ("20261010", "제주", "5"): "1110", ("20261010", "제주", "6"): "1200", ("20261010", "제주", "7"): "1300",
 
-    # 10월 11일 (일)
     ("20261011", "서울", "1"): "1000", ("20261011", "서울", "2"): "1200",
     ("20261011", "서울", "3"): "1200", ("20261011", "서울", "4"): "1300",
     ("20261011", "서울", "5"): "1400", ("20261011", "서울", "6"): "1200",
@@ -141,8 +136,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
         items = root.findall(".//item")
         if not items: return []
 
-        print(f"[{meet_name} {date_str}] API 응답: {len(items)}두 수신 완료")
-
         races = {}
         for it in items:
             def gv(tag_list):
@@ -165,9 +158,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             raw_trainer = gv(["trName", "tr_name", "trainerName", "trainer"]) or "조교사"
             jockey, trainer = sanitize_jockey_and_trainer(raw_jockey, raw_trainer)
 
-            raw_dist = gv(["rcDist", "rc_dist", "distance", "dist", "rc_distance"]) or ""
-            clean_dist = re.sub(r'[^0-9]', '', raw_dist)
-
             weight = gv(["wgBudam", "wg_budam", "weight"]) or "55.0"
             track = gv(["track", "track_state", "trackCond", "weather"]) or "양호"
             rc_time = gv(["rcTime", "rc_time", "record", "rcRecord", "ordTime"]) or ""
@@ -181,10 +171,8 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             s1f_rank = gv(["g1p", "s1f", "g1pRank", "ord1p"]) or ""
             is_front = False
-            if s1f_rank in ["1", "2", "01", "02"]:
-                is_front = True
-            elif str(pre_ord).strip() in ["1", "2", "01", "02"] and int(gate) <= 4:
-                is_front = True
+            if s1f_rank in ["1", "2", "01", "02"]: is_front = True
+            elif str(pre_ord).strip() in ["1", "2", "01", "02"] and int(gate) <= 4: is_front = True
 
             ord_no = "-"
             direct_ord = gv(["ordNo", "ord_no", "ord", "rc_ord", "rcOrd", "rank", "rankNo", "chaksun"])
@@ -203,10 +191,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                dist_lookup = OFFICIAL_DISTANCES.get((date_str, meet_name, rc_no))
-                if not dist_lookup:
-                    dist_lookup = clean_dist if (clean_dist and int(clean_dist) >= 800) else "1200"
-
+                dist_lookup = OFFICIAL_DISTANCES.get((date_str, meet_name, rc_no), "1200")
                 races[key] = {
                     "meet_code": meet_code,
                     "meet_name": meet_name,
@@ -226,31 +211,16 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 "weight": weight, "track": track, "rc_time": rc_time, "past_time": past_time,
                 "g1f_time": g1f_time, "win_odds": win_odds, "pre_ord": pre_ord,
                 "rc_cnt": rc_cnt, "ord1_cnt": ord1_cnt, "ord2_cnt": ord2_cnt,
-                "is_front": is_front, "actual_ord": ord_no, "horse_dist": clean_dist
+                "is_front": is_front, "actual_ord": ord_no
             })
 
         for r in races.values():
-            valid_dists = [h["horse_dist"] for h in r["horses"] if h.get("horse_dist") and int(h["horse_dist"]) >= 800]
-            if valid_dists:
-                dist_counts = Counter(valid_dists)
-                r["distance"] = dist_counts.most_common(1)[0][0]
-
             dist = int(r["distance"])
-            front_cnt = sum(1 for h in r["horses"] if h["is_front"])
             meet = r["meet_name"]
 
-            all_weights = []
+            # 🎯 순수 객관적 잠재 능력치 산출 (확률 변환용)
+            raw_scores = []
             for h in r["horses"]:
-                try: all_weights.append(float(re.sub(r'[^0-9.]', '', str(h["weight"]))))
-                except: all_weights.append(55.0)
-            max_race_weight = max(all_weights) if all_weights else 55.0
-
-            # =========================================================================
-            # 💎 [V12.00 핵심] 괴리율 탐지 엔진 (Hype 거품 vs True 잠재실력)
-            # =========================================================================
-            for h in r["horses"]:
-                h["distance"] = str(dist)
-                tags = []
                 g = int(h["gate"]) if str(h["gate"]).isdigit() else 5
                 try: clean_w = float(re.sub(r'[^0-9.]', '', str(h["weight"])))
                 except: clean_w = 55.0
@@ -264,137 +234,27 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
                 tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
 
-                # 1. 대중 인기 거품 지수 (Hype Score): 이름값, 안쪽 게이트에 대중이 몰려 배당이 깎인 정도
-                hype = (raw_jk * 0.6) + (tr_rate * 0.3) + (win_rate * 0.4)
-                if g <= 3 and dist <= 1300: hype += 6.0
+                # 순수 파워 = 기본능력 + 부중이점 + 게이트이점
+                power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
+                power += (55.0 - clean_w) * 2.0  # 등짐 1kg당 파워 보정
 
-                # 2. 진짜 잠재능력 지수 (True Ability): 등짐 가벼움, 전개 위치, 주로 적합도
-                true_ability = 30.0 + (quinella_rate * 0.4) + (tr_rate * 0.4)
+                # 주로 적합도
+                if meet == "제주" and g <= 3: power += 8.0
+                elif dist <= 1300 and g <= 3: power += 4.0
+                elif meet in ["부산경남", "영천"] and dist >= 1400 and (not h["is_front"]): power += 5.0
 
-                # 등짐 이점 & 과부중 페널티
-                if clean_w <= 52.5:
-                    true_ability += (55.0 - clean_w) * 3.0
-                    tags.append(f"경량 부중({clean_w}kg) ⚡")
-                elif clean_w >= 57.0:
-                    true_ability -= (clean_w - 56.0) * 3.5
-                    tags.append(f"과부중 주의({clean_w}kg) 🧱")
-                elif clean_w >= 57.5 and clean_w == max_race_weight:
-                    true_ability += 4.0
-                    tags.append("체급 최강자(탑웨이트) 🏋️")
+                raw_scores.append(max(5.0, power))
 
-                # 전개 적합도
-                h["can_freerun"] = (not h["is_front"]) and (4 <= g <= 8) and (raw_jk >= 16.0 or tr_rate >= 16.0 or clean_w <= 53.5)
-                h["freerun_power"] = (raw_jk * 0.4) + (tr_rate * 0.4) + (55.0 - clean_w)
+            # 합계 100% 확률로 정규화 (Softmax-like Normalization)
+            total_power = sum(raw_scores) or 100.0
+            for idx, h in enumerate(r["horses"]):
+                prob = round((raw_scores[idx] / total_power) * 100, 1)
+                h["win_prob"] = prob
+                h["place_prob"] = round(min(85.0, prob * 2.4), 1) # 3착 내 입상확률 추정
+                h["pure_score"] = round(raw_scores[idx], 1)
 
-                h["can_closer"] = (meet in ["부산경남", "영천"]) and (dist >= 1400) and (not h["is_front"])
-                h["closer_power"] = (55.0 - clean_w) * 1.5 + (raw_jk * 0.4) + (tr_rate * 0.3)
-
-                # 경마장별 진짜 이점 반영
-                if meet == "제주":
-                    if g <= 3: true_ability += 8.0; tags.append("제주 황금인코스 🎯")
-                    if h["is_front"]: true_ability += 14.0; tags.append("제주 독주선행 👑")
-                elif meet in ["부산경남", "영천"]:
-                    if g >= 8 and (not h["is_front"]): tags.append("외곽 모래회피 복병 🚀")
-                else: # 서울
-                    if g <= 3 and h["is_front"] and raw_jk >= 24.0:
-                        true_ability -= 7.0
-                        tags.append("집중 견제 주의 ⚠️")
-                    if dist <= 1300 and g <= 3: tags.append("단거리 황금게이트 ⚡")
-                    elif g >= 8 and (not h["is_front"]): tags.append("외곽 모래회피 복병 🚀")
-
-                # 3. 괴리율(Value Gap) = 잠재능력 - 대중거품
-                value_gap = round(true_ability - hype, 1)
-
-                h["hype_score"] = round(hype, 1)
-                h["true_score"] = round(true_ability, 1)
-                h["value_gap"] = value_gap
-                h["ai_tags"] = tags
-
-            # 프리런 & 추입 뱃지 엄선 부여
-            freerun_candidates = [h for h in r["horses"] if h.get("can_freerun")]
-            freerun_candidates.sort(key=lambda x: x["freerun_power"], reverse=True)
-            for best_fr in freerun_candidates[:2]:
-                best_fr["ai_tags"].append("2선 프리런 황금전개 👑")
-                best_fr["true_score"] += 8.0
-                best_fr["value_gap"] += 8.0
-
-            closer_candidates = [h for h in r["horses"] if h.get("can_closer")]
-            closer_candidates.sort(key=lambda x: x["closer_power"], reverse=True)
-            for best_closer in closer_candidates[:2]:
-                best_closer["ai_tags"].append("부경 직선주로 추입 🚀")
-                best_closer["true_score"] += 9.0
-                best_closer["value_gap"] += 9.0
-
-            # 🎯 가치 판정 태그 부여 (거품마 vs 가치마)
-            for h in r["horses"]:
-                if h["value_gap"] >= 6.0:
-                    h["ai_tags"].append("가치 왜곡 꿀배당 💎")
-                elif h["value_gap"] <= -8.0 and h["hype_score"] >= 25.0:
-                    h["ai_tags"].append("인기 거품 위험 🚨")
-
-            # =========================================================================
-            # 🎯 V12.00 포지션 매칭: [가치 승부축 💎] ✖ [실력 대항마 👑] ✖ [꿀배당 복병 🎯]
-            # =========================================================================
-            # 1. 1착 가치 승부축: 진짜 잠재능력도 높고 괴리율도 우수한 최고의 가치 승부마
-            r["horses"].sort(key=lambda x: (x["true_score"] + x["value_gap"] * 0.7), reverse=True)
-            pick_1st = r["horses"][0]
-            pick_1st["role_name"] = "가치 1순위 승부축 💎"
-            pick_1st["ai_score"] = round(80.0 + min(4.5, pick_1st["value_gap"] * 0.3), 1)
-
-            # 2. 2착 실력 대항마: 거품 여부와 무관하게 순수 체급/실력이 가장 확실한 안정마
-            rem_2nd = [h for h in r["horses"] if h["gate"] != pick_1st["gate"]]
-            rem_2nd.sort(key=lambda x: x["true_score"], reverse=True)
-            pick_2nd = rem_2nd[0]
-            pick_2nd["role_name"] = "실력 검증 대항마 👑"
-            pick_2nd["ai_score"] = round(pick_1st["ai_score"] - 3.8, 1)
-
-            # 3. 3착 꿀배당 복병: 대중이 버렸으나 괴리율(Value Gap)이 가장 높은 알짜배기 고배당마
-            rem_3rd = [h for h in rem_2nd if h["gate"] != pick_2nd["gate"]]
-            rem_3rd.sort(key=lambda x: x["value_gap"], reverse=True)
-            pick_3rd = rem_3rd[0]
-            pick_3rd["role_name"] = "꿀배당 복병 타겟 🎯"
-            pick_3rd["ai_score"] = round(pick_2nd["ai_score"] - 4.2, 1)
-
-            # 4. 나머지 말 계단식 배치
-            rem_others = [h for h in rem_3rd if h["gate"] != pick_3rd["gate"]]
-            rem_others.sort(key=lambda x: x["true_score"], reverse=True)
-            cur_other = round(pick_3rd["ai_score"] - 2.5, 1)
-            for h in rem_others:
-                if h["value_gap"] <= -8.0:
-                    h["role_name"] = "거품 주의마 ⚠️"
-                else:
-                    h["role_name"] = "일반 출전마"
-                h["ai_score"] = round(cur_other, 1)
-                cur_other = max(45.0, cur_other - 1.2)
-
-            r["horses"] = [pick_1st, pick_2nd, pick_3rd] + rem_others
-
-            # 시나리오 브리핑
-            if meet == "제주":
-                r["scenario_title"] = "🍊 [제주 초단거리 인코스 독주 판도]"
-                r["scenario_desc"] = "1~3번 안쪽 게이트 선행마 와이어투와이어 독주 시나리오"
-                r["bet_recommend"] = "가치축 ✖ 인코스 복승식·단승식"
-            elif meet in ["부산경남", "영천"]:
-                if dist >= 1400:
-                    r["scenario_title"] = f"🌊 [{meet} 460m 직선 추입 역전 판도]"
-                    r["scenario_desc"] = "긴 직선주로 선행마 감속! 막판 200m 추입 탄력 가치마 대역전"
-                    r["bet_recommend"] = "가치 복병축 ➔ 삼복승·복연승 포메이션"
-                else:
-                    r["scenario_title"] = f"🌊 [{meet} 단거리 명문마방 정석 판도]"
-                    r["scenario_desc"] = "상위 마방 전력 반영 및 안정적 선입 버티기"
-                    r["bet_recommend"] = "복승식 단통 & 복연승 방어"
-            else: # 서울
-                if dist >= 1700 and front_cnt >= 3:
-                    r["scenario_title"] = "🏛️ [서울 인기마 자멸 ➔ 2선 프리런 역전 판도]"
-                    r["scenario_desc"] = "인기 선행마 집중 견제 자멸! 2선 프리런 꿀배당 가치마 승부"
-                    r["bet_recommend"] = "2선 프리런 가치축 ➔ 복연승·삼복승"
-                else:
-                    r["scenario_title"] = "🏛️ [서울 전개 밸런스 정밀 판도]"
-                    r["scenario_desc"] = "인기 거품마 배제 및 2선 프리런 가치 승부"
-                    r["bet_recommend"] = "가치 승부축 ✖ 대항마 복승식"
-
-            r["is_trio_target"] = (pick_1st["value_gap"] >= 4.0 or pick_3rd["value_gap"] >= 6.0)
-            r["trio_reason"] = r["scenario_title"]
+            # 승률 순 정렬
+            r["horses"].sort(key=lambda x: x["win_prob"], reverse=True)
 
         return list(races.values())
 
@@ -411,10 +271,8 @@ def cleanse_corrupted_archive(races):
                 h["distance"] = OFFICIAL_DISTANCES[k]
                 try:
                     ord_val = int(h.get("actual_ord", "-"))
-                    if ord_val > 20:
-                        h["actual_ord"] = "-"
-                except:
-                    pass
+                    if ord_val > 20: h["actual_ord"] = "-"
+                except: pass
 
 def sync_5weeks_archive():
     now = datetime.now(KST)
@@ -426,18 +284,13 @@ def sync_5weeks_archive():
                 for r in old_list:
                     k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
                     existing_races[k] = r
-            print(f"📦 기존 저장소 로드: {len(existing_races)}개 경주")
-        except:
-            existing_races = {}
+        except: existing_races = {}
 
     dates_to_fetch = []
-    for i in range(7, 0, -1):
-        dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
+    for i in range(7, 0, -1): dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
     dates_to_fetch.append(now.strftime("%Y%m%d"))
-    for i in range(1, 6):
-        dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
+    for i in range(1, 6): dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
 
-    print(f"🔄 V12.00 가치 왜곡 수집 대상: {dates_to_fetch}")
     for dt in dates_to_fetch:
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
@@ -458,12 +311,8 @@ def sync_5weeks_archive():
     return final_list
 
 def main():
-    if not API_KEY:
-        print("❌ KRA_API_KEY 미설정")
-        return
-
+    if not API_KEY: return
     all_races = sync_5weeks_archive()
-
     if all_races:
         meet_order = {"서울": 1, "부산경남": 2, "영천": 3, "제주": 4}
         all_races.sort(key=lambda x: (
@@ -473,9 +322,7 @@ def main():
         ))
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 가치 왜곡 탐지 및 갱신 완료! (총 {len(all_races)}개 경주)")
-    else:
-        print("❌ 데이터를 가져오지 못했습니다.")
+        print(f"🎉 성공: [{VERSION}] 퀀트 배당 계산기 데이터 갱신 완료!")
 
 if __name__ == "__main__":
     main()
