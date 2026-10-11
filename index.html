@@ -70,11 +70,21 @@
             font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
         }
 
+        /* 🎯 7대 승식 실시간 베팅 추천 패널 */
         .bet-matrix-card {
             background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px; margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
         }
         .matrix-title { font-size: 0.85rem; font-weight: 900; color: #0284c7; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #e0f2fe; padding-bottom: 6px; }
+        
+        /* 🔥 큰손 뭉칫돈 감지 경보 바 */
+        .smart-alert-bar {
+            background: linear-gradient(135deg, #ef4444, #f97316); color: white;
+            padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 900;
+            margin-bottom: 10px; display: none; align-items: center; gap: 6px; animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+
         .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .matrix-item { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7; }
         .matrix-item.full { grid-column: span 2; background: #f0f9ff; border-left-color: #f59e0b; }
@@ -93,28 +103,49 @@
         }
         .horse-card.value-hot { border-left-color: #10b981; background: #f0fdf4; }
         .horse-card.value-bad { border-left-color: #ef4444; background: #fef2f2; }
+        .horse-card.smart-hot { border-left-color: #f97316; background: #fff7ed; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2); }
 
-        .horse-left { display: flex; align-items: center; gap: 10px; flex-grow: 1; }
+        .horse-left { display: flex; align-items: center; gap: 10px; flex-grow: 1; min-width: 0; }
         .gate-ball { width: 34px; height: 34px; border-radius: 8px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; color: #0f172a; flex-shrink: 0; }
-        .horse-meta { display: flex; flex-direction: column; gap: 2px; }
-        .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; }
-        .horse-sub { font-size: 0.75rem; color: #64748b; }
+        .horse-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+        /* 🎯 [신규] 듀얼 배당 입력 박스 (10분전 ➔ 마감직전) */
         .odds-input-box {
-            display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 10px;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px;
+        }
+        .odds-dual-row {
+            display: flex; align-items: center; gap: 4px;
+        }
+        .odds-field {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+        }
+        .odds-field-label {
+            font-size: 0.65rem; font-weight: 800; color: #94a3b8;
         }
         .odds-input {
-            width: 75px; padding: 6px 8px; border: 2px solid #cbd5e1; border-radius: 8px;
-            font-size: 0.95rem; font-weight: 900; text-align: center; color: #0f172a; outline: none;
+            width: 58px; padding: 5px 4px; border: 2px solid #cbd5e1; border-radius: 6px;
+            font-size: 0.88rem; font-weight: 900; text-align: center; color: #0f172a; outline: none; background: #fff;
         }
         .odds-input:focus { border-color: #0284c7; background: #f0f9ff; }
+        .odds-input.base { border-color: #e2e8f0; color: #64748b; }
+        .odds-arrow { font-size: 0.7rem; color: #cbd5e1; margin-top: 12px; }
+
+        .ev-row {
+            display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-wrap: wrap;
+        }
         .ev-badge {
-            font-size: 0.7rem; font-weight: 900; padding: 2px 6px; border-radius: 4px;
+            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
         }
         .ev-badge.good { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
         .ev-badge.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
-        /* 🎯 [신규] 배당 저장 & 초기화 액션 바 */
+        .smart-badge {
+            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
+            background: #ffedd5; color: #c2410c; border: 1px solid #fdba74;
+        }
+
         .odds-action-bar {
             display: flex; gap: 8px; margin-top: 14px; margin-bottom: 6px;
         }
@@ -147,6 +178,7 @@
         .guide-box.blue { background: #f0f9ff; border-left: 4px solid #0284c7; color: #0c4a6e; }
         .guide-box.green { background: #f0fdf4; border-left: 4px solid #16a34a; color: #14532d; }
         .guide-box.red { background: #fef2f2; border-left: 4px solid #ef4444; color: #7f1d1d; }
+        .guide-box.orange { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; }
         .guide-box.gold { background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
 
         .guide-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
@@ -180,7 +212,7 @@
 
         <nav class="tab-nav">
             <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
-            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·7대승식)</button>
+            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·뭉칫돈)</button>
         </nav>
 
         <div class="container">
@@ -201,9 +233,12 @@
 
                 <!-- 7대 승식 추천 패널 -->
                 <div class="bet-matrix-card" id="matrixCard">
+                    <!-- 🔥 큰손 뭉칫돈 감지 경보 바 -->
+                    <div id="smartAlertBar" class="smart-alert-bar"></div>
+
                     <div class="matrix-title">
                         <span>👑 실시간 7대 승식 최적 마권</span>
-                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">더비온 배당 입력 시 즉시 갱신</span>
+                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">배당 입력 시 0.1초 자동 갱신</span>
                     </div>
                     <div class="matrix-grid">
                         <div class="matrix-item">
@@ -237,14 +272,13 @@
                     </div>
                 </div>
 
-                <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between;">
+                <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
                     <span>🐎 출전마 (AI 순수 승률)</span>
-                    <span>더비온 배당 입력 (엔터시 다음칸) 👇</span>
+                    <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
                 </div>
 
                 <div id="horseList"></div>
 
-                <!-- 🎯 [신규] 배당 저장 및 초기화 액션 바 -->
                 <div class="odds-action-bar">
                     <button class="btn-save-odds" onclick="saveCurrentOdds()">
                         💾 현재 배당 저장 (복기용)
@@ -255,20 +289,33 @@
                 </div>
 
                 <p class="sub-desc">
-                    💡 <strong>복기 활용법</strong>: 배당을 입력 후 <strong>[💾 현재 배당 저장]</strong>을 누르시면 폰에 저장됩니다. 경주가 끝난 후 저녁에 다시 열면 입력했던 배당과 실제 착순이 나란히 복원되어 가치를 복기할 수 있습니다.
+                    💡 <strong>뭉칫돈 감지법</strong>: 더비온 2.0에서 [10분 전] 배당과 [마감 직전] 배당을 둘 다 입력하시면 <strong>-30% 이상 배당 급락한 큰손 뭉칫돈</strong>을 자동으로 찾아냅니다. (마감 직전 배당 1개만 입력해도 정상 작동!)
                 </p>
             </div>
 
             <!-- [탭 2] 베팅가이드 -->
             <div id="tab-guide" class="tab-content">
+                <!-- 🚨 [신규] 큰손 뭉칫돈 추적 비법 -->
+                <div class="guide-card" style="border-top-color: #f97316;">
+                    <div class="guide-title" style="color:#c2410c;">
+                        🚨 [실전 비법] 큰손들의 뭉칫돈(스마트 머니) 포착 공식
+                    </div>
+                    <div class="guide-text">
+                        경마 마감 5분~3분 전에는 이미 수십억 원의 판돈이 차 있습니다. 이때 배당을 깎아내리려면 <strong>수천만 원~억 단위의 현금</strong>이 꽂혀야만 배당이 움직입니다.
+                    </div>
+
+                    <div class="guide-sub">🔥 배당 하락률 공식:</div>
+                    <div class="guide-box orange">
+                        <span style="font-weight:900; font-size:0.9rem;">배당 변동률 = [ (마감직전 배당 - 10분전 배당) ÷ 10분전 배당 ] × 100</span><br>
+                        • <strong>-30% 이상 급락</strong> (예: 22.0배 ➔ 9.5배) : 🔥 <strong>마방·큰손 승부돈 100% 포착!</strong><br>
+                        • 이 말은 무조건 그 경주의 <strong>복연승식 & 삼복승식 핵심 축마</strong>로 엮어야 합니다!
+                    </div>
+                </div>
+
                 <div class="guide-card">
                     <div class="guide-title">
                         🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준
                     </div>
-                    <div class="guide-text">
-                        경마에서 돈을 버는 퀀트들의 비밀은 "어떤 말이 1등 할까?"가 아니라 <strong>"누구의 배당이 수학적으로 왜곡되어 있는가?"</strong>를 찾는 것입니다.
-                    </div>
-
                     <div class="guide-box blue">
                         <strong>기대값(Expected Value, EV) 핵심 공식:</strong><br>
                         <span style="font-size:0.95rem; font-weight:900;">EV = [ AI 잠재 승률(%) ÷ 100 ] × 더비온 단승 배당</span>
@@ -276,23 +323,16 @@
 
                     <div class="guide-sub">💎 +EV (가치 꿀배당 / 1.25 이상) ➔ 초록불 켜짐</div>
                     <div class="guide-box green">
-                        • <strong>원리</strong>: AI 추정 승률은 15%(0.15)인데, 대중이 몰라봐서 배당이 16.0배인 경우!<br>
+                        • <strong>원리</strong>: AI 추정 승률은 15%(0.15)인데, 배당이 16.0배인 경우!<br>
                         • <strong>계산</strong>: 0.15 × 16.0 = <strong>기대값 2.40 (초대박!)</strong><br>
-                        • <strong>판정</strong>: 마사회 수수료를 떼고도 장기적으로 무조건 돈을 버는 <strong>황금알 마필</strong>입니다. 복연승·삼복승 축마로 확정!
+                        • 마사회 수수료를 떼고도 장기적으로 무조건 돈을 버는 <strong>황금알 마필</strong>입니다.
                     </div>
 
                     <div class="guide-sub">🚨 -EV (인기 거품 함정 / 0.75 이하) ➔ 빨간불 켜짐</div>
                     <div class="guide-box red">
-                        • <strong>원리</strong>: 실제 승률은 25%(0.25)에 불과한데, 기수 이름값에 대중이 몰려 배당이 1.8배로 바닥인 경우!<br>
+                        • <strong>원리</strong>: 실제 승률은 25%(0.25)인데, 이름값에 몰려 배당이 1.8배인 경우!<br>
                         • <strong>계산</strong>: 0.25 × 1.8 = <strong>기대값 0.45 (함정!)</strong><br>
-                        • <strong>판정</strong>: 10번 중 7번은 부러지는 독이 든 사과입니다. <strong>마권에서 과감히 지우는 것만으로도 장기 손실이 70% 차단</strong>됩니다.
-                    </div>
-
-                    <div class="guide-sub">👑 3대 핵심 마필 선발 기준</div>
-                    <div class="guide-text">
-                        • <strong>🥇 h1 (가치 1순위 승부축)</strong>: 출전마 전체 중 기대값(EV)이 가장 높은 가성비 1등마<br>
-                        • <strong>🥈 h2 (실력 검증 대항마)</strong>: 배당과 무관하게 순수 AI 승률(실력) 자체가 가장 높은 든든한 안정마<br>
-                        • <strong>🥉 h3 (꿀배당 복병 타겟)</strong>: h1, h2를 제외하고 기대값이 가장 높은 알짜배기 고배당 복병마
+                        • 10번 중 7번은 부러지는 독이 든 사과입니다. <strong>마권에서 과감히 제외</strong>하세요.
                     </div>
                 </div>
 
@@ -300,10 +340,6 @@
                     <div class="guide-title" style="color:#b45309;">
                         👑 [4단계] 7대 승식 최적 조합 공식 및 수학적 이유
                     </div>
-                    <div class="guide-text">
-                        입력하신 단승 배당을 바탕으로, 수학적 기대값이 가장 높은 <strong>7대 승식 최적 마권 포메이션</strong>이 상단 패널에 1초 만에 완성되는 원리입니다.
-                    </div>
-
                     <table class="guide-table">
                         <thead>
                             <tr>
@@ -350,12 +386,6 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <div class="guide-box gold" style="margin-top:14px;">
-                        <strong>💡 프로들의 자금 관리 황금수칙:</strong><br>
-                        • 무리한 삼쌍승 몰빵을 피하고, <strong>복연승식([h1] ✖ [h3])을 메인 주력</strong>으로 삼으세요.<br>
-                        • 하루 예산은 1~2만 원으로 정하고, 경주당 1,000~2,000원씩 분산 베팅할 때 장기적으로 수학이 승리합니다!
-                    </div>
                 </div>
             </div>
         </div>
@@ -401,7 +431,6 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             event.target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -420,7 +449,6 @@
             return `${m}/${d} (${days[dateObj.getDay()]})`;
         }
 
-        // 🎯 경주별 고유 저장소 키 생성 (날짜_지역_라운드)
         function getRaceStorageKey(race) {
             return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
         }
@@ -457,7 +485,6 @@
                 if (r.race_date === selectedDate) {
                     if (firstIdxOfDate === -1) firstIdxOfDate = idx;
 
-                    // 🎯 배당이 저장된 경주인지 확인 후 [💾] 표시
                     const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
                     const savedMark = isSaved ? "💾 " : "";
 
@@ -503,7 +530,7 @@
                 resBar.style.display = 'none';
             }
 
-            // 🎯 저장된 배당 데이터 자동 불러오기 (복기용!)
+            // 저장된 배당값 복원 (10분전/직전 둘 다 지원)
             const savedOddsRaw = localStorage.getItem(getRaceStorageKey(race));
             const savedOddsMap = savedOddsRaw ? JSON.parse(savedOddsRaw) : {};
 
@@ -514,8 +541,14 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
-                // 저장된 배당값이 있으면 자동 채우기
-                const prefilledVal = savedOddsMap[h.gate] ? savedOddsMap[h.gate] : "";
+                const savedObj = savedOddsMap[h.gate];
+                let baseVal = "", curVal = "";
+                if (typeof savedObj === "object" && savedObj !== null) {
+                    baseVal = savedObj.base || "";
+                    curVal = savedObj.cur || "";
+                } else if (typeof savedObj === "string") {
+                    curVal = savedObj;
+                }
 
                 list.innerHTML += `
                     <div class="horse-card" id="card_${i}">
@@ -530,11 +563,27 @@
                             </div>
                         </div>
                         <div class="odds-input-box">
-                            <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="단승배당" 
-                                   value="${prefilledVal}"
-                                   oninput="calculateMatrix()" 
-                                   onkeydown="handleOddsKey(event, ${i}, ${race.horses.length})">
-                            <span class="ev-badge" id="ev_${i}" style="display:none;">-</span>
+                            <div class="odds-dual-row">
+                                <div class="odds-field">
+                                    <span class="odds-field-label">10분전</span>
+                                    <input type="number" step="0.1" class="odds-input base" id="odds_base_${i}" placeholder="배당"
+                                           value="${baseVal}"
+                                           oninput="calculateMatrix()"
+                                           onkeydown="handleBaseOddsKey(event, ${i})">
+                                </div>
+                                <span class="odds-arrow">➔</span>
+                                <div class="odds-field">
+                                    <span class="odds-field-label" style="color:#0284c7;">마감직전</span>
+                                    <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
+                                           value="${curVal}"
+                                           oninput="calculateMatrix()"
+                                           onkeydown="handleOddsKey(event, ${i}, ${race.horses.length})">
+                                </div>
+                            </div>
+                            <div class="ev-row">
+                                <span class="ev-badge" id="ev_${i}" style="display:none;">-</span>
+                                <span class="smart-badge" id="smart_${i}" style="display:none;">-</span>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -543,7 +592,138 @@
             calculateMatrix();
         }
 
-        // 🎯 [신규] 현재 입력한 배당값 저장 (복기용)
+        function handleBaseOddsKey(e, index) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const curInput = document.getElementById(`odds_${index}`);
+                if (curInput) { curInput.focus(); curInput.select(); }
+            }
+        }
+
+        function handleOddsKey(e, index, totalCount) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextBaseInput = document.getElementById(`odds_base_${index + 1}`);
+                const nextInput = document.getElementById(`odds_${index + 1}`);
+                if (nextBaseInput) {
+                    nextBaseInput.focus();
+                    nextBaseInput.select();
+                } else if (nextInput) {
+                    nextInput.focus();
+                    nextInput.select();
+                } else {
+                    document.activeElement.blur();
+                    document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        // 🎯 [핵심] EV 계산 + 뭉칫돈(-30% 이상 급락) 동시 판정 엔진
+        function calculateMatrix() {
+            const race = allRaceData[currentRaceIdx];
+            if (!race) return;
+
+            let horsesWithEV = [];
+            let smartMoneyAlerts = [];
+
+            race.horses.forEach((h, i) => {
+                const baseInput = document.getElementById(`odds_base_${i}`);
+                const curInput = document.getElementById(`odds_${i}`);
+                const evBadge = document.getElementById(`ev_${i}`);
+                const smartBadge = document.getElementById(`smart_${i}`);
+                const cardEl = document.getElementById(`card_${i}`);
+
+                const baseOdds = parseFloat(baseInput ? baseInput.value : "");
+                const curOdds = parseFloat(curInput ? curInput.value : "");
+
+                // 기본 사용 배당: 직전 배당 우선, 없으면 10분전 배당
+                const effectiveOdds = (!isNaN(curOdds) && curOdds > 0) ? curOdds : ((!isNaN(baseOdds) && baseOdds > 0) ? baseOdds : 0);
+
+                cardEl.className = 'horse-card';
+
+                // 🚨 1. 뭉칫돈 감지 계산 (10분전 대비 마감직전 하락률)
+                let isSmartMoney = false;
+                let dropPct = 0;
+                if (!isNaN(baseOdds) && baseOdds > 0 && !isNaN(curOdds) && curOdds > 0) {
+                    dropPct = ((curOdds - baseOdds) / baseOdds) * 100.0;
+                    if (dropPct <= -30.0) { // 30% 이상 급락 포착!
+                        isSmartMoney = true;
+                        smartBadge.style.display = 'inline-block';
+                        smartBadge.textContent = `🚨 뭉칫돈 ${dropPct.toFixed(0)}%`;
+                        cardEl.classList.add('smart-hot');
+                        smartMoneyAlerts.push(`[${h.gate}번 ${h.name} ${dropPct.toFixed(0)}% 급락]`);
+                    } else {
+                        smartBadge.style.display = 'none';
+                    }
+                } else {
+                    smartBadge.style.display = 'none';
+                }
+
+                // 💎 2. 수학적 기대값 (EV) 계산
+                if (effectiveOdds > 0) {
+                    let ev = (h.win_prob / 100.0) * effectiveOdds;
+                    // 뭉칫돈이 포착된 말은 가치 가중치 추가 부여!
+                    if (isSmartMoney) {
+                        ev *= (1.0 + Math.abs(dropPct) / 100.0);
+                    }
+
+                    evBadge.style.display = 'inline-block';
+
+                    if (ev >= 1.25) {
+                        evBadge.className = 'ev-badge good';
+                        evBadge.textContent = `+EV ${ev.toFixed(2)}`;
+                        if (!isSmartMoney) cardEl.classList.add('value-hot');
+                    } else if (ev <= 0.75) {
+                        evBadge.className = 'ev-badge bad';
+                        evBadge.textContent = `-EV ${ev.toFixed(2)}`;
+                        if (!isSmartMoney) cardEl.classList.add('value-bad');
+                    } else {
+                        evBadge.className = 'ev-badge';
+                        evBadge.style.background = '#e2e8f0';
+                        evBadge.textContent = `EV ${ev.toFixed(2)}`;
+                    }
+
+                    horsesWithEV.push({
+                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob,
+                        odds: effectiveOdds, ev: ev, isSmart: isSmartMoney, drop: dropPct
+                    });
+                } else {
+                    evBadge.style.display = 'none';
+                    horsesWithEV.push({
+                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob,
+                        odds: 0, ev: (h.win_prob / 100.0) * 1.0, isSmart: false, drop: 0
+                    });
+                }
+            });
+
+            // 뭉칫돈 알림 배너 표출
+            const alertBar = document.getElementById('smartAlertBar');
+            if (smartMoneyAlerts.length > 0) {
+                alertBar.style.display = 'flex';
+                alertBar.innerHTML = `🔥 <strong>큰손 뭉칫돈 감지!</strong> ${smartMoneyAlerts.join(' ')}`;
+            } else {
+                alertBar.style.display = 'none';
+            }
+
+            // 정렬
+            const sortedByEV = [...horsesWithEV].sort((a, b) => b.ev - a.ev);
+            const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
+
+            const h1 = sortedByEV[0]; // 기대값 1위
+            const h2 = sortedByProb[0].gate !== h1.gate ? sortedByProb[0] : sortedByProb[1]; // 실력 대항마
+            const h3 = sortedByEV.find(h => h.gate !== h1.gate && h.gate !== h2.gate) || sortedByProb[2]; // 가치 복병
+
+            // 🎯 7대 승식 표출
+            document.getElementById('recWin').textContent = `[${h1.gate}번 ${h1.name}]`;
+            document.getElementById('recPlace').textContent = `[${h2.gate}번 ${h2.name}] (입상률 ${h2.place_prob}%)`;
+            document.getElementById('recQuinella').textContent = `[${h1.gate}번] ✖ [${h2.gate}번]`;
+            document.getElementById('recExacta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번]`;
+            document.getElementById('recWide').textContent = `[${h1.gate}번] ✖ [${h3.gate}번] / [${h1.gate}번] ✖ [${h2.gate}번]`;
+            document.getElementById('recTrio').textContent = `[${h1.gate}번] ➕ [${h2.gate}번] ➕ [${h3.gate}번]`;
+            document.getElementById('recTrifecta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번] ➔ [${h3.gate}번]`;
+        }
+
+        // 🎯 10분전/직전 배당 둘 다 저장
         function saveCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -552,9 +732,13 @@
             let hasAny = false;
 
             race.horses.forEach((h, i) => {
-                const inputEl = document.getElementById(`odds_${i}`);
-                if (inputEl && inputEl.value && parseFloat(inputEl.value) > 0) {
-                    oddsMap[h.gate] = inputEl.value;
+                const baseEl = document.getElementById(`odds_base_${i}`);
+                const curEl = document.getElementById(`odds_${i}`);
+                const baseVal = baseEl ? baseEl.value.trim() : "";
+                const curVal = curEl ? curEl.value.trim() : "";
+
+                if (baseVal || curVal) {
+                    oddsMap[h.gate] = { base: baseVal, cur: curVal };
                     hasAny = true;
                 }
             });
@@ -565,103 +749,26 @@
             }
 
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 언제든지 복기하실 수 있습니다.`);
-            
-            // 경주 드롭다운에 [💾] 마크 즉시 갱신
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 배당 변동과 결과를 복기하실 수 있습니다.`);
             populateRaceSelect(document.getElementById('dateSelect').value);
         }
 
-        // 🎯 [신규] 입력 및 저장된 배당 초기화
         function resetCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
 
-            if (!confirm(`[${race.meet_name} ${race.race_no}R]의 입력 및 저장된 배당을 초기화하시겠습니까?`)) {
-                return;
-            }
+            if (!confirm(`[${race.meet_name} ${race.race_no}R]의 입력 및 저장된 배당을 초기화하시겠습니까?`)) return;
 
             localStorage.removeItem(getRaceStorageKey(race));
-
             race.horses.forEach((h, i) => {
-                const el = document.getElementById(`odds_${i}`);
-                if (el) el.value = '';
+                const baseEl = document.getElementById(`odds_base_${i}`);
+                const curEl = document.getElementById(`odds_${i}`);
+                if (baseEl) baseEl.value = '';
+                if (curEl) curEl.value = '';
             });
 
             calculateMatrix();
             populateRaceSelect(document.getElementById('dateSelect').value);
-        }
-
-        function handleOddsKey(e, index, totalCount) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const nextInput = document.getElementById(`odds_${index + 1}`);
-                if (nextInput) {
-                    nextInput.focus();
-                    nextInput.select();
-                } else {
-                    document.activeElement.blur();
-                    document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        }
-
-        function calculateMatrix() {
-            const race = allRaceData[currentRaceIdx];
-            if (!race) return;
-
-            let horsesWithEV = [];
-
-            race.horses.forEach((h, i) => {
-                const inputEl = document.getElementById(`odds_${i}`);
-                const evBadge = document.getElementById(`ev_${i}`);
-                const cardEl = document.getElementById(`card_${i}`);
-                const oddsVal = parseFloat(inputEl.value);
-
-                cardEl.className = 'horse-card';
-
-                if (!isNaN(oddsVal) && oddsVal > 0) {
-                    const ev = (h.win_prob / 100.0) * oddsVal;
-                    evBadge.style.display = 'block';
-
-                    if (ev >= 1.25) {
-                        evBadge.className = 'ev-badge good';
-                        evBadge.textContent = `+EV ${ev.toFixed(2)} (가치💎)`;
-                        cardEl.classList.add('value-hot');
-                    } else if (ev <= 0.75) {
-                        evBadge.className = 'ev-badge bad';
-                        evBadge.textContent = `-EV ${ev.toFixed(2)} (거품🚨)`;
-                        cardEl.classList.add('value-bad');
-                    } else {
-                        evBadge.className = 'ev-badge';
-                        evBadge.style.background = '#e2e8f0';
-                        evBadge.textContent = `EV ${ev.toFixed(2)}`;
-                    }
-
-                    horsesWithEV.push({
-                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: oddsVal, ev: ev
-                    });
-                } else {
-                    evBadge.style.display = 'none';
-                    horsesWithEV.push({
-                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: 0, ev: (h.win_prob / 100.0) * 1.0
-                    });
-                }
-            });
-
-            const sortedByEV = [...horsesWithEV].sort((a, b) => b.ev - a.ev);
-            const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
-
-            const h1 = sortedByEV[0];
-            const h2 = sortedByProb[0].gate !== h1.gate ? sortedByProb[0] : sortedByProb[1];
-            const h3 = sortedByEV.find(h => h.gate !== h1.gate && h.gate !== h2.gate) || sortedByProb[2];
-
-            document.getElementById('recWin').textContent = `[${h1.gate}번 ${h1.name}]`;
-            document.getElementById('recPlace').textContent = `[${h2.gate}번 ${h2.name}] (입상률 ${h2.place_prob}%)`;
-            document.getElementById('recQuinella').textContent = `[${h1.gate}번] ✖ [${h2.gate}번]`;
-            document.getElementById('recExacta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번]`;
-            document.getElementById('recWide').textContent = `[${h1.gate}번] ✖ [${h3.gate}번] / [${h1.gate}번] ✖ [${h2.gate}번]`;
-            document.getElementById('recTrio').textContent = `[${h1.gate}번] ➕ [${h2.gate}번] ➕ [${h3.gate}번]`;
-            document.getElementById('recTrifecta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번] ➔ [${h3.gate}번]`;
         }
 
         const GITHUB_OWNER = "toto999-999";
