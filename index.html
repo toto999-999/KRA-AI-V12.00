@@ -38,7 +38,6 @@
         .btn-update { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; cursor: pointer; }
         .btn-lock { background: rgba(255,255,255,0.15); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
 
-        /* 🎯 상단 탭 네비게이션 */
         .tab-nav {
             display: flex; background: white; border-bottom: 1px solid #cbd5e1;
             position: sticky; top: 58px; z-index: 99; box-shadow: 0 2px 4px rgba(0,0,0,0.03);
@@ -56,7 +55,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        /* 2분할 날짜/경주 선택기 */
         .race-select-card {
             background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;
             display: flex; gap: 8px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -72,7 +70,6 @@
             font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
         }
 
-        /* 🎯 7대 승식 실시간 베팅 추천 패널 */
         .bet-matrix-card {
             background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px; margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
@@ -85,7 +82,8 @@
         .matrix-val { font-size: 0.92rem; font-weight: 900; color: #0f172a; }
 
         .result-bar {
-            background: #334155; color: white; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; font-weight: bold; margin-bottom: 12px; display: none;
+            background: #1e293b; color: white; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; font-weight: bold; margin-bottom: 12px; display: none;
+            border-left: 4px solid #f59e0b;
         }
 
         .horse-card {
@@ -116,11 +114,25 @@
         .ev-badge.good { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
         .ev-badge.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
+        /* 🎯 [신규] 배당 저장 & 초기화 액션 바 */
+        .odds-action-bar {
+            display: flex; gap: 8px; margin-top: 14px; margin-bottom: 6px;
+        }
+        .btn-save-odds {
+            flex: 2; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 10px;
+            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+        }
+        .btn-save-odds:active { background: #0369a1; }
+        .btn-reset-odds {
+            flex: 1; padding: 12px; background: #94a3b8; color: white; border: none; border-radius: 10px;
+            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+        .btn-reset-odds:active { background: #64748b; }
+
         .sub-desc { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 15px; line-height: 1.4; }
 
-        /* ======================================================== */
-        /* 🎯 [신규] 베팅가이드 전용 카드 & 스타일 */
-        /* ======================================================== */
+        /* 베팅가이드 전용 */
         .guide-card {
             background: white; border-radius: 14px; padding: 18px 16px; margin-bottom: 14px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 4px solid #0284c7;
@@ -129,29 +141,17 @@
             font-size: 1.05rem; font-weight: 900; color: #0f172a; margin-bottom: 12px;
             display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
         }
-        .guide-sub {
-            font-size: 0.88rem; font-weight: 900; color: #0284c7; margin-top: 14px; margin-bottom: 6px;
-        }
-        .guide-text {
-            font-size: 0.84rem; color: #475569; line-height: 1.55; margin-bottom: 8px;
-        }
-        .guide-box {
-            padding: 12px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.82rem; line-height: 1.5;
-        }
+        .guide-sub { font-size: 0.88rem; font-weight: 900; color: #0284c7; margin-top: 14px; margin-bottom: 6px; }
+        .guide-text { font-size: 0.84rem; color: #475569; line-height: 1.55; margin-bottom: 8px; }
+        .guide-box { padding: 12px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.82rem; line-height: 1.5; }
         .guide-box.blue { background: #f0f9ff; border-left: 4px solid #0284c7; color: #0c4a6e; }
         .guide-box.green { background: #f0fdf4; border-left: 4px solid #16a34a; color: #14532d; }
         .guide-box.red { background: #fef2f2; border-left: 4px solid #ef4444; color: #7f1d1d; }
         .guide-box.gold { background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
 
-        .guide-table {
-            width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem;
-        }
-        .guide-table th {
-            background: #f8fafc; padding: 9px 8px; text-align: left; color: #334155; font-weight: 800; border-bottom: 2px solid #cbd5e1;
-        }
-        .guide-table td {
-            padding: 9px 8px; border-bottom: 1px solid #e2e8f0; color: #1e293b;
-        }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
+        .guide-table th { background: #f8fafc; padding: 9px 8px; text-align: left; color: #334155; font-weight: 800; border-bottom: 2px solid #cbd5e1; }
+        .guide-table td { padding: 9px 8px; border-bottom: 1px solid #e2e8f0; color: #1e293b; }
     </style>
 </head>
 <body>
@@ -178,16 +178,13 @@
             </div>
         </header>
 
-        <!-- 🎯 상단 2대 탭 네비게이션 -->
         <nav class="tab-nav">
             <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
-            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·7대승식</button>
+            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·7대승식)</button>
         </nav>
 
         <div class="container">
-            <!-- ======================================================== -->
-            <!-- [탭 1] 실시간 가치 계산기 화면 -->
-            <!-- ======================================================== -->
+            <!-- [탭 1] 실시간 가치 계산기 -->
             <div id="tab-calc" class="tab-content active">
                 <div class="race-select-card">
                     <div class="select-group" style="max-width: 42%;">
@@ -202,6 +199,7 @@
 
                 <div id="resultBar" class="result-bar"></div>
 
+                <!-- 7대 승식 추천 패널 -->
                 <div class="bet-matrix-card" id="matrixCard">
                     <div class="matrix-title">
                         <span>👑 실시간 7대 승식 최적 마권</span>
@@ -246,17 +244,23 @@
 
                 <div id="horseList"></div>
 
+                <!-- 🎯 [신규] 배당 저장 및 초기화 액션 바 -->
+                <div class="odds-action-bar">
+                    <button class="btn-save-odds" onclick="saveCurrentOdds()">
+                        💾 현재 배당 저장 (복기용)
+                    </button>
+                    <button class="btn-reset-odds" onclick="resetCurrentOdds()">
+                        🔄 초기화
+                    </button>
+                </div>
+
                 <p class="sub-desc">
-                    💡 <strong>사용법</strong>: 더비온 2.0에서 본 단승 배당 숫자를 입력하고 <strong>[엔터(Enter)]</strong>를 치시면 다음 칸으로 자동 이동합니다.
+                    💡 <strong>복기 활용법</strong>: 배당을 입력 후 <strong>[💾 현재 배당 저장]</strong>을 누르시면 폰에 저장됩니다. 경주가 끝난 후 저녁에 다시 열면 입력했던 배당과 실제 착순이 나란히 복원되어 가치를 복기할 수 있습니다.
                 </p>
             </div>
 
-            <!-- ======================================================== -->
-            <!-- [탭 2] 베팅가이드 (2단계 EV 원리 & 4단계 7대 승식 공식 탑재!) -->
-            <!-- ======================================================== -->
+            <!-- [탭 2] 베팅가이드 -->
             <div id="tab-guide" class="tab-content">
-                
-                <!-- 🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준 -->
                 <div class="guide-card">
                     <div class="guide-title">
                         🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준
@@ -292,7 +296,6 @@
                     </div>
                 </div>
 
-                <!-- 👑 [4단계] 7대 승식 최적 조합 공식 및 수학적 이유 -->
                 <div class="guide-card" style="border-top-color: #f59e0b;">
                     <div class="guide-title" style="color:#b45309;">
                         👑 [4단계] 7대 승식 최적 조합 공식 및 수학적 이유
@@ -354,7 +357,6 @@
                         • 하루 예산은 1~2만 원으로 정하고, 경주당 1,000~2,000원씩 분산 베팅할 때 장기적으로 수학이 승리합니다!
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -396,7 +398,6 @@
             location.reload();
         }
 
-        // 🎯 상단 2대 탭 전환 함수
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -417,6 +418,11 @@
             const dateObj = new Date(y, m - 1, d);
             const days = ['일', '월', '화', '수', '목', '금', '토'];
             return `${m}/${d} (${days[dateObj.getDay()]})`;
+        }
+
+        // 🎯 경주별 고유 저장소 키 생성 (날짜_지역_라운드)
+        function getRaceStorageKey(race) {
+            return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
         }
 
         function loadData() {
@@ -450,9 +456,15 @@
             allRaceData.forEach((r, idx) => {
                 if (r.race_date === selectedDate) {
                     if (firstIdxOfDate === -1) firstIdxOfDate = idx;
+
+                    // 🎯 배당이 저장된 경주인지 확인 후 [💾] 표시
+                    const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
+                    const savedMark = isSaved ? "💾 " : "";
+
                     const opt = document.createElement('option');
                     opt.value = idx;
-                    opt.textContent = `[${r.meet_name}] ${r.race_no}R (${r.distance}m)`;
+                    opt.textContent = `${savedMark}[${r.meet_name}] ${r.race_no}R (${r.distance}m)`;
+                    if (isSaved) opt.style.fontWeight = "bold";
                     raceSelect.appendChild(opt);
                 }
             });
@@ -477,6 +489,7 @@
             const race = allRaceData[idx];
             if (!race) return;
 
+            // 결과 복기
             const resBar = document.getElementById('resultBar');
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -490,12 +503,19 @@
                 resBar.style.display = 'none';
             }
 
+            // 🎯 저장된 배당 데이터 자동 불러오기 (복기용!)
+            const savedOddsRaw = localStorage.getItem(getRaceStorageKey(race));
+            const savedOddsMap = savedOddsRaw ? JSON.parse(savedOddsRaw) : {};
+
             const list = document.getElementById('horseList');
             list.innerHTML = '';
 
             race.horses.forEach((h, i) => {
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
+
+                // 저장된 배당값이 있으면 자동 채우기
+                const prefilledVal = savedOddsMap[h.gate] ? savedOddsMap[h.gate] : "";
 
                 list.innerHTML += `
                     <div class="horse-card" id="card_${i}">
@@ -511,6 +531,7 @@
                         </div>
                         <div class="odds-input-box">
                             <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="단승배당" 
+                                   value="${prefilledVal}"
                                    oninput="calculateMatrix()" 
                                    onkeydown="handleOddsKey(event, ${i}, ${race.horses.length})">
                             <span class="ev-badge" id="ev_${i}" style="display:none;">-</span>
@@ -520,6 +541,54 @@
             });
 
             calculateMatrix();
+        }
+
+        // 🎯 [신규] 현재 입력한 배당값 저장 (복기용)
+        function saveCurrentOdds() {
+            const race = allRaceData[currentRaceIdx];
+            if (!race) return;
+
+            const oddsMap = {};
+            let hasAny = false;
+
+            race.horses.forEach((h, i) => {
+                const inputEl = document.getElementById(`odds_${i}`);
+                if (inputEl && inputEl.value && parseFloat(inputEl.value) > 0) {
+                    oddsMap[h.gate] = inputEl.value;
+                    hasAny = true;
+                }
+            });
+
+            if (!hasAny) {
+                alert("저장할 배당이 입력되지 않았습니다. 배당을 1개 이상 입력해 주세요!");
+                return;
+            }
+
+            localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 언제든지 복기하실 수 있습니다.`);
+            
+            // 경주 드롭다운에 [💾] 마크 즉시 갱신
+            populateRaceSelect(document.getElementById('dateSelect').value);
+        }
+
+        // 🎯 [신규] 입력 및 저장된 배당 초기화
+        function resetCurrentOdds() {
+            const race = allRaceData[currentRaceIdx];
+            if (!race) return;
+
+            if (!confirm(`[${race.meet_name} ${race.race_no}R]의 입력 및 저장된 배당을 초기화하시겠습니까?`)) {
+                return;
+            }
+
+            localStorage.removeItem(getRaceStorageKey(race));
+
+            race.horses.forEach((h, i) => {
+                const el = document.getElementById(`odds_${i}`);
+                if (el) el.value = '';
+            });
+
+            calculateMatrix();
+            populateRaceSelect(document.getElementById('dateSelect').value);
         }
 
         function handleOddsKey(e, index, totalCount) {
