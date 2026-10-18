@@ -38,7 +38,6 @@
         .btn-update { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; cursor: pointer; }
         .btn-lock { background: rgba(255,255,255,0.15); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
 
-        /* 🎯 [신규] 1분 20초 실시간 카운트다운 토스트 바 */
         .update-toast {
             display: none; background: #0f172a; color: #f8fafc; padding: 12px 14px; text-align: center;
             font-size: 0.84rem; font-weight: bold; border-bottom: 3px solid #0284c7; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -113,9 +112,20 @@
 
         .horse-left { display: flex; align-items: center; gap: 10px; flex-grow: 1; min-width: 0; }
         .gate-ball { width: 34px; height: 34px; border-radius: 8px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; color: #0f172a; flex-shrink: 0; }
-        .horse-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .horse-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
         .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* 🎯 [신규] 초반/후반 랭킹 뱃지 스타일 */
+        .speed-badge {
+            font-size: 0.68rem; font-weight: 900; padding: 1px 6px; border-radius: 4px; display: inline-flex; align-items: center; gap: 2px;
+        }
+        .speed-badge.early {
+            background: #fef3c7; color: #b45309; border: 1px solid #fde68a;
+        }
+        .speed-badge.late {
+            background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;
+        }
 
         .odds-input-box {
             display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px;
@@ -168,6 +178,7 @@
 
         .sub-desc { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 15px; line-height: 1.4; }
 
+        /* 베팅가이드 전용 */
         .guide-card {
             background: white; border-radius: 14px; padding: 18px 16px; margin-bottom: 14px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 4px solid #0284c7;
@@ -214,7 +225,6 @@
             </div>
         </header>
 
-        <!-- 🎯 1분 20초(80초) 실시간 카운트다운 토스트 바 -->
         <div id="updateToast" class="update-toast"></div>
 
         <nav class="tab-nav">
@@ -238,6 +248,7 @@
 
                 <div id="resultBar" class="result-bar"></div>
 
+                <!-- 7대 승식 추천 패널 -->
                 <div class="bet-matrix-card" id="matrixCard">
                     <div id="smartAlertBar" class="smart-alert-bar"></div>
 
@@ -294,7 +305,7 @@
                 </div>
 
                 <p class="sub-desc">
-                    💡 <strong>실전 팁</strong>: [10분전] 또는 [마감직전] 배당을 입력 후 <strong>[엔터]</strong>를 누르면 <strong>아래 말로 세로 이동</strong>합니다. 배당 저장 시 현재 보고 계신 라운드가 그대로 유지됩니다.
+                    💡 <strong>전개 팁</strong>: 말 이름 옆에 <strong>⚡초반 1~5위</strong>(선행 순발력)와 <strong>🚀후반 1~5위</strong>(막판 스퍼트) 순위가 함께 표출됩니다. 단거리는 초반 순위를, 1400m 이상은 후반 순위를 눈여겨보세요!
                 </p>
             </div>
 
@@ -311,7 +322,7 @@
                     <div class="guide-sub">👑 황금 마권 조합 원칙</div>
                     <div class="guide-box blue">
                         • <strong>1착 축마(h1)</strong>: 50배짜리 롱샷을 빼고, <strong>2~15배 사이의 실력+가치마</strong> 또는 <strong>뭉칫돈 급락마(-30% 이상)</strong>를 기둥으로 선정!<br>
-                        • <strong>2착 대항마(h2)</strong>: 순수 AI 승률 1위 실력마 (연승식 50% 이상 적중 기둥)<br>
+                        • <strong>2착 대항마(h2)</strong>: 순수 AI 승률 1위 실력마<br>
                         • <strong>3착 복병마(h3)</strong>: 10~30배짜리 알짜 꿀배당마를 엮어 복연승·삼복승 고배당 완성!
                     </div>
                 </div>
@@ -477,7 +488,6 @@
                 });
         }
 
-        // 🎯 [버그 해결] targetIdxToKeep 인자를 받아 현재 보던 경주를 그대로 유지!
         function populateRaceSelect(selectedDate, targetIdxToKeep = null) {
             const raceSelect = document.getElementById('raceSelect');
             raceSelect.innerHTML = '';
@@ -503,7 +513,6 @@
                 }
             });
 
-            // 지정된 유지 인덱스가 있으면 그 경주 유지, 없으면 첫 경주 선택
             const activeIdx = (targetIdxToKeep !== null && foundTarget) ? targetIdxToKeep : firstIdxOfDate;
             if (activeIdx !== -1) {
                 raceSelect.value = activeIdx;
@@ -525,6 +534,7 @@
             const race = allRaceData[idx];
             if (!race) return;
 
+            // 결과 복기
             const resBar = document.getElementById('resultBar');
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -548,6 +558,18 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
+                // 🎯 [신규] 초반 1~5위, 후반 1~5위 뱃지 생성 (겹치면 둘 다 표출!)
+                let speedTagsHtml = "";
+                const eRank = parseInt(h.early_rank, 10);
+                const lRank = parseInt(h.late_rank, 10);
+
+                if (eRank >= 1 && eRank <= 5) {
+                    speedTagsHtml += `<span class="speed-badge early">⚡초반 ${eRank}위</span>`;
+                }
+                if (lRank >= 1 && lRank <= 5) {
+                    speedTagsHtml += `<span class="speed-badge late">🚀후반 ${lRank}위</span>`;
+                }
+
                 const savedObj = savedOddsMap[h.gate];
                 let baseVal = "", curVal = "";
                 if (typeof savedObj === "object" && savedObj !== null) {
@@ -564,6 +586,7 @@
                             <div class="horse-meta">
                                 <div class="horse-name-row">
                                     <span>${h.name}</span>
+                                    ${speedTagsHtml}
                                     ${actualTag}
                                 </div>
                                 <div class="horse-sub">${h.jockey} | ${h.weight}kg | <strong>AI 승률 ${h.win_prob}%</strong></div>
@@ -599,7 +622,6 @@
             calculateMatrix();
         }
 
-        // 🎯 10분전 열: 엔터 치면 아래 말 [10분전] 칸으로 바로 세로 이동!
         function handleBaseOddsKey(e, index, totalCount) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -613,7 +635,6 @@
             }
         }
 
-        // 🎯 마감직전 열: 엔터 치면 10분전으로 안 가고 아래 말 [마감직전] 칸으로 세로 직행!
         function handleOddsKey(e, index, totalCount) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -711,6 +732,7 @@
 
             const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
 
+            // 1착 축마: 큰손 뭉칫돈마 또는 배당 20배 이하 중 EV 최고마!
             let h1Candidates = horsesWithEV.filter(h => (h.isSmart && h.drop <= -30.0) || (h.odds > 0 && h.odds <= 20.0 && h.ev >= 1.0));
             h1Candidates.sort((a, b) => b.ev - a.ev);
 
@@ -732,7 +754,6 @@
             document.getElementById('recTrifecta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번] ➔ [${h3.gate}번]`;
         }
 
-        // 🎯 [버그 해결] 저장 시 현재 보고 있던 라운드(currentRaceIdx) 완벽 유지!
         function saveCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -758,14 +779,12 @@
             }
 
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 언제든지 복기하실 수 있습니다.`);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 배당 변동과 결과를 복기하실 수 있습니다.`);
             
-            // 현재 보고 있던 경주 인덱스 유지하며 드롭다운 갱신
             const savedIdxToKeep = currentRaceIdx;
             populateRaceSelect(document.getElementById('dateSelect').value, savedIdxToKeep);
         }
 
-        // 🎯 [버그 해결] 초기화 시에도 현재 라운드 유지!
         function resetCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -789,7 +808,6 @@
         const pathParts = window.location.pathname.split('/').filter(Boolean);
         const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
 
-        // 🎯 [신규] 1분 20초(80초) 실시간 카운트다운 타이머 연동!
         function triggerUpdate() {
             const token = localStorage.getItem('gh_token') || prompt("GitHub 토큰을 입력하세요:");
             if (!token) return;
@@ -806,7 +824,7 @@
             })
             .then(res => {
                 if (res.status === 204) {
-                    let count = 80; // 1분 20초 (80초) 카운트다운 시작!
+                    let count = 80;
                     const timer = setInterval(() => {
                         count--;
                         if (count > 0) {
