@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (초고속 핀포인트 갱신 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (초반/후반 5위 랭킹 탑재 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -24,9 +24,8 @@ MEET_CONFIG = [
     ("3", "부산경남")
 ]
 
-# 🎯 마사회 공식 편성표 거리 1:1 완벽 보장 (1200m 도배 원천 퇴치!)
 OFFICIAL_DISTANCES = {
-    # 10월 16일 (금) 오늘 실전 공식 거리
+    # 10월 16일 (금)
     ("20261016", "제주", "1"): "1000", ("20261016", "제주", "2"): "1000",
     ("20261016", "제주", "3"): "1000", ("20261016", "제주", "4"): "1110",
     ("20261016", "제주", "5"): "1110", ("20261016", "제주", "6"): "1200", ("20261016", "제주", "7"): "1200",
@@ -107,7 +106,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
     headers = {"User-Agent": "Mozilla/5.0"}
 
     try:
-        # 타임아웃 5초 단축 (지연 방지)
         req = urllib.request.Request(full_url, headers=headers)
         with urllib.request.urlopen(req, timeout=5) as response:
             xml_data = response.read()
@@ -176,7 +174,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                # 🎯 공식 거리 매핑
                 dist_lookup = OFFICIAL_DISTANCES.get((date_str, meet_name, rc_no))
                 if not dist_lookup and clean_dist and int(clean_dist) >= 800:
                     dist_lookup = clean_dist
@@ -209,6 +206,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             dist = int(r["distance"])
             meet = r["meet_name"]
 
+            # 🎯 1단계: 말별 초반 순발력 & 후반 탄력 스코어 계산
             raw_scores = []
             for h in r["horses"]:
                 g = int(h["gate"]) if str(h["gate"]).isdigit() else 5
@@ -224,15 +222,46 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
                 tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
 
+                # =========================================================
+                # ⚡ 초반 순발력 지표 계산 (S1F 선행력, 인코스, 경량 가속)
+                # =========================================================
+                early_score = 0.0
+                if h["is_front"]: early_score += 30.0
+                if g <= 3: early_score += 15.0
+                elif g <= 5: early_score += 8.0
+                early_score += (55.0 - clean_w) * 2.0  # 가벼울수록 첫 200m 가속 빠름
+                early_score += (raw_jk * 0.35)
+                h["early_score"] = round(early_score, 1)
+
+                # =========================================================
+                # 🚀 후반 탄력 지표 계산 (G1F 스퍼트, 추입 전개, 등짐 극복)
+                # =========================================================
+                late_score = 0.0
+                if not h["is_front"]: late_score += 20.0  # 후미 전개마의 탄력
+                if 4 <= g <= 8: late_score += 10.0      # 2선 프리런 공간 확보
+                late_score += (55.0 - clean_w) * 2.5    # 결승선 200m 등짐 가벼움 절대적
+                late_score += (tr_rate * 0.4) + (raw_jk * 0.3)
+                if meet in ["부산경남", "영천"] and dist >= 1400: late_score += 12.0
+                h["late_score"] = round(late_score, 1)
+
+                # 종합 파워
                 power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
                 power += (55.0 - clean_w) * 2.0
-
                 if meet == "제주" and g <= 3: power += 8.0
                 elif dist <= 1300 and g <= 3: power += 4.0
                 elif meet in ["부산경남", "영천"] and dist >= 1400 and (not h["is_front"]): power += 5.0
-
                 raw_scores.append(max(5.0, power))
 
+            # 🎯 2단계: 경주 내 '초반 1~N위', '후반 1~N위' 랭킹 매기기
+            horses_by_early = sorted(r["horses"], key=lambda x: x["early_score"], reverse=True)
+            for rank, horse in enumerate(horses_by_early, 1):
+                horse["early_rank"] = rank
+
+            horses_by_late = sorted(r["horses"], key=lambda x: x["late_score"], reverse=True)
+            for rank, horse in enumerate(horses_by_late, 1):
+                horse["late_rank"] = rank
+
+            # 승률 정규화
             total_power = sum(raw_scores) or 100.0
             for idx, h in enumerate(r["horses"]):
                 prob = round((raw_scores[idx] / total_power) * 100, 1)
@@ -240,12 +269,25 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 h["place_prob"] = round(min(85.0, prob * 2.4), 1)
                 h["pure_score"] = round(raw_scores[idx], 1)
 
+            # 승률 순 정렬 (사용자 화면 표출 기준)
             r["horses"].sort(key=lambda x: x["win_prob"], reverse=True)
 
         return list(races.values())
 
     except Exception as e:
         return []
+
+def cleanse_corrupted_archive(races):
+    for r in races:
+        k = (r.get("race_date"), r.get("meet_name"), str(int(r.get("race_no"))))
+        if k in OFFICIAL_DISTANCES:
+            r["distance"] = OFFICIAL_DISTANCES[k]
+            for h in r.get("horses", []):
+                h["distance"] = OFFICIAL_DISTANCES[k]
+                try:
+                    ord_val = int(h.get("actual_ord", "-"))
+                    if ord_val > 20: h["actual_ord"] = "-"
+                except: pass
 
 def sync_5weeks_archive():
     now = datetime.now(KST)
@@ -257,28 +299,19 @@ def sync_5weeks_archive():
                 for r in old_list:
                     k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
                     existing_races[k] = r
-            print(f"📦 기존 저장소 로드 완료: {len(existing_races)}개 경주")
-        except:
-            existing_races = {}
+        except: existing_races = {}
 
-    # 🎯 [핵심] 평일 52번 호출 제거! 오직 경마가 열리는 주말(금, 토, 일)만 핀포인트 수집!
     dates_to_fetch = set()
-    # 1. 이번 주 금, 토, 일 (10/16, 10/17, 10/18)
     for offset in range(-2, 4):
         target_d = now + timedelta(days=offset)
-        # 금(4), 토(5), 일(6), 월(0) 요일만 핀포인트 수집!
         if target_d.weekday() in [0, 4, 5, 6]:
             dates_to_fetch.add(target_d.strftime("%Y%m%d"))
-
-    # 2. 지난주 주말 (10/9, 10/10, 10/11) 복기 보존용
     for offset in range(-7, -4):
         target_d = now + timedelta(days=offset)
         if target_d.weekday() in [0, 4, 5, 6]:
             dates_to_fetch.add(target_d.strftime("%Y%m%d"))
 
     sorted_dates = sorted(list(dates_to_fetch))
-    print(f"⚡ [초고속 핀포인트 수집 대상]: {sorted_dates}")
-
     for dt in sorted_dates:
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
@@ -309,7 +342,7 @@ def main():
         ))
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 20초 초고속 갱신 완료! (총 {len(all_races)}개 경주)")
+        print(f"🎉 성공: [{VERSION}] 초반/후반 랭킹 탑재 및 초고속 갱신 완료!")
     else:
         print("❌ 데이터를 가져오지 못했습니다.")
 
