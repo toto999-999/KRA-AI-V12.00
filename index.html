@@ -67,12 +67,18 @@
         }
         .select-group { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
         .select-label { font-size: 0.72rem; font-weight: 800; color: #64748b; }
-        .select-group select, .distance-input-box {
+        .select-group select {
             width: 100%; padding: 8px 6px; border-radius: 8px; border: 1px solid #cbd5e1;
             font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
         }
-        .distance-input-box { display: flex; align-items: center; justify-content: center; gap: 2px; padding: 6px; }
-        .distance-input { width: 55px; border: none; font-size: 0.9rem; font-weight: 900; text-align: center; color: #0284c7; outline: none; background: transparent; }
+        .distance-input-box {
+            display: flex; align-items: center; justify-content: center; gap: 2px;
+            padding: 5px 6px; border: 1.5px solid #0284c7; border-radius: 8px; background: #f0f9ff;
+        }
+        .distance-input {
+            width: 55px; border: none; font-size: 0.95rem; font-weight: 900;
+            text-align: center; color: #0284c7; outline: none; background: transparent;
+        }
 
         .bet-matrix-card {
             background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px; margin-bottom: 14px;
@@ -113,9 +119,11 @@
         .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
-        .ai-tag.early-badge { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: 900; }
-        .ai-tag.late-badge { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 900; }
+        .ai-tag { font-size: 0.68rem; padding: 2px 6px; border-radius: 4px; font-weight: 900; }
+        .ai-tag.early-top { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .ai-tag.early-sub { background: #fffbeb; color: #d97706; border: 1px solid #fef3c7; }
+        .ai-tag.late-top { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+        .ai-tag.late-sub { background: #f0f9ff; color: #0284c7; border: 1px solid #e0f2fe; }
 
         .odds-input-box { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px; }
         .odds-dual-row { display: flex; align-items: center; gap: 4px; }
@@ -144,28 +152,10 @@
             font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
             box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
         }
-        .btn-save-odds:active { background: #0369a1; }
         .btn-reset-odds {
             flex: 1; padding: 12px; background: #94a3b8; color: white; border: none; border-radius: 10px;
             font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
         }
-        .btn-reset-odds:active { background: #64748b; }
-
-        .role-badge { font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
-        .role-1st { background-color: #0284c7; color: white; }
-        .role-2nd { background-color: #f59e0b; color: white; }
-        .role-3rd { background-color: #10b981; color: white; }
-        .score-info { text-align: right; flex-shrink: 0; margin-left: 8px; }
-        .win-rate { font-size: 1.15rem; font-weight: 800; color: #1e3c72; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
-        .modal-box { background: white; width: 90%; max-width: 400px; border-radius: 14px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-        .modal-title { font-size: 1.05rem; font-weight: 800; color: #1e3c72; margin-bottom: 10px; }
-        .modal-input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin: 10px 0; font-size: 0.85rem; }
-        .modal-btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
-        .modal-btn { padding: 8px 14px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-size: 0.82rem; }
-        .modal-btn.primary { background: #1e3c72; color: white; }
-        .modal-btn.secondary { background: #eee; color: #333; }
     </style>
 </head>
 <body>
@@ -194,20 +184,6 @@
 
         <div id="updateToast" class="update-toast"></div>
 
-        <div id="tokenModal" class="modal">
-            <div class="modal-box">
-                <div class="modal-title">🔑 원클릭 자동 갱신 설정</div>
-                <div style="font-size:0.8rem; color:#475569; margin-bottom:10px;">
-                    깃허브 개인 토큰(PAT)을 입력하시면 클릭 한 번으로 마사회 최신 결과를 동기화합니다.
-                </div>
-                <input type="password" id="ghTokenInput" class="modal-input" placeholder="ghp_ 로 시작하는 토큰 입력">
-                <div class="modal-btn-row">
-                    <button class="modal-btn secondary" onclick="closeTokenModal()">취소</button>
-                    <button class="modal-btn primary" onclick="saveTokenAndTrigger()">저장 후 갱신</button>
-                </div>
-            </div>
-        </div>
-
         <nav class="tab-nav">
             <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
             <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드</button>
@@ -216,18 +192,20 @@
         <div class="container">
             <div id="tab-calc" class="tab-content active">
                 <div class="race-select-card">
-                    <div class="select-group" style="max-width: 38%;">
+                    <div class="select-group" style="max-width: 36%;">
                         <span class="select-label">📅 날짜 선택</span>
                         <select id="dateSelect" onchange="changeDate()"></select>
                     </div>
-                    <div class="select-group" style="max-width: 38%;">
+                    <div class="select-group" style="max-width: 40%;">
                         <span class="select-label">🐎 경주 선택</span>
                         <select id="raceSelect" onchange="changeRace()"></select>
                     </div>
                     <div class="select-group" style="max-width: 24%;">
-                        <span class="select-label">📏 거리 (m)</span>
+                        <span class="select-label">📏 거리 수정</span>
                         <div class="distance-input-box">
-                            <input type="number" class="distance-input" id="distanceInput" placeholder="1200" oninput="updateCustomDistance(this.value)">
+                            <input type="number" class="distance-input" id="distanceInput" placeholder="1200"
+                                   onchange="updateCustomDistance(this.value)"
+                                   onkeydown="if(event.key==='Enter'){updateCustomDistance(this.value); this.blur();}">
                             <span style="font-size:0.75rem; font-weight:900; color:#0284c7;">m</span>
                         </div>
                     </div>
@@ -274,7 +252,7 @@
                 </div>
 
                 <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🐎 출전마 (초반/후반 랭킹)</span>
+                    <span>🐎 출전마 실시간 랭킹</span>
                     <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
                 </div>
 
@@ -296,6 +274,8 @@
     </div>
 
     <script>
+        const MIN_DATE_LIMIT = "20241023"; // 🎯 10월 23일 경기부터 표출
+
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
                 unlockApp();
@@ -359,10 +339,18 @@
             fetch('./race_data.json?nocache=' + Date.now())
                 .then(res => res.json())
                 .then(data => {
-                    allRaceData = data;
-                    if (!data || data.length === 0) return;
+                    // 10월 23일 이전 경기 전량 배제 필터링
+                    allRaceData = (data || []).filter(r => String(r.race_date) >= MIN_DATE_LIMIT);
+                    if (allRaceData.length === 0) return;
 
-                    const uniqueDates = [...new Set(data.map(r => r.race_date))].filter(Boolean);
+                    // 모든 경주 랭킹 및 역할 즉시 자체 재계산 동기화 (전부 1위 오류 원천 차단)
+                    allRaceData.forEach(r => {
+                        const savedDist = localStorage.getItem(getDistanceStorageKey(r));
+                        if (savedDist) r.distance = savedDist;
+                        recalculateRaceScores(r);
+                    });
+
+                    const uniqueDates = [...new Set(allRaceData.map(r => r.race_date))].filter(Boolean).sort();
                     const dateSelect = document.getElementById('dateSelect');
                     dateSelect.innerHTML = '';
                     uniqueDates.forEach(dt => {
@@ -372,9 +360,10 @@
                         dateSelect.appendChild(opt);
                     });
 
-                    const latestDate = uniqueDates[uniqueDates.length - 1];
-                    dateSelect.value = latestDate;
-                    populateRaceSelect(latestDate);
+                    // 10/23 혹은 가장 가까운 유효 날짜 기본 선택
+                    const defaultDate = uniqueDates[0];
+                    dateSelect.value = defaultDate;
+                    populateRaceSelect(defaultDate);
                 });
         }
 
@@ -390,7 +379,7 @@
 
                     const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
                     const savedMark = isSaved ? "💾 " : "";
-                    const customDist = localStorage.getItem(getDistanceStorageKey(r)) || r.distance;
+                    const customDist = r.distance;
 
                     const opt = document.createElement('option');
                     opt.value = idx;
@@ -417,24 +406,36 @@
             renderRace(currentRaceIdx);
         }
 
-        // 🎯 [핵심] 거리 수정 시 1착/2착/3착 역할까지 100% 완벽 재계산 및 정렬!
+        // 🎯 [핵심 개선] 거리 수정 즉시 반영 엔진 (엔터 or 변경 시 완벽 적용)
         function updateCustomDistance(newDistVal) {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
             const cleanD = parseInt(newDistVal, 10);
-            if (!isNaN(cleanD) && cleanD >= 800) {
+            if (!isNaN(cleanD) && cleanD >= 800 && cleanD <= 3000) {
                 race.distance = String(cleanD);
                 localStorage.setItem(getDistanceStorageKey(race), String(cleanD));
+                
+                race.horses.forEach(h => { h.distance = String(cleanD); });
                 
                 recalculateRaceScores(race);
                 renderRaceUIOnly(currentRaceIdx);
                 
-                populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
+                // 셀렉트 박스 텍스트만 깔끔하게 업데이트 (포커스 이탈 방지)
+                const raceSelect = document.getElementById('raceSelect');
+                const selectedOpt = raceSelect.querySelector(`option[value="${currentRaceIdx}"]`);
+                if (selectedOpt) {
+                    const isSaved = !!localStorage.getItem(getRaceStorageKey(race));
+                    const savedMark = isSaved ? "💾 " : "";
+                    selectedOpt.textContent = `${savedMark}[${race.meet_name}] ${race.race_no}R (${cleanD}m)`;
+                }
+            } else {
+                document.getElementById('distanceInput').value = race.distance;
             }
         }
 
+        // 🎯 랭킹 및 승률 정밀 엔진 (초반 1위/후반 1위 동점 방지 및 분리)
         function recalculateRaceScores(race) {
-            const dist = parseInt(race.distance, 10);
+            const dist = parseInt(race.distance, 10) || 1200;
             const meet = race.meet_name;
             
             const JOCKEY_MAP = {"문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0, "이혁": 19.2, "임다빈": 18.5, "장추열": 18.0, "임기원": 17.5, "이동하": 16.0, "조인권": 21.4, "마이아": 22.0, "서승운": 31.5, "최시대": 26.8, "다나카": 25.4, "다비드": 24.2, "유현명": 23.8, "정도윤": 22.5, "김동영": 17.8, "이성재": 16.5, "송경윤": 15.2, "전진구": 14.8, "손경민": 14.0, "전현준": 26.5, "한영민": 24.2, "임재광": 21.8, "양민재": 19.5, "원유일": 18.2, "박재희": 17.5, "곽용남": 16.8, "김한남": 16.0, "강수한": 15.5, "안득수": 20.5, "정명일": 19.0};
@@ -446,7 +447,7 @@
             let raw_scores = [];
             race.horses.forEach(h => {
                 const g = parseInt(h.gate, 10) || 5;
-                const clean_w = parseFloat(h.weight) || 55.0;
+                const clean_w = parseFloat(String(h.weight).replace(/[^0-9.]/g, '')) || 55.0;
                 const tot_rc = parseInt(h.rc_cnt, 10) || 0;
                 const ord1 = parseInt(h.ord1_cnt, 10) || 0;
                 const ord2 = parseInt(h.ord2_cnt, 10) || 0;
@@ -455,23 +456,25 @@
                 const r_jk = JOCKEY_MAP[h.jockey] || 12.0;
                 const r_tr = TRAINER_MAP[h.trainer] || 14.0;
 
-                // 1. 초반 순위 (소수점 정밀 반영!)
+                // ⚡ 초반 스코어 (게이트 타이브레이커 적용)
                 let early = h.is_front ? 30.0 : 0.0;
                 if (g <= 3) early += 15.0;
                 else if (g <= 5) early += 8.0;
                 early += (55.0 - clean_w) * 2.0;
                 early += (r_jk * 0.35);
+                early += (16 - g) * 0.05; // 겹치지 않게 미세 소수점 차등
                 h.early_score = early;
 
-                // 2. 후반 순위 (소수점 정밀 반영!)
+                // 🚀 후반 스코어
                 let late = (!h.is_front) ? 20.0 : 0.0;
                 if (4 <= g <= 8) late += 10.0;
                 late += (55.0 - clean_w) * 2.5;
                 late += (r_tr * 0.4) + (r_jk * 0.3);
                 if ((meet === "부산경남" || meet === "영천") && dist >= 1400) late += 12.0;
+                late += (r_jk * 0.02);
                 h.late_score = late;
 
-                // 3. 파워 계산
+                // 기본 파워
                 let power = 25.0 + (win_rate * 0.8) + (quin_rate * 0.3) + (r_jk * 0.35) + (r_tr * 0.35);
                 power += (55.0 - clean_w) * 2.0;
                 if (meet === "제주" && g <= 3) power += 8.0;
@@ -480,37 +483,21 @@
 
                 raw_scores.push(Math.max(5.0, power));
 
-                // 4. 가치 배당 포지션 점수 재계산
-                let weight_penalty = 0.0;
-                if (dist >= 1400 && clean_w >= 57.0) weight_penalty = (clean_w - 56.5) * 2.5;
-                let target_mark_penalty = (g <= 3 && h.is_front && r_jk >= 24.0 && meet !== "제주") ? 6.0 : 0.0;
-                let free_run_bonus = (!h.is_front && g >= 4 && g <= 9) ? 8.0 : 0.0;
-
-                let s1 = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty - target_mark_penalty + free_run_bonus;
+                // 1착, 2착, 3착 맞춤 배당 점수
+                let weight_penalty = (dist >= 1400 && clean_w >= 57.0) ? (clean_w - 56.5) * 2.5 : 0.0;
+                let s1 = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty;
                 let s2 = 25.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
-                let s3 = 25.0;
+                let s3 = 25.0 + (clean_w <= 52.5 ? 12.0 : 0.0) + (g >= 8 ? 8.0 : 0.0);
                 
-                if (clean_w <= 52.5) s3 += 12.0;
-                if (g >= 8) s3 += 8.0;
-                if (!h.is_front && is_overpaced) { s3 += 15.0; s1 += 8.0; }
-                if (is_overpaced && h.is_front) s1 -= 12.0;
-                if (dist <= 1300 && g <= 3) s2 += 5.0;
-
-                if (meet === "제주") {
-                   if (g <= 3) { s1 += 8.0; s2 += 6.0; }
-                   if (h.is_front) s1 += 12.0;
-                } else if ((meet === "부산경남" || meet === "영천") && dist >= 1400 && !h.is_front) {
-                   s1 += 10.0; s3 += 12.0;
-                }
-
+                if (is_overpaced && !h.is_front) { s3 += 15.0; s1 += 8.0; }
                 h.score_1st = s1; h.score_2nd = s2; h.score_3rd = s3;
             });
 
-            // 랭킹 부여
-            const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score);
+            // 🎯 절대 동점 없는 1위 ~ N위 고유 랭킹 부여
+            const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score || parseInt(a.gate) - parseInt(b.gate));
             byEarly.forEach((h, idx) => { h.early_rank = idx + 1; });
 
-            const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score);
+            const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score || parseInt(a.gate) - parseInt(b.gate));
             byLate.forEach((h, idx) => { h.late_rank = idx + 1; });
 
             const total_p = raw_scores.reduce((a,b) => a+b, 0) || 100.0;
@@ -519,43 +506,12 @@
                 h.win_prob = prob;
                 h.place_prob = Math.min(85.0, Math.round(prob * 24) / 10);
             });
-
-            // 🎯 역할 재분배! (순수 승률로 줄 세우지 않고 1착/2착/3착 축마로 줄 세우기)
-            const sorted_1st = [...race.horses].sort((a, b) => b.score_1st - a.score_1st);
-            const pick_1st = sorted_1st[0];
-            pick_1st.role_name = "1착 우승축 🥇";
-            pick_1st.ai_score = Math.round((pick_1st.score_1st + 25.0) * 10) / 10;
-
-            const rem_2nd = race.horses.filter(h => h.gate !== pick_1st.gate);
-            const sorted_2nd = rem_2nd.sort((a, b) => b.score_2nd - a.score_2nd);
-            const pick_2nd = sorted_2nd[0];
-            pick_2nd.role_name = "2착 선입마 🥈";
-            pick_2nd.ai_score = Math.round((pick_2nd.score_2nd + 20.0) * 10) / 10;
-
-            const rem_3rd = rem_2nd.filter(h => h.gate !== pick_2nd.gate);
-            const sorted_3rd = rem_3rd.sort((a, b) => b.score_3rd - a.score_3rd);
-            const pick_3rd = sorted_3rd[0];
-            pick_3rd.role_name = "3착 복병마 🥉";
-            pick_3rd.ai_score = Math.round((pick_3rd.score_3rd + 18.0) * 10) / 10;
-
-            const rem_others = rem_3rd.filter(h => h.gate !== pick_3rd.gate).sort((a, b) => b.score_2nd - a.score_2nd);
-            
-            let cur_score = pick_3rd.ai_score - 2.5;
-            rem_others.forEach((h, idx) => {
-                h.role_name = idx < 2 ? "착순권 후보" : "일반 출전마";
-                h.ai_score = Math.round(cur_score * 10) / 10;
-                cur_score = Math.max(45.0, cur_score - 1.2);
-            });
-
-            race.horses = [pick_1st, pick_2nd, pick_3rd, ...rem_others];
         }
 
         function renderRace(idx) {
             const race = allRaceData[idx];
             if (!race) return;
-            const customDist = localStorage.getItem(getDistanceStorageKey(race)) || race.distance;
-            race.distance = customDist;
-            document.getElementById('distanceInput').value = customDist;
+            document.getElementById('distanceInput').value = race.distance;
             renderRaceUIOnly(idx);
         }
 
@@ -591,11 +547,15 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
+                // ⚡ 초반/후반 등수별 차등 태그
                 let speedTagsHtml = "";
                 const eRank = parseInt(h.early_rank, 10);
                 const lRank = parseInt(h.late_rank, 10);
-                if (eRank >= 1 && eRank <= 5) speedTagsHtml += `<span class="ai-tag early-badge">⚡초반 ${eRank}위</span>`;
-                if (lRank >= 1 && lRank <= 5) speedTagsHtml += `<span class="ai-tag late-badge">🚀후반 ${lRank}위</span>`;
+                if (eRank === 1) speedTagsHtml += `<span class="ai-tag early-top">⚡초반 1위</span>`;
+                else if (eRank <= 5) speedTagsHtml += `<span class="ai-tag early-sub">⚡초반 ${eRank}위</span>`;
+                
+                if (lRank === 1) speedTagsHtml += `<span class="ai-tag late-top">🚀후반 1위</span>`;
+                else if (lRank <= 5) speedTagsHtml += `<span class="ai-tag late-sub">🚀후반 ${lRank}위</span>`;
 
                 const savedObj = savedOddsMap[h.gate];
                 let baseVal = "", curVal = "";
