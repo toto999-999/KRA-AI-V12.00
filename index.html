@@ -3,7 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Key(r));
+    <title>KRA전국 승부예상AI_V12.00</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; }
+        body { background-color: #f1f5f9; color: #1e293b; padding-bottom: 50px; }
+        
+        #lockScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .lock-box {
+            background: white; border-radius: 16px; padding: 30px 24px;
+            width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .lock-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .lock-title { font-size: 1.15rem; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+        .lock-desc { font-size: 0.8rem; color: #64748b; margin-bottom: 20px; }
+        .pin-input {
+            width: 100%; padding: 12px; font-size: 1.5rem; text-align: center;
+            letter-spacing: 12px; border: 2px solid #cbd5e1; border-radius: 10px; outline: none; margin-bottom: 12px;
+        }
+        .pin-input:focus { border-color: #0284c7; }
+        .pin-btn {
+            width: 100%; padding: 12px; background: #0284c7; color: white;
+            border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer;
+        }
+        .pin-err { color: #ef4444; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: none; }
+
+        #mainApp { display: none; }
+        header { background: #0f172a; color: white; padding: 14px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: background 0.4s ease; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.5px; }
+        .header-btns { display: flex; gap: 6px; }
+        .btn-update { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; cursor: pointer; }
+        .btn-lock { background: rgba(255,255,255,0.15); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
+
+        .update-toast {
+            display: none; background: #0f172a; color: #f8fafc; padding: 12px 14px; text-align: center;
+            font-size: 0.84rem; font-weight: bold; border-bottom: 3px solid #0284c7; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            line-height: 1.4; position: sticky; top: 56px; z-index: 110; animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .tab-nav {
+            display: flex; background: white; border-bottom: 1px solid #cbd5e1;
+            position: sticky; top: 56px; z-index: 99; box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .tab-btn {
+            flex: 1; padding: 12px 6px; border: none; background: none; font-size: 0.85rem;
+            font-weight: 800; color: #64748b; cursor: pointer; text-align: center;
+            border-bottom: 3px solid transparent; transition: all 0.2s ease;
+        }
+        .tab-btn.active { color: #0284c7; border-bottom-color: #0284c7; background-color: #f0f9ff; }
+
+        .container { padding: 14px; max-width: 500px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .race-select-card {
+            background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;
+            display: flex; gap: 8px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .select-group { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+        .select-label { font-size: 0.72rem; font-weight: 800; color: #64748b; }
+        .select-group select, .distance-input-box {
+            width: 100%; padding: 8px 6px; border-radius: 8px; border: 1px solid #cbd5e1;
+            font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
+        }
+        .distance-input-box { display: flex; align-items: center; justify-content: center; gap: 2px; padding: 6px; }
+        .distance-input { width: 55px; border: none; font-size: 0.9rem; font-weight: 900; text-align: center; color: #0284c7; outline: none; background: transparent; }
+
+        .bet-matrix-card {
+            background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px; margin-bottom: 14px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+        }
+        .matrix-title { font-size: 0.85rem; font-weight: 900; color: #0284c7; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #e0f2fe; padding-bottom: 6px; }
+        
+        .smart-alert-bar {
+            background: linear-gradient(135deg, #ef4444, #f97316); color: white;
+            padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 900;
+            margin-bottom: 10px; display: none; align-items: center; gap: 6px; animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+
+        .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .matrix-item { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7; }
+        .matrix-item.full { grid-column: span 2; background: #f0f9ff; border-left-color: #f59e0b; }
+        .matrix-label { font-size: 0.72rem; color: #64748b; font-weight: 800; margin-bottom: 2px; }
+        .matrix-val { font-size: 0.92rem; font-weight: 900; color: #0f172a; }
+
+        .result-bar {
+            background: #1e293b; color: white; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; font-weight: bold; margin-bottom: 12px; display: none;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .horse-card {
+            background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            border-left: 4px solid #cbd5e1;
+        }
+        .horse-card.value-hot { border-left-color: #10b981; background: #f0fdf4; }
+        .horse-card.value-bad { border-left-color: #ef4444; background: #fef2f2; }
+        .horse-card.smart-hot { border-left-color: #f97316; background: #fff7ed; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2); }
+
+        .horse-left { display: flex; align-items: center; gap: 10px; flex-grow: 1; min-width: 0; }
+        .gate-ball { width: 34px; height: 34px; border-radius: 8px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; color: #0f172a; flex-shrink: 0; }
+        .horse-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+        .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+        .ai-tag.early-badge { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: 900; }
+        .ai-tag.late-badge { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 900; }
+
+        .odds-input-box { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px; }
+        .odds-dual-row { display: flex; align-items: center; gap: 4px; }
+        .odds-field { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .odds-field-label { font-size: 0.65rem; font-weight: 800; color: #94a3b8; }
+        .odds-input {
+            width: 58px; padding: 5px 4px; border: 2px solid #cbd5e1; border-radius: 6px;
+            font-size: 0.88rem; font-weight: 900; text-align: center; color: #0f172a; outline: none; background: #fff;
+        }
+        .odds-input:focus { border-color: #0284c7; background: #f0f9ff; }
+        .odds-input.base { border-color: #e2e8f0; color: #64748b; }
+        .odds-arrow { font-size: 0.7rem; color: #cbd5e1; margin-top: 12px; }
+
+        .ev-row { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+        .ev-badge { font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px; }
+        .ev-badge.good { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .ev-badge.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+        .smart-badge {
+            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
+            background: #ffedd5; color: #c2410c; border: 1px solid #fdba74;
+        }
+
+        .odds-action-bar { display: flex; gap: 8px; margin-top: 14px; margin-bottom: 6px; }
+        .btn-save-odds {
+            flex: 2; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 10px;
+            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+        }
+        .btn-save-odds:active { background: #0369a1; }
+        .btn-reset-odds {
+            flex: 1; padding: 12px; background: #94a3b8; color: white; border: none; border-radius: 10px;
+            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+        .btn-reset-odds:active { background: #64748b; }
+
+        .role-badge { font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
+        .role-1st { background-color: #0284c7; color: white; }
+        .role-2nd { background-color: #f59e0b; color: white; }
+        .role-3rd { background-color: #10b981; color: white; }
+        .score-info { text-align: right; flex-shrink: 0; margin-left: 8px; }
+        .win-rate { font-size: 1.15rem; font-weight: 800; color: #1e3c72; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
+        .modal-box { background: white; width: 90%; max-width: 400px; border-radius: 14px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .modal-title { font-size: 1.05rem; font-weight: 800; color: #1e3c72; margin-bottom: 10px; }
+        .modal-input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin: 10px 0; font-size: 0.85rem; }
+        .modal-btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+        .modal-btn { padding: 8px 14px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-size: 0.82rem; }
+        .modal-btn.primary { background: #1e3c72; color: white; }
+        .modal-btn.secondary { background: #eee; color: #333; }
+    </style>
+</head>
+<body>
+
+    <div id="lockScreen">
+        <div class="lock-box">
+            <div class="lock-icon">💎</div>
+            <div class="lock-title">V12.00 가치 배당 계산기</div>
+            <div class="lock-desc">비밀번호(4자리)를 입력하세요.</div>
+            <input type="password" id="pinInput" class="pin-input" maxlength="4" pattern="[0-9]*" inputmode="numeric" placeholder="••••">
+            <button class="pin-btn" onclick="checkPin()">계산기 열기</button>
+            <div id="pinErr" class="pin-err">비밀번호가 올바르지 않습니다!</div>
+        </div>
+    </div>
+
+    <div id="mainApp">
+        <header id="appHeader">
+            <div class="header-top">
+                <h1>💎 KRA 7대 승식 가치 계산기</h1>
+                <div class="header-btns">
+                    <button class="btn-update" onclick="triggerUpdate()">⚡ 갱신</button>
+                    <button class="btn-lock" onclick="lockApp()">🔒</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="updateToast" class="update-toast"></div>
+
+        <div id="tokenModal" class="modal">
+            <div class="modal-box">
+                <div class="modal-title">🔑 원클릭 자동 갱신 설정</div>
+                <div style="font-size:0.8rem; color:#475569; margin-bottom:10px;">
+                    깃허브 개인 토큰(PAT)을 입력하시면 클릭 한 번으로 마사회 최신 결과를 동기화합니다.
+                </div>
+                <input type="password" id="ghTokenInput" class="modal-input" placeholder="ghp_ 로 시작하는 토큰 입력">
+                <div class="modal-btn-row">
+                    <button class="modal-btn secondary" onclick="closeTokenModal()">취소</button>
+                    <button class="modal-btn primary" onclick="saveTokenAndTrigger()">저장 후 갱신</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
+            <button class="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드</button>
+        </nav>
+
+        <div class="container">
+            <div id="tab-calc" class="tab-content active">
+                <div class="race-select-card">
+                    <div class="select-group" style="max-width: 38%;">
+                        <span class="select-label">📅 날짜 선택</span>
+                        <select id="dateSelect" onchange="changeDate()"></select>
+                    </div>
+                    <div class="select-group" style="max-width: 38%;">
+                        <span class="select-label">🐎 경주 선택</span>
+                        <select id="raceSelect" onchange="changeRace()"></select>
+                    </div>
+                    <div class="select-group" style="max-width: 24%;">
+                        <span class="select-label">📏 거리 (m)</span>
+                        <div class="distance-input-box">
+                            <input type="number" class="distance-input" id="distanceInput" placeholder="1200" oninput="updateCustomDistance(this.value)">
+                            <span style="font-size:0.75rem; font-weight:900; color:#0284c7;">m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultBar" class="result-bar"></div>
+
+                <div class="bet-matrix-card" id="matrixCard">
+                    <div id="smartAlertBar" class="smart-alert-bar"></div>
+                    <div class="matrix-title">
+                        <span>👑 실시간 7대 승식 최적 마권</span>
+                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">배당 입력 시 자동 갱신</span>
+                    </div>
+                    <div class="matrix-grid">
+                        <div class="matrix-item">
+                            <div class="matrix-label">🥇 단승식 (1착 우승)</div>
+                            <div id="recWin" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">🛡️ 연승식 (1~3착 안전)</div>
+                            <div id="recPlace" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">🎯 복승식 (1-2착)</div>
+                            <div id="recQuinella" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item">
+                            <div class="matrix-label">⚡ 쌍승식 (1착➔2착)</div>
+                            <div id="recExacta" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">💰 복연승식 (가치축 ✖ 꿀배당 복병 / 강력추천!)</div>
+                            <div id="recWide" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">👑 삼복승식 (황금 삼각편대 포메이션)</div>
+                            <div id="recTrio" class="matrix-val">-</div>
+                        </div>
+                        <div class="matrix-item full">
+                            <div class="matrix-label">🚀 삼쌍승식 (1착➔2착➔3착 순서 고정)</div>
+                            <div id="recTrifecta" class="matrix-val">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                    <span>🐎 출전마 (초반/후반 랭킹)</span>
+                    <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
+                </div>
+
+                <div id="horseList"></div>
+
+                <div class="odds-action-bar">
+                    <button class="btn-save-odds" onclick="saveCurrentOdds()">💾 배당 저장 (복기용)</button>
+                    <button class="btn-reset-odds" onclick="resetCurrentOdds()">🔄 초기화</button>
+                </div>
+            </div>
+
+            <div id="tab-guide" class="tab-content">
+                <div style="padding:20px; text-align:center; color:#64748b; font-weight:bold; line-height: 1.6;">
+                    V12.00 가치 배당 계산기 안내<br><br>
+                    더비온 2.0 배당을 입력하시면 AI가 7대 승식 최적 마권을 추천합니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('app_authenticated') === 'true') {
+                unlockApp();
+            } else {
+                const el = document.getElementById('pinInput');
+                if (el) el.focus();
+            }
+        });
+
+        function checkPin() {
+            const input = document.getElementById('pinInput').value.trim();
+            if (input === "1415" || input === "4938") {
+                localStorage.setItem('app_authenticated', 'true');
+                unlockApp();
+            } else {
+                document.getElementById('pinErr').style.display = 'block';
+                document.getElementById('pinInput').value = '';
+            }
+        }
+
+        document.getElementById('pinInput').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') checkPin();
+        });
+
+        function unlockApp() {
+            document.getElementById('lockScreen').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            loadData();
+        }
+
+        function lockApp() {
+            localStorage.removeItem('app_authenticated');
+            location.reload();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let allRaceData = [];
+        let currentRaceIdx = 0;
+
+        function formatDateLabel(dStr) {
+            if (!dStr || dStr.length < 8) return dStr;
+            const y = parseInt(dStr.substring(0, 4), 10);
+            const m = parseInt(dStr.substring(4, 6), 10);
+            const d = parseInt(dStr.substring(6, 8), 10);
+            const dateObj = new Date(y, m - 1, d);
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            return `${m}/${d} (${days[dateObj.getDay()]})`;
+        }
+
+        function getRaceStorageKey(race) { return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
+        function getDistanceStorageKey(race) { return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
+
+        function loadData() {
+            fetch('./race_data.json?nocache=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    allRaceData = data;
+                    if (!data || data.length === 0) return;
+
+                    const uniqueDates = [...new Set(data.map(r => r.race_date))].filter(Boolean);
+                    const dateSelect = document.getElementById('dateSelect');
+                    dateSelect.innerHTML = '';
+                    uniqueDates.forEach(dt => {
+                        const opt = document.createElement('option');
+                        opt.value = dt;
+                        opt.textContent = formatDateLabel(dt);
+                        dateSelect.appendChild(opt);
+                    });
+
+                    const latestDate = uniqueDates[uniqueDates.length - 1];
+                    dateSelect.value = latestDate;
+                    populateRaceSelect(latestDate);
+                });
+        }
+
+        function populateRaceSelect(selectedDate, targetIdxToKeep = null) {
+            const raceSelect = document.getElementById('raceSelect');
+            raceSelect.innerHTML = '';
+            let firstIdxOfDate = -1;
+            let foundTarget = false;
+
+            allRaceData.forEach((r, idx) => {
+                if (r.race_date === selectedDate) {
+                    if (firstIdxOfDate === -1) firstIdxOfDate = idx;
+
+                    const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
                     const savedMark = isSaved ? "💾 " : "";
                     const customDist = localStorage.getItem(getDistanceStorageKey(r)) || r.distance;
 
@@ -15,10 +400,7 @@
 
                     if (targetIdxToKeep !== null && idx === targetIdxToKeep) {
                         foundTarget = true;
-                    }KRA전국 승부예상AI_V12.00</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; }
-        body { background-color:
+                    }
                 }
             });
 
@@ -30,15 +412,7 @@
         }
 
         function changeDate() { populateRaceSelect(document.getElementById('dateSelect').value); }
-        function changeRace() #f1f5f9; color: #1e293b; padding-bottom: 50px; }
-        
-        #lockScreen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .lock-box {
-            background: {
+        function changeRace() {
             currentRaceIdx = parseInt(document.getElementById('raceSelect').value, 10);
             renderRace(currentRaceIdx);
         }
@@ -50,19 +424,7 @@
             const cleanD = parseInt(newDistVal, 10);
             if (!isNaN(cleanD) && cleanD >= 800) {
                 race.distance = String(cleanD);
- white; border-radius: 16px; padding: 30px 24px;
-            width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .lock-icon { font-size: 2.5rem; margin-bottom: 10px; }
-        .lock-title { font-size: 1.15rem; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
-        .lock-desc { font-size: 0.8rem; color: #64748b; margin-bottom: 20px; }
-        .pin-input {
-            width: 100%; padding: 12px; font-size: 1.5rem; text-align: center;
-            letter-spacing: 12px; border: 2px solid #cbd5e1; border-radius: 10px; outline: none; margin-bottom: 12px;
-        }
-        .pin-btn {
-            width: 100%; padding: 12px; background: #0284c7; color: white;
-                            localStorage.setItem(getDistanceStorageKey(race), String(cleanD));
+                localStorage.setItem(getDistanceStorageKey(race), String(cleanD));
                 
                 recalculateRaceScores(race);
                 renderRaceUIOnly(currentRaceIdx);
@@ -75,6 +437,9 @@
             const dist = parseInt(race.distance, 10);
             const meet = race.meet_name;
             
+            const JOCKEY_MAP = {"문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0, "이혁": 19.2, "임다빈": 18.5, "장추열": 18.0, "임기원": 17.5, "이동하": 16.0, "조인권": 21.4, "마이아": 22.0, "서승운": 31.5, "최시대": 26.8, "다나카": 25.4, "다비드": 24.2, "유현명": 23.8, "정도윤": 22.5, "김동영": 17.8, "이성재": 16.5, "송경윤": 15.2, "전진구": 14.8, "손경민": 14.0, "전현준": 26.5, "한영민": 24.2, "임재광": 21.8, "양민재": 19.5, "원유일": 18.2, "박재희": 17.5, "곽용남": 16.8, "김한남": 16.0, "강수한": 15.5, "안득수": 20.5, "정명일": 19.0};
+            const TRAINER_MAP = {"서홍수": 24.5, "송문길": 21.5, "배휴준": 20.8, "정호익": 19.5, "최용건": 19.0, "박재우": 17.2, "이강서": 16.8, "전승규": 16.0, "서인석": 15.0, "라이스": 25.2, "구영준": 18.5, "김도현": 18.2, "안우성": 18.0, "임성실": 17.5, "백광열": 18.8, "심도연": 23.5, "김태준": 21.0, "강대은": 20.5, "윤덕상": 17.8, "김대연": 17.2, "이준호": 16.5, "문성호": 15.8};
+
             let front_cnt = race.horses.filter(h => h.is_front).length;
             let is_overpaced = (dist >= 1700 && front_cnt >= 3);
 
@@ -87,28 +452,18 @@
                 const ord2 = parseInt(h.ord2_cnt, 10) || 0;
                 const quin_rate = tot_rc >= 3 ? ((ord1 + ord2) / tot_rc) * 100 : 20.0;
                 const win_rate = tot_rc >= 3 ? (ord1 / tot_rc) * 100 : 10.0;
-                constborder: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer;
-        }
-        .pin-err { color: #ef4444; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: none; }
-
-        #mainApp { display: none; }
-        header { background: #0f172a; color: white; padding: 14px 16px; r_jk = JOCKEY_MAP[h.jockey] || 12.0;
+                const r_jk = JOCKEY_MAP[h.jockey] || 12.0;
                 const r_tr = TRAINER_MAP[h.trainer] || 14.0;
 
-                // 1. 초반 순위
+                // 1. 초반 순위 (소수점 정밀 반영!)
                 let early = h.is_front ? 30.0 : 0.0;
                 if (g <= 3) early += 15.0;
                 else if (g <= 5) early += 8.0;
                 early += (55.0 - clean_w) * 2.0;
-                early += (r_jk * 0.3 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-        .header-top { display: flex; justify-content: space-between; align-items: center; }
-        header h1 { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.5px; }
-        .header-btns { display: flex; gap: 6px; }
-        .btn-update { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; cursor: pointer; }
-        .btn-lock { background: rgba(255,255,255,0.15); color: white; border: none; padding: 6px 10px; border-radius: 20px; font-size: 0.5);
+                early += (r_jk * 0.35);
                 h.early_score = early;
 
-                // 2. 후반 순위
+                // 2. 후반 순위 (소수점 정밀 반영!)
                 let late = (!h.is_front) ? 20.0 : 0.0;
                 if (4 <= g <= 8) late += 10.0;
                 late += (55.0 - clean_w) * 2.5;
@@ -121,19 +476,7 @@
                 power += (55.0 - clean_w) * 2.0;
                 if (meet === "제주" && g <= 3) power += 8.0;
                 else if (dist <= 1300 && g <= 3) power += 4.0;
-                else if ((75rem; cursor: pointer; }
-
-        .tab-nav {
-            display: flex; background: white; border-bottom: 1px solid #cbd5e1;
-            position: sticky; top: 58px; z-index: 99; box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-        .tab-btn {
-            flex: 1; padding: 12px 6px; border: none; background: none; font-size: 0.85rem;
-            font-weight: 800; color: #64748b; cursor: pointer; text-align: center;
-            border-bottom: 3px solid transparent; transition: all 0.2s ease;
-        }
-        .tab-btn.active {
-            color: #0284c7; border-bottom-color: #0284c7; background-colormeet === "부산경남" || meet === "영천") && dist >= 1400 && !h.is_front) power += 5.0;
+                else if ((meet === "부산경남" || meet === "영천") && dist >= 1400 && !h.is_front) power += 5.0;
 
                 raw_scores.push(Math.max(5.0, power));
 
@@ -144,16 +487,7 @@
                 let free_run_bonus = (!h.is_front && g >= 4 && g <= 9) ? 8.0 : 0.0;
 
                 let s1 = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty - target_mark_penalty + free_run_bonus;
-                let s2 = 2: #f0f9ff;
-        }
-
-        .container { padding: 14px; max-width: 500px; margin: 0 auto; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        
-        .race-select-card {
-            background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;
-            display: flex; gap: 8px; align-items5.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
+                let s2 = 25.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
                 let s3 = 25.0;
                 
                 if (clean_w <= 52.5) s3 += 12.0;
@@ -166,23 +500,7 @@
                    if (g <= 3) { s1 += 8.0; s2 += 6.0; }
                    if (h.is_front) s1 += 12.0;
                 } else if ((meet === "부산경남" || meet === "영천") && dist >= 1400 && !h.is_front) {
-                   s1 += 10.0; s3 +=: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .select-group {
-            flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;
-        }
-        .select-label {
-            font-size: 0.72rem; font-weight: 800; color: #64748b;
-        }
-        .select-group select, .distance-input-box {
-            width: 100%; padding: 8px 6px; border-radius: 8px; border: 1px solid #cbd5e1;
-            font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
-        }
-        .distance-input-box {
-            display: flex; align-items: center; justify-content: center; gap: 2px; padding: 6px;
-        }
-        .distance-input {
-            width: 55px; border: none; font-size: 0.9rem; font-weight: 900; 12.0;
+                   s1 += 10.0; s3 += 12.0;
                 }
 
                 h.score_1st = s1; h.score_2nd = s2; h.score_3rd = s3;
@@ -195,37 +513,18 @@
             const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score);
             byLate.forEach((h, idx) => { h.late_rank = idx + 1; });
 
-            const total_p = raw_scores.reduce((a,b) => a+b, 0) || 100. text-align: center; color: #0284c7; outline: none; background: transparent;
-        }
-
-        .bet-matrix-card {
-            background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px0;
+            const total_p = raw_scores.reduce((a,b) => a+b, 0) || 100.0;
             race.horses.forEach((h, idx) => {
                 const prob = Math.round((raw_scores[idx] / total_p) * 1000) / 10;
                 h.win_prob = prob;
                 h.place_prob = Math.min(85.0, Math.round(prob * 24) / 10);
             });
 
-            //; margin-bottom: 14px;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
-        }
-        .matrix-title { font-size: 0.85rem; font-weight: 900; color: #0284c7; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #e0f2fe; padding-bottom: 6px; }
-        
-        .smart-alert 🎯 역할 재분배! (순수 승률로 줄 세우지 않고 1착/2착/3착 축마로 줄 세우기)
+            // 🎯 역할 재분배! (순수 승률로 줄 세우지 않고 1착/2착/3착 축마로 줄 세우기)
             const sorted_1st = [...race.horses].sort((a, b) => b.score_1st - a.score_1st);
             const pick_1st = sorted_1st[0];
             pick_1st.role_name = "1착 우승축 🥇";
-            pick_1st.ai_score = Math.round((pick_1st.score_1-bar {
-            background: linear-gradient(135deg, #ef4444, #f97316); color: white;
-            padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 900;
-            margin-bottom: 10px; display: none; align-items: center; gap: 6px; animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
-
-        .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .matrix-item { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7; }
-        .matrix-item.full { grid-column: span 2; background: #f0f9ff; border-left-color: #f59e0b; }
-        .matrix-label { font-size: 0.72rem; color: #6st + 25.0) * 10) / 10;
+            pick_1st.ai_score = Math.round((pick_1st.score_1st + 25.0) * 10) / 10;
 
             const rem_2nd = race.horses.filter(h => h.gate !== pick_1st.gate);
             const sorted_2nd = rem_2nd.sort((a, b) => b.score_2nd - a.score_2nd);
@@ -241,24 +540,10 @@
 
             const rem_others = rem_3rd.filter(h => h.gate !== pick_3rd.gate).sort((a, b) => b.score_2nd - a.score_2nd);
             
-            let cur_score4748b; font-weight: 800; margin-bottom: 2px; }
-        .matrix-val { font-size: 0.92rem; font-weight: 900; color: #0f172a; }
-
-        .result-bar {
-            background = pick_3rd.ai_score - 2.5;
+            let cur_score = pick_3rd.ai_score - 2.5;
             rem_others.forEach((h, idx) => {
                 h.role_name = idx < 2 ? "착순권 후보" : "일반 출전마";
-                h.ai_score = Math.round(cur_score *: #1e293b; color: white; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; font-weight: bold; margin-bottom: 12px; display: none;
-            border-left: 4px solid #f59e0b;
-        }
-
-        .horse-card {
-            background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
-            display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-            border-left: 4px solid #cbd5e1;
-        }
-        .horse-card.value-hot { border-left-color: #10b981; background: #f0fdf4; }
-        .horse-card.value-bad { border-left- 10) / 10;
+                h.ai_score = Math.round(cur_score * 10) / 10;
                 cur_score = Math.max(45.0, cur_score - 1.2);
             });
 
@@ -280,14 +565,7 @@
 
             const headerEl = document.getElementById('appHeader');
             if (race.meet_name === "제주") headerEl.style.background = "linear-gradient(135deg, #c2410c, #ea580c)";
-            else if (race.meet_name === "부산경남" || race.meet_name === "영천") headerEl.style.background = "linear-gradient(135deg, #0369a1, #0284c7)";color: #ef4444; background: #fef2f2; }
-        .horse-card.smart-hot { border-left-color: #f97316; background: #fff7ed; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2); }
-
-        .horse-left { display: flex; align-items: center; gap: 10px; flex-grow: 1; min-width: 0; }
-        .gate-ball { width: 34px; height: 34px; border-radius: 8px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; color: #0f172a; flex-shrink: 0; }
-        .horse-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-        .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .horse-sub { font-size: 0.75
+            else if (race.meet_name === "부산경남" || race.meet_name === "영천") headerEl.style.background = "linear-gradient(135deg, #0369a1, #0284c7)";
             else headerEl.style.background = "linear-gradient(135deg, #1e3c72, #2a5298)";
 
             const resBar = document.getElementById('resultBar');
@@ -309,16 +587,9 @@
             const list = document.getElementById('horseList');
             list.innerHTML = '';
 
-            race.horses.forEach((h, i) => {rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 
+            race.horses.forEach((h, i) => {
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
-                const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px6px; border-radius: 4px; font-weight: 600; }
-        .ai-tag.early-badge { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: 900; }
-        .ai-tag.late-badge { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 900; }
-
-        .odds-input-box {
-            display: flex; flex-direction: 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
+                const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
                 let speedTagsHtml = "";
                 const eRank = parseInt(h.early_rank, 10);
@@ -327,24 +598,7 @@
                 if (lRank >= 1 && lRank <= 5) speedTagsHtml += `<span class="ai-tag late-badge">🚀후반 ${lRank}위</span>`;
 
                 const savedObj = savedOddsMap[h.gate];
- column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px;
-        }
-        .odds-dual-row {
-            display: flex; align-items: center; gap: 4px;
-        }
-        .odds-field {
-            display: flex; flex-direction: column; align-items: center; gap: 2px;
-        }
-        .odds-field-label {
-            font-size: 0.65rem; font-weight: 800; color: #94a3b8;
-        }
-        .odds-input {
-            width: 58px; padding: 5px 4px; border: 2px solid #cbd5e1; border-radius: 6px;
-            font-size: 0.88rem; font-weight: 900; text-align: center; color: #0f172a; outline: none; background: #fff;
-        }
-        .odds-input:focus { border-color: #0284c7; background: #f0f9ff; }
-        .odds-input.base { border-color: #e2e8f0; color: #64748b; }
-        .odds-arrow { font-size: 0.7rem; color:                let baseVal = "", curVal = "";
+                let baseVal = "", curVal = "";
                 if (typeof savedObj === "object" && savedObj !== null) {
                     baseVal = savedObj.base || "";
                     curVal = savedObj.cur || "";
@@ -377,16 +631,7 @@
                                 <span class="odds-arrow">➔</span>
                                 <div class="odds-field">
                                     <span class="odds-field-label" style="color:#0284c7;">마감직전</span>
-                                #cbd5e1; margin-top: 12px; }
-
-        .ev-row {
-            display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-wrap: wrap;
-        }
-        .ev-badge {
-            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
-        }
-        .ev-badge.good { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
-        .     <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
+                                    <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
                                            value="${curVal}"
                                            oninput="calculateMatrix()"
                                            onkeydown="handleOddsKey(event, ${i})">
@@ -420,20 +665,7 @@
                 if (nextCurInput) { nextCurInput.focus(); nextCurInput.select(); }
                 else {
                     document.activeElement.blur();
-                    document.getElementById('matrixCard').scrollIntoView({ behavior: 'smoothev-badge.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
-
-        .smart-badge {
-            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
-            background: #ffedd5; color: #c2410c; border: 1px solid #fdba74;
-        }
-
-        .odds-action-bar {
-            display: flex; gap: 8px; margin-top: 14px; margin-bottom: 6px;
-        }
-        .btn-save-odds {
-            flex: 2; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 10px;
-            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3' });
+                    document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
                 }
             }
         }
@@ -463,21 +695,7 @@
                 if (!isNaN(baseOdds) && baseOdds > 0 && !isNaN(curOdds) && curOdds > 0) {
                     dropPct = ((curOdds - baseOdds) / baseOdds) * 100.0;
                     if (dropPct <= -30.0) {
-);
-        }
-        .btn-save-odds:active { background: #0369a1; }
-        .btn-reset-odds {
-            flex: 1; padding: 12px; background: #94a3b8; color: white; border: none; border-radius: 10px;
-            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
-        }
-        .btn-reset-odds:active { background: #64748b; }
-
-        .sub-desc { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 15px; line-height: 1.4; }
-
-        /* 베팅가이드 및 분석실 스타일 유지 */
-        .guide-card {
-            background: white; border-radius: 14px; padding: 18px 16px; margin-bottom: 14px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 4px solid #0                        isSmartMoney = true;
+                        isSmartMoney = true;
                         smartBadge.style.display = 'inline-block';
                         smartBadge.textContent = `🚨 뭉칫돈 ${dropPct.toFixed(0)}%`;
                         cardEl.classList.add('smart-hot');
@@ -497,13 +715,7 @@
                         evBadge.className = 'ev-badge bad'; evBadge.textContent = `-EV ${ev.toFixed(2)}`;
                         if (!isSmartMoney) cardEl.classList.add('value-bad');
                     } else {
-                        evBadge.className = 'ev-badge'; evBadge.style.background = '#e2e8f0'; evBadge.textContent = 284c7;
-        }
-        .guide-title {
-            font-size: 1.05rem; font-weight: 900; color: #0f172a; margin-bottom: 12px;
-            display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
-        }
-        .guide-sub { font-size: 0.88rem;`EV ${ev.toFixed(2)}`;
+                        evBadge.className = 'ev-badge'; evBadge.style.background = '#e2e8f0'; evBadge.textContent = `EV ${ev.toFixed(2)}`;
                     }
 
                     horsesWithEV.push({ gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: effectiveOdds, ev: ev, isSmart: isSmartMoney, drop: dropPct });
@@ -520,12 +732,7 @@
             } else { alertBar.style.display = 'none'; }
 
             const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
-            let h1Candidates = horsesWithEV.filter(h => (h.isSmart && h.drop <= -30.0) || (h.odds > 0 && h font-weight: 900; color: #0284c7; margin-top: 14px; margin-bottom: 6px; }
-        .guide-text { font-size: 0.84rem; color: #475569; line-height: 1.55; margin-bottom: 8px; }
-        .guide-box { padding: 12px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.82rem; line-height: 1.5; }
-        .guide-box.blue { background: #f0f9ff; border-left: 4px solid #0284c7; color: #0c4a6e; }
-        .guide-box.green { background: #f0fdf4; border-left: 4px solid #16a34a; color: #14532d; }
-        .guide-box.red { background: #fef2f2; border-left: 4px solid #ef4444; color: #7f.odds <= 20.0 && h.ev >= 1.0));
+            let h1Candidates = horsesWithEV.filter(h => (h.isSmart && h.drop <= -30.0) || (h.odds > 0 && h.odds <= 20.0 && h.ev >= 1.0));
             h1Candidates.sort((a, b) => b.ev - a.ev);
 
             let h1 = h1Candidates.length > 0 ? h1Candidates[0] : (horsesWithEV.filter(h => h.odds <= 20.0).sort((a, b) => b.ev - a.ev)[0] || sortedByProb[0]);
@@ -538,19 +745,7 @@
             document.getElementById('recPlace').textContent = `[${h2.gate}번 ${h2.name}] (입상률 ${h2.place_prob}%)`;
             document.getElementById('recQuinella').textContent = `[${h1.gate}번] ✖ [${h2.gate}번]`;
             document.getElementById('recExacta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번]`;
-            document.getElementById('recWide').textContent = `[${h1.gate}번] 1d1d; }
-        .guide-box.orange { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; }
-        .guide-box.gold { background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
-        .guide-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
-        .guide-table th { background: #f8fafc; padding: 9px 8px; text-align: left; color: #334155; font-weight: 800; border-bottom: 2px solid #cbd5e1; }
-        .guide-table td { padding: 9px 8px; border-bottom: 1px solid #e2e8f0; color: #1e293b; }
-    </style>
-</head>
-<body>
-
-    <div id="lockScreen">
-        <div class="lock-box">
-            <div class✖ [${h3.gate}번] / [${h1.gate}번] ✖ [${h2.gate}번]`;
+            document.getElementById('recWide').textContent = `[${h1.gate}번] ✖ [${h3.gate}번] / [${h1.gate}번] ✖ [${h2.gate}번]`;
             document.getElementById('recTrio').textContent = `[${h1.gate}번] ➕ [${h2.gate}번] ➕ [${h3.gate}번]`;
             document.getElementById('recTrifecta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번] ➔ [${h3.gate}번]`;
         }
@@ -560,29 +755,7 @@
             if (!race) return;
 
             const oddsMap = {};
-            let hasAny =="lock-icon">💎</div>
-            <div class="lock-title">V12.00 가치 배당 계산기</div>
-            <div class="lock-desc">비밀번호(4자리)를 입력하세요.</div>
-            <input type="password" id="pinInput" class="pin-input" maxlength="4" pattern="[0-9]*" inputmode="numeric" placeholder="••••">
-            <button class="pin-btn" onclick="checkPin()">계산기 열기</button>
-            <div id="pinErr" class="pin-err">비밀번호가 올바르지 않습니다!</div>
-        </div>
-    </div>
-
-    <div id="mainApp">
-        <header id="appHeader">
-            <div class="header-top">
-                <h1>💎 KRA 7대 승식 가치 계산기</h1>
-                <div class="header-btns">
-                    <button class="btn-update" onclick="triggerUpdate()">⚡ 갱신</button>
-                    <button class="btn-lock" onclick="lockApp()">🔒</button>
-                </div>
-            </div>
-        </header>
-
-        <nav class="tab-nav">
-            <button class="tab-btn active" onclick="switchTab('tab-calc')">🐎 가치 계산기</button>
-            <button class false;
+            let hasAny = false;
 
             race.horses.forEach((h, i) => {
                 const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
@@ -615,15 +788,7 @@
             populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
 
-        ="tab-btn" onclick="switchTab('tab-guide')">🎯 베팅가이드 (EV·뭉칫돈)</button>
-        </nav>
-
-        <div class="container">
-            <div id="tab-calc" class="tab-content active">
-                <div class="race-select-card">
-                    <div class="select-group" style="max-width: 38%;">
-                        <span class="select-label">📅 날짜 선택</span>
-                        <select id="dateSelect" onchange="changeDateconst GITHUB_OWNER = "toto999-999";
+        const GITHUB_OWNER = "toto999-999";
         const pathParts = window.location.pathname.split('/').filter(Boolean);
         const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
 
@@ -647,28 +812,7 @@
                     const timer = setInterval(() => {
                         count--;
                         if (count > 0) {
-                            toast.innerHTML = `🚀 V12.00 데이터()"></select>
-                    </div>
-                    <div class="select-group" style="max-width: 38%;">
-                        <span class="select-label">🐎 경주 선택</span>
-                        <select id="raceSelect" onchange="changeRace()"></select>
-                    </div>
-                    <div class="select-group" style="max-width: 24%;">
-                        <span class="select-label">📏 거리 (m)</span>
-                        <div class="distance-input-box">
-                            <input type="number" class="distance-input" id="distanceInput" placeholder="1200" oninput="updateCustomDistance(this.value)">
-                            <span style="font-size:0.75rem; font-weight:900; color:#0284c7;">m</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="resultBar" class="result-bar"></div>
-
-                <div class="bet-matrix-card" id="matrixCard">
-                    <div id="smartAlertBar" class="smart-alert-bar"></div>
-
-                    <div class="matrix-title">
-                        <span>👑 실시간 7대 승 동기화 중... (<strong>${count}초</strong> 남음)`;
+                            toast.innerHTML = `🚀 V12.00 데이터 동기화 중... (<strong>${count}초</strong> 남음)`;
                         } else {
                             clearInterval(timer);
                             toast.innerHTML = "✨ 갱신 완료! 화면을 새로고침합니다.";
