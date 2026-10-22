@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (영천/부경 명칭 통합 거리 매핑 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (실시간 웹 크롤링 자동 거리 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -23,39 +23,6 @@ MEET_CONFIG = [
     ("2", "제주"),
     ("3", "부산경남")
 ]
-
-# 🎯 마사회 공식 편성표 거리 (영천/부산경남 모두 포섭)
-OFFICIAL_DISTANCES = {
-    # 10월 16일 (금) 오늘 실전 공식 거리
-    ("20261016", "제주", "1"): "1000", ("20261016", "제주", "2"): "1000",
-    ("20261016", "제주", "3"): "1000", ("20261016", "제주", "4"): "1110",
-    ("20261016", "제주", "5"): "1110", ("20261016", "제주", "6"): "1200", ("20261016", "제주", "7"): "1200",
-    
-    ("20261016", "부경", "1"): "1000", ("20261016", "부경", "2"): "1200",
-    ("20261016", "부경", "3"): "1300", ("20261016", "부경", "4"): "1400",
-    ("20261016", "부경", "5"): "1800", ("20261016", "부경", "6"): "1200",
-    ("20261016", "부경", "7"): "1800", ("20261016", "부경", "8"): "1800", ("20261016", "부경", "9"): "1200",
-
-    # 10월 17일 (토)
-    ("20261017", "서울", "1"): "1200", ("20261017", "서울", "2"): "1400",
-    ("20261017", "서울", "3"): "1300", ("20261017", "서울", "4"): "1200",
-    ("20261017", "서울", "5"): "1700", ("20261017", "서울", "6"): "1300",
-    ("20261017", "서울", "7"): "1800", ("20261017", "서울", "8"): "1400",
-    ("20261017", "서울", "9"): "1200", ("20261017", "서울", "10"): "1800",
-    ("20261017", "제주", "1"): "900",  ("20261017", "제주", "2"): "1000",
-    ("20261017", "제주", "3"): "1000", ("20261017", "제주", "4"): "1110",
-    ("20261017", "제주", "5"): "1110", ("20261017", "제주", "6"): "1200", ("20261017", "제주", "7"): "1300",
-
-    # 10월 18일 (일)
-    ("20261018", "서울", "1"): "1000", ("20261018", "서울", "2"): "1200",
-    ("20261018", "서울", "3"): "1200", ("20261018", "서울", "4"): "1300",
-    ("20261018", "서울", "5"): "1400", ("20261018", "서울", "6"): "1200",
-    ("20261018", "서울", "7"): "1600", ("20261018", "서울", "8"): "2000",
-    ("20261018", "서울", "9"): "1700", ("20261018", "서울", "10"): "1800", ("20261018", "서울", "11"): "1400",
-    ("20261018", "부경", "1"): "1000", ("20261018", "부경", "2"): "1200",
-    ("20261018", "부경", "3"): "1400", ("20261018", "부경", "4"): "1400",
-    ("20261018", "부경", "5"): "1600", ("20261018", "부경", "6"): "1800"
-}
 
 JOCKEY_RATES = {
     "문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0,
@@ -93,16 +60,50 @@ def sanitize_jockey_and_trainer(jockey, trainer):
         jk, tr = tr, jk
     return jk, tr
 
-# 🎯 경마장 명칭 표준화 헬퍼 (영천, 부산경남 모두 '부경'으로 통일 조회)
-def get_norm_meet(name):
-    if name in ["부산경남", "영천", "부경"]:
-        return "부경"
-    return name
+# 🎯 [핵심] 마사회 공식 모바일 웹(todayrace.kra.co.kr)에서 해당 날짜의 모든 경주 거리를 실시간 크롤링!
+def scrape_kra_live_distances(date_str):
+    url = f"https://todayrace.kra.co.kr/race/raceTimeTable.do?searchDate={date_str}"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    live_map = {}
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as res:
+            html = res.read().decode('utf-8', errors='ignore')
+        
+        # '제주1경주...1000M' / '서울4경주...1400M' 정규식 자동 추출
+        matches = re.findall(r'(제주|서울|부경|부산경남|영천)\s*(\d+)경주.*?(\d{3,4})\s*M', html, re.DOTALL)
+        for m_name, r_no, dist in matches:
+            norm_meet = "부산경남" if m_name in ["부경", "영천"] else m_name
+            live_map[(date_str, norm_meet, str(int(r_no)))] = dist
+            if m_name == "영천":
+                live_map[(date_str, "영천", str(int(r_no)))] = dist
+        if live_map:
+            print(f"📡 [실시간 거리 자동 크롤링 성공] {date_str} 기준 {len(live_map)}개 경주 거리 연동완료!")
+    except Exception as e:
+        print(f"⚠️ 실시간 거리 크롤링 지연 ({date_str}): {e}")
+    return live_map
 
-def get_official_distance(date_str, meet_name, rc_no):
-    norm = get_norm_meet(meet_name)
-    r_key = (str(date_str), norm, str(int(rc_no)))
-    return OFFICIAL_DISTANCES.get(r_key)
+LIVE_DIST_CACHE = {}
+
+def get_official_distance_dynamic(date_str, meet_name, rc_no):
+    global LIVE_DIST_CACHE
+    if date_str not in LIVE_DIST_CACHE:
+        LIVE_DIST_CACHE[date_str] = scrape_kra_live_distances(date_str)
+    
+    live_map = LIVE_DIST_CACHE[date_str]
+    norm_meet = "부산경남" if meet_name in ["부경", "영천"] else meet_name
+    
+    # 1순위: 실시간 크롤링 맵
+    key = (str(date_str), norm_meet, str(int(rc_no)))
+    if key in live_map:
+        return live_map[key]
+    
+    # 2순위: 영천 별도 키 체크
+    key_yc = (str(date_str), "영천", str(int(rc_no)))
+    if key_yc in live_map:
+        return live_map[key_yc]
+
+    return None
 
 def fetch_meet_data(meet_code, meet_name, date_str):
     params = {
@@ -184,8 +185,8 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                # 🎯 [통합 매핑] 영천이든 부경이든 정확한 공식 거리 100% 매칭!
-                dist_lookup = get_official_distance(date_str, meet_name, rc_no)
+                # 🎯 [동적 크롤링 거리 우선 적용]
+                dist_lookup = get_official_distance_dynamic(date_str, meet_name, rc_no)
                 if not dist_lookup and clean_dist and int(clean_dist) >= 800:
                     dist_lookup = clean_dist
                 if not dist_lookup:
@@ -210,7 +211,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 "weight": weight, "track": track, "rc_time": rc_time, "past_time": past_time,
                 "g1f_time": g1f_time, "win_odds": win_odds, "pre_ord": pre_ord,
                 "rc_cnt": rc_cnt, "ord1_cnt": ord1_cnt, "ord2_cnt": ord2_cnt,
-                "is_front": is_front, "actual_ord": ord_no, "horse_dist": clean_dist
+                "is_front": is_front, "actual_ord": ord_no
             })
 
         for r in races.values():
@@ -255,19 +256,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
     except Exception as e:
         return []
 
-def cleanse_corrupted_archive(races):
-    for r in races:
-        d_val = get_official_distance(r.get("race_date"), r.get("meet_name"), r.get("race_no"))
-        if d_val:
-            r["distance"] = d_val
-            for h in r.get("horses", []):
-                h["distance"] = d_val
-        try:
-            for h in r.get("horses", []):
-                ord_val = int(h.get("actual_ord", "-"))
-                if ord_val > 20: h["actual_ord"] = "-"
-        except: pass
-
 def sync_5weeks_archive():
     now = datetime.now(KST)
     existing_races = {}
@@ -278,19 +266,25 @@ def sync_5weeks_archive():
                 for r in old_list:
                     k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
                     existing_races[k] = r
-        except: existing_races = {}
+            print(f"📦 기존 저장소 로드 완료: {len(existing_races)}개 경주")
+        except:
+            existing_races = {}
 
+    # 🎯 다다음 주(10/23, 10/24, 10/25 등)까지 언제든 미리 긁어올 수 있도록 확장!
     dates_to_fetch = set()
-    for offset in range(-2, 4):
+    for offset in range(-2, 10): # 오늘 기준 과거 2일부터 미래 10일 뒤(다음 주말)까지!
         target_d = now + timedelta(days=offset)
-        if target_d.weekday() in [0, 4, 5, 6]:
+        if target_d.weekday() in [0, 4, 5, 6]: # 금, 토, 일, 월
             dates_to_fetch.add(target_d.strftime("%Y%m%d"))
+    
     for offset in range(-7, -4):
         target_d = now + timedelta(days=offset)
         if target_d.weekday() in [0, 4, 5, 6]:
             dates_to_fetch.add(target_d.strftime("%Y%m%d"))
 
     sorted_dates = sorted(list(dates_to_fetch))
+    print(f"🔄 다다음 주 포함 수집 대상 날짜: {sorted_dates}")
+
     for dt in sorted_dates:
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
@@ -307,7 +301,6 @@ def sync_5weeks_archive():
 
     cutoff_date = (now - timedelta(days=35)).strftime("%Y%m%d")
     final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
-    cleanse_corrupted_archive(final_list)
     return final_list
 
 def main():
@@ -322,7 +315,7 @@ def main():
         ))
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 영천/부경 통합 거리 매핑 완료!")
+        print(f"🎉 성공: [{VERSION}] 실시간 웹 크롤링 거리 연동 완료!")
     else:
         print("❌ 데이터를 가져오지 못했습니다.")
 
