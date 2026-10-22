@@ -5,17 +5,18 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from collections import Counter
-import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (마사회 오늘의 경주 실시간 타임라인 & 거리 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
 URL = "http://apis.data.go.kr/B551015/racedetailresult/getracedetailresult"
 
 KST = timezone(timedelta(hours=9))
+
+# 🎯 [요청 반영] 10월 23일 경기부터 시작 (이전 과거 경기는 전량 제거)
+START_DATE = f"{datetime.now(KST).year}1023"
 
 MEET_CONFIG = [
     ("1", "서울"),
@@ -64,9 +65,6 @@ def get_norm_meet(name):
     if name in ["부산경남", "영천", "부경"]: return "부산경남"
     return name
 
-# =========================================================================
-# 🎯 [핵심] 마사회 '오늘의 경주' 공식 웹사이트에서 실시간 발주순서 및 거리 싹 다 크롤링!
-# =========================================================================
 def scrape_kra_timetable_and_distances(date_str):
     url = f"https://todayrace.kra.co.kr/race/raceTimeTable.do?searchDate={date_str}"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
@@ -78,8 +76,6 @@ def scrape_kra_timetable_and_distances(date_str):
         with urllib.request.urlopen(req, timeout=8) as res:
             html = res.read().decode('utf-8', errors='ignore')
         
-        # HTML에서 '제주1경주 ... 1000M' 또는 발주 시간대 패턴 매칭
-        # 마사회 웹의 실제 표출 순서(타임라인) 그대로 추출
         matches = re.findall(r'(제주|서울|부경|부산경남|영천)\s*(\d+)경주.*?(\d{3,4})\s*M', html, re.DOTALL)
         
         for idx, (m_name, r_no, dist) in enumerate(matches):
@@ -90,12 +86,11 @@ def scrape_kra_timetable_and_distances(date_str):
             if m_name == "영천":
                 dist_map[(str(date_str), "영천", r_num)] = dist
 
-            # 마사회 웹에 나타난 순서 그대로 타임라인 리스트에 등록 (중복 방지)
             item_tuple = (str(date_str), norm_meet, r_num)
             if item_tuple not in timeline_order:
                 timeline_order.append(item_tuple)
                 
-        print(f"📡 [마사회 실시간 타임라인 크롤링 성공] {date_str}: {len(timeline_order)}개 경주 순서 확보")
+        print(f"📡 [마사회 실시간 타임라인 크롤링] {date_str}: {len(timeline_order)}개 경주 확보")
     except Exception as e:
         print(f"⚠️ 실시간 타임라인 크롤링 예외 ({date_str}): {e}")
         
@@ -190,7 +185,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                # 🎯 [거리 확정 3중 방어막] 마사회 웹 크롤링 거리 ➔ API 거리 ➔ 기본값
                 norm_m = get_norm_meet(meet_name)
                 dist_lookup = live_dist_map.get((str(date_str), norm_m, str(int(rc_no))))
                 if not dist_lookup and clean_dist and int(clean_dist) >= 800:
@@ -217,7 +211,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 "weight": weight, "track": track, "rc_time": rc_time, "past_time": past_time,
                 "g1f_time": g1f_time, "win_odds": win_odds, "pre_ord": pre_ord,
                 "rc_cnt": rc_cnt, "ord1_cnt": ord1_cnt, "ord2_cnt": ord2_cnt,
-                "is_front": is_front, "actual_ord": ord_no
+                "is_front": is_front, "actual_ord": ord_no, "ai_tags": []
             })
 
         for r in races.values():
@@ -244,21 +238,25 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
                 tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
 
+                # ⚡ 초반 점수 (타이브레이커 미세 가중치로 동점 방지)
                 early_score = 0.0
                 if h["is_front"]: early_score += 30.0
                 if g <= 3: early_score += 15.0
                 elif g <= 5: early_score += 8.0
                 early_score += (55.0 - clean_w) * 2.0
                 early_score += (raw_jk * 0.35)
-                h["early_score"] = round(early_score, 1)
+                early_score += (16 - g) * 0.05  # 안쪽 게이트 우위 미세점수
+                h["early_score"] = round(early_score, 2)
 
+                # 🚀 후반 점수 (타이브레이커 미세 가중치로 동점 방지)
                 late_score = 0.0
                 if not h["is_front"]: late_score += 20.0
                 if 4 <= g <= 8: late_score += 10.0
                 late_score += (55.0 - clean_w) * 2.5
                 late_score += (tr_rate * 0.4) + (raw_jk * 0.3)
                 if get_norm_meet(meet) == "부산경남" and dist >= 1400: late_score += 12.0
-                h["late_score"] = round(late_score, 1)
+                late_score += (raw_jk * 0.02)
+                h["late_score"] = round(late_score, 2)
 
                 power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
                 power += (55.0 - clean_w) * 2.0
@@ -269,15 +267,15 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
                 raw_scores.append(max(5.0, power))
 
-            horses_by_early = sorted(r["horses"], key=lambda x: x["early_score"], reverse=True)
+            # 🎯 초반 랭킹 (1위부터 N위까지 엄격 분리)
+            horses_by_early = sorted(r["horses"], key=lambda x: (x["early_score"], -int(x.get("gate", 99))), reverse=True)
             for rank, horse in enumerate(horses_by_early, 1):
                 horse["early_rank"] = rank
-                if rank <= 5: horse.setdefault("ai_tags", []).append(f"⚡초반 {rank}위")
 
-            horses_by_late = sorted(r["horses"], key=lambda x: x["late_score"], reverse=True)
+            # 🎯 후반 랭킹 (1위부터 N위까지 엄격 분리)
+            horses_by_late = sorted(r["horses"], key=lambda x: (x["late_score"], -int(x.get("gate", 99))), reverse=True)
             for rank, horse in enumerate(horses_by_late, 1):
                 horse["late_rank"] = rank
-                if rank <= 5: horse.setdefault("ai_tags", []).append(f"🚀후반 {rank}위")
 
             total_power = sum(raw_scores) or 100.0
             for idx, h in enumerate(r["horses"]):
@@ -294,38 +292,41 @@ def fetch_meet_data(meet_code, meet_name, date_str):
         print(f"[{meet_name}] 통신 에러: {e}")
         return []
 
-def sync_5weeks_archive():
+def sync_active_races():
     now = datetime.now(KST)
     existing_races = {}
+
+    # 기존 데이터 중 START_DATE(10월 23일) 이후 경기만 유지하고 이전 경기는 전량 제거!
     if os.path.exists("race_data.json"):
         try:
             with open("race_data.json", "r", encoding="utf-8") as f:
                 old_list = json.load(f)
                 for r in old_list:
-                    k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
-                    existing_races[k] = r
-            print(f"📦 기존 저장소 로드 완료: {len(existing_races)}개 경주")
+                    r_date = str(r.get('race_date', ''))
+                    if r_date >= START_DATE:
+                        k = f"{r_date}_{r.get('meet_name')}_{r.get('race_no')}"
+                        existing_races[k] = r
+            print(f"📦 10/23 이후 보존 경주 로드 완료: {len(existing_races)}개 경주 (이전 데이터 자동 소거)")
         except:
             existing_races = {}
 
+    # 10월 23일, 24일, 25일 및 그 이후 경마일 날짜 생성
     dates_to_fetch = []
-    for i in range(7, 0, -1):
-        dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
-    dates_to_fetch.append(now.strftime("%Y%m%d"))
-    for i in range(1, 10):
-        dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
+    base_dt = datetime.strptime(START_DATE, "%Y%m%d").replace(tzinfo=KST)
+    
+    # 10/23부터 향후 10일치 날짜 확보
+    for i in range(12):
+        d = (base_dt + timedelta(days=i)).strftime("%Y%m%d")
+        dates_to_fetch.append(d)
 
     unique_dates = sorted(list(set(dates_to_fetch)))
-    print(f"🔄 V12.00 수집 대상 전체 날짜: {unique_dates}")
+    print(f"🔄 수집 대상 날짜 (10/23부터 시작): {unique_dates}")
 
     for dt in unique_dates:
-        # 해당 날짜의 마사회 실시간 타임라인 순서 목록 확보
         t_order, d_map = scrape_kra_timetable_and_distances(dt)
-        
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
             for r in res:
-                # 실시간 크롤링된 정확한 거리 덮어쓰기
                 norm_m = get_norm_meet(r.get("meet_name"))
                 real_d = d_map.get((str(dt), norm_m, str(int(r.get("race_no")))))
                 if real_d:
@@ -343,10 +344,9 @@ def sync_5weeks_archive():
                                 new_h["actual_ord"] = old_h.get("actual_ord")
                 existing_races[k] = r
 
-    cutoff_date = (now - timedelta(days=35)).strftime("%Y%m%d")
-    final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
+    # 최종 리스트: 10월 23일 이후 경기만 확정 필터링
+    final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= START_DATE]
     
-    # 🎯 [핵심] 마사회 '오늘의 경주' 발주 시간순(타임라인) 그대로 완벽 정렬!
     def get_timeline_weight(race_item):
         dt = race_item["race_date"]
         m = get_norm_meet(race_item["meet_name"])
@@ -356,9 +356,8 @@ def sync_5weeks_archive():
             t_list = LIVE_TIMELINE_CACHE[dt]
             target_tuple = (dt, m, r_no)
             if target_tuple in t_list:
-                return t_list.index(target_tuple) # 마사회 웹에 나타난 실제 순서 번호 반환!
+                return t_list.index(target_tuple)
         
-        # 만약 웹 크롤링 목록에 없으면 기본 정렬 (제주 ➔ 부경 ➔ 서울, 라운드순)
         meet_fallback = {"제주": 1, "부산경남": 2, "영천": 2, "서울": 3}
         return 9999 + (meet_fallback.get(race_item["meet_name"], 9) * 100) + int(race_item["race_no"])
 
@@ -370,14 +369,14 @@ def main():
         print("❌ KRA_API_KEY 미설정")
         return
 
-    all_races = sync_5weeks_archive()
+    all_races = sync_active_races()
 
     if all_races:
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 마사회 실시간 웹 타임라인 & 거리 동기화 완료! (총 {len(all_races)}개 경주)")
+        print(f"🎉 성공: 10/23 이후 데이터 {len(all_races)}개 경주 동기화 완료! (이전 경주 삭제 완료)")
     else:
-        print("❌ 데이터를 가져오지 못했습니다.")
+        print("❌ 수집된 데이터가 없습니다.")
 
 if __name__ == "__main__":
     main()
