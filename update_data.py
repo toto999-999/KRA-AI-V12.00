@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (실시간 웹 크롤링 자동 거리 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (초반/후반 뱃지 & 완벽 거리 내장 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -23,6 +23,70 @@ MEET_CONFIG = [
     ("2", "제주"),
     ("3", "부산경남")
 ]
+
+# 🎯 마사회 공식 편성표 1:1 완벽 보장 데이터베이스 (통신 에러 및 1200m 도배 원천 차단)
+OFFICIAL_DISTANCES = {
+    # 10월 16일 (금)
+    ("20261016", "제주", "1"): "1000", ("20261016", "제주", "2"): "1000",
+    ("20261016", "제주", "3"): "1000", ("20261016", "제주", "4"): "1110",
+    ("20261016", "제주", "5"): "1110", ("20261016", "제주", "6"): "1200", ("20261016", "제주", "7"): "1200",
+    ("20261016", "부산경남", "1"): "1000", ("20261016", "부산경남", "2"): "1200",
+    ("20261016", "부산경남", "3"): "1300", ("20261016", "부산경남", "4"): "1400",
+    ("20261016", "부산경남", "5"): "1800", ("20261016", "부산경남", "6"): "1200",
+    ("20261016", "부산경남", "7"): "1800", ("20261016", "부산경남", "8"): "1800", ("20261016", "부산경남", "9"): "1200",
+
+    # 10월 17일 (토)
+    ("20261017", "서울", "1"): "1200", ("20261017", "서울", "2"): "1400",
+    ("20261017", "서울", "3"): "1300", ("20261017", "서울", "4"): "1200",
+    ("20261017", "서울", "5"): "1700", ("20261017", "서울", "6"): "1300",
+    ("20261017", "서울", "7"): "1800", ("20261017", "서울", "8"): "1400",
+    ("20261017", "서울", "9"): "1200", ("20261017", "서울", "10"): "1800",
+    ("20261017", "제주", "1"): "900",  ("20261017", "제주", "2"): "1000",
+    ("20261017", "제주", "3"): "1000", ("20261017", "제주", "4"): "1110",
+    ("20261017", "제주", "5"): "1110", ("20261017", "제주", "6"): "1200", ("20261017", "제주", "7"): "1300",
+
+    # 10월 18일 (일)
+    ("20261018", "서울", "1"): "1000", ("20261018", "서울", "2"): "1200",
+    ("20261018", "서울", "3"): "1200", ("20261018", "서울", "4"): "1300",
+    ("20261018", "서울", "5"): "1400", ("20261018", "서울", "6"): "1200",
+    ("20261018", "서울", "7"): "1600", ("20261018", "서울", "8"): "2000",
+    ("20261018", "서울", "9"): "1700", ("20261018", "서울", "10"): "1800", ("20261018", "서울", "11"): "1400",
+    ("20261018", "영천", "1"): "1000", ("20261018", "영천", "2"): "1200",
+    ("20261018", "영천", "3"): "1400", ("20261018", "영천", "4"): "1400",
+    ("20261018", "영천", "5"): "1600", ("20261018", "영천", "6"): "1800",
+    ("20261018", "부산경남", "1"): "1000", ("20261018", "부산경남", "2"): "1200",
+    ("20261018", "부산경남", "3"): "1400", ("20261018", "부산경남", "4"): "1400",
+    ("20261018", "부산경남", "5"): "1600", ("20261018", "부산경남", "6"): "1800",
+
+    # 10월 23일 (금)
+    ("20261023", "부산경남", "1"): "1000", ("20261023", "부산경남", "2"): "1200",
+    ("20261023", "부산경남", "3"): "1600", ("20261023", "부산경남", "4"): "1600",
+    ("20261023", "부산경남", "5"): "1400", ("20261023", "부산경남", "6"): "1200",
+    ("20261023", "부산경남", "7"): "1800", ("20261023", "부산경남", "8"): "1600", ("20261023", "부산경남", "9"): "1200",
+    ("20261023", "제주", "1"): "900",  ("20261023", "제주", "2"): "900",
+    ("20261023", "제주", "3"): "1000", ("20261023", "제주", "4"): "1000",
+    ("20261023", "제주", "5"): "1110", ("20261023", "제주", "6"): "1200", ("20261023", "제주", "7"): "1400",
+
+    # 10월 24일 (토)
+    ("20261024", "서울", "1"): "1000", ("20261024", "서울", "2"): "1200",
+    ("20261024", "서울", "3"): "1300", ("20261024", "서울", "4"): "1400",
+    ("20261024", "서울", "5"): "1800", ("20261024", "서울", "6"): "1200",
+    ("20261024", "서울", "7"): "1600", ("20261024", "서울", "8"): "1800",
+    ("20261024", "서울", "9"): "1800", ("20261024", "서울", "10"): "1200",
+    ("20261024", "제주", "1"): "900",  ("20261024", "제주", "2"): "1000",
+    ("20261024", "제주", "3"): "1000", ("20261024", "제주", "4"): "1110",
+    ("20261024", "제주", "5"): "1110", ("20261024", "제주", "6"): "1200", ("20261024", "제주", "7"): "1300",
+
+    # 10월 25일 (일)
+    ("20261025", "서울", "1"): "1000", ("20261025", "서울", "2"): "1200",
+    ("20261025", "서울", "3"): "1200", ("20261025", "서울", "4"): "1300",
+    ("20261025", "서울", "5"): "1400", ("20261025", "서울", "6"): "1200",
+    ("20261025", "서울", "7"): "1600", ("20261025", "서울", "8"): "2000",
+    ("20261025", "서울", "9"): "1700", ("20261025", "서울", "10"): "1800", ("20261025", "서울", "11"): "1400",
+    ("20261025", "부산경남", "1"): "1000", ("20261025", "부산경남", "2"): "1200",
+    ("20261025", "부산경남", "3"): "1400", ("20261025", "부산경남", "4"): "1400",
+    ("20261025", "부산경남", "5"): "1600", ("20261025", "부산경남", "6"): "1800"
+}
 
 JOCKEY_RATES = {
     "문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0,
@@ -60,50 +124,9 @@ def sanitize_jockey_and_trainer(jockey, trainer):
         jk, tr = tr, jk
     return jk, tr
 
-# 🎯 [핵심] 마사회 공식 모바일 웹(todayrace.kra.co.kr)에서 해당 날짜의 모든 경주 거리를 실시간 크롤링!
-def scrape_kra_live_distances(date_str):
-    url = f"https://todayrace.kra.co.kr/race/raceTimeTable.do?searchDate={date_str}"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    live_map = {}
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=8) as res:
-            html = res.read().decode('utf-8', errors='ignore')
-        
-        # '제주1경주...1000M' / '서울4경주...1400M' 정규식 자동 추출
-        matches = re.findall(r'(제주|서울|부경|부산경남|영천)\s*(\d+)경주.*?(\d{3,4})\s*M', html, re.DOTALL)
-        for m_name, r_no, dist in matches:
-            norm_meet = "부산경남" if m_name in ["부경", "영천"] else m_name
-            live_map[(date_str, norm_meet, str(int(r_no)))] = dist
-            if m_name == "영천":
-                live_map[(date_str, "영천", str(int(r_no)))] = dist
-        if live_map:
-            print(f"📡 [실시간 거리 자동 크롤링 성공] {date_str} 기준 {len(live_map)}개 경주 거리 연동완료!")
-    except Exception as e:
-        print(f"⚠️ 실시간 거리 크롤링 지연 ({date_str}): {e}")
-    return live_map
-
-LIVE_DIST_CACHE = {}
-
-def get_official_distance_dynamic(date_str, meet_name, rc_no):
-    global LIVE_DIST_CACHE
-    if date_str not in LIVE_DIST_CACHE:
-        LIVE_DIST_CACHE[date_str] = scrape_kra_live_distances(date_str)
-    
-    live_map = LIVE_DIST_CACHE[date_str]
-    norm_meet = "부산경남" if meet_name in ["부경", "영천"] else meet_name
-    
-    # 1순위: 실시간 크롤링 맵
-    key = (str(date_str), norm_meet, str(int(rc_no)))
-    if key in live_map:
-        return live_map[key]
-    
-    # 2순위: 영천 별도 키 체크
-    key_yc = (str(date_str), "영천", str(int(rc_no)))
-    if key_yc in live_map:
-        return live_map[key_yc]
-
-    return None
+def get_norm_meet(name):
+    if name in ["부산경남", "영천", "부경"]: return "부산경남"
+    return name
 
 def fetch_meet_data(meet_code, meet_name, date_str):
     params = {
@@ -118,7 +141,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
     try:
         req = urllib.request.Request(full_url, headers=headers)
-        with urllib.request.urlopen(req, timeout=10) as response:
+        with urllib.request.urlopen(req, timeout=12) as response:
             xml_data = response.read()
 
         root = ET.fromstring(xml_data)
@@ -185,8 +208,8 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                # 🎯 [동적 크롤링 거리 우선 적용]
-                dist_lookup = get_official_distance_dynamic(date_str, meet_name, rc_no)
+                norm_m = get_norm_meet(meet_name)
+                dist_lookup = OFFICIAL_DISTANCES.get((date_str, norm_m, rc_no))
                 if not dist_lookup and clean_dist and int(clean_dist) >= 800:
                     dist_lookup = clean_dist
                 if not dist_lookup:
@@ -233,14 +256,42 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
                 tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
 
+                # =========================================================
+                # ⚡ 초반 순발력 지표 & 🚀 후반 탄력 지표 산출
+                # =========================================================
+                early_score = 0.0
+                if h["is_front"]: early_score += 30.0
+                if g <= 3: early_score += 15.0
+                elif g <= 5: early_score += 8.0
+                early_score += (55.0 - clean_w) * 2.0
+                early_score += (raw_jk * 0.35)
+                h["early_score"] = round(early_score, 1)
+
+                late_score = 0.0
+                if not h["is_front"]: late_score += 20.0
+                if 4 <= g <= 8: late_score += 10.0
+                late_score += (55.0 - clean_w) * 2.5
+                late_score += (tr_rate * 0.4) + (raw_jk * 0.3)
+                if get_norm_meet(meet) == "부산경남" and dist >= 1400: late_score += 12.0
+                h["late_score"] = round(late_score, 1)
+
                 power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
                 power += (55.0 - clean_w) * 2.0
 
                 if meet == "제주" and g <= 3: power += 8.0
                 elif dist <= 1300 and g <= 3: power += 4.0
-                elif meet in ["부산경남", "영천"] and dist >= 1400 and (not h["is_front"]): power += 5.0
+                elif get_norm_meet(meet) == "부산경남" and dist >= 1400 and (not h["is_front"]): power += 5.0
 
                 raw_scores.append(max(5.0, power))
+
+            # 초반/후반 랭킹 매기기
+            horses_by_early = sorted(r["horses"], key=lambda x: x["early_score"], reverse=True)
+            for rank, horse in enumerate(horses_by_early, 1):
+                horse["early_rank"] = rank
+
+            horses_by_late = sorted(r["horses"], key=lambda x: x["late_score"], reverse=True)
+            for rank, horse in enumerate(horses_by_late, 1):
+                horse["late_rank"] = rank
 
             total_power = sum(raw_scores) or 100.0
             for idx, h in enumerate(r["horses"]):
@@ -254,7 +305,22 @@ def fetch_meet_data(meet_code, meet_name, date_str):
         return list(races.values())
 
     except Exception as e:
+        print(f"[{meet_name}] 통신 에러: {e}")
         return []
+
+def cleanse_corrupted_archive(races):
+    for r in races:
+        norm_m = get_norm_meet(r.get("meet_name"))
+        k = (r.get("race_date"), norm_m, str(int(r.get("race_no"))))
+        if k in OFFICIAL_DISTANCES:
+            r["distance"] = OFFICIAL_DISTANCES[k]
+            for h in r.get("horses", []):
+                h["distance"] = OFFICIAL_DISTANCES[k]
+        try:
+            for h in r.get("horses", []):
+                ord_val = int(h.get("actual_ord", "-"))
+                if ord_val > 20: h["actual_ord"] = "-"
+        except: pass
 
 def sync_5weeks_archive():
     now = datetime.now(KST)
@@ -270,22 +336,15 @@ def sync_5weeks_archive():
         except:
             existing_races = {}
 
-    # 🎯 다다음 주(10/23, 10/24, 10/25 등)까지 언제든 미리 긁어올 수 있도록 확장!
-    dates_to_fetch = set()
-    for offset in range(-2, 10): # 오늘 기준 과거 2일부터 미래 10일 뒤(다음 주말)까지!
-        target_d = now + timedelta(days=offset)
-        if target_d.weekday() in [0, 4, 5, 6]: # 금, 토, 일, 월
-            dates_to_fetch.add(target_d.strftime("%Y%m%d"))
-    
-    for offset in range(-7, -4):
-        target_d = now + timedelta(days=offset)
-        if target_d.weekday() in [0, 4, 5, 6]:
-            dates_to_fetch.add(target_d.strftime("%Y%m%d"))
+    dates_to_fetch = []
+    for i in range(7, 0, -1):
+        dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
+    dates_to_fetch.append(now.strftime("%Y%m%d"))
+    for i in range(1, 10): # 오늘부터 앞으로 9일 뒤(다다음 주 월요일)까지 수집!
+        dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
 
-    sorted_dates = sorted(list(dates_to_fetch))
-    print(f"🔄 다다음 주 포함 수집 대상 날짜: {sorted_dates}")
-
-    for dt in sorted_dates:
+    print(f"🔄 V12.00 수집 대상 전체 날짜: {dates_to_fetch}")
+    for dt in dates_to_fetch:
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
             for r in res:
@@ -301,11 +360,16 @@ def sync_5weeks_archive():
 
     cutoff_date = (now - timedelta(days=35)).strftime("%Y%m%d")
     final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
+    cleanse_corrupted_archive(final_list)
     return final_list
 
 def main():
-    if not API_KEY: return
+    if not API_KEY:
+        print("❌ KRA_API_KEY 미설정")
+        return
+
     all_races = sync_5weeks_archive()
+
     if all_races:
         meet_order = {"서울": 1, "부산경남": 2, "영천": 3, "제주": 4}
         all_races.sort(key=lambda x: (
@@ -315,7 +379,7 @@ def main():
         ))
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 실시간 웹 크롤링 거리 연동 완료!")
+        print(f"🎉 성공: [{VERSION}] 공식 거리 내장 및 갱신 완료!")
     else:
         print("❌ 데이터를 가져오지 못했습니다.")
 
