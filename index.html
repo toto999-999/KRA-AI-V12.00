@@ -116,6 +116,11 @@
         .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+        /* 🎯 초반/후반 순위 뱃지 스타일 */
+        .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+        .ai-tag.early-badge { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: 900; }
+        .ai-tag.late-badge { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 900; }
+
         .odds-input-box {
             display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-left: 8px;
         }
@@ -221,6 +226,7 @@
         </nav>
 
         <div class="container">
+            <!-- [탭 1] 실시간 가치 계산기 -->
             <div id="tab-calc" class="tab-content active">
                 <div class="race-select-card">
                     <div class="select-group" style="max-width: 42%;">
@@ -275,7 +281,7 @@
                 </div>
 
                 <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🐎 출전마 (AI 순수 승률)</span>
+                    <span>🐎 출전마 (초반/후반 랭킹)</span>
                     <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
                 </div>
 
@@ -291,10 +297,11 @@
                 </div>
 
                 <p class="sub-desc">
-                    💡 <strong>실전 팁</strong>: [10분전] 또는 [마감직전] 배당을 입력 후 <strong>[엔터]</strong>를 누르면 <strong>아래 말로 세로 이동</strong>합니다.
+                    💡 <strong>전개 팁</strong>: 말 이름 옆에 <strong>⚡초반 1~5위</strong>와 <strong>🚀후반 1~5위</strong> 뱃지가 함께 표출됩니다. 엔터를 치면 아래 말로 세로 이동합니다.
                 </p>
             </div>
 
+            <!-- [탭 2] 베팅가이드 -->
             <div id="tab-guide" class="tab-content">
                 <div class="guide-card" style="border-top-color: #f97316;">
                     <div class="guide-title" style="color:#c2410c;">
@@ -359,35 +366,8 @@
         </div>
     </div>
 
-    <!-- 스크립트 로직 (화면 단 2중 거리 백업 보정 탑재!) -->
+    <!-- 스크립트 로직 -->
     <script>
-        // 🎯 [프론트엔드 2중 백업] 데이터 파일에 1200m 오염이 있어도 화면에서 100% 진짜 거리로 교정!
-        const BACKUP_DISTANCES = {
-            "20261016_제주_1": "1000", "20261016_제주_2": "1000", "20261016_제주_3": "1000",
-            "20261016_제주_4": "1110", "20261016_제주_5": "1110", "20261016_제주_6": "1200", "20261016_제주_7": "1200",
-            "20261016_부경_1": "1000", "20261016_부경_2": "1200", "20261016_부경_3": "1300",
-            "20261016_부경_4": "1400", "20261016_부경_5": "1800", "20261016_부경_6": "1200",
-            "20261016_부경_7": "1800", "20261016_부경_8": "1800", "20261016_부경_9": "1200",
-            
-            "20261017_서울_1": "1200", "20261017_서울_2": "1400", "20261017_서울_3": "1300",
-            "20261017_서울_4": "1200", "20261017_서울_5": "1700", "20261017_서울_6": "1300",
-            "20261017_서울_7": "1800", "20261017_서울_8": "1400", "20261017_서울_9": "1200", "20261017_서울_10": "1800",
-            "20261017_제주_1": "900",  "20261017_제주_2": "1000", "20261017_제주_3": "1000",
-            "20261017_제주_4": "1110", "20261017_제주_5": "1110", "20261017_제주_6": "1200", "20261017_제주_7": "1300",
-
-            "20261018_서울_1": "1000", "20261018_서울_2": "1200", "20261018_서울_3": "1200",
-            "20261018_서울_4": "1300", "20261018_서울_5": "1400", "20261018_서울_6": "1200",
-            "20261018_서울_7": "1600", "20261018_서울_8": "2000", "20261018_서울_9": "1700", "20261018_서울_10": "1800", "20261018_서울_11": "1400",
-            "20261018_부경_1": "1000", "20261018_부경_2": "1200", "20261018_부경_3": "1400",
-            "20261018_부경_4": "1400", "20261018_부경_5": "1600", "20261018_부경_6": "1800"
-        };
-
-        function getRealDistance(r) {
-            const meetNorm = (r.meet_name === "부산경남" || r.meet_name === "영천") ? "부경" : r.meet_name;
-            const key = `${r.race_date}_${meetNorm}_${r.race_no}`;
-            return BACKUP_DISTANCES[key] || r.distance || "1200";
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
                 unlockApp();
@@ -426,7 +406,6 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             event.target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -484,11 +463,10 @@
 
                     const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
                     const savedMark = isSaved ? "💾 " : "";
-                    const realDist = getRealDistance(r);
 
                     const opt = document.createElement('option');
                     opt.value = idx;
-                    opt.textContent = `${savedMark}[${r.meet_name}] ${r.race_no}R (${realDist}m)`;
+                    opt.textContent = `${savedMark}[${r.meet_name}] ${r.race_no}R (${r.distance}m)`;
                     if (isSaved) opt.style.fontWeight = "bold";
                     raceSelect.appendChild(opt);
 
@@ -519,9 +497,6 @@
             const race = allRaceData[idx];
             if (!race) return;
 
-            const realDist = getRealDistance(race);
-
-            // 결과 복기
             const resBar = document.getElementById('resultBar');
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -545,6 +520,15 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
+                // 🎯 초반/후반 뱃지 렌더링
+                let speedTagsHtml = "";
+                if (h.ai_tags) {
+                    h.ai_tags.forEach(t => {
+                        if (t.includes("초반")) speedTagsHtml += `<span class="ai-tag early-badge">${t}</span>`;
+                        if (t.includes("후반")) speedTagsHtml += `<span class="ai-tag late-badge">${t}</span>`;
+                    });
+                }
+
                 const savedObj = savedOddsMap[h.gate];
                 let baseVal = "", curVal = "";
                 if (typeof savedObj === "object" && savedObj !== null) {
@@ -561,6 +545,7 @@
                             <div class="horse-meta">
                                 <div class="horse-name-row">
                                     <span>${h.name}</span>
+                                    ${speedTagsHtml}
                                     ${actualTag}
                                 </div>
                                 <div class="horse-sub">${h.jockey} | ${h.weight}kg | <strong>AI 승률 ${h.win_prob}%</strong></div>
@@ -752,7 +737,7 @@
             }
 
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 배당 변동과 결과를 복기하실 수 있습니다.`);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 언제든지 복기하실 수 있습니다.`);
             
             const savedIdxToKeep = currentRaceIdx;
             populateRaceSelect(document.getElementById('dateSelect').value, savedIdxToKeep);
