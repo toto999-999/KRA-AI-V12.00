@@ -72,9 +72,15 @@
         .select-label {
             font-size: 0.72rem; font-weight: 800; color: #64748b;
         }
-        .select-group select {
+        .select-group select, .distance-input-box {
             width: 100%; padding: 8px 6px; border-radius: 8px; border: 1px solid #cbd5e1;
             font-weight: bold; font-size: 0.85rem; color: #0f172a; outline: none; background: #fff;
+        }
+        .distance-input-box {
+            display: flex; align-items: center; justify-content: center; gap: 2px; padding: 6px;
+        }
+        .distance-input {
+            width: 55px; border: none; font-size: 0.9rem; font-weight: 900; text-align: center; color: #0284c7; outline: none; background: transparent;
         }
 
         .bet-matrix-card {
@@ -116,7 +122,6 @@
         .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* 🎯 초반/후반 순위 뱃지 스타일 */
         .ai-tag { font-size: 0.68rem; background: #eef2f7; color: #2a5298; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
         .ai-tag.early-badge { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: 900; }
         .ai-tag.late-badge { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 900; }
@@ -229,13 +234,21 @@
             <!-- [탭 1] 실시간 가치 계산기 -->
             <div id="tab-calc" class="tab-content active">
                 <div class="race-select-card">
-                    <div class="select-group" style="max-width: 42%;">
+                    <div class="select-group" style="max-width: 38%;">
                         <span class="select-label">📅 날짜 선택</span>
                         <select id="dateSelect" onchange="changeDate()"></select>
                     </div>
-                    <div class="select-group">
+                    <div class="select-group" style="max-width: 38%;">
                         <span class="select-label">🐎 경주 선택</span>
                         <select id="raceSelect" onchange="changeRace()"></select>
+                    </div>
+                    <!-- 🎯 [신규] 사용자가 직접 입력하는 거리 수정 칸! -->
+                    <div class="select-group" style="max-width: 24%;">
+                        <span class="select-label">📏 거리 (m)</span>
+                        <div class="distance-input-box">
+                            <input type="number" class="distance-input" id="distanceInput" placeholder="1200" oninput="updateCustomDistance(this.value)">
+                            <span style="font-size:0.75rem; font-weight:900; color:#0284c7;">m</span>
+                        </div>
                     </div>
                 </div>
 
@@ -281,7 +294,7 @@
                 </div>
 
                 <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🐎 출전마 (초반/후반 랭킹)</span>
+                    <span>🐎 출전마 (AI 순수 승률)</span>
                     <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
                 </div>
 
@@ -297,7 +310,7 @@
                 </div>
 
                 <p class="sub-desc">
-                    💡 <strong>전개 팁</strong>: 말 이름 옆에 <strong>⚡초반 1~5위</strong>와 <strong>🚀후반 1~5위</strong> 뱃지가 함께 표출됩니다. 엔터를 치면 아래 말로 세로 이동합니다.
+                    💡 <strong>거리 직접 입력 팁</strong>: 경주표를 보시고 거리가 다르면 상단의 <strong>[거리(m)] 칸에 직접 수정(예: 1400)</strong>해 보세요! 즉시 AI 승률과 뱃지가 새로운 거리 기준으로 다시 계산됩니다.
                 </p>
             </div>
 
@@ -308,65 +321,14 @@
                         🚨 [실전 검증] 큰손 뭉칫돈(-30% 급락)과 황금 축마 공식
                     </div>
                     <div class="guide-text">
-                        10월 11일 실전 결과: <strong>서울 8R 2번 강풍마(-56% 급락 ➔ 1착)</strong>, <strong>영천 5R 2번 희망군주(-51% 급락 ➔ 2착)</strong>처럼 마감 직전 배당이 수직 낙하한 말들은 입상 확률이 압도적으로 높습니다!
+                        마감 직전 배당이 수직 낙하한 말들은 입상 확률이 압도적으로 높습니다!
                     </div>
-
-                    <div class="guide-sub">👑 황금 마권 조합 원칙</div>
-                    <div class="guide-box blue">
-                        • <strong>1착 축마(h1)</strong>: 50배짜리 롱샷을 빼고, <strong>2~15배 사이의 실력+가치마</strong> 또는 <strong>뭉칫돈 급락마(-30% 이상)</strong>를 기둥으로 선정!<br>
-                        • <strong>2착 대항마(h2)</strong>: 순수 AI 승률 1위 실력마<br>
-                        • <strong>3착 복병마(h3)</strong>: 10~30배짜리 알짜 꿀배당마를 엮어 복연승·삼복승 고배당 완성!
-                    </div>
-                </div>
-
-                <div class="guide-card">
-                    <div class="guide-title">
-                        🧠 [2단계] 수학적 기대값(EV) 계산 원리 & 판정 기준
-                    </div>
-                    <div class="guide-box blue">
-                        <strong>기대값(Expected Value, EV) 핵심 공식:</strong><br>
-                        <span style="font-size:0.95rem; font-weight:900;">EV = [ AI 잠재 승률(%) ÷ 100 ] × 더비온 단승 배당</span>
-                    </div>
-
-                    <div class="guide-sub">💎 +EV (가치 꿀배당 / 1.25 이상) ➔ 초록불 켜짐</div>
-                    <div class="guide-box green">
-                        • AI 승률 대비 배당이 2~3배 부풀려진 황금알 마필입니다.
-                    </div>
-
-                    <div class="guide-sub">🚨 -EV (인기 거품 함정 / 0.75 이하) ➔ 빨간불 켜짐</div>
-                    <div class="guide-box red">
-                        • 실제 승률 대비 이름값에 몰려 배당이 찌그러진 독이 든 사과입니다.
-                    </div>
-                </div>
-
-                <div class="guide-card" style="border-top-color: #f59e0b;">
-                    <div class="guide-title" style="color:#b45309;">
-                        👑 [4단계] 7대 승식 최적 조합 공식
-                    </div>
-                    <table class="guide-table">
-                        <thead>
-                            <tr>
-                                <th style="width:25%;">승식 구분</th>
-                                <th style="width:30%;">추천 조합</th>
-                                <th>추천하는 수학적 이유</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>🥇 단승식</strong></td><td><span style="color:#0284c7; font-weight:900;">[h1]</span></td><td>현실적인 우승 확률과 기대값이 가장 높은 승부마</td></tr>
-                            <tr><td><strong>🛡️ 연승식</strong></td><td><span style="color:#0284c7; font-weight:900;">[h2]</span></td><td>순수 승률 1위로 입상 확률이 가장 높은 안전 기둥</td></tr>
-                            <tr><td><strong>🎯 복승식</strong></td><td><strong>[h1] ✖ [h2]</strong></td><td>가치축(h1)과 실력 1등(h2)의 가장 정석적인 2두 묶음</td></tr>
-                            <tr><td><strong>⚡ 쌍승식</strong></td><td><strong>[h1] ➔ [h2]</strong></td><td>가치축(h1) 1착 고정 ➔ 실력마(h2) 2착 순서 승부</td></tr>
-                            <tr><td><strong>💰 복연승식</strong></td><td><strong>[h1] ✖ [h3]<br>[h1] ✖ [h2]</strong></td><td><strong>(강력추천)</strong> 가치축에 꿀배당 복병을 엮은 프로들의 주력 승식</td></tr>
-                            <tr><td><strong>👑 삼복승식</strong></td><td><strong>[h1] ➕ [h2]<br>➕ [h3]</strong></td><td>가치축 + 실력마 + 꿀배당 복병의 황금 삼각편대 포메이션</td></tr>
-                            <tr><td><strong>🚀 삼쌍승식</strong></td><td><strong>[h1] ➔ [h2]<br>➔ [h3]</strong></td><td>h1(1착) ➔ h2(2착) ➔ h3(3착) 순서 그대로 고정하는 인생 역전 마권</td></tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 스크립트 로직 -->
+    <!-- 스크립트 로직 (거리 직접 수정 및 재분산 엔진) -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
@@ -428,6 +390,10 @@
             return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
         }
 
+        function getDistanceStorageKey(race) {
+            return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
+        }
+
         function loadData() {
             fetch('./race_data.json?nocache=' + Date.now())
                 .then(res => res.json())
@@ -463,10 +429,13 @@
 
                     const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
                     const savedMark = isSaved ? "💾 " : "";
+                    
+                    // 저장된 커스텀 거리가 있으면 그것우선 표출
+                    const customDist = localStorage.getItem(getDistanceStorageKey(r)) || r.distance;
 
                     const opt = document.createElement('option');
                     opt.value = idx;
-                    opt.textContent = `${savedMark}[${r.meet_name}] ${r.race_no}R (${r.distance}m)`;
+                    opt.textContent = `${savedMark}[${r.meet_name}] ${r.race_no}R (${customDist}m)`;
                     if (isSaved) opt.style.fontWeight = "bold";
                     raceSelect.appendChild(opt);
 
@@ -492,8 +461,99 @@
             renderRace(currentRaceIdx);
         }
 
+        // 🎯 [신규] 사용자가 거리를 직접 수정했을 때 즉시 재계산
+        function updateCustomDistance(newDistVal) {
+            const race = allRaceData[currentRaceIdx];
+            if (!race) return;
+            const cleanD = parseInt(newDistVal, 10);
+            if (!isNaN(cleanD) && cleanD >= 800) {
+                race.distance = String(cleanD);
+                localStorage.setItem(getDistanceStorageKey(race), String(cleanD));
+                
+                // 파워 및 승률 재계산 실행 후 화면 렌더링
+                recalculateRaceScores(race);
+                renderRaceUIOnly(currentRaceIdx);
+                
+                // 드롭다운 글자 갱신
+                const savedIdxToKeep = currentRaceIdx;
+                populateRaceSelect(document.getElementById('dateSelect').value, savedIdxToKeep);
+            }
+        }
+
+        // 거리가 바뀔 때 승률 및 초반/후반 랭킹을 새 거리 기준으로 즉시 재계산
+        function recalculateRaceScores(race) {
+            const dist = int(race.distance);
+            const meet = race.meet_name;
+            const JOCKEY_MAP = {"문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0, "이혁": 19.2, "임다빈": 18.5, "장추열": 18.0, "임기원": 17.5, "이동하": 16.0, "조인권": 21.4, "마이아": 22.0, "서승운": 31.5, "최시대": 26.8, "다나카": 25.4, "다비드": 24.2, "유현명": 23.8, "정도윤": 22.5, "김동영": 17.8, "이성재": 16.5, "송경윤": 15.2, "전진구": 14.8, "손경민": 14.0, "전현준": 26.5, "한영민": 24.2, "임재광": 21.8, "양민재": 19.5, "원유일": 18.2, "박재희": 17.5, "곽용남": 16.8, "김한남": 16.0, "강수한": 15.5, "안득수": 20.5, "정명일": 19.0};
+            const TRAINER_MAP = {"서홍수": 24.5, "송문길": 21.5, "배휴준": 20.8, "정호익": 19.5, "최용건": 19.0, "박재우": 17.2, "이강서": 16.8, "전승규": 16.0, "서인석": 15.0, "라이스": 25.2, "구영준": 18.5, "김도현": 18.2, "안우성": 18.0, "임성실": 17.5, "백광열": 18.8, "심도연": 23.5, "김태준": 21.0, "강대은": 20.5, "윤덕상": 17.8, "김대연": 17.2, "이준호": 16.5, "문성호": 15.8};
+
+            let raw_scores = [];
+            race.horses.forEach(h => {
+                const g = int(h.gate);
+                const clean_w = parseFloat(h.weight) || 55.0;
+                const tot_rc = parseInt(h.rc_cnt, 10) || 0;
+                const ord1 = parseInt(h.ord1_cnt, 10) || 0;
+                const ord2 = parseInt(h.ord2_cnt, 10) || 0;
+                const win_rate = tot_rc >= 3 ? (ord1 / tot_rc) * 100 : 10.0;
+                const quin_rate = tot_rc >= 3 ? ((ord1 + ord2) / tot_rc) * 100 : 20.0;
+                const r_jk = JOCKEY_MAP[h.jockey] || 12.0;
+                const r_tr = TRAINER_MAP[h.trainer] || 14.0;
+
+                let early = h.is_front ? 30.0 : 0.0;
+                if (g <= 3) early += 15.0;
+                early += (55.0 - clean_w) * 2.0;
+                h.early_score = Math.round(early * 10) / 10;
+
+                let late = (!h.is_front) ? 20.0 : 0.0;
+                if (4 <= g <= 8) late += 10.0;
+                late += (55.0 - clean_w) * 2.5;
+                if (meet === "부산경남" && dist >= 1400) late += 12.0;
+                h.late_score = Math.round(late * 10) / 10;
+
+                let power = 25.0 + (win_rate * 0.8) + (quin_rate * 0.3) + (r_jk * 0.35) + (r_tr * 0.35);
+                power += (55.0 - clean_w) * 2.0;
+                if (meet === "제주" && g <= 3) power += 8.0;
+                else if (dist <= 1300 && g <= 3) power += 4.0
+                else if (meet === "부산경남" && dist >= 1400 && !h.is_front) power += 5.0;
+
+                raw_scores.push(Math.max(5.0, power));
+            });
+
+            // 랭킹 부여
+            const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score);
+            byEarly.forEach((h, idx) => { h.early_rank = idx + 1; });
+
+            const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score);
+            byLate.forEach((h, idx) => { h.late_rank = idx + 1; });
+
+            const total_p = raw_scores.reduce((a,b) => a+b, 0) || 100.0;
+            race.horses.forEach((h, idx) => {
+                const prob = Math.round((raw_scores[idx] / total_p) * 1000) / 10;
+                h.win_prob = prob;
+                h.place_prob = Math.min(85.0, Math.round(prob * 24) / 10);
+            });
+            race.horses.sort((a, b) => b.win_prob - a.win_prob);
+        }
+
+        function int(val) {
+            const n = parseInt(val, 10);
+            return isNaN(n) ? 1200 : n;
+        }
+
         function renderRace(idx) {
             currentRaceIdx = idx;
+            const race = allRaceData[idx];
+            if (!race) return;
+
+            // 저장된 커스텀 거리 반영
+            const customDist = localStorage.getItem(getDistanceStorageKey(race)) || race.distance;
+            race.distance = customDist;
+            document.getElementById('distanceInput').value = customDist;
+
+            renderRaceUIOnly(idx);
+        }
+
+        function renderRaceUIOnly(idx) {
             const race = allRaceData[idx];
             if (!race) return;
 
@@ -520,14 +580,11 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
-                // 🎯 초반/후반 뱃지 렌더링
                 let speedTagsHtml = "";
-                if (h.ai_tags) {
-                    h.ai_tags.forEach(t => {
-                        if (t.includes("초반")) speedTagsHtml += `<span class="ai-tag early-badge">${t}</span>`;
-                        if (t.includes("후반")) speedTagsHtml += `<span class="ai-tag late-badge">${t}</span>`;
-                    });
-                }
+                const eRank = parseInt(h.early_rank, 10);
+                const lRank = parseInt(h.late_rank, 10);
+                if (eRank >= 1 && eRank <= 5) speedTagsHtml += `<span class="ai-tag early-badge">⚡초반 ${eRank}위</span>`;
+                if (lRank >= 1 && lRank <= 5) speedTagsHtml += `<span class="ai-tag late-badge">🚀후반 ${lRank}위</span>`;
 
                 const savedObj = savedOddsMap[h.gate];
                 let baseVal = "", curVal = "";
@@ -558,7 +615,7 @@
                                     <input type="number" step="0.1" class="odds-input base" id="odds_base_${i}" placeholder="배당"
                                            value="${baseVal}"
                                            oninput="calculateMatrix()"
-                                           onkeydown="handleBaseOddsKey(event, ${i}, ${race.horses.length})">
+                                           onkeydown="handleBaseOddsKey(event, ${i})">
                                 </div>
                                 <span class="odds-arrow">➔</span>
                                 <div class="odds-field">
@@ -566,7 +623,7 @@
                                     <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
                                            value="${curVal}"
                                            oninput="calculateMatrix()"
-                                           onkeydown="handleOddsKey(event, ${i}, ${race.horses.length})">
+                                           onkeydown="handleOddsKey(event, ${i})">
                                 </div>
                             </div>
                             <div class="ev-row">
@@ -581,27 +638,21 @@
             calculateMatrix();
         }
 
-        function handleBaseOddsKey(e, index, totalCount) {
+        function handleBaseOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const nextBaseInput = document.getElementById(`odds_base_${index + 1}`);
-                if (nextBaseInput) {
-                    nextBaseInput.focus();
-                    nextBaseInput.select();
-                } else {
-                    document.activeElement.blur();
-                }
+                if (nextBaseInput) { nextBaseInput.focus(); nextBaseInput.select(); }
+                else { document.activeElement.blur(); }
             }
         }
 
-        function handleOddsKey(e, index, totalCount) {
+        function handleOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const nextCurInput = document.getElementById(`odds_${index + 1}`);
-                if (nextCurInput) {
-                    nextCurInput.focus();
-                    nextCurInput.select();
-                } else {
+                if (nextCurInput) { nextCurInput.focus(); nextCurInput.select(); }
+                else {
                     document.activeElement.blur();
                     document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
                 }
@@ -624,7 +675,6 @@
 
                 const baseOdds = parseFloat(baseInput ? baseInput.value : "");
                 const curOdds = parseFloat(curInput ? curInput.value : "");
-
                 const effectiveOdds = (!isNaN(curOdds) && curOdds > 0) ? curOdds : ((!isNaN(baseOdds) && baseOdds > 0) ? baseOdds : 0);
 
                 cardEl.className = 'horse-card';
@@ -639,45 +689,28 @@
                         smartBadge.textContent = `🚨 뭉칫돈 ${dropPct.toFixed(0)}%`;
                         cardEl.classList.add('smart-hot');
                         smartMoneyAlerts.push(`[${h.gate}번 ${h.name} ${dropPct.toFixed(0)}% 급락]`);
-                    } else {
-                        smartBadge.style.display = 'none';
-                    }
-                } else {
-                    smartBadge.style.display = 'none';
-                }
+                    } else { smartBadge.style.display = 'none'; }
+                } else { smartBadge.style.display = 'none'; }
 
                 if (effectiveOdds > 0) {
                     let ev = (h.win_prob / 100.0) * effectiveOdds;
-                    if (isSmartMoney) {
-                        ev *= (1.0 + Math.abs(dropPct) / 100.0);
-                    }
+                    if (isSmartMoney) ev *= (1.0 + Math.abs(dropPct) / 100.0);
 
                     evBadge.style.display = 'inline-block';
-
                     if (ev >= 1.25) {
-                        evBadge.className = 'ev-badge good';
-                        evBadge.textContent = `+EV ${ev.toFixed(2)}`;
+                        evBadge.className = 'ev-badge good'; evBadge.textContent = `+EV ${ev.toFixed(2)}`;
                         if (!isSmartMoney) cardEl.classList.add('value-hot');
                     } else if (ev <= 0.75) {
-                        evBadge.className = 'ev-badge bad';
-                        evBadge.textContent = `-EV ${ev.toFixed(2)}`;
+                        evBadge.className = 'ev-badge bad'; evBadge.textContent = `-EV ${ev.toFixed(2)}`;
                         if (!isSmartMoney) cardEl.classList.add('value-bad');
                     } else {
-                        evBadge.className = 'ev-badge';
-                        evBadge.style.background = '#e2e8f0';
-                        evBadge.textContent = `EV ${ev.toFixed(2)}`;
+                        evBadge.className = 'ev-badge'; evBadge.style.background = '#e2e8f0'; evBadge.textContent = `EV ${ev.toFixed(2)}`;
                     }
 
-                    horsesWithEV.push({
-                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob,
-                        odds: effectiveOdds, ev: ev, isSmart: isSmartMoney, drop: dropPct
-                    });
+                    horsesWithEV.push({ gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: effectiveOdds, ev: ev });
                 } else {
                     evBadge.style.display = 'none';
-                    horsesWithEV.push({
-                        gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob,
-                        odds: 0, ev: (h.win_prob / 100.0) * 1.0, isSmart: false, drop: 0
-                    });
+                    horsesWithEV.push({ gate: h.gate, name: h.name, prob: h.win_prob, place_prob: h.place_prob, odds: 0, ev: (h.win_prob / 100.0) * 1.0 });
                 }
             });
 
@@ -685,20 +718,14 @@
             if (smartMoneyAlerts.length > 0) {
                 alertBar.style.display = 'flex';
                 alertBar.innerHTML = `🔥 <strong>큰손 뭉칫돈 감지!</strong> ${smartMoneyAlerts.join(' ')}`;
-            } else {
-                alertBar.style.display = 'none';
-            }
+            } else { alertBar.style.display = 'none'; }
 
             const sortedByProb = [...horsesWithEV].sort((a, b) => b.prob - a.prob);
-
-            let h1Candidates = horsesWithEV.filter(h => (h.isSmart && h.drop <= -30.0) || (h.odds > 0 && h.odds <= 20.0 && h.ev >= 1.0));
+            let h1Candidates = horsesWithEV.filter(h => h.odds > 0 && h.odds <= 20.0 && h.ev >= 1.0);
             h1Candidates.sort((a, b) => b.ev - a.ev);
 
-            let h1 = h1Candidates.length > 0 ? h1Candidates[0] : 
-                     (horsesWithEV.filter(h => h.odds <= 20.0).sort((a, b) => b.ev - a.ev)[0] || sortedByProb[0]);
-
+            let h1 = h1Candidates.length > 0 ? h1Candidates[0] : (horsesWithEV.filter(h => h.odds <= 20.0).sort((a, b) => b.ev - a.ev)[0] || sortedByProb[0]);
             let h2 = sortedByProb.find(h => h.gate !== h1.gate) || sortedByProb[1];
-
             let remainingForH3 = horsesWithEV.filter(h => h.gate !== h1.gate && h.gate !== h2.gate);
             remainingForH3.sort((a, b) => b.ev - a.ev);
             let h3 = remainingForH3[0] || sortedByProb[2];
@@ -717,91 +744,30 @@
             if (!race) return;
 
             const oddsMap = {};
-            let hasAny = false;
-
             race.horses.forEach((h, i) => {
-                const baseEl = document.getElementById(`odds_base_${i}`);
-                const curEl = document.getElementById(`odds_${i}`);
-                const baseVal = baseEl ? baseEl.value.trim() : "";
-                const curVal = curEl ? curEl.value.trim() : "";
-
-                if (baseVal || curVal) {
-                    oddsMap[h.gate] = { base: baseVal, cur: curVal };
-                    hasAny = true;
-                }
+                const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
+                const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
+                if (baseVal || curVal) oddsMap[h.gate] = { base: baseVal, cur: curVal };
             });
 
-            if (!hasAny) {
-                alert("저장할 배당이 입력되지 않았습니다. 배당을 1개 이상 입력해 주세요!");
-                return;
-            }
-
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!\n경주 종료 후 언제든지 복기하실 수 있습니다.`);
-            
-            const savedIdxToKeep = currentRaceIdx;
-            populateRaceSelect(document.getElementById('dateSelect').value, savedIdxToKeep);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!`);
+            populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
 
         function resetCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
-
-            if (!confirm(`[${race.meet_name} ${race.race_no}R]의 입력 및 저장된 배당을 초기화하시겠습니까?`)) return;
+            if (!confirm(`초기화하시겠습니까?`)) return;
 
             localStorage.removeItem(getRaceStorageKey(race));
             race.horses.forEach((h, i) => {
-                const baseEl = document.getElementById(`odds_base_${i}`);
-                const curEl = document.getElementById(`odds_${i}`);
-                if (baseEl) baseEl.value = '';
-                if (curEl) curEl.value = '';
+                const b = document.getElementById(`odds_base_${i}`);
+                const c = document.getElementById(`odds_${i}`);
+                if (b) b.value = ''; if (c) c.value = '';
             });
-
             calculateMatrix();
-            const savedIdxToKeep = currentRaceIdx;
-            populateRaceSelect(document.getElementById('dateSelect').value, savedIdxToKeep);
-        }
-
-        const GITHUB_OWNER = "toto999-999";
-        const pathParts = window.location.pathname.split('/').filter(Boolean);
-        const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
-
-        function triggerUpdate() {
-            const token = localStorage.getItem('gh_token') || prompt("GitHub 토큰을 입력하세요:");
-            if (!token) return;
-            localStorage.setItem('gh_token', token);
-
-            const toast = document.getElementById('updateToast');
-            toast.style.display = 'block';
-            toast.innerHTML = "🚀 마사회 최신 데이터 갱신 요청 중...";
-
-            fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/update.yml/dispatches`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ref: 'main' })
-            })
-            .then(res => {
-                if (res.status === 204) {
-                    let count = 80;
-                    const timer = setInterval(() => {
-                        count--;
-                        if (count > 0) {
-                            toast.innerHTML = `🚀 V12.00 데이터 동기화 중... (<strong>${count}초</strong> 남음)<br><span style='font-size:0.75rem; color:#94a3b8;'>화면을 닫지 말고 잠시만 기다려주세요!</span>`;
-                        } else {
-                            clearInterval(timer);
-                            toast.innerHTML = "✨ 갱신 완료! 화면을 새로고침합니다.";
-                            setTimeout(() => { location.reload(); }, 1200);
-                        }
-                    }, 1000);
-                } else {
-                    toast.innerHTML = "❌ 갱신 실패: 깃허브 토큰 권한을 확인해주세요.";
-                    setTimeout(() => { toast.style.display = 'none'; }, 4000);
-                }
-            })
-            .catch(() => {
-                toast.innerHTML = "❌ 통신 에러가 발생했습니다.";
-                setTimeout(() => { toast.style.display = 'none'; }, 4000);
-            });
+            populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
     </script>
 </body>
