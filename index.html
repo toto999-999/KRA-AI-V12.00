@@ -274,8 +274,6 @@
     </div>
 
     <script>
-        const MIN_DATE_LIMIT = "20241023"; // 10/23 이전 과거 경기는 전량 제외
-
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
                 unlockApp();
@@ -339,22 +337,27 @@
             fetch('./race_data.json?nocache=' + Date.now())
                 .then(res => res.json())
                 .then(data => {
-                    // 🎯 [요청 반영] 10월 23일 이전 경기 전량 배제 필터링
+                    // 🎯 [핵심] 원본 파일에서 10/16, 10/17, 10/18 등 10월 23일 이전 경기는 자동 제외!
+                    // 10월 23일, 24일, 25일의 모든 경기(총 51개)를 그대로 보존
                     allRaceData = (data || []).filter(r => {
                         const dStr = String(r.race_date || "");
                         const md = dStr.length >= 8 ? dStr.substring(4, 8) : "";
                         return md >= "1023";
                     });
 
-                    if (allRaceData.length === 0) return;
+                    if (allRaceData.length === 0) {
+                        alert("10월 23일 이후의 경주 데이터를 찾을 수 없습니다.");
+                        return;
+                    }
 
-                    // 🎯 모든 경주 랭킹 및 승률 즉시 자체 재계산 (전부 1위 오류 원천 박멸)
+                    // 🎯 모든 경주 랭킹 및 승률 즉시 자체 재계산 (전부 1위 오류 원천 차단)
                     allRaceData.forEach(r => {
                         const savedDist = localStorage.getItem(getDistanceStorageKey(r));
                         if (savedDist) r.distance = savedDist;
                         recalculateRaceScores(r);
                     });
 
+                    // 날짜 정렬 (10/23, 10/24, 10/25 순서대로)
                     const uniqueDates = [...new Set(allRaceData.map(r => r.race_date))].filter(Boolean).sort();
                     const dateSelect = document.getElementById('dateSelect');
                     dateSelect.innerHTML = '';
@@ -365,12 +368,14 @@
                         dateSelect.appendChild(opt);
                     });
 
+                    // 10월 23일 기본 선택
                     const defaultDate = uniqueDates[0];
                     dateSelect.value = defaultDate;
                     populateRaceSelect(defaultDate);
                 });
         }
 
+        // 해당 날짜의 모든 경주(제주, 부경, 서울 등)를 셀렉트 박스에 가득 채움
         function populateRaceSelect(selectedDate, targetIdxToKeep = null) {
             const raceSelect = document.getElementById('raceSelect');
             raceSelect.innerHTML = '';
@@ -404,13 +409,16 @@
             }
         }
 
-        function changeDate() { populateRaceSelect(document.getElementById('dateSelect').value); }
+        function changeDate() {
+            populateRaceSelect(document.getElementById('dateSelect').value);
+        }
+
         function changeRace() {
             currentRaceIdx = parseInt(document.getElementById('raceSelect').value, 10);
             renderRace(currentRaceIdx);
         }
 
-        // 🎯 [거리 수정 엔진] 엔터 or 포커스 아웃 시 100% 정상 작동
+        // 🎯 거리 수정 즉각 반영 엔진
         function updateCustomDistance(newDistVal) {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -424,7 +432,7 @@
                 recalculateRaceScores(race);
                 renderRaceUIOnly(currentRaceIdx);
                 
-                // 셀렉트 박스 텍스트만 깔끔하게 업데이트 (포커스 이탈 방지)
+                // 경주 선택 옵션 텍스트 즉시 갱신
                 const raceSelect = document.getElementById('raceSelect');
                 const selectedOpt = raceSelect.querySelector(`option[value="${currentRaceIdx}"]`);
                 if (selectedOpt) {
@@ -437,7 +445,7 @@
             }
         }
 
-        // 🎯 [정밀 계산 엔진] 별표(*52.5) 완벽 정제 + 초반/후반 1위부터 N위까지 고유 순위 강제 산출
+        // 🎯 부담중량의 *52.5 같은 특수문자를 완벽하게 숫자로 변환하고 등수를 1~11위까지 분리
         function recalculateRaceScores(race) {
             const dist = parseInt(race.distance, 10) || 1200;
             const meet = race.meet_name;
@@ -465,7 +473,7 @@
             let raw_scores = [];
             race.horses.forEach(h => {
                 const g = parseInt(h.gate, 10) || 5;
-                // 🎯 [*52.5 같은 별표 기호 완벽 정제!]
+                // 🎯 별표(*52.5)가 들어있어도 깨끗하게 숫자(52.5)로 정제!
                 const clean_w = parseFloat(String(h.weight).replace(/[^0-9.]/g, '')) || 55.0;
                 const tot_rc = parseInt(h.rc_cnt, 10) || 0;
                 const ord1 = parseInt(h.ord1_cnt, 10) || 0;
@@ -481,10 +489,10 @@
                 else if (g <= 5) early += 8.0;
                 early += (55.0 - clean_w) * 2.0;
                 early += (r_jk * 0.35);
-                early += (16 - g) * 0.1; // 동점 방지 미세 점수
+                early += (16 - g) * 0.1;
                 h.early_score = Math.round(early * 10) / 10;
 
-                // 🚀 후반 스코어 (동점 방지 미세 점수)
+                // 🚀 후반 스코어
                 let late = (!h.is_front) ? 20.0 : 0.0;
                 if (4 <= g <= 8) late += 10.0;
                 late += (55.0 - clean_w) * 2.5;
@@ -502,17 +510,17 @@
 
                 raw_scores.push(Math.max(5.0, power));
 
-                // 7대 승식 가치 점수
                 let weight_penalty = (dist >= 1400 && clean_w >= 57.0) ? (clean_w - 56.5) * 2.5 : 0.0;
                 h.score_1st = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty;
                 h.score_2nd = 25.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
                 h.score_3rd = 25.0 + (clean_w <= 52.5 ? 12.0 : 0.0) + (g >= 8 ? 8.0 : 0.0);
             });
 
-            // 🎯 절대 동점 없는 1위 ~ N위 고유 랭킹 강제 부여
+            // 🎯 초반 랭킹 1위부터 N위까지 고유 부여
             const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score || parseInt(a.gate) - parseInt(b.gate));
             byEarly.forEach((h, idx) => { h.early_rank = idx + 1; });
 
+            // 🎯 후반 랭킹 1위부터 N위까지 고유 부여
             const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score || parseInt(a.gate) - parseInt(b.gate));
             byLate.forEach((h, idx) => { h.late_rank = idx + 1; });
 
@@ -563,7 +571,7 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
-                // ⚡ 초반/후반 고유 등수별 뱃지
+                // ⚡ 초반/후반 차등 뱃지
                 let speedTagsHtml = "";
                 const eRank = parseInt(h.early_rank, 10);
                 const lRank = parseInt(h.late_rank, 10);
