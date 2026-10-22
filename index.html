@@ -252,7 +252,7 @@
                 </div>
 
                 <div style="font-size:0.75rem; font-weight:800; color:#475569; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🐎 출전마 실시간 랭킹</span>
+                    <span>🐎 출전마 실시간 랭킹 (초반/후반 분리)</span>
                     <span style="font-size:0.7rem; color:#0284c7;">[10분전] ➔ [마감직전] 배당 입력</span>
                 </div>
 
@@ -274,7 +274,7 @@
     </div>
 
     <script>
-        const MIN_DATE_LIMIT = "20241023"; // 🎯 10월 23일 경기부터 표출
+        const MIN_DATE_LIMIT = "20241023"; // 10/23 이전 과거 경기는 전량 제외
 
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
@@ -339,11 +339,16 @@
             fetch('./race_data.json?nocache=' + Date.now())
                 .then(res => res.json())
                 .then(data => {
-                    // 10월 23일 이전 경기 전량 배제 필터링
-                    allRaceData = (data || []).filter(r => String(r.race_date) >= MIN_DATE_LIMIT);
+                    // 🎯 [요청 반영] 10월 23일 이전 경기 전량 배제 필터링
+                    allRaceData = (data || []).filter(r => {
+                        const dStr = String(r.race_date || "");
+                        const md = dStr.length >= 8 ? dStr.substring(4, 8) : "";
+                        return md >= "1023";
+                    });
+
                     if (allRaceData.length === 0) return;
 
-                    // 모든 경주 랭킹 및 역할 즉시 자체 재계산 동기화 (전부 1위 오류 원천 차단)
+                    // 🎯 모든 경주 랭킹 및 승률 즉시 자체 재계산 (전부 1위 오류 원천 박멸)
                     allRaceData.forEach(r => {
                         const savedDist = localStorage.getItem(getDistanceStorageKey(r));
                         if (savedDist) r.distance = savedDist;
@@ -360,7 +365,6 @@
                         dateSelect.appendChild(opt);
                     });
 
-                    // 10/23 혹은 가장 가까운 유효 날짜 기본 선택
                     const defaultDate = uniqueDates[0];
                     dateSelect.value = defaultDate;
                     populateRaceSelect(defaultDate);
@@ -406,7 +410,7 @@
             renderRace(currentRaceIdx);
         }
 
-        // 🎯 [핵심 개선] 거리 수정 즉시 반영 엔진 (엔터 or 변경 시 완벽 적용)
+        // 🎯 [거리 수정 엔진] 엔터 or 포커스 아웃 시 100% 정상 작동
         function updateCustomDistance(newDistVal) {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -433,20 +437,35 @@
             }
         }
 
-        // 🎯 랭킹 및 승률 정밀 엔진 (초반 1위/후반 1위 동점 방지 및 분리)
+        // 🎯 [정밀 계산 엔진] 별표(*52.5) 완벽 정제 + 초반/후반 1위부터 N위까지 고유 순위 강제 산출
         function recalculateRaceScores(race) {
             const dist = parseInt(race.distance, 10) || 1200;
             const meet = race.meet_name;
             
-            const JOCKEY_MAP = {"문세영": 33.2, "김용근": 24.5, "빅투아르": 25.1, "유승완": 21.0, "이혁": 19.2, "임다빈": 18.5, "장추열": 18.0, "임기원": 17.5, "이동하": 16.0, "조인권": 21.4, "마이아": 22.0, "서승운": 31.5, "최시대": 26.8, "다나카": 25.4, "다비드": 24.2, "유현명": 23.8, "정도윤": 22.5, "김동영": 17.8, "이성재": 16.5, "송경윤": 15.2, "전진구": 14.8, "손경민": 14.0, "전현준": 26.5, "한영민": 24.2, "임재광": 21.8, "양민재": 19.5, "원유일": 18.2, "박재희": 17.5, "곽용남": 16.8, "김한남": 16.0, "강수한": 15.5, "안득수": 20.5, "정명일": 19.0};
-            const TRAINER_MAP = {"서홍수": 24.5, "송문길": 21.5, "배휴준": 20.8, "정호익": 19.5, "최용건": 19.0, "박재우": 17.2, "이강서": 16.8, "전승규": 16.0, "서인석": 15.0, "라이스": 25.2, "구영준": 18.5, "김도현": 18.2, "안우성": 18.0, "임성실": 17.5, "백광열": 18.8, "심도연": 23.5, "김태준": 21.0, "강대은": 20.5, "윤덕상": 17.8, "김대연": 17.2, "이준호": 16.5, "문성호": 15.8};
+            const JOCKEY_MAP = {
+                "문세영": 33.2, "서승운": 31.5, "최시대": 26.8, "전현준": 26.5, "다나카": 25.4,
+                "빅투아르": 25.1, "김용근": 24.5, "다비드": 24.2, "한영민": 24.2, "유현명": 23.8,
+                "정도윤": 22.5, "마이아": 22.0, "임재광": 21.8, "조인권": 21.4, "유승완": 21.0,
+                "김혜선": 20.8, "안득수": 20.5, "송재철": 19.5, "양민재": 19.5, "이혁": 19.2,
+                "정명일": 19.0, "임다빈": 18.5, "원유일": 18.2, "장추열": 18.0, "김동영": 17.8,
+                "임기원": 17.5, "박재희": 17.5, "곽용남": 16.8, "이성재": 16.5, "이동하": 16.0,
+                "김한남": 16.0, "강수한": 15.5, "송경윤": 15.2, "이동준": 15.0, "전진구": 14.8,
+                "김어수": 14.5, "손경민": 14.0
+            };
 
-            let front_cnt = race.horses.filter(h => h.is_front).length;
-            let is_overpaced = (dist >= 1700 && front_cnt >= 3);
+            const TRAINER_MAP = {
+                "김영관": 28.0, "라이스": 25.2, "서홍수": 24.5, "심도연": 23.5, "민장기": 22.1,
+                "고성동": 22.0, "송문길": 21.5, "김태준": 21.0, "배휴준": 20.8, "강대은": 20.5,
+                "정호익": 19.5, "최용건": 19.0, "백광열": 18.8, "구영준": 18.5, "김길홍": 18.5,
+                "김도현": 18.2, "안우성": 18.0, "윤덕상": 17.8, "임성실": 17.5, "박재우": 17.2,
+                "김대연": 17.2, "이강서": 16.8, "이준호": 16.5, "전승규": 16.0, "문성호": 15.8,
+                "강은석": 15.5, "서인석": 15.0
+            };
 
             let raw_scores = [];
             race.horses.forEach(h => {
                 const g = parseInt(h.gate, 10) || 5;
+                // 🎯 [*52.5 같은 별표 기호 완벽 정제!]
                 const clean_w = parseFloat(String(h.weight).replace(/[^0-9.]/g, '')) || 55.0;
                 const tot_rc = parseInt(h.rc_cnt, 10) || 0;
                 const ord1 = parseInt(h.ord1_cnt, 10) || 0;
@@ -456,23 +475,23 @@
                 const r_jk = JOCKEY_MAP[h.jockey] || 12.0;
                 const r_tr = TRAINER_MAP[h.trainer] || 14.0;
 
-                // ⚡ 초반 스코어 (게이트 타이브레이커 적용)
+                // ⚡ 초반 스코어 (게이트 타이브레이커 반영)
                 let early = h.is_front ? 30.0 : 0.0;
                 if (g <= 3) early += 15.0;
                 else if (g <= 5) early += 8.0;
                 early += (55.0 - clean_w) * 2.0;
                 early += (r_jk * 0.35);
-                early += (16 - g) * 0.05; // 겹치지 않게 미세 소수점 차등
-                h.early_score = early;
+                early += (16 - g) * 0.1; // 동점 방지 미세 점수
+                h.early_score = Math.round(early * 10) / 10;
 
-                // 🚀 후반 스코어
+                // 🚀 후반 스코어 (동점 방지 미세 점수)
                 let late = (!h.is_front) ? 20.0 : 0.0;
                 if (4 <= g <= 8) late += 10.0;
                 late += (55.0 - clean_w) * 2.5;
                 late += (r_tr * 0.4) + (r_jk * 0.3);
                 if ((meet === "부산경남" || meet === "영천") && dist >= 1400) late += 12.0;
-                late += (r_jk * 0.02);
-                h.late_score = late;
+                late += (r_jk * 0.05);
+                h.late_score = Math.round(late * 10) / 10;
 
                 // 기본 파워
                 let power = 25.0 + (win_rate * 0.8) + (quin_rate * 0.3) + (r_jk * 0.35) + (r_tr * 0.35);
@@ -483,17 +502,14 @@
 
                 raw_scores.push(Math.max(5.0, power));
 
-                // 1착, 2착, 3착 맞춤 배당 점수
+                // 7대 승식 가치 점수
                 let weight_penalty = (dist >= 1400 && clean_w >= 57.0) ? (clean_w - 56.5) * 2.5 : 0.0;
-                let s1 = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty;
-                let s2 = 25.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
-                let s3 = 25.0 + (clean_w <= 52.5 ? 12.0 : 0.0) + (g >= 8 ? 8.0 : 0.0);
-                
-                if (is_overpaced && !h.is_front) { s3 += 15.0; s1 += 8.0; }
-                h.score_1st = s1; h.score_2nd = s2; h.score_3rd = s3;
+                h.score_1st = 25.0 + (win_rate * 0.7) + (r_jk * 0.35) - weight_penalty;
+                h.score_2nd = 25.0 + (quin_rate * 0.5) + (r_jk * 0.3) + (r_tr * 0.3) - (weight_penalty * 0.5);
+                h.score_3rd = 25.0 + (clean_w <= 52.5 ? 12.0 : 0.0) + (g >= 8 ? 8.0 : 0.0);
             });
 
-            // 🎯 절대 동점 없는 1위 ~ N위 고유 랭킹 부여
+            // 🎯 절대 동점 없는 1위 ~ N위 고유 랭킹 강제 부여
             const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score || parseInt(a.gate) - parseInt(b.gate));
             byEarly.forEach((h, idx) => { h.early_rank = idx + 1; });
 
@@ -547,7 +563,7 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
-                // ⚡ 초반/후반 등수별 차등 태그
+                // ⚡ 초반/후반 고유 등수별 뱃지
                 let speedTagsHtml = "";
                 const eRank = parseInt(h.early_rank, 10);
                 const lRank = parseInt(h.late_rank, 10);
