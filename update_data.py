@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (초반/후반 뱃지 직주입 & 거리 정밀 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (실시간 시간순 타임라인 정렬 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -134,18 +134,9 @@ def sanitize_jockey_and_trainer(jockey, trainer):
         jk, tr = tr, jk
     return jk, tr
 
-def get_official_distance(date_str, meet_name, rc_no):
-    key = (str(date_str), str(meet_name), str(int(rc_no)))
-    if key in OFFICIAL_DISTANCES:
-        return OFFICIAL_DISTANCES[key]
-    
-    # 영천/부경 상호 교차 조회 보완
-    if meet_name in ["부산경남", "영천"]:
-        for alt_m in ["부산경남", "영천"]:
-            alt_key = (str(date_str), alt_m, str(int(rc_no)))
-            if alt_key in OFFICIAL_DISTANCES:
-                return OFFICIAL_DISTANCES[alt_key]
-    return None
+def get_norm_meet(name):
+    if name in ["부산경남", "영천", "부경"]: return "부산경남"
+    return name
 
 def fetch_meet_data(meet_code, meet_name, date_str):
     params = {
@@ -166,8 +157,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
         root = ET.fromstring(xml_data)
         items = root.findall(".//item")
         if not items: return []
-
-        print(f"[{meet_name} {date_str}] API 응답: {len(items)}두 수신")
 
         races = {}
         for it in items:
@@ -227,8 +216,10 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
-                # 🎯 공식 거리 확정
-                dist_lookup = get_official_distance(date_str, meet_name, rc_no)
+                norm_m = get_norm_meet(meet_name)
+                dist_lookup = OFFICIAL_DISTANCES.get((str(date_str), norm_m, str(int(rc_no))))
+                if not dist_lookup and meet_name in ["부산경남", "영천"]:
+                    dist_lookup = OFFICIAL_DISTANCES.get((str(date_str), "부산경남", str(int(rc_no))))
                 if not dist_lookup and clean_dist and int(clean_dist) >= 800:
                     dist_lookup = clean_dist
                 if not dist_lookup:
@@ -275,9 +266,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
                 tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
 
-                # =========================================================
-                # ⚡ 초반 랭킹 점수 & 🚀 후반 랭킹 점수 산출
-                # =========================================================
                 early_score = 0.0
                 if h["is_front"]: early_score += 30.0
                 if g <= 3: early_score += 15.0
@@ -291,7 +279,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 if 4 <= g <= 8: late_score += 10.0
                 late_score += (55.0 - clean_w) * 2.5
                 late_score += (tr_rate * 0.4) + (raw_jk * 0.3)
-                if meet in ["부산경남", "영천"] and dist >= 1400: late_score += 12.0
+                if get_norm_meet(meet) == "부산경남" and dist >= 1400: late_score += 12.0
                 h["late_score"] = round(late_score, 1)
 
                 power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
@@ -299,22 +287,19 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
                 if meet == "제주" and g <= 3: power += 8.0
                 elif dist <= 1300 and g <= 3: power += 4.0
-                elif meet in ["부산경남", "영천"] and dist >= 1400 and (not h["is_front"]): power += 5.0
+                elif get_norm_meet(meet) == "부산경남" and dist >= 1400 and (not h["is_front"]): power += 5.0
 
                 raw_scores.append(max(5.0, power))
 
-            # 🎯 초반 / 후반 순위 부여 및 AI 태그에 '직접 주입' (화면 렌더링 보장)
             horses_by_early = sorted(r["horses"], key=lambda x: x["early_score"], reverse=True)
             for rank, horse in enumerate(horses_by_early, 1):
                 horse["early_rank"] = rank
-                if rank <= 5:
-                    horse.setdefault("ai_tags", []).append(f"⚡초반 {rank}위")
+                if rank <= 5: horse.setdefault("ai_tags", []).append(f"⚡초반 {rank}위")
 
             horses_by_late = sorted(r["horses"], key=lambda x: x["late_score"], reverse=True)
             for rank, horse in enumerate(horses_by_late, 1):
                 horse["late_rank"] = rank
-                if rank <= 5:
-                    horse.setdefault("ai_tags", []).append(f"🚀후반 {rank}위")
+                if rank <= 5: horse.setdefault("ai_tags", []).append(f"🚀후반 {rank}위")
 
             total_power = sum(raw_scores) or 100.0
             for idx, h in enumerate(r["horses"]):
@@ -333,7 +318,8 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
 def cleanse_corrupted_archive(races):
     for r in races:
-        d_val = get_official_distance(r.get("race_date"), r.get("meet_name"), r.get("race_no"))
+        norm_m = get_norm_meet(r.get("meet_name"))
+        d_val = OFFICIAL_DISTANCES.get((str(r.get("race_date")), norm_m, str(int(r.get("race_no")))))
         if d_val:
             r["distance"] = d_val
             for h in r.get("horses", []):
@@ -358,17 +344,12 @@ def sync_5weeks_archive():
         except:
             existing_races = {}
 
-    # 🎯 다다음 주(10/23, 10/24, 10/25 등)까지 완벽 포섭하는 수집 기간 설정
     dates_to_fetch = []
-    for offset in range(-2, 10):
-        target_d = now + timedelta(days=offset)
-        if target_d.weekday() in [0, 4, 5, 6]:
-            dates_to_fetch.append(target_d.strftime("%Y%m%d"))
-    
-    for offset in range(-7, -4):
-        target_d = now + timedelta(days=offset)
-        if target_d.weekday() in [0, 4, 5, 6]:
-            dates_to_fetch.append(target_d.strftime("%Y%m%d"))
+    for i in range(7, 0, -1):
+        dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
+    dates_to_fetch.append(now.strftime("%Y%m%d"))
+    for i in range(1, 10):
+        dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
 
     unique_dates = sorted(list(set(dates_to_fetch)))
     print(f"🔄 V12.00 수집 대상 전체 날짜: {unique_dates}")
@@ -390,6 +371,15 @@ def sync_5weeks_archive():
     cutoff_date = (now - timedelta(days=35)).strftime("%Y%m%d")
     final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
     cleanse_corrupted_archive(final_list)
+    
+    # 🎯 [핵심] 저장할 때 '날짜 ➔ 발주 시간(라운드 번호순)'으로 완벽하게 타임라인 정렬!
+    meet_order = {"서울": 1, "부산경남": 2, "영천": 3, "제주": 4}
+    final_list.sort(key=lambda x: (
+        x["race_date"],
+        int(x["race_no"]) if str(x["race_no"]).isdigit() else 99,
+        meet_order.get(x["meet_name"], 9)
+    ))
+
     return final_list
 
 def main():
@@ -400,15 +390,9 @@ def main():
     all_races = sync_5weeks_archive()
 
     if all_races:
-        meet_order = {"서울": 1, "부산경남": 2, "영천": 3, "제주": 4}
-        all_races.sort(key=lambda x: (
-            x["race_date"],
-            meet_order.get(x["meet_name"], 9),
-            int(x["race_no"]) if str(x["race_no"]).isdigit() else 99
-        ))
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 공식 거리 내장 및 초반/후반 뱃지 주입 완료!")
+        print(f"🎉 성공: [{VERSION}] 공식 거리 3중 방어막 및 시간순 정렬 갱신 완료!")
     else:
         print("❌ 데이터를 가져오지 못했습니다.")
 
