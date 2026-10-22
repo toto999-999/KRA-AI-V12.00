@@ -9,7 +9,7 @@ from collections import Counter
 import time
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (실시간 시간순 타임라인 정렬 엔진)
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (캐시 클렌징 & 완벽 타임라인 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -24,6 +24,7 @@ MEET_CONFIG = [
     ("3", "부산경남")
 ]
 
+# 🎯 마사회 공식 편성표 거리 1:1 완벽 보장 데이터베이스 (1200m 도배 원천 차단)
 OFFICIAL_DISTANCES = {
     # 10월 16일 (금)
     ("20261016", "제주", "1"): "1000", ("20261016", "제주", "2"): "1000",
@@ -61,7 +62,7 @@ OFFICIAL_DISTANCES = {
     ("20261018", "부산경남", "3"): "1400", ("20261018", "부산경남", "4"): "1400",
     ("20261018", "부산경남", "5"): "1600", ("20261018", "부산경남", "6"): "1800",
 
-    # 10월 23일 (금)
+    # 10월 23일 (금) 다다음 주
     ("20261023", "부산경남", "1"): "1000", ("20261023", "부산경남", "2"): "1200",
     ("20261023", "부산경남", "3"): "1600", ("20261023", "부산경남", "4"): "1600",
     ("20261023", "부산경남", "5"): "1400", ("20261023", "부산경남", "6"): "1200",
@@ -74,7 +75,7 @@ OFFICIAL_DISTANCES = {
     ("20261023", "제주", "3"): "1000", ("20261023", "제주", "4"): "1000",
     ("20261023", "제주", "5"): "1110", ("20261023", "제주", "6"): "1200", ("20261023", "제주", "7"): "1400",
 
-    # 10월 24일 (토)
+    # 10월 24일 (토) 다다음 주
     ("20261024", "서울", "1"): "1000", ("20261024", "서울", "2"): "1200",
     ("20261024", "서울", "3"): "1300", ("20261024", "서울", "4"): "1400",
     ("20261024", "서울", "5"): "1800", ("20261024", "서울", "6"): "1200",
@@ -84,7 +85,7 @@ OFFICIAL_DISTANCES = {
     ("20261024", "제주", "3"): "1000", ("20261024", "제주", "4"): "1110",
     ("20261024", "제주", "5"): "1110", ("20261024", "제주", "6"): "1200", ("20261024", "제주", "7"): "1300",
 
-    # 10월 25일 (일)
+    # 10월 25일 (일) 다다음 주
     ("20261025", "서울", "1"): "1000", ("20261025", "서울", "2"): "1200",
     ("20261025", "서울", "3"): "1200", ("20261025", "서울", "4"): "1300",
     ("20261025", "서울", "5"): "1400", ("20261025", "서울", "6"): "1200",
@@ -216,6 +217,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
+                # 🎯 [철저한 거리 검증] 공식 테이블 ➔ API 거리 ➔ 기본값 순서
                 norm_m = get_norm_meet(meet_name)
                 dist_lookup = OFFICIAL_DISTANCES.get((str(date_str), norm_m, str(int(rc_no))))
                 if not dist_lookup and meet_name in ["부산경남", "영천"]:
@@ -316,21 +318,11 @@ def fetch_meet_data(meet_code, meet_name, date_str):
         print(f"[{meet_name}] 통신 에러: {e}")
         return []
 
-def cleanse_corrupted_archive(races):
-    for r in races:
-        norm_m = get_norm_meet(r.get("meet_name"))
-        d_val = OFFICIAL_DISTANCES.get((str(r.get("race_date")), norm_m, str(int(r.get("race_no")))))
-        if d_val:
-            r["distance"] = d_val
-            for h in r.get("horses", []):
-                h["distance"] = d_val
-        try:
-            for h in r.get("horses", []):
-                ord_val = int(h.get("actual_ord", "-"))
-                if ord_val > 20: h["actual_ord"] = "-"
-        except: pass
+def main():
+    if not API_KEY:
+        print("❌ KRA_API_KEY 미설정")
+        return
 
-def sync_5weeks_archive():
     now = datetime.now(KST)
     existing_races = {}
     if os.path.exists("race_data.json"):
@@ -340,59 +332,53 @@ def sync_5weeks_archive():
                 for r in old_list:
                     k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
                     existing_races[k] = r
-            print(f"📦 기존 저장소 로드 완료: {len(existing_races)}개 경주")
-        except:
-            existing_races = {}
+        except: existing_races = {}
 
+    # 1. 기존 오염된 데이터(race_data.json) 파일 완전 삭제 후 백지에서 다시 시작!
+    if os.path.exists("race_data.json"):
+        os.remove("race_data.json")
+    existing_races = {}
+
+    # 2. 이번 주 및 다음 주 주말 전수 수집
     dates_to_fetch = []
     for i in range(7, 0, -1):
         dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
     dates_to_fetch.append(now.strftime("%Y%m%d"))
-    for i in range(1, 10):
+    for i in range(1, 15): # 오늘부터 2주 뒤까지 넉넉하게 수집!
         dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
 
     unique_dates = sorted(list(set(dates_to_fetch)))
-    print(f"🔄 V12.00 수집 대상 전체 날짜: {unique_dates}")
+    print(f"🔄 클린 수집 대상 전체 날짜: {unique_dates}")
 
     for dt in unique_dates:
         for m_code, m_name in MEET_CONFIG:
             res = fetch_meet_data(m_code, m_name, dt)
             for r in res:
+                # 🎯 저장할 때 공식 거리를 2중 강제 덮어쓰기!
+                norm_m = get_norm_meet(r.get("meet_name"))
+                d_val = OFFICIAL_DISTANCES.get((str(r.get("race_date")), norm_m, str(int(r.get("race_no")))))
+                if d_val:
+                    r["distance"] = d_val
+                    for h in r.get("horses", []):
+                        h["distance"] = d_val
+
                 k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
-                if k in existing_races:
-                    old_race = existing_races[k]
-                    for new_h in r.get("horses", []):
-                        if new_h.get("actual_ord") == "-":
-                            old_h = next((h for h in old_race.get("horses", []) if h.get("gate") == new_h.get("gate")), None)
-                            if old_h and old_h.get("actual_ord") not in ["-", "", None]:
-                                new_h["actual_ord"] = old_h.get("actual_ord")
                 existing_races[k] = r
 
-    cutoff_date = (now - timedelta(days=35)).strftime("%Y%m%d")
-    final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
-    cleanse_corrupted_archive(final_list)
-    
-    # 🎯 [핵심] 저장할 때 '날짜 ➔ 발주 시간(라운드 번호순)'으로 완벽하게 타임라인 정렬!
-    meet_order = {"서울": 1, "부산경남": 2, "영천": 3, "제주": 4}
+    final_list = list(existing_races.values())
+
+    # 🎯 [핵심 시간순 타임라인 정렬] 오전 제주 ➔ 낮 부경 ➔ 오후 서울 순서로 완벽 정렬!
+    meet_order = {"제주": 1, "부산경남": 2, "영천": 2, "서울": 3}
     final_list.sort(key=lambda x: (
         x["race_date"],
-        int(x["race_no"]) if str(x["race_no"]).isdigit() else 99,
-        meet_order.get(x["meet_name"], 9)
+        meet_order.get(x["meet_name"], 9),
+        int(x["race_no"]) if str(x["race_no"]).isdigit() else 99
     ))
 
-    return final_list
-
-def main():
-    if not API_KEY:
-        print("❌ KRA_API_KEY 미설정")
-        return
-
-    all_races = sync_5weeks_archive()
-
-    if all_races:
+    if final_list:
         with open("race_data.json", "w", encoding="utf-8") as f:
-            json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: [{VERSION}] 공식 거리 3중 방어막 및 시간순 정렬 갱신 완료!")
+            json.dump(final_list, f, ensure_ascii=False, indent=2)
+        print(f"🎉 성공: [V12.00 클린 리셋] 거리가 완벽히 정화된 총 {len(final_list)}개 경주 저장 완료!")
     else:
         print("❌ 데이터를 가져오지 못했습니다.")
 
