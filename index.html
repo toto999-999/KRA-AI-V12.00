@@ -146,16 +146,21 @@
             background: #ffedd5; color: #c2410c; border: 1px solid #fdba74;
         }
 
-        .odds-action-bar { display: flex; gap: 8px; margin-top: 14px; margin-bottom: 6px; }
-        .btn-save-odds {
-            flex: 2; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 10px;
-            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+        /* 🎯 [새로움] 액션 버튼 2x2 반응형 그리드 */
+        .odds-action-bar {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+            margin-top: 14px; margin-bottom: 6px;
         }
-        .btn-reset-odds {
-            flex: 1; padding: 12px; background: #94a3b8; color: white; border: none; border-radius: 10px;
-            font-weight: 900; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+        .btn-action {
+            padding: 12px 6px; border: none; border-radius: 10px; font-weight: 900; font-size: 0.82rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: opacity 0.2s;
         }
+        .btn-action:active { opacity: 0.85; }
+        .btn-save-local { background: #0284c7; }
+        .btn-cloud-save { background: #4f46e5; }
+        .btn-cloud-load { background: #059669; }
+        .btn-reset-odds { background: #64748b; }
     </style>
 </head>
 <body>
@@ -258,9 +263,12 @@
 
                 <div id="horseList"></div>
 
+                <!-- 🎯 [새로움] 기기간 동기화(PC ➔ 폰) 버튼 배치 -->
                 <div class="odds-action-bar">
-                    <button class="btn-save-odds" onclick="saveCurrentOdds()">💾 배당 저장 (복기용)</button>
-                    <button class="btn-reset-odds" onclick="resetCurrentOdds()">🔄 초기화</button>
+                    <button class="btn-action btn-save-local" onclick="saveCurrentOdds()">💾 이 기기에 저장</button>
+                    <button class="btn-action btn-cloud-save" onclick="saveToCloudGitHub()">☁️ 깃허브 저장 (PC➔폰)</button>
+                    <button class="btn-action btn-cloud-load" onclick="loadFromCloudGitHub()">📥 깃허브 불러오기</button>
+                    <button class="btn-action btn-reset-odds" onclick="resetCurrentOdds()">🔄 초기화</button>
                 </div>
             </div>
 
@@ -274,6 +282,10 @@
     </div>
 
     <script>
+        const GITHUB_OWNER = "toto999-999";
+        const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
+
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('app_authenticated') === 'true') {
                 unlockApp();
@@ -337,45 +349,44 @@
             fetch('./race_data.json?nocache=' + Date.now())
                 .then(res => res.json())
                 .then(data => {
-                    // 🎯 [핵심] 원본 파일에서 10/16, 10/17, 10/18 등 10월 23일 이전 경기는 자동 제외!
-                    // 10월 23일, 24일, 25일의 모든 경기(총 51개)를 그대로 보존
-                    allRaceData = (data || []).filter(r => {
-                        const dStr = String(r.race_date || "");
-                        const md = dStr.length >= 8 ? dStr.substring(4, 8) : "";
-                        return md >= "1023";
-                    });
-
-                    if (allRaceData.length === 0) {
-                        alert("10월 23일 이후의 경주 데이터를 찾을 수 없습니다.");
-                        return;
-                    }
-
-                    // 🎯 모든 경주 랭킹 및 승률 즉시 자체 재계산 (전부 1위 오류 원천 차단)
-                    allRaceData.forEach(r => {
-                        const savedDist = localStorage.getItem(getDistanceStorageKey(r));
-                        if (savedDist) r.distance = savedDist;
-                        recalculateRaceScores(r);
-                    });
-
-                    // 날짜 정렬 (10/23, 10/24, 10/25 순서대로)
-                    const uniqueDates = [...new Set(allRaceData.map(r => r.race_date))].filter(Boolean).sort();
-                    const dateSelect = document.getElementById('dateSelect');
-                    dateSelect.innerHTML = '';
-                    uniqueDates.forEach(dt => {
-                        const opt = document.createElement('option');
-                        opt.value = dt;
-                        opt.textContent = formatDateLabel(dt);
-                        dateSelect.appendChild(opt);
-                    });
-
-                    // 10월 23일 기본 선택
-                    const defaultDate = uniqueDates[0];
-                    dateSelect.value = defaultDate;
-                    populateRaceSelect(defaultDate);
+                    processLoadedData(data);
                 });
         }
 
-        // 해당 날짜의 모든 경주(제주, 부경, 서울 등)를 셀렉트 박스에 가득 채움
+        // 🎯 [핵심 공통 처리] 10/23 이전 과거 경기는 자동 제거하고 랭킹을 즉시 재계산
+        function processLoadedData(data) {
+            allRaceData = (data || []).filter(r => {
+                const dStr = String(r.race_date || "");
+                const md = dStr.length >= 8 ? dStr.substring(4, 8) : "";
+                return md >= "1023";
+            });
+
+            if (allRaceData.length === 0) {
+                alert("10월 23일 이후의 경주 데이터를 찾을 수 없습니다.");
+                return;
+            }
+
+            allRaceData.forEach(r => {
+                const savedDist = localStorage.getItem(getDistanceStorageKey(r));
+                if (savedDist) r.distance = savedDist;
+                recalculateRaceScores(r);
+            });
+
+            const uniqueDates = [...new Set(allRaceData.map(r => r.race_date))].filter(Boolean).sort();
+            const dateSelect = document.getElementById('dateSelect');
+            dateSelect.innerHTML = '';
+            uniqueDates.forEach(dt => {
+                const opt = document.createElement('option');
+                opt.value = dt;
+                opt.textContent = formatDateLabel(dt);
+                dateSelect.appendChild(opt);
+            });
+
+            const defaultDate = uniqueDates[0];
+            dateSelect.value = defaultDate;
+            populateRaceSelect(defaultDate);
+        }
+
         function populateRaceSelect(selectedDate, targetIdxToKeep = null) {
             const raceSelect = document.getElementById('raceSelect');
             raceSelect.innerHTML = '';
@@ -409,16 +420,13 @@
             }
         }
 
-        function changeDate() {
-            populateRaceSelect(document.getElementById('dateSelect').value);
-        }
-
+        function changeDate() { populateRaceSelect(document.getElementById('dateSelect').value); }
         function changeRace() {
             currentRaceIdx = parseInt(document.getElementById('raceSelect').value, 10);
             renderRace(currentRaceIdx);
         }
 
-        // 🎯 거리 수정 즉각 반영 엔진
+        // 🎯 거리 수정 엔터 or 포커스 아웃 시 100% 반영
         function updateCustomDistance(newDistVal) {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -432,7 +440,6 @@
                 recalculateRaceScores(race);
                 renderRaceUIOnly(currentRaceIdx);
                 
-                // 경주 선택 옵션 텍스트 즉시 갱신
                 const raceSelect = document.getElementById('raceSelect');
                 const selectedOpt = raceSelect.querySelector(`option[value="${currentRaceIdx}"]`);
                 if (selectedOpt) {
@@ -445,7 +452,7 @@
             }
         }
 
-        // 🎯 부담중량의 *52.5 같은 특수문자를 완벽하게 숫자로 변환하고 등수를 1~11위까지 분리
+        // 🎯 별표(*52.5) 완벽 정제 + 1~11위 초반/후반 고유 순위 부여
         function recalculateRaceScores(race) {
             const dist = parseInt(race.distance, 10) || 1200;
             const meet = race.meet_name;
@@ -473,7 +480,6 @@
             let raw_scores = [];
             race.horses.forEach(h => {
                 const g = parseInt(h.gate, 10) || 5;
-                // 🎯 별표(*52.5)가 들어있어도 깨끗하게 숫자(52.5)로 정제!
                 const clean_w = parseFloat(String(h.weight).replace(/[^0-9.]/g, '')) || 55.0;
                 const tot_rc = parseInt(h.rc_cnt, 10) || 0;
                 const ord1 = parseInt(h.ord1_cnt, 10) || 0;
@@ -483,7 +489,6 @@
                 const r_jk = JOCKEY_MAP[h.jockey] || 12.0;
                 const r_tr = TRAINER_MAP[h.trainer] || 14.0;
 
-                // ⚡ 초반 스코어 (게이트 타이브레이커 반영)
                 let early = h.is_front ? 30.0 : 0.0;
                 if (g <= 3) early += 15.0;
                 else if (g <= 5) early += 8.0;
@@ -492,7 +497,6 @@
                 early += (16 - g) * 0.1;
                 h.early_score = Math.round(early * 10) / 10;
 
-                // 🚀 후반 스코어
                 let late = (!h.is_front) ? 20.0 : 0.0;
                 if (4 <= g <= 8) late += 10.0;
                 late += (55.0 - clean_w) * 2.5;
@@ -501,7 +505,6 @@
                 late += (r_jk * 0.05);
                 h.late_score = Math.round(late * 10) / 10;
 
-                // 기본 파워
                 let power = 25.0 + (win_rate * 0.8) + (quin_rate * 0.3) + (r_jk * 0.35) + (r_tr * 0.35);
                 power += (55.0 - clean_w) * 2.0;
                 if (meet === "제주" && g <= 3) power += 8.0;
@@ -516,11 +519,9 @@
                 h.score_3rd = 25.0 + (clean_w <= 52.5 ? 12.0 : 0.0) + (g >= 8 ? 8.0 : 0.0);
             });
 
-            // 🎯 초반 랭킹 1위부터 N위까지 고유 부여
             const byEarly = [...race.horses].sort((a,b) => b.early_score - a.early_score || parseInt(a.gate) - parseInt(b.gate));
             byEarly.forEach((h, idx) => { h.early_rank = idx + 1; });
 
-            // 🎯 후반 랭킹 1위부터 N위까지 고유 부여
             const byLate = [...race.horses].sort((a,b) => b.late_score - a.late_score || parseInt(a.gate) - parseInt(b.gate));
             byLate.forEach((h, idx) => { h.late_rank = idx + 1; });
 
@@ -571,7 +572,6 @@
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
                 const actualTag = (ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
-                // ⚡ 초반/후반 차등 뱃지
                 let speedTagsHtml = "";
                 const eRank = parseInt(h.early_rank, 10);
                 const lRank = parseInt(h.late_rank, 10);
@@ -581,7 +581,8 @@
                 if (lRank === 1) speedTagsHtml += `<span class="ai-tag late-top">🚀후반 1위</span>`;
                 else if (lRank <= 5) speedTagsHtml += `<span class="ai-tag late-sub">🚀후반 ${lRank}위</span>`;
 
-                const savedObj = savedOddsMap[h.gate];
+                // 🎯 [연동] 로컬스토리지 또는 깃허브에서 넘겨받은 배당 복원
+                const savedObj = savedOddsMap[h.gate] || h.saved_odds;
                 let baseVal = "", curVal = "";
                 if (typeof savedObj === "object" && savedObj !== null) {
                     baseVal = savedObj.base || "";
@@ -734,6 +735,7 @@
             document.getElementById('recTrifecta').textContent = `[${h1.gate}번] ➔ [${h2.gate}번] ➔ [${h3.gate}번]`;
         }
 
+        // 1. 현재 브라우저(로컬) 저장
         function saveCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -744,7 +746,11 @@
             race.horses.forEach((h, i) => {
                 const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
                 const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
-                if (baseVal || curVal) { oddsMap[h.gate] = { base: baseVal, cur: curVal }; hasAny = true; }
+                if (baseVal || curVal) {
+                    oddsMap[h.gate] = { base: baseVal, cur: curVal };
+                    h.saved_odds = { base: baseVal, cur: curVal }; // 깃허브 전송용 객체에 저장
+                    hasAny = true;
+                }
             });
 
             if (!hasAny) {
@@ -753,17 +759,133 @@
             }
 
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 저장되었습니다!`);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당이 이 기기에 저장되었습니다!\n\n다른 기기(폰)와 공유하시려면 [☁️ 깃허브 저장]을 눌러주세요.`);
             populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
+        }
+
+        // 2. 🎯 [핵심] 깃허브에 직접 덮어쓰기 저장 (PC ➔ 폰 공유)
+        async function saveToCloudGitHub() {
+            let token = localStorage.getItem('gh_token');
+            if (!token) {
+                token = prompt("기기 간 공유를 위해 GitHub 개인 토큰(PAT)을 입력해주세요:");
+                if (!token) return;
+                localStorage.setItem('gh_token', token.trim());
+            }
+
+            // 현재 입력 중인 배당도 객체에 즉시 반영
+            const race = allRaceData[currentRaceIdx];
+            if (race) {
+                race.horses.forEach((h, i) => {
+                    const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
+                    const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
+                    if (baseVal || curVal) {
+                        h.saved_odds = { base: baseVal, cur: curVal };
+                    }
+                });
+            }
+
+            const toast = document.getElementById('updateToast');
+            toast.style.display = 'block';
+            toast.innerHTML = "☁️ 깃허브에 최신 데이터(거리/배당) 동기화 저장 중...";
+
+            try {
+                const getUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/race_data.json`;
+                const getRes = await fetch(getUrl, {
+                    headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+
+                let currentSha = null;
+                if (getRes.ok) {
+                    const fileInfo = await getRes.json();
+                    currentSha = fileInfo.sha;
+                }
+
+                // UTF-8 한글 완벽 지원 Base64 인코딩
+                const jsonStr = JSON.stringify(allRaceData, null, 2);
+                const utf8Bytes = new TextEncoder().encode(jsonStr);
+                let binaryStr = '';
+                utf8Bytes.forEach(b => binaryStr += String.fromCharCode(b));
+                const base64Content = btoa(binaryStr);
+
+                const putRes = await fetch(getUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: "Sync race data (distance & odds) from App",
+                        content: base64Content,
+                        sha: currentSha
+                    })
+                });
+
+                if (putRes.ok) {
+                    toast.innerHTML = "✨ 깃허브 동기화 성공! 이제 스마트폰에서 [📥 깃허브 불러오기]를 누르시면 됩니다.";
+                    setTimeout(() => { toast.style.display = 'none'; }, 3500);
+                    alert("☁️ 깃허브에 완벽하게 저장되었습니다!\n\n이제 스마트폰이나 다른 기기에서 [📥 깃허브 불러오기]를 누르시면 거리와 배당이 그대로 복원됩니다.");
+                } else {
+                    const errData = await putRes.json();
+                    throw new Error(errData.message || "저장 실패");
+                }
+            } catch (e) {
+                toast.innerHTML = `❌ 깃허브 저장 실패: ${e.message}`;
+                setTimeout(() => { toast.style.display = 'none'; }, 4000);
+                alert(`❌ 깃허브 저장 실패: ${e.message}\n토큰 권한(repo 권한)을 확인해주세요.`);
+            }
+        }
+
+        // 3. 🎯 [핵심] 깃허브에서 최신 데이터 가져오기 (폰에서 실행)
+        async function loadFromCloudGitHub() {
+            const toast = document.getElementById('updateToast');
+            toast.style.display = 'block';
+            toast.innerHTML = "📥 깃허브에서 최신 작업 데이터를 가져오는 중...";
+
+            try {
+                const token = localStorage.getItem('gh_token');
+                const headers = { 'Accept': 'application/vnd.github.v3+json' };
+                if (token) headers['Authorization'] = `Bearer ${token}`;
+
+                const getUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/race_data.json?ref=main&nocache=${Date.now()}`;
+                const res = await fetch(getUrl, { headers });
+
+                if (!res.ok) {
+                    // API 응답 실패 시 웹 정적 파일로 fallback
+                    const staticRes = await fetch(`./race_data.json?nocache=${Date.now()}`);
+                    if (!staticRes.ok) throw new Error("데이터를 가져올 수 없습니다.");
+                    const staticData = await staticRes.json();
+                    processLoadedData(staticData);
+                } else {
+                    const fileInfo = await res.json();
+                    const binaryStr = atob(fileInfo.content.replace(/\s/g, ''));
+                    const bytes = new Uint8Array(binaryStr.length);
+                    for (let i = 0; i < binaryStr.length; i++) {
+                        bytes[i] = binaryStr.charCodeAt(i);
+                    }
+                    const decodedJsonStr = new TextDecoder().decode(bytes);
+                    const cloudData = JSON.parse(decodedJsonStr);
+                    processLoadedData(cloudData);
+                }
+
+                toast.innerHTML = "✨ 최신 데이터 동기화 완료!";
+                setTimeout(() => { toast.style.display = 'none'; }, 2000);
+                alert("✨ 깃허브 최신 데이터(거리/배당)를 성공적으로 불러왔습니다!");
+            } catch (e) {
+                toast.innerHTML = `❌ 불러오기 실패: ${e.message}`;
+                setTimeout(() => { toast.style.display = 'none'; }, 4000);
+                alert(`❌ 불러오기 실패: ${e.message}`);
+            }
         }
 
         function resetCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
-            if (!confirm(`초기화하시겠습니까?`)) return;
+            if (!confirm(`배당을 초기화하시겠습니까?`)) return;
 
             localStorage.removeItem(getRaceStorageKey(race));
             race.horses.forEach((h, i) => {
+                delete h.saved_odds;
                 const b = document.getElementById(`odds_base_${i}`);
                 const c = document.getElementById(`odds_${i}`);
                 if (b) b.value = ''; if (c) c.value = '';
@@ -771,10 +893,6 @@
             calculateMatrix();
             populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
-
-        const GITHUB_OWNER = "toto999-999";
-        const pathParts = window.location.pathname.split('/').filter(Boolean);
-        const GITHUB_REPO = pathParts[0] || "KRA-AI-V12.00";
 
         function triggerUpdate() {
             const token = localStorage.getItem('gh_token') || prompt("GitHub 토큰을 입력하세요:");
