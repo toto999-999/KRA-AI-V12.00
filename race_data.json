@@ -11319,7 +11319,7 @@
       {
         "gate": "3",
         "name": "지산프리",
-        "jockey": "유승완",
+        "jockey": "정정희",
         "trainer": "안병기",
         "weight": "54",
         "track": "양호",
@@ -11334,13 +11334,13 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 25.0,
-        "late_score": 34.82,
+        "early_score": 21.85,
+        "late_score": 31.94,
         "early_rank": 2,
-        "late_rank": 7,
-        "win_prob": 10.2,
-        "place_prob": 24.5,
-        "pure_score": 57.2
+        "late_rank": 8,
+        "win_prob": 9.7,
+        "place_prob": 23.3,
+        "pure_score": 54.1
       },
       {
         "gate": "11",
@@ -11363,7 +11363,7 @@
         "early_score": 8.97,
         "late_score": 34.24,
         "early_rank": 6,
-        "late_rank": 8,
+        "late_rank": 7,
         "win_prob": 9.4,
         "place_prob": 22.6,
         "pure_score": 52.6
@@ -11390,8 +11390,8 @@
         "late_score": 26.94,
         "early_rank": 3,
         "late_rank": 10,
-        "win_prob": 8.9,
-        "place_prob": 21.4,
+        "win_prob": 9.0,
+        "place_prob": 21.6,
         "pure_score": 50.1
       },
       {
@@ -11416,8 +11416,8 @@
         "late_score": 41.94,
         "early_rank": 7,
         "late_rank": 1,
-        "win_prob": 8.9,
-        "place_prob": 21.4,
+        "win_prob": 9.0,
+        "place_prob": 21.6,
         "pure_score": 50.1
       },
       {
@@ -11442,8 +11442,8 @@
         "late_score": 41.94,
         "early_rank": 8,
         "late_rank": 2,
-        "win_prob": 8.9,
-        "place_prob": 21.4,
+        "win_prob": 9.0,
+        "place_prob": 21.6,
         "pure_score": 50.1
       },
       {
@@ -11468,8 +11468,8 @@
         "late_score": 41.94,
         "early_rank": 9,
         "late_rank": 3,
-        "win_prob": 8.9,
-        "place_prob": 21.4,
+        "win_prob": 9.0,
+        "place_prob": 21.6,
         "pure_score": 50.1
       },
       {
@@ -11494,8 +11494,8 @@
         "late_score": 31.94,
         "early_rank": 10,
         "late_rank": 9,
-        "win_prob": 8.9,
-        "place_prob": 21.4,
+        "win_prob": 9.0,
+        "place_prob": 21.6,
         "pure_score": 50.1
       },
       {
@@ -11572,8 +11572,8 @@
         "late_score": 26.94,
         "early_rank": 11,
         "late_rank": 11,
-        "win_prob": 8.2,
-        "place_prob": 19.7,
+        "win_prob": 8.3,
+        "place_prob": 19.9,
         "pure_score": 46.1
       }
     ]
@@ -11609,8 +11609,8 @@
         "late_score": 36.13,
         "early_rank": 1,
         "late_rank": 5,
-        "win_prob": 11.0,
-        "place_prob": 26.4,
+        "win_prob": 11.1,
+        "place_prob": 26.6,
         "pure_score": 58.7
       },
       {
@@ -11635,8 +11635,8 @@
         "late_score": 33.44,
         "early_rank": 2,
         "late_rank": 9,
-        "win_prob": 10.6,
-        "place_prob": 25.4,
+        "win_prob": 10.7,
+        "place_prob": 25.7,
         "pure_score": 56.5
       },
       {
@@ -11666,32 +11666,6 @@
         "pure_score": 56.1
       },
       {
-        "gate": "5",
-        "name": "마이티크리스",
-        "jockey": "유승완",
-        "trainer": "서홍수",
-        "weight": "54.5",
-        "track": "양호",
-        "rc_time": "-",
-        "past_time": "",
-        "g1f_time": "",
-        "win_odds": "0",
-        "pre_ord": "",
-        "rc_cnt": "0",
-        "ord1_cnt": "0",
-        "ord2_cnt": "0",
-        "is_front": false,
-        "actual_ord": "-",
-        "ai_tags": [],
-        "early_score": 16.9,
-        "late_score": 47.77,
-        "early_rank": 4,
-        "late_rank": 1,
-        "win_prob": 10.5,
-        "place_prob": 25.2,
-        "pure_score": 55.9
-      },
-      {
         "gate": "7",
         "name": "퀸아비게일",
         "jockey": "임다빈",
@@ -11712,9 +11686,9 @@
         "early_score": 11.92,
         "late_score": 47.77,
         "early_rank": 6,
-        "late_rank": 2,
-        "win_prob": 10.4,
-        "place_prob": 25.0,
+        "late_rank": 1,
+        "win_prob": 10.5,
+        "place_prob": 25.2,
         "pure_score": 55.4
       },
       {
@@ -11744,6 +11718,32 @@
         "pure_score": 53.5
       },
       {
+        "gate": "5",
+        "name": "마이티크리스",
+        "jockey": "안드레",
+        "trainer": "서홍수",
+        "weight": "54.5",
+        "track": "양호",
+        "rc_time": "-",
+        "past_time": "",
+        "g1f_time": "",
+        "win_odds": "0",
+        "pre_ord": "",
+        "rc_cnt": "0",
+        "ord1_cnt": "0",
+        "ord2_cnt": "0",
+        "is_front": false,
+        "actual_ord": "-",
+        "ai_tags": [],
+        "early_score": 13.75,
+        "late_score": 44.89,
+        "early_rank": 5,
+        "late_rank": 2,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
+        "pure_score": 52.8
+      },
+      {
         "gate": "4",
         "name": "어디든지",
         "jockey": "마이아",
@@ -11763,7 +11763,7 @@
         "ai_tags": [],
         "early_score": 15.3,
         "late_score": 43.59,
-        "early_rank": 5,
+        "early_rank": 4,
         "late_rank": 3,
         "win_prob": 9.9,
         "place_prob": 23.8,
@@ -11791,8 +11791,8 @@
         "late_score": 43.09,
         "early_rank": 8,
         "late_rank": 4,
-        "win_prob": 9.7,
-        "place_prob": 23.3,
+        "win_prob": 9.8,
+        "place_prob": 23.5,
         "pure_score": 51.7
       },
       {
@@ -13557,7 +13557,7 @@
         "early_score": 12.07,
         "late_score": 38.09,
         "early_rank": 6,
-        "late_rank": 6,
+        "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
         "pure_score": 55.7
@@ -13695,7 +13695,7 @@
       {
         "gate": "6",
         "name": "마호",
-        "jockey": "유승완",
+        "jockey": "김용근",
         "trainer": "이준철",
         "weight": "57",
         "track": "양호",
@@ -13710,13 +13710,13 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 3.85,
-        "late_score": 37.32,
+        "early_score": 5.07,
+        "late_score": 38.44,
         "early_rank": 10,
-        "late_rank": 7,
-        "win_prob": 7.9,
-        "place_prob": 19.0,
-        "pure_score": 47.2
+        "late_rank": 6,
+        "win_prob": 8.0,
+        "place_prob": 19.2,
+        "pure_score": 48.5
       }
     ]
   },
