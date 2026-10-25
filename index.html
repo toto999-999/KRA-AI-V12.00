@@ -80,7 +80,7 @@
             text-align: center; color: #0284c7; outline: none; background: transparent;
         }
 
-        /* 🎯 더비온 2.0 원터치 승부패드 스타일 */
+        /* 🎯  2.0 원터치 승부패드 스타일 */
         .derby-pad-card {
             background: linear-gradient(135deg, #0f172a, #1e293b); color: white;
             border-radius: 14px; padding: 14px; margin-bottom: 14px; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
@@ -137,7 +137,6 @@
         .matrix-title { font-size: 0.85rem; font-weight: 900; color: #0284c7; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #e0f2fe; padding-bottom: 6px; }
         .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         
-        /* 🎯 [새로움] 복기 적중 하이라이트 스타일 */
         .matrix-item {
             background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7;
             transition: all 0.3s ease; position: relative;
@@ -261,10 +260,10 @@
                     </div>
                 </div>
 
-                <!-- 🎯 더비온 2.0 원터치 승부패드 -->
+                <!-- 🎯  2.0 원터치 승부패드 -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
-                        <div class="pad-title">🔥 더비온 2.0 원터치 승부패드</div>
+                        <div class="pad-title">🔥  2.0 원터치 승부패드</div>
                         <button class="pad-reset-btn" onclick="resetDerbyPad()">비우기 🔄</button>
                     </div>
 
@@ -283,7 +282,7 @@
                     <div class="keypad-grid" id="keypadGrid"></div>
 
                     <div class="analysis-badge-bar" id="derbyAnalysisSummary">
-                        더비온 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.
+                         번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.
                     </div>
                 </div>
 
@@ -357,8 +356,8 @@
 
                 <div class="odds-action-bar">
                     <button class="btn-action btn-save-local" onclick="saveCurrentOdds()">💾 이 기기에 저장</button>
-                    <button class="btn-action btn-cloud-save" onclick="saveToCloudGitHub()">☁️ 깃허브 저장 (PC➔폰)</button>
-                    <button class="btn-action btn-cloud-load" onclick="loadFromCloudGitHub()">📥 깃허브 불러오기</button>
+                    <button class="btn-action btn-cloud-save" onclick="saveToCloudGitHub()">☁️ 깃허브 전체 저장</button>
+                    <button class="btn-action btn-cloud-load" onclick="loadFromCloudGitHub()">📥 깃허브 전체 불러오기</button>
                     <button class="btn-action btn-reset-odds" onclick="resetCurrentOdds()">🔄 초기화</button>
                 </div>
             </div>
@@ -366,7 +365,7 @@
             <div id="tab-guide" class="tab-content">
                 <div style="padding:20px; text-align:center; color:#64748b; font-weight:bold; line-height: 1.6;">
                     V12.00 가치 배당 계산기 안내<br><br>
-                    더비온 2.0 번호를 터치하시면 교집합과 거리 가중치를 통해 7대 승식 최적 마권을 추천합니다.
+                     2.0 번호를 터치하시면 교집합과 거리 가중치를 통해 7대 승식 최적 마권을 추천합니다.
                 </div>
             </div>
         </div>
@@ -530,12 +529,36 @@
             calculateDerbyMatrix();
         }
 
-        // 🎯 [핵심] 더비온 승부 매트릭스 계산 및 자동 복기(적중 판별) 엔진
+        // 🎯 [핵심] 현재 화면의 입력값을 메모리 객체와 로컬스토리지에 무조건 자동 저장하는 함수
+        function autoSaveCurrentRaceState() {
+            const race = allRaceData[currentRaceIdx];
+            if (!race) return;
+
+            const oddsMap = {};
+            let hasAny = false;
+
+            race.horses.forEach((h, i) => {
+                const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
+                const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
+                if (baseVal || curVal) {
+                    oddsMap[h.gate] = { base: baseVal, cur: curVal };
+                    h.saved_odds = { base: baseVal, cur: curVal };
+                    hasAny = true;
+                }
+            });
+
+            race.saved_derby = JSON.parse(JSON.stringify(derbyInputs));
+            localStorage.setItem(getDerbyStorageKey(race), JSON.stringify(derbyInputs));
+            if (hasAny) {
+                localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
+            }
+        }
+
         function calculateDerbyMatrix() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
 
-            resetHitBadges(); // 복기 표시 초기화
+            resetHitBadges();
 
             const dist = parseInt(race.distance, 10) || 1200;
             const isSprint = (dist <= 1300);
@@ -545,7 +568,7 @@
             const hasAny = (early.length + late.length + pred.length + high.length > 0);
 
             if (!hasAny) {
-                document.getElementById('derbyAnalysisSummary').textContent = "더비온 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.";
+                document.getElementById('derbyAnalysisSummary').textContent = " 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.";
                 resetMatrixDisplay();
                 return;
             }
@@ -591,7 +614,7 @@
             const s3 = rank3.length > 0 ? `🔥 <strong>3회 올패스 축마:</strong> [${rank3.join(', ')}] ` : "";
             const s2 = rank2.length > 0 ? `🥈 <strong>2회 겹침:</strong> [${rank2.join(', ')}] ` : "";
             const sh = high.length > 0 ? `💣 <strong>고배당(3착용):</strong> [${high.join(', ')}]` : "";
-            document.getElementById('derbyAnalysisSummary').innerHTML = `${s3} ${s2} ${sh}`.trim() || "더비온 번호를 계속 입력해주세요.";
+            document.getElementById('derbyAnalysisSummary').innerHTML = `${s3} ${s2} ${sh}`.trim() || " 번호를 계속 입력해주세요.";
 
             let h1 = rank3[0] || rank2[0] || pred[0] || early[0] || 1;
             let h2 = (rank3.find(n => n !== h1)) || (rank2.find(n => n !== h1)) || (isLong ? late.find(n => n !== h1) : early.find(n => n !== h1)) || 2;
@@ -603,7 +626,6 @@
                 exactaFirst = h2; exactaSecond = h1;
             }
 
-            // 마권 조합 텍스트 표출
             document.getElementById('recWin').textContent = `[${h1}번] (승부 축마)`;
             document.getElementById('recPlace').textContent = `[${h2}번] (안전 연대)`;
             document.getElementById('recQuinella').textContent = `[${h1}번] ✖ [${h2}번]  (방어 [${h1}번] ✖ [${h3}번])`;
@@ -620,17 +642,15 @@
             const thirdList = bonusHigh ? `[${h3}번, ${bonusHigh}번]` : `[${h3}번]`;
             document.getElementById('recTrifecta').textContent = `[${exactaFirst}번] ➔ [${exactaSecond}번] ➔ ${thirdList}`;
 
-            // 🎯 [새로움] 실제 결과가 있을 때 복기 자동 적중 판별 도장 쾅!
             evaluateHits(race, { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 });
         }
 
-        // 🎯 [복기 판별 엔진] 실제 1, 2, 3착과 비교하여 적중 도장 및 하이라이트 표시
         function evaluateHits(race, picks) {
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
             const h3rd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 3);
 
-            if (!h1st || !h2nd) return; // 아직 결과가 안 나온 경기는 패스
+            if (!h1st || !h2nd) return;
 
             const act1 = parseInt(h1st.gate, 10);
             const act2 = parseInt(h2nd.gate, 10);
@@ -650,24 +670,18 @@
 
             const eqSet = (a, b) => a.size === b.size && [...a].every(x => b.has(x));
 
-            // 1. 단승식 (1착 우승마 적중)
             if (h1 === act1) markHit('recWin', '🎯 단승 적중!');
-
-            // 2. 연승식 (1~3착 입상 적중)
             if ([act1, act2, act3].filter(Boolean).includes(h2)) markHit('recPlace', '🛡️ 연승 적중!');
 
-            // 3. 복승식 (1-2착 적중)
             const actQuinSet = new Set([act1, act2]);
             if (eqSet(actQuinSet, new Set([h1, h2])) || eqSet(actQuinSet, new Set([h1, h3]))) {
                 markHit('recQuinella', '🎯 복승 적중!');
             }
 
-            // 4. 쌍승식 (1착➔2착 정확한 착순 적중)
             if (exactaFirst === act1 && exactaSecond === act2) {
                 markHit('recExacta', '⚡ 쌍승 적중!');
             }
 
-            // 5. 복연승식 (1-2착, 1-3착, 2-3착 중 하나라도 적중)
             const validWidePairs = [
                 new Set([act1, act2]),
                 act3 ? new Set([act1, act3]) : null,
@@ -682,7 +696,6 @@
                 markHit('recWide', '💰 복연승 적중!');
             }
 
-            // 6. 삼복승식 (1, 2, 3착 모두 적중)
             if (act3) {
                 const actTrioSet = new Set([act1, act2, act3]);
                 const myTrioSets = [
@@ -697,7 +710,6 @@
                 }
             }
 
-            // 7. 삼쌍승식 (1착➔2착➔3착 순서까지 완벽 적중)
             if (act3 && exactaFirst === act1 && exactaSecond === act2 && (h3 === act3 || bonusHigh === act3)) {
                 markHit('recTrifecta', '🚀 삼쌍승 완벽 적중!');
             }
@@ -806,9 +818,25 @@
                 return;
             }
 
+            // 🎯 가져온 데이터의 배당과 패드를 로컬스토리지에도 완벽 동기화
             allRaceData.forEach(r => {
                 const savedDist = localStorage.getItem(getDistanceStorageKey(r));
                 if (savedDist) r.distance = savedDist;
+
+                if (r.saved_derby) {
+                    localStorage.setItem(getDerbyStorageKey(r), JSON.stringify(r.saved_derby));
+                }
+                const oddsMap = {};
+                let hasOdds = false;
+                (r.horses || []).forEach(h => {
+                    if (h.saved_odds) {
+                        oddsMap[h.gate] = h.saved_odds;
+                        hasOdds = true;
+                    }
+                });
+                if (hasOdds) {
+                    localStorage.setItem(getRaceStorageKey(r), JSON.stringify(oddsMap));
+                }
             });
 
             const uniqueDates = [...new Set(allRaceData.map(r => r.race_date))].filter(Boolean).sort();
@@ -836,7 +864,7 @@
                 if (r.race_date === selectedDate) {
                     if (firstIdxOfDate === -1) firstIdxOfDate = idx;
 
-                    const isSaved = !!localStorage.getItem(getRaceStorageKey(r));
+                    const isSaved = !!localStorage.getItem(getRaceStorageKey(r)) || !!r.saved_derby;
                     const savedMark = isSaved ? "💾 " : "";
                     const customDist = r.distance;
 
@@ -859,8 +887,14 @@
             }
         }
 
-        function changeDate() { populateRaceSelect(document.getElementById('dateSelect').value); }
+        // 🎯 날짜/경주 바꿀 때 이전 작업 내용 100% 자동 저장(Auto-Save)
+        function changeDate() {
+            autoSaveCurrentRaceState();
+            populateRaceSelect(document.getElementById('dateSelect').value);
+        }
+
         function changeRace() {
+            autoSaveCurrentRaceState(); // 이전 경주 자동 저장!
             currentRaceIdx = parseInt(document.getElementById('raceSelect').value, 10);
             renderRace(currentRaceIdx);
         }
@@ -879,7 +913,7 @@
                 const raceSelect = document.getElementById('raceSelect');
                 const selectedOpt = raceSelect.querySelector(`option[value="${currentRaceIdx}"]`);
                 if (selectedOpt) {
-                    const isSaved = !!localStorage.getItem(getRaceStorageKey(race));
+                    const isSaved = !!localStorage.getItem(getRaceStorageKey(race)) || !!race.saved_derby;
                     const savedMark = isSaved ? "💾 " : "";
                     selectedOpt.textContent = `${savedMark}[${race.meet_name}] ${race.race_no}R (${cleanD}m)`;
                 }
@@ -964,7 +998,7 @@
                                     <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
                                            value="${curVal}"
                                            oninput="handleOddsInput()"
-                                           onkeydown="handleBaseOddsKey(event, ${i})">
+                                           onkeydown="handleOddsKey(event, ${i})">
                                 </div>
                             </div>
                             <div style="margin-top:2px;">
@@ -1005,30 +1039,13 @@
         }
 
         function saveCurrentOdds() {
+            autoSaveCurrentRaceState();
             const race = allRaceData[currentRaceIdx];
-            if (!race) return;
-
-            const oddsMap = {};
-            let hasAny = false;
-
-            race.horses.forEach((h, i) => {
-                const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
-                const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
-                if (baseVal || curVal) {
-                    oddsMap[h.gate] = { base: baseVal, cur: curVal };
-                    h.saved_odds = { base: baseVal, cur: curVal };
-                    hasAny = true;
-                }
-            });
-
-            race.saved_derby = JSON.parse(JSON.stringify(derbyInputs));
-            localStorage.setItem(getDerbyStorageKey(race), JSON.stringify(derbyInputs));
-            localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
-
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당과 더비온 패드 내용이 함께 저장되었습니다!\n\n다른 기기(폰)와 공유하시려면 [☁️ 깃허브 저장]을 눌러주세요.`);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당과  패드 내용이 이 기기에 저장되었습니다!`);
             populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
 
+        // 🎯 [핵심] 1R부터 마지막 R까지 모든 경주의 배당/패드를 싹 모아서 깃허브로 한 방에 전송!
         async function saveToCloudGitHub() {
             let token = localStorage.getItem('gh_token');
             if (!token) {
@@ -1037,19 +1054,32 @@
                 localStorage.setItem('gh_token', token.trim());
             }
 
-            const race = allRaceData[currentRaceIdx];
-            if (race) {
-                race.horses.forEach((h, i) => {
-                    const baseVal = document.getElementById(`odds_base_${i}`)?.value.trim() || "";
-                    const curVal = document.getElementById(`odds_${i}`)?.value.trim() || "";
-                    if (baseVal || curVal) h.saved_odds = { base: baseVal, cur: curVal };
-                });
-                race.saved_derby = JSON.parse(JSON.stringify(derbyInputs));
-            }
+            // 1. 현재 화면 경주 상태 우선 저장
+            autoSaveCurrentRaceState();
+
+            // 2. 🎯 전체 모든 경주(1R~마지막R)를 순회하며 로컬스토리지에 있는 모든 작업 데이터를 객체에 완벽 병합!
+            allRaceData.forEach(r => {
+                //  패드 병합
+                const savedDerbyRaw = localStorage.getItem(getDerbyStorageKey(r));
+                if (savedDerbyRaw) {
+                    try { r.saved_derby = JSON.parse(savedDerbyRaw); } catch(e){}
+                }
+
+                // 배당 데이터 병합
+                const savedOddsRaw = localStorage.getItem(getRaceStorageKey(r));
+                if (savedOddsRaw) {
+                    try {
+                        const oddsMap = JSON.parse(savedOddsRaw);
+                        (r.horses || []).forEach(h => {
+                            if (oddsMap[h.gate]) h.saved_odds = oddsMap[h.gate];
+                        });
+                    } catch(e){}
+                }
+            });
 
             const toast = document.getElementById('updateToast');
             toast.style.display = 'block';
-            toast.innerHTML = "☁️ 깃허브에 데이터(배당+더비온패드) 10주 롤링 동기화 중...";
+            toast.innerHTML = "☁️ 깃허브에 [모든 경주 전체 데이터] 동기화 저장 중...";
 
             try {
                 const getUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/race_data.json`;
@@ -1063,6 +1093,7 @@
                     currentSha = fileInfo.sha;
                 }
 
+                // 10주 롤링 적용
                 const listToSave = apply10WeeksRollingWindow(allRaceData);
 
                 const jsonStr = JSON.stringify(listToSave, null, 2);
@@ -1079,16 +1110,16 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: "Sync 10-weeks rolling data (odds & derby pad)",
+                        message: "Sync ALL races data (odds & derby pad)",
                         content: base64Content,
                         sha: currentSha
                     })
                 });
 
                 if (putRes.ok) {
-                    toast.innerHTML = "✨ 깃허브 동기화 성공! 폰에서 [📥 깃허브 불러오기]를 누르세요.";
+                    toast.innerHTML = "✨ 깃허브 전체 저장 성공! 모든 경주가 완벽하게 보존되었습니다.";
                     setTimeout(() => { toast.style.display = 'none'; }, 2500);
-                    alert("☁️ 깃허브에 완벽하게 저장되었습니다!\n\n스마트폰에서 [📥 깃허브 불러오기]를 누르면 더비온 번호와 배당이 그대로 복원됩니다.");
+                    alert("☁️ [모든 경주 전체 데이터] 깃허브 저장 완료!\n\n이제 스마트폰에서 [📥 깃허브 전체 불러오기]를 누르시면 1경주부터 모든 경주가 그대로 복원됩니다.");
                 } else {
                     const errData = await putRes.json();
                     throw new Error(errData.message || "저장 실패");
@@ -1103,7 +1134,7 @@
         async function loadFromCloudGitHub() {
             const toast = document.getElementById('updateToast');
             toast.style.display = 'block';
-            toast.innerHTML = "📥 깃허브에서 최신 데이터를 가져오는 중...";
+            toast.innerHTML = "📥 깃허브에서 [모든 경주 전체 데이터]를 가져오는 중...";
 
             try {
                 const token = localStorage.getItem('gh_token');
@@ -1128,9 +1159,9 @@
                     processLoadedData(cloudData);
                 }
 
-                toast.innerHTML = "✨ 최신 데이터 동기화 완료!";
+                toast.innerHTML = "✨ 최신 전체 데이터 동기화 완료!";
                 setTimeout(() => { toast.style.display = 'none'; }, 2000);
-                alert("✨ 깃허브 최신 데이터(거리/배당/더비온패드)를 성공적으로 불러왔습니다!");
+                alert("✨ 깃허브 최신 전체 데이터(1R부터 모든 경주)를 완벽하게 불러왔습니다!");
             } catch (e) {
                 toast.innerHTML = `❌ 불러오기 실패: ${e.message}`;
                 setTimeout(() => { toast.style.display = 'none'; }, 4000);
@@ -1141,7 +1172,7 @@
         function resetCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
-            if (!confirm(`배당과 패드 입력을 초기화하시겠습니까?`)) return;
+            if (!confirm(`현재 경주의 배당과 패드 입력을 초기화하시겠습니까?`)) return;
 
             localStorage.removeItem(getRaceStorageKey(race));
             localStorage.removeItem(getDerbyStorageKey(race));
