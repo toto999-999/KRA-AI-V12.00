@@ -80,7 +80,7 @@
             text-align: center; color: #0284c7; outline: none; background: transparent;
         }
 
-        /* 🎯 원터치 승부패드 스타일 */
+        /* 🎯 더비온 2.0 원터치 승부패드 스타일 */
         .derby-pad-card {
             background: linear-gradient(135deg, #0f172a, #1e293b); color: white;
             border-radius: 14px; padding: 14px; margin-bottom: 14px; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
@@ -136,17 +136,32 @@
         }
         .matrix-title { font-size: 0.85rem; font-weight: 900; color: #0284c7; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #e0f2fe; padding-bottom: 6px; }
         .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .matrix-item { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7; }
+        
+        /* 🎯 [새로움] 복기 적중 하이라이트 스타일 */
+        .matrix-item {
+            background: #f8fafc; padding: 8px 10px; border-radius: 8px; border-left: 3px solid #0284c7;
+            transition: all 0.3s ease; position: relative;
+        }
         .matrix-item.full { grid-column: span 2; background: #f0f9ff; border-left-color: #f59e0b; }
-        .matrix-label { font-size: 0.72rem; color: #64748b; font-weight: 800; margin-bottom: 2px; }
+        .matrix-item.hit {
+            background: #fefce8 !important; border-left-color: #eab308 !important; border: 1.5px solid #facc15;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.25);
+        }
+        
+        .matrix-label { font-size: 0.72rem; color: #64748b; font-weight: 800; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; }
         .matrix-val { font-size: 0.92rem; font-weight: 900; color: #0f172a; }
+
+        .hit-badge {
+            background: #ef4444; color: white; font-size: 0.65rem; padding: 1px 6px;
+            border-radius: 4px; font-weight: 900; animation: pop 0.4s ease;
+        }
+        @keyframes pop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .result-bar {
             background: #1e293b; color: white; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; font-weight: bold; margin-bottom: 12px; display: none;
             border-left: 4px solid #f59e0b;
         }
 
-        /* 🐎 출전마 정직 카드 (가짜 뱃지 완전 삭제) */
         .horse-card {
             background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
             display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
@@ -161,9 +176,7 @@
         .horse-name-row { font-size: 0.95rem; font-weight: 900; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .horse-sub { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .smart-badge {
-            font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px;
-        }
+        .smart-badge { font-size: 0.68rem; font-weight: 900; padding: 1px 5px; border-radius: 4px; }
         .smart-badge.real { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
         .smart-badge.fake { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
@@ -179,7 +192,6 @@
         .odds-input.base { border-color: #e2e8f0; color: #64748b; }
         .odds-arrow { font-size: 0.7rem; color: #cbd5e1; margin-top: 12px; }
 
-        /* 2x2 액션 바 */
         .odds-action-bar {
             display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
             margin-top: 14px; margin-bottom: 6px;
@@ -249,10 +261,10 @@
                     </div>
                 </div>
 
-                <!-- 🎯 원터치 승부패드 -->
+                <!-- 🎯 더비온 2.0 원터치 승부패드 -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
-                        <div class="pad-title">🔥 원터치 승부패드</div>
+                        <div class="pad-title">🔥 더비온 2.0 원터치 승부패드</div>
                         <button class="pad-reset-btn" onclick="resetDerbyPad()">비우기 🔄</button>
                     </div>
 
@@ -271,45 +283,66 @@
                     <div class="keypad-grid" id="keypadGrid"></div>
 
                     <div class="analysis-badge-bar" id="derbyAnalysisSummary">
-                         번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.
+                        더비온 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.
                     </div>
                 </div>
 
                 <div id="resultBar" class="result-bar"></div>
 
-                <!-- 7대 승식 최적 마권 매트릭스 카드 -->
+                <!-- 7대 승식 최적 마권 및 복기 적중 카드 -->
                 <div class="bet-matrix-card" id="matrixCard">
                     <div class="matrix-title">
                         <span>👑 실시간 7대 승식 최적 마권</span>
-                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;"> 교집합 ✖ 배당 필터</span>
+                        <span style="font-size:0.7rem; font-weight:normal; color:#64748b;">결과 시 자동 적중 판별</span>
                     </div>
                     <div class="matrix-grid">
-                        <div class="matrix-item">
-                            <div class="matrix-label">🥇 단승식 (1착 우승)</div>
+                        <div class="matrix-item" id="item_recWin">
+                            <div class="matrix-label">
+                                <span>🥇 단승식 (1착 우승)</span>
+                                <span class="hit-badge" id="hit_recWin" style="display:none;">🎯 적중!</span>
+                            </div>
                             <div id="recWin" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item">
-                            <div class="matrix-label">🛡️ 연승식 (1~3착 안전)</div>
+                        <div class="matrix-item" id="item_recPlace">
+                            <div class="matrix-label">
+                                <span>🛡️ 연승식 (1~3착 안전)</span>
+                                <span class="hit-badge" id="hit_recPlace" style="display:none;">🎯 적중!</span>
+                            </div>
                             <div id="recPlace" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item">
-                            <div class="matrix-label">🎯 복승식 (1-2착)</div>
+                        <div class="matrix-item" id="item_recQuinella">
+                            <div class="matrix-label">
+                                <span>🎯 복승식 (1-2착)</span>
+                                <span class="hit-badge" id="hit_recQuinella" style="display:none;">🎯 적중!</span>
+                            </div>
                             <div id="recQuinella" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item">
-                            <div class="matrix-label">⚡ 쌍승식 (1착➔2착)</div>
+                        <div class="matrix-item" id="item_recExacta">
+                            <div class="matrix-label">
+                                <span>⚡ 쌍승식 (1착➔2착)</span>
+                                <span class="hit-badge" id="hit_recExacta" style="display:none;">⚡ 적중!</span>
+                            </div>
                             <div id="recExacta" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item full">
-                            <div class="matrix-label">💰 복연승식 (가치축 ✖ 실속 입상권 / 강력추천!)</div>
+                        <div class="matrix-item full" id="item_recWide">
+                            <div class="matrix-label">
+                                <span>💰 복연승식 (가치축 ✖ 실속 입상권)</span>
+                                <span class="hit-badge" id="hit_recWide" style="display:none;">💰 적중!</span>
+                            </div>
                             <div id="recWide" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item full">
-                            <div class="matrix-label">👑 삼복승식 (황금 삼각편대 포메이션)</div>
+                        <div class="matrix-item full" id="item_recTrio">
+                            <div class="matrix-label">
+                                <span>👑 삼복승식 (황금 삼각편대 포메이션)</span>
+                                <span class="hit-badge" id="hit_recTrio" style="display:none;">👑 삼복승 적중!</span>
+                            </div>
                             <div id="recTrio" class="matrix-val">-</div>
                         </div>
-                        <div class="matrix-item full">
-                            <div class="matrix-label">🚀 삼쌍승식 (1착➔2착➔3착 순서 고정)</div>
+                        <div class="matrix-item full" id="item_recTrifecta">
+                            <div class="matrix-label">
+                                <span>🚀 삼쌍승식 (1착➔2착➔3착 순서 고정)</span>
+                                <span class="hit-badge" id="hit_recTrifecta" style="display:none;">🚀 삼쌍승 적중!</span>
+                            </div>
                             <div id="recTrifecta" class="matrix-val">-</div>
                         </div>
                     </div>
@@ -322,7 +355,6 @@
 
                 <div id="horseList"></div>
 
-                <!-- 2x2 액션 바 (승부패드 + 배당 동시 저장) -->
                 <div class="odds-action-bar">
                     <button class="btn-action btn-save-local" onclick="saveCurrentOdds()">💾 이 기기에 저장</button>
                     <button class="btn-action btn-cloud-save" onclick="saveToCloudGitHub()">☁️ 깃허브 저장 (PC➔폰)</button>
@@ -334,7 +366,7 @@
             <div id="tab-guide" class="tab-content">
                 <div style="padding:20px; text-align:center; color:#64748b; font-weight:bold; line-height: 1.6;">
                     V12.00 가치 배당 계산기 안내<br><br>
-                    번호를 터치하시면 교집합과 거리 가중치를 통해 7대 승식 최적 마권을 추천합니다.
+                    더비온 2.0 번호를 터치하시면 교집합과 거리 가중치를 통해 7대 승식 최적 마권을 추천합니다.
                 </div>
             </div>
         </div>
@@ -395,15 +427,9 @@
         let currentPadMode = 'early';
         let derbyInputs = { early: [], late: [], pred: [], high: [] };
 
-        function getDerbyStorageKey(race) {
-            return `derby_${race.race_date}_${race.meet_name}_${race.race_no}`;
-        }
-        function getRaceStorageKey(race) {
-            return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
-        }
-        function getDistanceStorageKey(race) {
-            return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`;
-        }
+        function getDerbyStorageKey(race) { return `derby_${race.race_date}_${race.meet_name}_${race.race_no}`; }
+        function getRaceStorageKey(race) { return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
+        function getDistanceStorageKey(race) { return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
 
         function initKeypad() {
             const grid = document.getElementById('keypadGrid');
@@ -453,7 +479,7 @@
 
             updatePadDisplay();
             calculateDerbyMatrix();
-            renderHorseBadgesOnly(); // 실시간 바람/승부 뱃지 갱신
+            renderHorseBadgesOnly();
         }
 
         function updatePadDisplay() {
@@ -504,33 +530,32 @@
             calculateDerbyMatrix();
         }
 
-        // 🎯 [정통 승리 법칙]  3회 올패스마 / 2회 겹침마 / 배당 보조 저울 결합 엔진
+        // 🎯 [핵심] 더비온 승부 매트릭스 계산 및 자동 복기(적중 판별) 엔진
         function calculateDerbyMatrix() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
 
+            resetHitBadges(); // 복기 표시 초기화
+
             const dist = parseInt(race.distance, 10) || 1200;
-            const isSprint = (dist <= 1300); // 1300m 이하 단거리
-            const isLong = (dist >= 1400);   // 1400m 이상 중장거리
+            const isSprint = (dist <= 1300);
+            const isLong = (dist >= 1400);
 
             const { early, late, pred, high } = derbyInputs;
             const hasAny = (early.length + late.length + pred.length + high.length > 0);
 
             if (!hasAny) {
-                document.getElementById('derbyAnalysisSummary').textContent = " 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.";
+                document.getElementById('derbyAnalysisSummary').textContent = "더비온 번호를 터치하시면 7대 승식 최적 마권이 실시간 조합됩니다.";
                 resetMatrixDisplay();
                 return;
             }
 
-            // 1. 중복 횟수 집계
             const countMap = {};
-            [...early, ...late, ...pred].forEach(n => {
-                countMap[n] = (countMap[n] || 0) + 1;
-            });
+            [...early, ...late, ...pred].forEach(n => { countMap[n] = (countMap[n] || 0) + 1; });
 
-            const rank3 = []; // 3회 올패스
-            const rank2 = []; // 2회 겹침
-            const rank1 = []; // 1회
+            const rank3 = [];
+            const rank2 = [];
+            const rank1 = [];
 
             for (const [numStr, cnt] of Object.entries(countMap)) {
                 const n = parseInt(numStr, 10);
@@ -539,26 +564,23 @@
                 else rank1.push(n);
             }
 
-            // 2. 배당 보조 저울 (배당이 30배 이상 터무니없는 말은 컷, 3~15배 안착마 우대)
             const getOddsScore = (gateNum) => {
                 const horse = race.horses.find(h => parseInt(h.gate, 10) === gateNum);
                 if (!horse) return 0;
                 const base = parseFloat(document.getElementById(`odds_base_${race.horses.indexOf(horse)}`)?.value || "0");
                 const cur = parseFloat(document.getElementById(`odds_${race.horses.indexOf(horse)}`)?.value || "0");
                 const effective = cur > 0 ? cur : base;
-                
-                if (effective > 30.0) return -20; // 너무 높은 배당 컷
-                if (effective >= 2.0 && effective <= 12.0) return 5; // 가장 알짜배기 승부 배당 가산
+                if (effective > 30.0) return -20;
+                if (effective >= 2.0 && effective <= 12.0) return 5;
                 return 0;
             };
 
-            // 전개 가중치 (단거리: 초반 우선, 장거리: 후반 우선)
             const scoreFn = (n) => {
                 let sc = (countMap[n] || 0) * 10;
                 if (early.includes(n)) sc += (5 - early.indexOf(n)) * (isSprint ? 4 : 1.5);
                 if (late.includes(n)) sc += (5 - late.indexOf(n)) * (isLong ? 5 : 2);
                 if (pred.includes(n)) sc += (5 - pred.indexOf(n)) * 3;
-                sc += getOddsScore(n); // 배당 보조 저울
+                sc += getOddsScore(n);
                 return sc;
             };
 
@@ -569,36 +591,25 @@
             const s3 = rank3.length > 0 ? `🔥 <strong>3회 올패스 축마:</strong> [${rank3.join(', ')}] ` : "";
             const s2 = rank2.length > 0 ? `🥈 <strong>2회 겹침:</strong> [${rank2.join(', ')}] ` : "";
             const sh = high.length > 0 ? `💣 <strong>고배당(3착용):</strong> [${high.join(', ')}]` : "";
-            document.getElementById('derbyAnalysisSummary').innerHTML = `${s3} ${s2} ${sh}`.trim() || " 번호를 계속 입력해주세요.";
+            document.getElementById('derbyAnalysisSummary').innerHTML = `${s3} ${s2} ${sh}`.trim() || "더비온 번호를 계속 입력해주세요.";
 
-            // 🎯 마권 기둥(축) 및 조합 대상 결정
             let h1 = rank3[0] || rank2[0] || pred[0] || early[0] || 1;
             let h2 = (rank3.find(n => n !== h1)) || (rank2.find(n => n !== h1)) || (isLong ? late.find(n => n !== h1) : early.find(n => n !== h1)) || 2;
             let h3 = (rank2.find(n => n !== h1 && n !== h2)) || (rank1.find(n => n !== h1 && n !== h2)) || 3;
-            
-            // 고배당마는 오직 3착용(삼복/삼쌍승)으로만 사용!
             let bonusHigh = high[0] || (rank1[0] !== h1 && rank1[0] !== h2 ? rank1[0] : null);
 
-            // 1. 단승식 (우승)
-            document.getElementById('recWin').textContent = `[${h1}번] (승부 축마)`;
-
-            // 2. 연승식 (1~3착)
-            document.getElementById('recPlace').textContent = `[${h2}번] (안전 연대)`;
-
-            // 3. 복승식 (1-2착) - 고배당 절대 배제, 알짜배기 압축
-            document.getElementById('recQuinella').textContent = `[${h1}번] ✖ [${h2}번]  (방어 [${h1}번] ✖ [${h3}번])`;
-
-            // 4. 쌍승식 (순서 고정)
             let exactaFirst = h1, exactaSecond = h2;
             if (isLong && late.length > 0 && late[0] === h2) {
                 exactaFirst = h2; exactaSecond = h1;
             }
-            document.getElementById('recExacta').textContent = `[${exactaFirst}번] ➔ [${exactaSecond}번]`;
 
-            // 5. 복연승식 (가장 안전한 실속 입상권)
+            // 마권 조합 텍스트 표출
+            document.getElementById('recWin').textContent = `[${h1}번] (승부 축마)`;
+            document.getElementById('recPlace').textContent = `[${h2}번] (안전 연대)`;
+            document.getElementById('recQuinella').textContent = `[${h1}번] ✖ [${h2}번]  (방어 [${h1}번] ✖ [${h3}번])`;
+            document.getElementById('recExacta').textContent = `[${exactaFirst}번] ➔ [${exactaSecond}번]`;
             document.getElementById('recWide').textContent = `[${h1}번] ✖ [${h2}번] / [${h1}번] ✖ [${h3}번]`;
 
-            // 6. 삼복승식 (황금 삼각 포메이션 + 고배당은 오직 3착용 보너스로 1구멍만)
             const trioList = [
                 `[${h1} - ${h2} - ${h3}] (주력)`,
                 rank2[1] ? `[${h1} - ${h2} - ${rank2[1]}]` : `[${h1} - ${h3} - ${rank1[0] || 4}]`
@@ -606,12 +617,104 @@
             if (bonusHigh) trioList.push(`[${h1} - ${h2} - ${bonusHigh}] (배당노림)`);
             document.getElementById('recTrio').textContent = trioList.join(" / ");
 
-            // 7. 삼쌍승식 (1착➔2착➔3착 순서 고정)
             const thirdList = bonusHigh ? `[${h3}번, ${bonusHigh}번]` : `[${h3}번]`;
             document.getElementById('recTrifecta').textContent = `[${exactaFirst}번] ➔ [${exactaSecond}번] ➔ ${thirdList}`;
+
+            // 🎯 [새로움] 실제 결과가 있을 때 복기 자동 적중 판별 도장 쾅!
+            evaluateHits(race, { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 });
+        }
+
+        // 🎯 [복기 판별 엔진] 실제 1, 2, 3착과 비교하여 적중 도장 및 하이라이트 표시
+        function evaluateHits(race, picks) {
+            const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
+            const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
+            const h3rd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 3);
+
+            if (!h1st || !h2nd) return; // 아직 결과가 안 나온 경기는 패스
+
+            const act1 = parseInt(h1st.gate, 10);
+            const act2 = parseInt(h2nd.gate, 10);
+            const act3 = h3rd ? parseInt(h3rd.gate, 10) : null;
+
+            const { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 } = picks;
+
+            const markHit = (type, badgeText) => {
+                const itemEl = document.getElementById(`item_${type}`);
+                const badgeEl = document.getElementById(`hit_${type}`);
+                if (itemEl && badgeEl) {
+                    itemEl.classList.add('hit');
+                    badgeEl.style.display = 'inline-block';
+                    if (badgeText) badgeEl.textContent = badgeText;
+                }
+            };
+
+            const eqSet = (a, b) => a.size === b.size && [...a].every(x => b.has(x));
+
+            // 1. 단승식 (1착 우승마 적중)
+            if (h1 === act1) markHit('recWin', '🎯 단승 적중!');
+
+            // 2. 연승식 (1~3착 입상 적중)
+            if ([act1, act2, act3].filter(Boolean).includes(h2)) markHit('recPlace', '🛡️ 연승 적중!');
+
+            // 3. 복승식 (1-2착 적중)
+            const actQuinSet = new Set([act1, act2]);
+            if (eqSet(actQuinSet, new Set([h1, h2])) || eqSet(actQuinSet, new Set([h1, h3]))) {
+                markHit('recQuinella', '🎯 복승 적중!');
+            }
+
+            // 4. 쌍승식 (1착➔2착 정확한 착순 적중)
+            if (exactaFirst === act1 && exactaSecond === act2) {
+                markHit('recExacta', '⚡ 쌍승 적중!');
+            }
+
+            // 5. 복연승식 (1-2착, 1-3착, 2-3착 중 하나라도 적중)
+            const validWidePairs = [
+                new Set([act1, act2]),
+                act3 ? new Set([act1, act3]) : null,
+                act3 ? new Set([act2, act3]) : null
+            ].filter(Boolean);
+
+            const myWidePairs = [
+                new Set([h1, h2]),
+                new Set([h1, h3])
+            ];
+            if (myWidePairs.some(mp => validWidePairs.some(vp => eqSet(mp, vp)))) {
+                markHit('recWide', '💰 복연승 적중!');
+            }
+
+            // 6. 삼복승식 (1, 2, 3착 모두 적중)
+            if (act3) {
+                const actTrioSet = new Set([act1, act2, act3]);
+                const myTrioSets = [
+                    new Set([h1, h2, h3]),
+                    bonusHigh ? new Set([h1, h2, bonusHigh]) : null,
+                    rank2[1] ? new Set([h1, h2, rank2[1]]) : null,
+                    rank1[0] ? new Set([h1, h3, rank1[0]]) : null
+                ].filter(Boolean);
+
+                if (myTrioSets.some(ts => eqSet(ts, actTrioSet))) {
+                    markHit('recTrio', '👑 삼복승 적중!');
+                }
+            }
+
+            // 7. 삼쌍승식 (1착➔2착➔3착 순서까지 완벽 적중)
+            if (act3 && exactaFirst === act1 && exactaSecond === act2 && (h3 === act3 || bonusHigh === act3)) {
+                markHit('recTrifecta', '🚀 삼쌍승 완벽 적중!');
+            }
+        }
+
+        function resetHitBadges() {
+            const types = ['recWin', 'recPlace', 'recQuinella', 'recExacta', 'recWide', 'recTrio', 'recTrifecta'];
+            types.forEach(t => {
+                const itemEl = document.getElementById(`item_${t}`);
+                const badgeEl = document.getElementById(`hit_${t}`);
+                if (itemEl) itemEl.classList.remove('hit');
+                if (badgeEl) badgeEl.style.display = 'none';
+            });
         }
 
         function resetMatrixDisplay() {
+            resetHitBadges();
             document.getElementById('recWin').textContent = "-";
             document.getElementById('recPlace').textContent = "-";
             document.getElementById('recQuinella').textContent = "-";
@@ -621,7 +724,6 @@
             document.getElementById('recTrifecta').textContent = "-";
         }
 
-        // 실시간 배당 변화 시 진짜 승부마 vs 가짜 바람마 판별 뱃지
         function renderHorseBadgesOnly() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -644,15 +746,13 @@
 
                 if (!isNaN(baseOdds) && baseOdds > 0 && !isNaN(curOdds) && curOdds > 0) {
                     const dropPct = ((curOdds - baseOdds) / baseOdds) * 100.0;
-                    if (dropPct <= -25.0) { // 25% 이상 배당 급락
+                    if (dropPct <= -25.0) {
                         badgeEl.style.display = 'inline-block';
-                        //  이름이 있는 진짜 실력마인가?
                         if (allDerbyNumbers.includes(gNum)) {
                             badgeEl.className = 'smart-badge real';
                             badgeEl.textContent = `🔥 승부 뭉칫돈 ${dropPct.toFixed(0)}%`;
                             cardEl.classList.add('smart-real');
                         } else {
-                            // 없는 똥말인데 돈만 몰림 ➔ 바람(함정) 경고!
                             badgeEl.className = 'smart-badge fake';
                             badgeEl.textContent = `⚠️ 바람(함정 주의) ${dropPct.toFixed(0)}%`;
                             cardEl.classList.add('smart-fake');
@@ -672,7 +772,6 @@
             return `${m}/${d} (${days[dateObj.getDay()]})`;
         }
 
-        // 🎯 10주 롤링 아카이브 (11주차 진입 시 가장 오래된 1주차 자동 삭제)
         function apply10WeeksRollingWindow(list) {
             if (!list || list.length === 0) return [];
             const validDates = list.map(r => String(r.race_date || "")).filter(d => d.length >= 8).sort();
@@ -684,7 +783,6 @@
             const d = parseInt(latest.substring(6, 8), 10);
             const latestDate = new Date(y, m, d);
             
-            // 70일(10주) 이전 컷오프
             const cutoffDate = new Date(latestDate.getTime() - (70 * 24 * 60 * 60 * 1000));
             const cY = cutoffDate.getFullYear();
             const cM = String(cutoffDate.getMonth() + 1).padStart(2, '0');
@@ -701,7 +799,6 @@
         }
 
         function processLoadedData(data) {
-            // 10주 롤링 보관 필터 적용
             allRaceData = apply10WeeksRollingWindow(data || []);
 
             if (allRaceData.length === 0) {
@@ -799,7 +896,6 @@
             renderRaceUIOnly(idx);
         }
 
-        // 🎯 [정직한 카드 UI] 가짜 AI 승률과 랭킹 뱃지 전면 삭제!
         function renderRaceUIOnly(idx) {
             const race = allRaceData[idx];
             if (!race) return;
@@ -841,7 +937,6 @@
                     curVal = savedObj;
                 }
 
-                // 🎯 순수 공식 데이터만 표출 (마명, 기수, 부담중량)
                 list.innerHTML += `
                     <div class="horse-card" id="card_${i}">
                         <div class="horse-left">
@@ -869,7 +964,7 @@
                                     <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
                                            value="${curVal}"
                                            oninput="handleOddsInput()"
-                                           onkeydown="handleOddsKey(event, ${i})">
+                                           onkeydown="handleBaseOddsKey(event, ${i})">
                                 </div>
                             </div>
                             <div style="margin-top:2px;">
@@ -909,7 +1004,6 @@
             }
         }
 
-        // 🎯 [저장] 배당 +  승부패드 동시 저장!
         function saveCurrentOdds() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -931,11 +1025,10 @@
             localStorage.setItem(getDerbyStorageKey(race), JSON.stringify(derbyInputs));
             localStorage.setItem(getRaceStorageKey(race), JSON.stringify(oddsMap));
 
-            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당과  패드 내용이 함께 저장되었습니다!\n\n다른 기기(폰)와 공유하시려면 [☁️ 깃허브 저장]을 눌러주세요.`);
+            alert(`💾 [${race.meet_name} ${race.race_no}R] 배당과 더비온 패드 내용이 함께 저장되었습니다!\n\n다른 기기(폰)와 공유하시려면 [☁️ 깃허브 저장]을 눌러주세요.`);
             populateRaceSelect(document.getElementById('dateSelect').value, currentRaceIdx);
         }
 
-        // 🎯 깃허브 클라우드 동기화 (10주 롤링 적용 후 저장)
         async function saveToCloudGitHub() {
             let token = localStorage.getItem('gh_token');
             if (!token) {
@@ -956,7 +1049,7 @@
 
             const toast = document.getElementById('updateToast');
             toast.style.display = 'block';
-            toast.innerHTML = "☁️ 깃허브에 데이터(배당+패드) 10주 롤링 동기화 중...";
+            toast.innerHTML = "☁️ 깃허브에 데이터(배당+더비온패드) 10주 롤링 동기화 중...";
 
             try {
                 const getUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/race_data.json`;
@@ -970,7 +1063,6 @@
                     currentSha = fileInfo.sha;
                 }
 
-                // 10주 롤링 윈도우 적용하여 11주차 초과 데이터 자동 삭제
                 const listToSave = apply10WeeksRollingWindow(allRaceData);
 
                 const jsonStr = JSON.stringify(listToSave, null, 2);
@@ -996,7 +1088,7 @@
                 if (putRes.ok) {
                     toast.innerHTML = "✨ 깃허브 동기화 성공! 폰에서 [📥 깃허브 불러오기]를 누르세요.";
                     setTimeout(() => { toast.style.display = 'none'; }, 2500);
-                    alert("☁️ 깃허브에 완벽하게 저장되었습니다!\n\n스마트폰에서 [📥 깃허브 불러오기]를 누르면  번호와 배당이 그대로 복원됩니다.");
+                    alert("☁️ 깃허브에 완벽하게 저장되었습니다!\n\n스마트폰에서 [📥 깃허브 불러오기]를 누르면 더비온 번호와 배당이 그대로 복원됩니다.");
                 } else {
                     const errData = await putRes.json();
                     throw new Error(errData.message || "저장 실패");
@@ -1038,7 +1130,7 @@
 
                 toast.innerHTML = "✨ 최신 데이터 동기화 완료!";
                 setTimeout(() => { toast.style.display = 'none'; }, 2000);
-                alert("✨ 깃허브 최신 데이터(거리/배당/패드)를 성공적으로 불러왔습니다!");
+                alert("✨ 깃허브 최신 데이터(거리/배당/더비온패드)를 성공적으로 불러왔습니다!");
             } catch (e) {
                 toast.innerHTML = `❌ 불러오기 실패: ${e.message}`;
                 setTimeout(() => { toast.style.display = 'none'; }, 4000);
