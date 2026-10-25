@@ -4,7 +4,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261023",
-    "distance": "900",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32,11 +32,7 @@
         "late_rank": 6,
         "win_prob": 11.5,
         "place_prob": 27.6,
-        "pure_score": 61.2,
-        "saved_odds": {
-          "base": "19.5",
-          "cur": ""
-        }
+        "pure_score": 61.2
       },
       {
         "gate": "2",
@@ -62,11 +58,7 @@
         "late_rank": 7,
         "win_prob": 11.1,
         "place_prob": 26.6,
-        "pure_score": 58.5,
-        "saved_odds": {
-          "base": "17.5",
-          "cur": ""
-        }
+        "pure_score": 58.5
       },
       {
         "gate": "3",
@@ -92,11 +84,7 @@
         "late_rank": 8,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 57.2,
-        "saved_odds": {
-          "base": "9.5",
-          "cur": ""
-        }
+        "pure_score": 57.2
       },
       {
         "gate": "5",
@@ -121,12 +109,8 @@
         "early_rank": 4,
         "late_rank": 1,
         "win_prob": 10.4,
-        "place_prob": 25,
-        "pure_score": 54.9,
-        "saved_odds": {
-          "base": "12.8",
-          "cur": ""
-        }
+        "place_prob": 25.0,
+        "pure_score": 54.9
       },
       {
         "gate": "6",
@@ -151,12 +135,8 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23,
-        "pure_score": 51.1,
-        "saved_odds": {
-          "base": "25.3",
-          "cur": ""
-        }
+        "place_prob": 23.0,
+        "pure_score": 51.1
       },
       {
         "gate": "7",
@@ -181,12 +161,8 @@
         "early_rank": 6,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23,
-        "pure_score": 51.1,
-        "saved_odds": {
-          "base": "4.8",
-          "cur": ""
-        }
+        "place_prob": 23.0,
+        "pure_score": 51.1
       },
       {
         "gate": "8",
@@ -211,12 +187,8 @@
         "early_rank": 8,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23,
-        "pure_score": 50.9,
-        "saved_odds": {
-          "base": "41.1",
-          "cur": ""
-        }
+        "place_prob": 23.0,
+        "pure_score": 50.9
       },
       {
         "gate": "10",
@@ -242,11 +214,7 @@
         "late_rank": 9,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 48.7,
-        "saved_odds": {
-          "base": "17.3",
-          "cur": ""
-        }
+        "pure_score": 48.7
       },
       {
         "gate": "4",
@@ -272,11 +240,7 @@
         "late_rank": 5,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 48.1,
-        "saved_odds": {
-          "base": "37.0",
-          "cur": ""
-        }
+        "pure_score": 48.1
       },
       {
         "gate": "9",
@@ -304,38 +268,14 @@
         "place_prob": 21.8,
         "pure_score": 48.1
       }
-    ],
-    "saved_derby": {
-      "early": [
-        3,
-        9,
-        4,
-        7,
-        8
-      ],
-      "late": [
-        9,
-        7,
-        4,
-        3,
-        8
-      ],
-      "pred": [
-        4,
-        10,
-        9,
-        6,
-        3
-      ],
-      "high": []
-    }
+    ]
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261023",
-    "distance": "900",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -415,7 +355,7 @@
         "late_rank": 10,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57
+        "pure_score": 57.0
       },
       {
         "gate": "7",
@@ -465,8 +405,8 @@
         "late_score": 34.08,
         "early_rank": 6,
         "late_rank": 6,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 53.2
       },
       {
@@ -492,7 +432,7 @@
         "early_rank": 5,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 51.1
       },
       {
@@ -545,7 +485,7 @@
         "late_rank": 4,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 50
+        "pure_score": 50.0
       },
       {
         "gate": "9",
@@ -606,7 +546,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261023",
-    "distance": "1000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -660,7 +600,7 @@
         "late_rank": 7,
         "win_prob": 11.8,
         "place_prob": 28.3,
-        "pure_score": 59
+        "pure_score": 59.0
       },
       {
         "gate": "9",
@@ -737,7 +677,7 @@
         "early_rank": 4,
         "late_rank": 10,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 48.1
       },
       {
@@ -763,7 +703,7 @@
         "early_rank": 3,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 48.2
       },
       {
@@ -790,7 +730,7 @@
         "late_rank": 5,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 46
+        "pure_score": 46.0
       },
       {
         "gate": "10",
@@ -814,7 +754,7 @@
         "late_score": 25.69,
         "early_rank": 8,
         "late_rank": 9,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 45.1
       },
@@ -867,7 +807,7 @@
         "early_rank": 10,
         "late_rank": 8,
         "win_prob": 7.9,
-        "place_prob": 19,
+        "place_prob": 19.0,
         "pure_score": 39.7
       }
     ]
@@ -877,7 +817,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261023",
-    "distance": "1000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -1133,7 +1073,7 @@
         "is_front": false,
         "actual_ord": "4",
         "ai_tags": [],
-        "early_score": -4,
+        "early_score": -4.0,
         "late_score": 30.02,
         "early_rank": 10,
         "late_rank": 8,
@@ -1148,7 +1088,7 @@
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261023",
-    "distance": "1110",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -1201,7 +1141,7 @@
         "early_rank": 2,
         "late_rank": 5,
         "win_prob": 12.1,
-        "place_prob": 29,
+        "place_prob": 29.0,
         "pure_score": 63.1
       },
       {
@@ -1409,7 +1349,7 @@
         "early_rank": 10,
         "late_rank": 8,
         "win_prob": 7.5,
-        "place_prob": 18,
+        "place_prob": 18.0,
         "pure_score": 39.1
       }
     ]
@@ -1419,7 +1359,7 @@
     "meet_name": "제주",
     "race_no": "6",
     "race_date": "20261023",
-    "distance": "1110",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -1446,8 +1386,8 @@
         "early_rank": 1,
         "late_rank": 5,
         "win_prob": 12.1,
-        "place_prob": 29,
-        "pure_score": 65
+        "place_prob": 29.0,
+        "pure_score": 65.0
       },
       {
         "gate": "4",
@@ -1498,7 +1438,7 @@
         "early_rank": 3,
         "late_rank": 8,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 56.1
       },
       {
@@ -1524,7 +1464,7 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 55.8
       },
       {
@@ -1679,7 +1619,7 @@
         "late_score": 22.36,
         "early_rank": 10,
         "late_rank": 10,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 42.9
       }
@@ -1820,7 +1760,7 @@
         "late_score": 21.94,
         "early_rank": 4,
         "late_rank": 9,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 50.1
       },
@@ -1846,9 +1786,9 @@
         "late_score": 41.2,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
-        "pure_score": 50
+        "pure_score": 50.0
       },
       {
         "gate": "9",
@@ -1869,7 +1809,7 @@
         "actual_ord": "9",
         "ai_tags": [],
         "early_score": 4.23,
-        "late_score": 30,
+        "late_score": 30.0,
         "early_rank": 8,
         "late_rank": 7,
         "win_prob": 10.8,
@@ -1961,7 +1901,7 @@
         "late_score": 43.21,
         "early_rank": 1,
         "late_rank": 3,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 64.7
       },
@@ -2015,7 +1955,7 @@
         "late_rank": 9,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 56
+        "pure_score": 56.0
       },
       {
         "gate": "10",
@@ -2091,7 +2031,7 @@
         "late_score": 44.63,
         "early_rank": 7,
         "late_rank": 2,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 52.7
       },
@@ -2171,7 +2111,7 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 49
+        "pure_score": 49.0
       },
       {
         "gate": "8",
@@ -2258,8 +2198,8 @@
         "late_score": 50.32,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 58.3
       },
       {
@@ -2311,7 +2251,7 @@
         "early_rank": 1,
         "late_rank": 7,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 56.1
       },
       {
@@ -2529,7 +2469,7 @@
     "meet_name": "부산경남",
     "race_no": "3",
     "race_date": "20261023",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -2739,7 +2679,7 @@
         "late_rank": 4,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 51
+        "pure_score": 51.0
       },
       {
         "gate": "1",
@@ -2826,7 +2766,7 @@
     "meet_name": "부산경남",
     "race_no": "4",
     "race_date": "20261023",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -2982,7 +2922,7 @@
         "late_score": 44.44,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 52.1
       },
@@ -3112,7 +3052,7 @@
         "late_score": 36.94,
         "early_rank": 11,
         "late_rank": 6,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 46.1
       }
@@ -3123,7 +3063,7 @@
     "meet_name": "부산경남",
     "race_no": "5",
     "race_date": "20261023",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3151,7 +3091,7 @@
         "late_rank": 6,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 63
+        "pure_score": 63.0
       },
       {
         "gate": "3",
@@ -3202,7 +3142,7 @@
         "early_rank": 6,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 57.9
       },
       {
@@ -3420,7 +3360,7 @@
     "meet_name": "부산경남",
     "race_no": "6",
     "race_date": "20261023",
-    "distance": "2000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3448,7 +3388,7 @@
         "late_rank": 6,
         "win_prob": 7.4,
         "place_prob": 17.8,
-        "pure_score": 58
+        "pure_score": 58.0
       },
       {
         "gate": "7",
@@ -3498,7 +3438,7 @@
         "late_score": 45.68,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 7,
+        "win_prob": 7.0,
         "place_prob": 16.8,
         "pure_score": 54.9
       },
@@ -3821,7 +3761,7 @@
     "meet_name": "부산경남",
     "race_no": "7",
     "race_date": "20261023",
-    "distance": "1800",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3874,7 +3814,7 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 57.1
       },
       {
@@ -3927,7 +3867,7 @@
         "late_rank": 1,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 56
+        "pure_score": 56.0
       },
       {
         "gate": "11",
@@ -3977,7 +3917,7 @@
         "late_score": 46.36,
         "early_rank": 5,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 53.8
       },
@@ -4107,7 +4047,7 @@
         "late_score": 38.74,
         "early_rank": 11,
         "late_rank": 5,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 47.7
       }
@@ -4118,7 +4058,7 @@
     "meet_name": "부산경남",
     "race_no": "8",
     "race_date": "20261023",
-    "distance": "2200",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4250,7 +4190,7 @@
         "late_rank": 7,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 54
+        "pure_score": 54.0
       },
       {
         "gate": "4",
@@ -4274,7 +4214,7 @@
         "late_score": 46.04,
         "early_rank": 3,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 53.5
       },
@@ -4415,7 +4355,7 @@
     "meet_name": "부산경남",
     "race_no": "9",
     "race_date": "20261023",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4545,7 +4485,7 @@
         "late_score": 46.43,
         "early_rank": 5,
         "late_rank": 1,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 53.9
       },
@@ -4712,7 +4652,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261024",
-    "distance": "900",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4895,7 +4835,7 @@
         "early_rank": 4,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 50.4
       },
       {
@@ -4922,7 +4862,7 @@
         "late_rank": 4,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 49
+        "pure_score": 49.0
       },
       {
         "gate": "5",
@@ -4983,7 +4923,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261024",
-    "distance": "900",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -5037,7 +4977,7 @@
         "late_rank": 5,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 59
+        "pure_score": 59.0
       },
       {
         "gate": "8",
@@ -5217,7 +5157,7 @@
         "late_score": 31.25,
         "early_rank": 10,
         "late_rank": 6,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 42.1
       },
@@ -5244,7 +5184,7 @@
         "early_rank": 7,
         "late_rank": 9,
         "win_prob": 7.5,
-        "place_prob": 18,
+        "place_prob": 18.0,
         "pure_score": 39.3
       }
     ]
@@ -5254,7 +5194,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261024",
-    "distance": "1000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -5385,7 +5325,7 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 52.2
       },
       {
@@ -5436,7 +5376,7 @@
         "late_score": 35.69,
         "early_rank": 5,
         "late_rank": 4,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 45.1
       },
@@ -5464,7 +5404,7 @@
         "late_rank": 8,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 44
+        "pure_score": 44.0
       },
       {
         "gate": "8",
@@ -5525,7 +5465,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261024",
-    "distance": "1000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -5577,7 +5517,7 @@
         "late_score": 30.33,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 58.2
       },
@@ -5605,7 +5545,7 @@
         "late_rank": 8,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57
+        "pure_score": 57.0
       },
       {
         "gate": "2",
@@ -5734,7 +5674,7 @@
         "early_rank": 5,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 50.8
       },
       {
@@ -5787,7 +5727,7 @@
         "late_rank": 10,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 43
+        "pure_score": 43.0
       }
     ]
   },
@@ -5954,7 +5894,7 @@
         "late_rank": 2,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 57
+        "pure_score": 57.0
       },
       {
         "gate": "6",
@@ -6058,7 +5998,7 @@
         "late_rank": 10,
         "win_prob": 7.4,
         "place_prob": 17.8,
-        "pure_score": 41
+        "pure_score": 41.0
       }
     ]
   },
@@ -6142,7 +6082,7 @@
         "actual_ord": "6",
         "ai_tags": [],
         "early_score": 14.62,
-        "late_score": 55,
+        "late_score": 55.0,
         "early_rank": 4,
         "late_rank": 1,
         "win_prob": 10.6,
@@ -6172,7 +6112,7 @@
         "early_rank": 3,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 59.9
       },
       {
@@ -6223,8 +6163,8 @@
         "late_score": 41.12,
         "early_rank": 6,
         "late_rank": 7,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 57.8
       },
       {
@@ -6338,7 +6278,7 @@
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261024",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -6366,7 +6306,7 @@
         "late_rank": 5,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 66
+        "pure_score": 66.0
       },
       {
         "gate": "2",
@@ -6443,7 +6383,7 @@
         "early_rank": 3,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 57.9
       },
       {
@@ -6609,7 +6549,7 @@
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261024",
-    "distance": "1000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -6761,7 +6701,7 @@
         "is_front": false,
         "actual_ord": "6",
         "ai_tags": [],
-        "early_score": 6,
+        "early_score": 6.0,
         "late_score": 43.72,
         "early_rank": 9,
         "late_rank": 2,
@@ -6959,7 +6899,7 @@
         "early_rank": 8,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 55.8
       },
       {
@@ -7062,7 +7002,7 @@
         "late_score": 43.44,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 52.5
       },
@@ -7168,7 +7108,7 @@
         "late_rank": 9,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 50
+        "pure_score": 50.0
       },
       {
         "gate": "7",
@@ -7256,7 +7196,7 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 54.1
       },
       {
@@ -7745,7 +7685,7 @@
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261024",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -7850,7 +7790,7 @@
         "early_rank": 6,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 56.1
       },
       {
@@ -8042,7 +7982,7 @@
     "meet_name": "서울",
     "race_no": "6",
     "race_date": "20261024",
-    "distance": "1800",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8069,7 +8009,7 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 12.1,
-        "place_prob": 29,
+        "place_prob": 29.0,
         "pure_score": 57.1
       },
       {
@@ -8172,7 +8112,7 @@
         "late_score": 41.93,
         "early_rank": 4,
         "late_rank": 3,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 51.9
       },
@@ -8287,7 +8227,7 @@
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261024",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8392,7 +8332,7 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 55.7
       },
       {
@@ -8558,7 +8498,7 @@
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261024",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8585,7 +8525,7 @@
         "early_rank": 2,
         "late_rank": 3,
         "win_prob": 12.9,
-        "place_prob": 31,
+        "place_prob": 31.0,
         "pure_score": 63.8
       },
       {
@@ -8611,7 +8551,7 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 12.9,
-        "place_prob": 31,
+        "place_prob": 31.0,
         "pure_score": 63.9
       },
       {
@@ -8662,7 +8602,7 @@
         "late_score": 31.97,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 54.2
       },
@@ -8716,7 +8656,7 @@
         "late_rank": 5,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 51
+        "pure_score": 51.0
       },
       {
         "gate": "5",
@@ -8803,7 +8743,7 @@
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261024",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -9127,7 +9067,7 @@
         "early_rank": 3,
         "late_rank": 9,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 54.6
       },
       {
@@ -9371,7 +9311,7 @@
         "late_score": 40.16,
         "early_rank": 1,
         "late_rank": 5,
-        "win_prob": 13,
+        "win_prob": 13.0,
         "place_prob": 31.2,
         "pure_score": 62.8
       },
@@ -9475,7 +9415,7 @@
         "late_score": 45.69,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 53.1
       },
@@ -9590,7 +9530,7 @@
     "meet_name": "영천",
     "race_no": "2",
     "race_date": "20261025",
-    "distance": "1300",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -9746,7 +9686,7 @@
         "late_score": 31.43,
         "early_rank": 5,
         "late_rank": 10,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 53.9
       },
@@ -9772,7 +9712,7 @@
         "late_score": 31.94,
         "early_rank": 2,
         "late_rank": 9,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 54.1
       },
@@ -9914,7 +9854,7 @@
         "early_rank": 2,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 57.8
       },
       {
@@ -9940,8 +9880,8 @@
         "early_rank": 6,
         "late_rank": 1,
         "win_prob": 9.6,
-        "place_prob": 23,
-        "pure_score": 58
+        "place_prob": 23.0,
+        "pure_score": 58.0
       },
       {
         "gate": "9",
@@ -9966,7 +9906,7 @@
         "early_rank": 7,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 57.8
       },
       {
@@ -10184,7 +10124,7 @@
     "meet_name": "영천",
     "race_no": "4",
     "race_date": "20261025",
-    "distance": "1600",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -10289,7 +10229,7 @@
         "early_rank": 7,
         "late_rank": 1,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 54.4
       },
       {
@@ -10341,7 +10281,7 @@
         "early_rank": 3,
         "late_rank": 10,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 50.1
       },
       {
@@ -10418,7 +10358,7 @@
         "late_score": 38.19,
         "early_rank": 4,
         "late_rank": 4,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 47.1
       },
@@ -10455,7 +10395,7 @@
     "meet_name": "영천",
     "race_no": "5",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -10508,7 +10448,7 @@
         "early_rank": 2,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 58.1
       },
       {
@@ -10534,7 +10474,7 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 57.9
       },
       {
@@ -10752,7 +10692,7 @@
     "meet_name": "영천",
     "race_no": "6",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11038,7 +10978,7 @@
         "late_score": 36.44,
         "early_rank": 7,
         "late_rank": 6,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 46.9
       }
@@ -11049,7 +10989,7 @@
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11075,8 +11015,8 @@
         "late_score": 34.44,
         "early_rank": 1,
         "late_rank": 6,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 56.1
       },
       {
@@ -11205,7 +11145,7 @@
         "late_score": 41.94,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11231,7 +11171,7 @@
         "late_score": 41.94,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11257,7 +11197,7 @@
         "late_score": 31.94,
         "early_rank": 8,
         "late_rank": 11,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11346,7 +11286,7 @@
     "meet_name": "서울",
     "race_no": "2",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11373,7 +11313,7 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 58.1
       },
       {
@@ -11450,7 +11390,7 @@
         "late_score": 26.94,
         "early_rank": 3,
         "late_rank": 10,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11476,7 +11416,7 @@
         "late_score": 41.94,
         "early_rank": 7,
         "late_rank": 1,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11502,7 +11442,7 @@
         "late_score": 41.94,
         "early_rank": 8,
         "late_rank": 2,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11528,7 +11468,7 @@
         "late_score": 41.94,
         "early_rank": 9,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11554,7 +11494,7 @@
         "late_score": 31.94,
         "early_rank": 10,
         "late_rank": 9,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -11643,7 +11583,7 @@
     "meet_name": "서울",
     "race_no": "3",
     "race_date": "20261025",
-    "distance": "1300",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11799,8 +11739,8 @@
         "late_score": 44.89,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 52.8
       },
       {
@@ -11914,7 +11854,7 @@
     "meet_name": "서울",
     "race_no": "4",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12122,7 +12062,7 @@
         "late_score": 42.67,
         "early_rank": 10,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 51.7
       },
@@ -12175,7 +12115,7 @@
         "early_rank": 6,
         "late_rank": 7,
         "win_prob": 7.9,
-        "place_prob": 19,
+        "place_prob": 19.0,
         "pure_score": 45.1
       },
       {
@@ -12211,7 +12151,7 @@
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12367,7 +12307,7 @@
         "late_score": 45.69,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 53.1
       },
@@ -12419,8 +12359,8 @@
         "late_score": 29.44,
         "early_rank": 9,
         "late_rank": 9,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 48.1
       },
       {
@@ -12446,7 +12386,7 @@
         "early_rank": 6,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23,
+        "place_prob": 23.0,
         "pure_score": 46.1
       }
     ]
@@ -12560,8 +12500,8 @@
         "late_score": 45.69,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 53.1
       },
       {
@@ -12586,8 +12526,8 @@
         "late_score": 45.69,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 53.1
       },
       {
@@ -12612,8 +12552,8 @@
         "late_score": 45.69,
         "early_rank": 8,
         "late_rank": 4,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 53.1
       },
       {
@@ -12638,8 +12578,8 @@
         "late_score": 35.72,
         "early_rank": 6,
         "late_rank": 7,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 53.5
       },
       {
@@ -12690,7 +12630,7 @@
         "late_score": 24.44,
         "early_rank": 5,
         "late_rank": 10,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 48.1
       },
@@ -12727,7 +12667,7 @@
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261025",
-    "distance": "1700",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12753,7 +12693,7 @@
         "late_score": 51.22,
         "early_rank": 5,
         "late_rank": 1,
-        "win_prob": 11,
+        "win_prob": 11.0,
         "place_prob": 26.4,
         "pure_score": 59.5
       },
@@ -12989,7 +12929,7 @@
         "late_rank": 9,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 45
+        "pure_score": 45.0
       }
     ]
   },
@@ -12998,7 +12938,7 @@
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261025",
-    "distance": "1800",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -13051,7 +12991,7 @@
         "early_rank": 1,
         "late_rank": 7,
         "win_prob": 12.1,
-        "place_prob": 29,
+        "place_prob": 29.0,
         "pure_score": 55.5
       },
       {
@@ -13232,8 +13172,8 @@
         "late_score": 36.94,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 10,
-        "place_prob": 24,
+        "win_prob": 10.0,
+        "place_prob": 24.0,
         "pure_score": 46.1
       }
     ]
@@ -13243,7 +13183,7 @@
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261025",
-    "distance": "2000",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -13644,7 +13584,7 @@
         "late_score": 46.52,
         "early_rank": 4,
         "late_rank": 3,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 54.4
       },
@@ -13670,7 +13610,7 @@
         "late_score": 46.97,
         "early_rank": 7,
         "late_rank": 2,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 54.2
       },
@@ -13774,7 +13714,7 @@
         "late_score": 38.44,
         "early_rank": 10,
         "late_rank": 6,
-        "win_prob": 8,
+        "win_prob": 8.0,
         "place_prob": 19.2,
         "pure_score": 48.5
       }
@@ -13785,7 +13725,7 @@
     "meet_name": "서울",
     "race_no": "11",
     "race_date": "20261025",
-    "distance": "1400",
+    "distance": "1200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -13812,7 +13752,7 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 10.4,
-        "place_prob": 25,
+        "place_prob": 25.0,
         "pure_score": 59.1
       },
       {
@@ -13941,7 +13881,7 @@
         "late_score": 28.19,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 51.1
       },
@@ -13967,7 +13907,7 @@
         "late_score": 43.19,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 9,
+        "win_prob": 9.0,
         "place_prob": 21.6,
         "pure_score": 51.1
       },
