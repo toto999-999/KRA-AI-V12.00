@@ -601,13 +601,19 @@
       }
     ],
     "saved_derby": {
-      "early": [],
-      "late": [
-        4,
-        9,
-        7,
+      "early": [
         3,
-        2
+        2,
+        6,
+        7,
+        4
+      ],
+      "late": [
+        3,
+        2,
+        6,
+        7,
+        4
       ],
       "pred": [
         7,
@@ -16117,8 +16123,8 @@
         "place_prob": 25,
         "pure_score": 59.1,
         "saved_odds": {
-          "base": "3.2",
-          "cur": "3.8"
+          "base": "",
+          "cur": "28.0"
         }
       },
       {
@@ -16147,8 +16153,8 @@
         "place_prob": 23.8,
         "pure_score": 56.5,
         "saved_odds": {
-          "base": "10.6",
-          "cur": "8.2"
+          "base": "",
+          "cur": "9.1"
         }
       },
       {
@@ -16177,8 +16183,8 @@
         "place_prob": 23.3,
         "pure_score": 55.5,
         "saved_odds": {
-          "base": "29.0",
-          "cur": "37.3"
+          "base": "",
+          "cur": "4.3"
         }
       },
       {
@@ -16207,8 +16213,8 @@
         "place_prob": 22.1,
         "pure_score": 52.5,
         "saved_odds": {
-          "base": "1.9",
-          "cur": "1.8"
+          "base": "",
+          "cur": "3.9"
         }
       },
       {
@@ -16237,8 +16243,8 @@
         "place_prob": 21.8,
         "pure_score": 52.1,
         "saved_odds": {
-          "base": "14.6",
-          "cur": "19.7"
+          "base": "",
+          "cur": "7.4"
         }
       },
       {
@@ -16267,8 +16273,8 @@
         "place_prob": 21.6,
         "pure_score": 51.1,
         "saved_odds": {
-          "base": "38.4",
-          "cur": "18.1"
+          "base": "",
+          "cur": "22.8"
         }
       },
       {
@@ -16297,8 +16303,8 @@
         "place_prob": 21.6,
         "pure_score": 51.1,
         "saved_odds": {
-          "base": "27.0",
-          "cur": "33.8"
+          "base": "",
+          "cur": "29.0"
         }
       },
       {
@@ -16327,8 +16333,8 @@
         "place_prob": 21.4,
         "pure_score": 50.7,
         "saved_odds": {
-          "base": "23.0",
-          "cur": "33.8"
+          "base": "",
+          "cur": "41.8"
         }
       },
       {
@@ -16357,8 +16363,8 @@
         "place_prob": 21.1,
         "pure_score": 50.1,
         "saved_odds": {
-          "base": "8.9",
-          "cur": "7.7"
+          "base": "",
+          "cur": "38.9"
         }
       },
       {
