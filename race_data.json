@@ -4,7 +4,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32,7 +32,11 @@
         "late_rank": 6,
         "win_prob": 11.5,
         "place_prob": 27.6,
-        "pure_score": 61.2
+        "pure_score": 61.2,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "2",
@@ -58,7 +62,11 @@
         "late_rank": 7,
         "win_prob": 11.1,
         "place_prob": 26.6,
-        "pure_score": 58.5
+        "pure_score": 58.5,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "3",
@@ -84,7 +92,11 @@
         "late_rank": 8,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 57.2
+        "pure_score": 57.2,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "37.3"
+        }
       },
       {
         "gate": "5",
@@ -109,8 +121,12 @@
         "early_rank": 4,
         "late_rank": 1,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 54.9
+        "place_prob": 25,
+        "pure_score": 54.9,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "6",
@@ -135,8 +151,12 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 51.1
+        "place_prob": 23,
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "19.7"
+        }
       },
       {
         "gate": "7",
@@ -161,8 +181,12 @@
         "early_rank": 6,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 51.1
+        "place_prob": 23,
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "38.4",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "8",
@@ -187,8 +211,12 @@
         "early_rank": 8,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 50.9
+        "place_prob": 23,
+        "pure_score": 50.9,
+        "saved_odds": {
+          "base": "27.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "10",
@@ -214,7 +242,11 @@
         "late_rank": 9,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 48.7
+        "pure_score": 48.7,
+        "saved_odds": {
+          "base": "23.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "4",
@@ -240,7 +272,11 @@
         "late_rank": 5,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "8.9",
+          "cur": "7.7"
+        }
       },
       {
         "gate": "9",
@@ -268,14 +304,38 @@
         "place_prob": 21.8,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        9,
+        4,
+        7,
+        8
+      ],
+      "late": [
+        9,
+        7,
+        4,
+        3,
+        8
+      ],
+      "pred": [
+        4,
+        10,
+        9,
+        6,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -355,7 +415,7 @@
         "late_rank": 10,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57.0
+        "pure_score": 57
       },
       {
         "gate": "7",
@@ -405,8 +465,8 @@
         "late_score": 34.08,
         "early_rank": 6,
         "late_rank": 6,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 53.2
       },
       {
@@ -432,7 +492,7 @@
         "early_rank": 5,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 51.1
       },
       {
@@ -485,7 +545,7 @@
         "late_rank": 4,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 50.0
+        "pure_score": 50
       },
       {
         "gate": "9",
@@ -539,14 +599,38 @@
         "place_prob": 21.8,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        2,
+        6,
+        7,
+        4
+      ],
+      "late": [
+        3,
+        2,
+        6,
+        7,
+        4
+      ],
+      "pred": [
+        7,
+        2,
+        5,
+        3,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -574,7 +658,11 @@
         "late_rank": 3,
         "win_prob": 12.6,
         "place_prob": 30.2,
-        "pure_score": 63.3
+        "pure_score": 63.3,
+        "saved_odds": {
+          "base": "11.5",
+          "cur": "11.5"
+        }
       },
       {
         "gate": "1",
@@ -600,7 +688,11 @@
         "late_rank": 7,
         "win_prob": 11.8,
         "place_prob": 28.3,
-        "pure_score": 59.0
+        "pure_score": 59,
+        "saved_odds": {
+          "base": "12.2",
+          "cur": "16.0"
+        }
       },
       {
         "gate": "9",
@@ -626,7 +718,11 @@
         "late_rank": 2,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 57.4
+        "pure_score": 57.4,
+        "saved_odds": {
+          "base": "14.0",
+          "cur": "11.7"
+        }
       },
       {
         "gate": "8",
@@ -652,7 +748,11 @@
         "late_rank": 1,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 51.8
+        "pure_score": 51.8,
+        "saved_odds": {
+          "base": "22.6",
+          "cur": "25.0"
+        }
       },
       {
         "gate": "2",
@@ -677,8 +777,12 @@
         "early_rank": 4,
         "late_rank": 10,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 48.1
+        "place_prob": 23,
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "6.2",
+          "cur": "7.2"
+        }
       },
       {
         "gate": "5",
@@ -703,8 +807,12 @@
         "early_rank": 3,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 48.2
+        "place_prob": 23,
+        "pure_score": 48.2,
+        "saved_odds": {
+          "base": "6.8",
+          "cur": "8.3"
+        }
       },
       {
         "gate": "4",
@@ -730,7 +838,11 @@
         "late_rank": 5,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 46.0
+        "pure_score": 46,
+        "saved_odds": {
+          "base": "24.3",
+          "cur": "23.2"
+        }
       },
       {
         "gate": "10",
@@ -754,9 +866,13 @@
         "late_score": 25.69,
         "early_rank": 8,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 45.1
+        "pure_score": 45.1,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.6"
+        }
       },
       {
         "gate": "6",
@@ -782,7 +898,11 @@
         "late_rank": 6,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 43.2
+        "pure_score": 43.2,
+        "saved_odds": {
+          "base": "24.7",
+          "cur": "36.7"
+        }
       },
       {
         "gate": "7",
@@ -807,17 +927,45 @@
         "early_rank": 10,
         "late_rank": 8,
         "win_prob": 7.9,
-        "place_prob": 19.0,
-        "pure_score": 39.7
+        "place_prob": 19,
+        "pure_score": 39.7,
+        "saved_odds": {
+          "base": "21.0",
+          "cur": "25.7"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        7,
+        9,
+        3,
+        8
+      ],
+      "late": [
+        10,
+        2,
+        5,
+        6,
+        1
+      ],
+      "pred": [
+        10,
+        4,
+        2,
+        9,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -871,7 +1019,11 @@
         "late_rank": 6,
         "win_prob": 11.7,
         "place_prob": 28.1,
-        "pure_score": 61.4
+        "pure_score": 61.4,
+        "saved_odds": {
+          "base": "16.6",
+          "cur": ""
+        }
       },
       {
         "gate": "1",
@@ -897,7 +1049,11 @@
         "late_rank": 9,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "3.4",
+          "cur": ""
+        }
       },
       {
         "gate": "4",
@@ -923,7 +1079,11 @@
         "late_rank": 1,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 52.2
+        "pure_score": 52.2,
+        "saved_odds": {
+          "base": "7.0",
+          "cur": ""
+        }
       },
       {
         "gate": "7",
@@ -949,7 +1109,11 @@
         "late_rank": 2,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "19.5",
+          "cur": ""
+        }
       },
       {
         "gate": "5",
@@ -975,7 +1139,11 @@
         "late_rank": 3,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "15.8",
+          "cur": ""
+        }
       },
       {
         "gate": "9",
@@ -1001,7 +1169,11 @@
         "late_rank": 7,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "4.2",
+          "cur": ""
+        }
       },
       {
         "gate": "6",
@@ -1027,7 +1199,11 @@
         "late_rank": 4,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 49.9
+        "pure_score": 49.9,
+        "saved_odds": {
+          "base": "4.8",
+          "cur": ""
+        }
       },
       {
         "gate": "10",
@@ -1053,7 +1229,11 @@
         "late_rank": 10,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 46.1
+        "pure_score": 46.1,
+        "saved_odds": {
+          "base": "18.7",
+          "cur": ""
+        }
       },
       {
         "gate": "8",
@@ -1073,22 +1253,50 @@
         "is_front": false,
         "actual_ord": "4",
         "ai_tags": [],
-        "early_score": -4.0,
+        "early_score": -4,
         "late_score": 30.02,
         "early_rank": 10,
         "late_rank": 8,
         "win_prob": 7.8,
         "place_prob": 18.7,
-        "pure_score": 41.1
+        "pure_score": 41.1,
+        "saved_odds": {
+          "base": "7.3",
+          "cur": ""
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        9,
+        7,
+        8,
+        6,
+        3
+      ],
+      "late": [
+        10,
+        1,
+        5,
+        8,
+        4
+      ],
+      "pred": [
+        6,
+        2,
+        5,
+        8,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -1141,7 +1349,7 @@
         "early_rank": 2,
         "late_rank": 5,
         "win_prob": 12.1,
-        "place_prob": 29.0,
+        "place_prob": 29,
         "pure_score": 63.1
       },
       {
@@ -1349,17 +1557,41 @@
         "early_rank": 10,
         "late_rank": 8,
         "win_prob": 7.5,
-        "place_prob": 18.0,
+        "place_prob": 18,
         "pure_score": 39.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        6,
+        2,
+        1,
+        5
+      ],
+      "late": [
+        7,
+        8,
+        2,
+        5,
+        4
+      ],
+      "pred": [
+        6,
+        2,
+        5,
+        8,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "6",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -1386,8 +1618,8 @@
         "early_rank": 1,
         "late_rank": 5,
         "win_prob": 12.1,
-        "place_prob": 29.0,
-        "pure_score": 65.0
+        "place_prob": 29,
+        "pure_score": 65
       },
       {
         "gate": "4",
@@ -1438,7 +1670,7 @@
         "early_rank": 3,
         "late_rank": 8,
         "win_prob": 10.4,
-        "place_prob": 25.0,
+        "place_prob": 25,
         "pure_score": 56.1
       },
       {
@@ -1464,7 +1696,7 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
+        "place_prob": 25,
         "pure_score": 55.8
       },
       {
@@ -1619,11 +1851,35 @@
         "late_score": 22.36,
         "early_rank": 10,
         "late_rank": 10,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 42.9
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        3,
+        6,
+        4,
+        10
+      ],
+      "late": [
+        1,
+        9,
+        5,
+        4,
+        7
+      ],
+      "pred": [
+        7,
+        5,
+        1,
+        3,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
@@ -1760,7 +2016,7 @@
         "late_score": 21.94,
         "early_rank": 4,
         "late_rank": 9,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 50.1
       },
@@ -1786,9 +2042,9 @@
         "late_score": 41.2,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 50.0
+        "pure_score": 50
       },
       {
         "gate": "9",
@@ -1809,7 +2065,7 @@
         "actual_ord": "9",
         "ai_tags": [],
         "early_score": 4.23,
-        "late_score": 30.0,
+        "late_score": 30,
         "early_rank": 8,
         "late_rank": 7,
         "win_prob": 10.8,
@@ -1868,7 +2124,31 @@
         "place_prob": 22.6,
         "pure_score": 43.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        9,
+        6,
+        3,
+        1,
+        8
+      ],
+      "late": [
+        3,
+        4,
+        7,
+        5,
+        2
+      ],
+      "pred": [
+        3,
+        2,
+        9,
+        5,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
@@ -1901,9 +2181,13 @@
         "late_score": 43.21,
         "early_rank": 1,
         "late_rank": 3,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 64.7
+        "pure_score": 64.7,
+        "saved_odds": {
+          "base": "29.4",
+          "cur": "31.1"
+        }
       },
       {
         "gate": "2",
@@ -1929,7 +2213,11 @@
         "late_rank": 8,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 57.2
+        "pure_score": 57.2,
+        "saved_odds": {
+          "base": "6.9",
+          "cur": "5.9"
+        }
       },
       {
         "gate": "3",
@@ -1955,7 +2243,11 @@
         "late_rank": 9,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 56.0
+        "pure_score": 56,
+        "saved_odds": {
+          "base": "12.0",
+          "cur": "5.9"
+        }
       },
       {
         "gate": "10",
@@ -1981,7 +2273,11 @@
         "late_rank": 7,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 55.3
+        "pure_score": 55.3,
+        "saved_odds": {
+          "base": "3.8",
+          "cur": "5.2"
+        }
       },
       {
         "gate": "7",
@@ -2007,7 +2303,11 @@
         "late_rank": 1,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 53.8
+        "pure_score": 53.8,
+        "saved_odds": {
+          "base": "28.2",
+          "cur": "26.4"
+        }
       },
       {
         "gate": "6",
@@ -2031,9 +2331,13 @@
         "late_score": 44.63,
         "early_rank": 7,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 52.7
+        "pure_score": 52.7,
+        "saved_odds": {
+          "base": "12.1",
+          "cur": "7.2"
+        }
       },
       {
         "gate": "9",
@@ -2085,7 +2389,11 @@
         "late_rank": 4,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 51.4
+        "pure_score": 51.4,
+        "saved_odds": {
+          "base": "21.1",
+          "cur": "14.2"
+        }
       },
       {
         "gate": "4",
@@ -2111,7 +2419,11 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 49.0
+        "pure_score": 49,
+        "saved_odds": {
+          "base": "36.2",
+          "cur": "28.0"
+        }
       },
       {
         "gate": "8",
@@ -2137,7 +2449,11 @@
         "late_rank": 6,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "2.0",
+          "cur": "2.7"
+        }
       },
       {
         "gate": "11",
@@ -2163,9 +2479,37 @@
         "late_rank": 11,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "38.1",
+          "cur": "31.3"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        2,
+        7,
+        5,
+        6
+      ],
+      "late": [
+        6,
+        2,
+        1,
+        5,
+        4
+      ],
+      "pred": [
+        8,
+        10,
+        2,
+        6,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
@@ -2198,9 +2542,13 @@
         "late_score": 50.32,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
-        "pure_score": 58.3
+        "win_prob": 10,
+        "place_prob": 24,
+        "pure_score": 58.3,
+        "saved_odds": {
+          "base": "20.6",
+          "cur": "20.1"
+        }
       },
       {
         "gate": "10",
@@ -2226,7 +2574,11 @@
         "late_rank": 6,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.6
+        "pure_score": 56.6,
+        "saved_odds": {
+          "base": "1.4",
+          "cur": "1.5"
+        }
       },
       {
         "gate": "2",
@@ -2251,8 +2603,12 @@
         "early_rank": 1,
         "late_rank": 7,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 56.1
+        "place_prob": 23,
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "79.3",
+          "cur": "90.7"
+        }
       },
       {
         "gate": "1",
@@ -2278,7 +2634,11 @@
         "late_rank": 10,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 55.4
+        "pure_score": 55.4,
+        "saved_odds": {
+          "base": "20.6",
+          "cur": "25.0"
+        }
       },
       {
         "gate": "7",
@@ -2304,7 +2664,11 @@
         "late_rank": 2,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 52.8
+        "pure_score": 52.8,
+        "saved_odds": {
+          "base": "4.7",
+          "cur": "4.8"
+        }
       },
       {
         "gate": "11",
@@ -2330,7 +2694,11 @@
         "late_rank": 9,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 53.3
+        "pure_score": 53.3,
+        "saved_odds": {
+          "base": "36.5",
+          "cur": "46.1"
+        }
       },
       {
         "gate": "3",
@@ -2356,7 +2724,11 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "25.7",
+          "cur": "13.1"
+        }
       },
       {
         "gate": "9",
@@ -2382,7 +2754,11 @@
         "late_rank": 8,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "50.1",
+          "cur": "56.2"
+        }
       },
       {
         "gate": "6",
@@ -2408,7 +2784,11 @@
         "late_rank": 3,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 49.7
+        "pure_score": 49.7,
+        "saved_odds": {
+          "base": "13.1",
+          "cur": "18.8"
+        }
       },
       {
         "gate": "5",
@@ -2434,7 +2814,11 @@
         "late_rank": 4,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "22.1",
+          "cur": "25.7"
+        }
       },
       {
         "gate": "8",
@@ -2460,16 +2844,44 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "29.3",
+          "cur": "23.1"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        10,
+        8,
+        4,
+        5
+      ],
+      "late": [
+        6,
+        10,
+        11,
+        5,
+        7
+      ],
+      "pred": [
+        10,
+        7,
+        6,
+        3,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "3",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -2497,7 +2909,11 @@
         "late_rank": 1,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 56.9
+        "pure_score": 56.9,
+        "saved_odds": {
+          "base": "9.6",
+          "cur": "6.0"
+        }
       },
       {
         "gate": "10",
@@ -2523,7 +2939,11 @@
         "late_rank": 6,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 54.7
+        "pure_score": 54.7,
+        "saved_odds": {
+          "base": "2.3",
+          "cur": "3.7"
+        }
       },
       {
         "gate": "3",
@@ -2549,7 +2969,11 @@
         "late_rank": 8,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "27.5",
+          "cur": "36.9"
+        }
       },
       {
         "gate": "2",
@@ -2575,7 +2999,11 @@
         "late_rank": 9,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 53.5
+        "pure_score": 53.5,
+        "saved_odds": {
+          "base": "15.3",
+          "cur": "11.2"
+        }
       },
       {
         "gate": "7",
@@ -2601,7 +3029,11 @@
         "late_rank": 2,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 52.9
+        "pure_score": 52.9,
+        "saved_odds": {
+          "base": "32.3",
+          "cur": "30.3"
+        }
       },
       {
         "gate": "9",
@@ -2627,7 +3059,11 @@
         "late_rank": 7,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 52.4
+        "pure_score": 52.4,
+        "saved_odds": {
+          "base": "6.0",
+          "cur": "3.3"
+        }
       },
       {
         "gate": "4",
@@ -2653,7 +3089,11 @@
         "late_rank": 3,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 51.3
+        "pure_score": 51.3,
+        "saved_odds": {
+          "base": "9.0",
+          "cur": "7.9"
+        }
       },
       {
         "gate": "5",
@@ -2679,7 +3119,11 @@
         "late_rank": 4,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 51.0
+        "pure_score": 51,
+        "saved_odds": {
+          "base": "14.7",
+          "cur": "27.9"
+        }
       },
       {
         "gate": "1",
@@ -2705,7 +3149,11 @@
         "late_rank": 11,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "9.3",
+          "cur": "18.6"
+        }
       },
       {
         "gate": "11",
@@ -2731,7 +3179,11 @@
         "late_rank": 10,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 49.8
+        "pure_score": 49.8,
+        "saved_odds": {
+          "base": "10.5",
+          "cur": "8.7"
+        }
       },
       {
         "gate": "6",
@@ -2757,16 +3209,44 @@
         "late_rank": 5,
         "win_prob": 8.4,
         "place_prob": 20.2,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "48.5",
+          "cur": "41.1"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        5,
+        7,
+        10,
+        11
+      ],
+      "late": [
+        4,
+        9,
+        2,
+        6,
+        8
+      ],
+      "pred": [
+        10,
+        9,
+        8,
+        11,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "4",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -2922,7 +3402,7 @@
         "late_score": 44.44,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 52.1
       },
@@ -3052,18 +3532,42 @@
         "late_score": 36.94,
         "early_rank": 11,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        1,
+        6,
+        2,
+        5
+      ],
+      "late": [
+        8,
+        6,
+        5,
+        4,
+        9
+      ],
+      "pred": [
+        1,
+        5,
+        2,
+        9,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "5",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3091,7 +3595,7 @@
         "late_rank": 6,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 63.0
+        "pure_score": 63
       },
       {
         "gate": "3",
@@ -3142,7 +3646,7 @@
         "early_rank": 6,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.9
       },
       {
@@ -3353,14 +3857,38 @@
         "place_prob": 17.5,
         "pure_score": 44.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        5,
+        11,
+        6,
+        3
+      ],
+      "late": [
+        1,
+        2,
+        10,
+        4,
+        3
+      ],
+      "pred": [
+        3,
+        1,
+        6,
+        7,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "6",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "2000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3388,7 +3916,7 @@
         "late_rank": 6,
         "win_prob": 7.4,
         "place_prob": 17.8,
-        "pure_score": 58.0
+        "pure_score": 58
       },
       {
         "gate": "7",
@@ -3438,7 +3966,7 @@
         "late_score": 45.68,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 7.0,
+        "win_prob": 7,
         "place_prob": 16.8,
         "pure_score": 54.9
       },
@@ -3754,14 +4282,38 @@
         "place_prob": 14.6,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        4,
+        1,
+        7,
+        2
+      ],
+      "late": [
+        13,
+        6,
+        7,
+        10,
+        11
+      ],
+      "pred": [
+        5,
+        6,
+        13,
+        10,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "7",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -3789,7 +4341,11 @@
         "late_rank": 7,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 57.6
+        "pure_score": 57.6,
+        "saved_odds": {
+          "base": "4.2",
+          "cur": "8.1"
+        }
       },
       {
         "gate": "3",
@@ -3814,8 +4370,12 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 57.1
+        "place_prob": 23,
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "22.4",
+          "cur": "17.0"
+        }
       },
       {
         "gate": "4",
@@ -3841,7 +4401,11 @@
         "late_rank": 2,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 56.4
+        "pure_score": 56.4,
+        "saved_odds": {
+          "base": "9.1",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "7",
@@ -3867,7 +4431,11 @@
         "late_rank": 1,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 56.0
+        "pure_score": 56,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.2"
+        }
       },
       {
         "gate": "11",
@@ -3893,7 +4461,11 @@
         "late_rank": 6,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "21.8",
+          "cur": "42.1"
+        }
       },
       {
         "gate": "5",
@@ -3917,9 +4489,13 @@
         "late_score": 46.36,
         "early_rank": 5,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 53.8
+        "pure_score": 53.8,
+        "saved_odds": {
+          "base": "25.4",
+          "cur": "40.0"
+        }
       },
       {
         "gate": "6",
@@ -3945,7 +4521,11 @@
         "late_rank": 4,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "33.1",
+          "cur": "63.9"
+        }
       },
       {
         "gate": "9",
@@ -3971,7 +4551,11 @@
         "late_rank": 9,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "8.6",
+          "cur": "4.7"
+        }
       },
       {
         "gate": "2",
@@ -3997,7 +4581,11 @@
         "late_rank": 11,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "12.8",
+          "cur": "12.5"
+        }
       },
       {
         "gate": "10",
@@ -4023,7 +4611,11 @@
         "late_rank": 10,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 51.9
+        "pure_score": 51.9,
+        "saved_odds": {
+          "base": "5.3",
+          "cur": "4.1"
+        }
       },
       {
         "gate": "8",
@@ -4047,18 +4639,46 @@
         "late_score": 38.74,
         "early_rank": 11,
         "late_rank": 5,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 47.7
+        "pure_score": 47.7,
+        "saved_odds": {
+          "base": "20.4",
+          "cur": "25.5"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        7,
+        9,
+        2,
+        3
+      ],
+      "late": [
+        1,
+        9,
+        7,
+        10,
+        3
+      ],
+      "pred": [
+        10,
+        7,
+        1,
+        4,
+        5
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "8",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "2200",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4190,7 +4810,7 @@
         "late_rank": 7,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 54.0
+        "pure_score": 54
       },
       {
         "gate": "4",
@@ -4214,7 +4834,7 @@
         "late_score": 46.04,
         "early_rank": 3,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.5
       },
@@ -4348,14 +4968,38 @@
         "place_prob": 18.7,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        2,
+        9,
+        8,
+        3
+      ],
+      "late": [
+        4,
+        2,
+        10,
+        7,
+        9
+      ],
+      "pred": [
+        2,
+        6,
+        8,
+        9,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "9",
     "race_date": "20261023",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4383,7 +5027,11 @@
         "late_rank": 3,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 61.8
+        "pure_score": 61.8,
+        "saved_odds": {
+          "base": "11.5",
+          "cur": "34.0"
+        }
       },
       {
         "gate": "2",
@@ -4409,7 +5057,11 @@
         "late_rank": 7,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 58.8
+        "pure_score": 58.8,
+        "saved_odds": {
+          "base": "7.7",
+          "cur": "20.4"
+        }
       },
       {
         "gate": "1",
@@ -4435,7 +5087,11 @@
         "late_rank": 8,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "5.2",
+          "cur": "5.9"
+        }
       },
       {
         "gate": "3",
@@ -4461,7 +5117,11 @@
         "late_rank": 9,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "13.7",
+          "cur": "17.8"
+        }
       },
       {
         "gate": "5",
@@ -4485,9 +5145,13 @@
         "late_score": 46.43,
         "early_rank": 5,
         "late_rank": 1,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 53.9
+        "pure_score": 53.9,
+        "saved_odds": {
+          "base": "3.8",
+          "cur": "1.7"
+        }
       },
       {
         "gate": "6",
@@ -4513,7 +5177,11 @@
         "late_rank": 2,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "13.4",
+          "cur": "19.1"
+        }
       },
       {
         "gate": "8",
@@ -4539,7 +5207,11 @@
         "late_rank": 4,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.4
+        "pure_score": 53.4,
+        "saved_odds": {
+          "base": "4.6",
+          "cur": "6.6"
+        }
       },
       {
         "gate": "9",
@@ -4565,7 +5237,11 @@
         "late_rank": 10,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "16.0",
+          "cur": "39.2"
+        }
       },
       {
         "gate": "11",
@@ -4591,7 +5267,11 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "26.6",
+          "cur": "35.2"
+        }
       },
       {
         "gate": "4",
@@ -4617,7 +5297,11 @@
         "late_rank": 6,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 49.1
+        "pure_score": 49.1,
+        "saved_odds": {
+          "base": "9.0",
+          "cur": "10.3"
+        }
       },
       {
         "gate": "7",
@@ -4645,14 +5329,38 @@
         "place_prob": 19.7,
         "pure_score": 49.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        9,
+        3,
+        10,
+        6,
+        5
+      ],
+      "late": [
+        6,
+        1,
+        4,
+        5,
+        3
+      ],
+      "pred": [
+        6,
+        3,
+        7,
+        4,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4680,7 +5388,11 @@
         "late_rank": 7,
         "win_prob": 11.1,
         "place_prob": 26.6,
-        "pure_score": 58.5
+        "pure_score": 58.5,
+        "saved_odds": {
+          "base": "11.5",
+          "cur": "34.0"
+        }
       },
       {
         "gate": "1",
@@ -4706,7 +5418,11 @@
         "late_rank": 8,
         "win_prob": 10.9,
         "place_prob": 26.2,
-        "pure_score": 57.2
+        "pure_score": 57.2,
+        "saved_odds": {
+          "base": "7.7",
+          "cur": "20.4"
+        }
       },
       {
         "gate": "3",
@@ -4732,7 +5448,11 @@
         "late_rank": 9,
         "win_prob": 10.9,
         "place_prob": 26.2,
-        "pure_score": 57.2
+        "pure_score": 57.2,
+        "saved_odds": {
+          "base": "5.2",
+          "cur": "5.9"
+        }
       },
       {
         "gate": "10",
@@ -4758,7 +5478,11 @@
         "late_rank": 6,
         "win_prob": 10.2,
         "place_prob": 24.5,
-        "pure_score": 53.9
+        "pure_score": 53.9,
+        "saved_odds": {
+          "base": "13.7",
+          "cur": "17.8"
+        }
       },
       {
         "gate": "6",
@@ -4784,7 +5508,11 @@
         "late_rank": 1,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 53.2
+        "pure_score": 53.2,
+        "saved_odds": {
+          "base": "3.8",
+          "cur": "1.7"
+        }
       },
       {
         "gate": "7",
@@ -4810,7 +5538,11 @@
         "late_rank": 2,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 50.9
+        "pure_score": 50.9,
+        "saved_odds": {
+          "base": "13.4",
+          "cur": "19.1"
+        }
       },
       {
         "gate": "4",
@@ -4835,8 +5567,12 @@
         "early_rank": 4,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 50.4
+        "place_prob": 23,
+        "pure_score": 50.4,
+        "saved_odds": {
+          "base": "4.6",
+          "cur": "6.6"
+        }
       },
       {
         "gate": "8",
@@ -4862,7 +5598,11 @@
         "late_rank": 4,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 49.0
+        "pure_score": 49,
+        "saved_odds": {
+          "base": "16.0",
+          "cur": "39.2"
+        }
       },
       {
         "gate": "5",
@@ -4888,7 +5628,11 @@
         "late_rank": 5,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 48.7
+        "pure_score": 48.7,
+        "saved_odds": {
+          "base": "26.6",
+          "cur": "35.2"
+        }
       },
       {
         "gate": "9",
@@ -4914,7 +5658,11 @@
         "late_rank": 10,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "9.0",
+          "cur": "10.3"
+        }
       }
     ]
   },
@@ -4923,7 +5671,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -4951,7 +5699,11 @@
         "late_rank": 3,
         "win_prob": 13.5,
         "place_prob": 32.4,
-        "pure_score": 70.8
+        "pure_score": 70.8,
+        "saved_odds": {
+          "base": "23.3",
+          "cur": "24.4"
+        }
       },
       {
         "gate": "2",
@@ -4977,7 +5729,11 @@
         "late_rank": 5,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 59.0
+        "pure_score": 59,
+        "saved_odds": {
+          "base": "8.8",
+          "cur": "5.7"
+        }
       },
       {
         "gate": "8",
@@ -5003,7 +5759,11 @@
         "late_rank": 1,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 56.7
+        "pure_score": 56.7,
+        "saved_odds": {
+          "base": "19.1",
+          "cur": "28.7"
+        }
       },
       {
         "gate": "7",
@@ -5029,7 +5789,11 @@
         "late_rank": 2,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 56.4
+        "pure_score": 56.4,
+        "saved_odds": {
+          "base": "3.0",
+          "cur": "3.1"
+        }
       },
       {
         "gate": "1",
@@ -5055,7 +5819,11 @@
         "late_rank": 8,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 55.2
+        "pure_score": 55.2,
+        "saved_odds": {
+          "base": "7.3",
+          "cur": "7.4"
+        }
       },
       {
         "gate": "4",
@@ -5081,7 +5849,11 @@
         "late_rank": 4,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 51.5
+        "pure_score": 51.5,
+        "saved_odds": {
+          "base": "12.4",
+          "cur": "17.5"
+        }
       },
       {
         "gate": "10",
@@ -5107,7 +5879,11 @@
         "late_rank": 7,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 49.9
+        "pure_score": 49.9,
+        "saved_odds": {
+          "base": "7.6",
+          "cur": "8.5"
+        }
       },
       {
         "gate": "9",
@@ -5133,7 +5909,11 @@
         "late_rank": 10,
         "win_prob": 8.4,
         "place_prob": 20.2,
-        "pure_score": 44.1
+        "pure_score": 44.1,
+        "saved_odds": {
+          "base": "8.5",
+          "cur": "11.7"
+        }
       },
       {
         "gate": "6",
@@ -5157,9 +5937,13 @@
         "late_score": 31.25,
         "early_rank": 10,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 42.1
+        "pure_score": 42.1,
+        "saved_odds": {
+          "base": "16.9",
+          "cur": "19.4"
+        }
       },
       {
         "gate": "5",
@@ -5184,17 +5968,45 @@
         "early_rank": 7,
         "late_rank": 9,
         "win_prob": 7.5,
-        "place_prob": 18.0,
-        "pure_score": 39.3
+        "place_prob": 18,
+        "pure_score": 39.3,
+        "saved_odds": {
+          "base": "5.4",
+          "cur": "4.4"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        9,
+        10,
+        1,
+        8
+      ],
+      "late": [
+        6,
+        4,
+        1,
+        10,
+        2
+      ],
+      "pred": [
+        7,
+        8,
+        9,
+        1,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -5222,7 +6034,11 @@
         "late_rank": 3,
         "win_prob": 12.2,
         "place_prob": 29.3,
-        "pure_score": 61.1
+        "pure_score": 61.1,
+        "saved_odds": {
+          "base": "8.5",
+          "cur": "4.7"
+        }
       },
       {
         "gate": "2",
@@ -5248,7 +6064,11 @@
         "late_rank": 7,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 57.3
+        "pure_score": 57.3,
+        "saved_odds": {
+          "base": "4.0",
+          "cur": "3.2"
+        }
       },
       {
         "gate": "5",
@@ -5274,7 +6094,11 @@
         "late_rank": 1,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "5.4",
+          "cur": "6.5"
+        }
       },
       {
         "gate": "1",
@@ -5300,7 +6124,11 @@
         "late_rank": 9,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 52.8
+        "pure_score": 52.8,
+        "saved_odds": {
+          "base": "10.2",
+          "cur": "14.2"
+        }
       },
       {
         "gate": "7",
@@ -5325,8 +6153,12 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 52.2
+        "place_prob": 25,
+        "pure_score": 52.2,
+        "saved_odds": {
+          "base": "22.5",
+          "cur": "25.2"
+        }
       },
       {
         "gate": "6",
@@ -5352,7 +6184,11 @@
         "late_rank": 5,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 45.9
+        "pure_score": 45.9,
+        "saved_odds": {
+          "base": "25.2",
+          "cur": "19.9"
+        }
       },
       {
         "gate": "4",
@@ -5376,9 +6212,13 @@
         "late_score": 35.69,
         "early_rank": 5,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 45.1
+        "pure_score": 45.1,
+        "saved_odds": {
+          "base": "16.5",
+          "cur": "24.8"
+        }
       },
       {
         "gate": "10",
@@ -5404,7 +6244,11 @@
         "late_rank": 8,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 44.0
+        "pure_score": 44,
+        "saved_odds": {
+          "base": "2.8",
+          "cur": "3.5"
+        }
       },
       {
         "gate": "8",
@@ -5430,7 +6274,11 @@
         "late_rank": 6,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 43.4
+        "pure_score": 43.4,
+        "saved_odds": {
+          "base": "12.4",
+          "cur": "16.1"
+        }
       },
       {
         "gate": "9",
@@ -5456,16 +6304,44 @@
         "late_rank": 10,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 43.8
+        "pure_score": 43.8,
+        "saved_odds": {
+          "base": "49.1",
+          "cur": "44.6"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        10,
+        3,
+        8,
+        1
+      ],
+      "late": [
+        5,
+        1,
+        6,
+        7,
+        4
+      ],
+      "pred": [
+        2,
+        10,
+        1,
+        5,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -5493,7 +6369,11 @@
         "late_rank": 1,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 59.4
+        "pure_score": 59.4,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.2"
+        }
       },
       {
         "gate": "1",
@@ -5517,9 +6397,13 @@
         "late_score": 30.33,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 58.2
+        "pure_score": 58.2,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.6"
+        }
       },
       {
         "gate": "3",
@@ -5545,7 +6429,11 @@
         "late_rank": 8,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57.0
+        "pure_score": 57,
+        "saved_odds": {
+          "base": "",
+          "cur": "36.6"
+        }
       },
       {
         "gate": "2",
@@ -5571,7 +6459,11 @@
         "late_rank": 9,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 56.2
+        "pure_score": 56.2,
+        "saved_odds": {
+          "base": "",
+          "cur": "26.6"
+        }
       },
       {
         "gate": "8",
@@ -5597,7 +6489,11 @@
         "late_rank": 2,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.2"
+        }
       },
       {
         "gate": "9",
@@ -5623,7 +6519,11 @@
         "late_rank": 6,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 53.3
+        "pure_score": 53.3,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.6"
+        }
       },
       {
         "gate": "7",
@@ -5649,7 +6549,11 @@
         "late_rank": 3,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 51.4
+        "pure_score": 51.4,
+        "saved_odds": {
+          "base": "",
+          "cur": "21.4"
+        }
       },
       {
         "gate": "5",
@@ -5674,8 +6578,12 @@
         "early_rank": 5,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 50.8
+        "place_prob": 23,
+        "pure_score": 50.8,
+        "saved_odds": {
+          "base": "",
+          "cur": "32.6"
+        }
       },
       {
         "gate": "4",
@@ -5701,7 +6609,11 @@
         "late_rank": 5,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 45.1
+        "pure_score": 45.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "7.5"
+        }
       },
       {
         "gate": "10",
@@ -5727,9 +6639,37 @@
         "late_rank": 10,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 43.0
+        "pure_score": 43,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.3"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        10,
+        7,
+        8,
+        9
+      ],
+      "late": [
+        4,
+        2,
+        10,
+        9,
+        5
+      ],
+      "pred": [
+        9,
+        6,
+        8,
+        10,
+        1
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
@@ -5764,7 +6704,11 @@
         "late_rank": 6,
         "win_prob": 11.3,
         "place_prob": 27.1,
-        "pure_score": 62.9
+        "pure_score": 62.9,
+        "saved_odds": {
+          "base": "17.0",
+          "cur": "22.0"
+        }
       },
       {
         "gate": "7",
@@ -5790,7 +6734,11 @@
         "late_rank": 1,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 58.9
+        "pure_score": 58.9,
+        "saved_odds": {
+          "base": "11.6",
+          "cur": "9.1"
+        }
       },
       {
         "gate": "2",
@@ -5816,7 +6764,11 @@
         "late_rank": 8,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 58.4
+        "pure_score": 58.4,
+        "saved_odds": {
+          "base": "7.2",
+          "cur": "8.3"
+        }
       },
       {
         "gate": "3",
@@ -5842,7 +6794,11 @@
         "late_rank": 9,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 58.1
+        "pure_score": 58.1,
+        "saved_odds": {
+          "base": "8.0",
+          "cur": "11.6"
+        }
       },
       {
         "gate": "4",
@@ -5868,7 +6824,11 @@
         "late_rank": 3,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 57.2
+        "pure_score": 57.2,
+        "saved_odds": {
+          "base": "5.7",
+          "cur": "6.1"
+        }
       },
       {
         "gate": "5",
@@ -5894,7 +6854,11 @@
         "late_rank": 2,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 57.0
+        "pure_score": 57,
+        "saved_odds": {
+          "base": "9.6",
+          "cur": "8.0"
+        }
       },
       {
         "gate": "6",
@@ -5920,7 +6884,11 @@
         "late_rank": 4,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "11.5",
+          "cur": "6.0"
+        }
       },
       {
         "gate": "10",
@@ -5946,7 +6914,11 @@
         "late_rank": 7,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "13.4",
+          "cur": "8.3"
+        }
       },
       {
         "gate": "8",
@@ -5972,7 +6944,11 @@
         "late_rank": 5,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "2.9",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "9",
@@ -5998,9 +6974,37 @@
         "late_rank": 10,
         "win_prob": 7.4,
         "place_prob": 17.8,
-        "pure_score": 41.0
+        "pure_score": 41,
+        "saved_odds": {
+          "base": "19.7",
+          "cur": "22.8"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        9,
+        5,
+        2,
+        4
+      ],
+      "late": [
+        7,
+        4,
+        5,
+        6,
+        1
+      ],
+      "pred": [
+        4,
+        6,
+        5,
+        7,
+        8
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
@@ -6035,7 +7039,11 @@
         "late_rank": 5,
         "win_prob": 12.3,
         "place_prob": 29.5,
-        "pure_score": 70.8
+        "pure_score": 70.8,
+        "saved_odds": {
+          "base": "16.3",
+          "cur": "19.4"
+        }
       },
       {
         "gate": "1",
@@ -6061,7 +7069,11 @@
         "late_rank": 8,
         "win_prob": 11.1,
         "place_prob": 26.6,
-        "pure_score": 64.1
+        "pure_score": 64.1,
+        "saved_odds": {
+          "base": "11.8",
+          "cur": "8.1"
+        }
       },
       {
         "gate": "6",
@@ -6082,12 +7094,16 @@
         "actual_ord": "6",
         "ai_tags": [],
         "early_score": 14.62,
-        "late_score": 55.0,
+        "late_score": 55,
         "early_rank": 4,
         "late_rank": 1,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 61.4
+        "pure_score": 61.4,
+        "saved_odds": {
+          "base": "11.0",
+          "cur": "9.0"
+        }
       },
       {
         "gate": "5",
@@ -6112,8 +7128,12 @@
         "early_rank": 3,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 59.9
+        "place_prob": 25,
+        "pure_score": 59.9,
+        "saved_odds": {
+          "base": "17.7",
+          "cur": "26.0"
+        }
       },
       {
         "gate": "10",
@@ -6139,7 +7159,11 @@
         "late_rank": 6,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 59.4
+        "pure_score": 59.4,
+        "saved_odds": {
+          "base": "11.1",
+          "cur": "13.8"
+        }
       },
       {
         "gate": "9",
@@ -6163,9 +7187,13 @@
         "late_score": 41.12,
         "early_rank": 6,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
-        "pure_score": 57.8
+        "win_prob": 10,
+        "place_prob": 24,
+        "pure_score": 57.8,
+        "saved_odds": {
+          "base": "34.6",
+          "cur": "29.6"
+        }
       },
       {
         "gate": "7",
@@ -6191,7 +7219,11 @@
         "late_rank": 3,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "18.6",
+          "cur": "14.7"
+        }
       },
       {
         "gate": "8",
@@ -6217,7 +7249,11 @@
         "late_rank": 4,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "11.7",
+          "cur": "11.8"
+        }
       },
       {
         "gate": "2",
@@ -6243,7 +7279,11 @@
         "late_rank": 10,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 46.9
+        "pure_score": 46.9,
+        "saved_odds": {
+          "base": "6.3",
+          "cur": "4.6"
+        }
       },
       {
         "gate": "4",
@@ -6269,16 +7309,44 @@
         "late_rank": 9,
         "win_prob": 7.6,
         "place_prob": 18.2,
-        "pure_score": 44.1
+        "pure_score": 44.1,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "2.2"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        6,
+        2,
+        4,
+        1
+      ],
+      "late": [
+        1,
+        9,
+        2,
+        3,
+        5
+      ],
+      "pred": [
+        5,
+        1,
+        2,
+        3,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -6306,7 +7374,11 @@
         "late_rank": 5,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 66.0
+        "pure_score": 66,
+        "saved_odds": {
+          "base": "19.4",
+          "cur": "17.8"
+        }
       },
       {
         "gate": "2",
@@ -6332,7 +7404,11 @@
         "late_rank": 9,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 59.1
+        "pure_score": 59.1,
+        "saved_odds": {
+          "base": "4.6",
+          "cur": "2.9"
+        }
       },
       {
         "gate": "8",
@@ -6358,7 +7434,11 @@
         "late_rank": 1,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 58.9
+        "pure_score": 58.9,
+        "saved_odds": {
+          "base": "9.7",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "5",
@@ -6383,8 +7463,12 @@
         "early_rank": 3,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 57.9
+        "place_prob": 25,
+        "pure_score": 57.9,
+        "saved_odds": {
+          "base": "15.6",
+          "cur": "17.8"
+        }
       },
       {
         "gate": "4",
@@ -6410,7 +7494,11 @@
         "late_rank": 4,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 56.2
+        "pure_score": 56.2,
+        "saved_odds": {
+          "base": "11.1",
+          "cur": "18.4"
+        }
       },
       {
         "gate": "7",
@@ -6436,7 +7524,11 @@
         "late_rank": 3,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "12.5",
+          "cur": "18.6"
+        }
       },
       {
         "gate": "10",
@@ -6462,7 +7554,11 @@
         "late_rank": 6,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "24.2",
+          "cur": "20.7"
+        }
       },
       {
         "gate": "9",
@@ -6488,7 +7584,11 @@
         "late_rank": 8,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "20.5",
+          "cur": "15.3"
+        }
       },
       {
         "gate": "6",
@@ -6514,7 +7614,11 @@
         "late_rank": 7,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "4.4",
+          "cur": "5.4"
+        }
       },
       {
         "gate": "3",
@@ -6540,16 +7644,44 @@
         "late_rank": 10,
         "win_prob": 7.8,
         "place_prob": 18.7,
-        "pure_score": 43.3
+        "pure_score": 43.3,
+        "saved_odds": {
+          "base": "3.1",
+          "cur": "3.9"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        5,
+        7,
+        6,
+        2,
+        3
+      ],
+      "late": [
+        9,
+        8,
+        2,
+        1,
+        3
+      ],
+      "pred": [
+        2,
+        6,
+        3,
+        8,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -6577,7 +7709,11 @@
         "late_rank": 6,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 61.5
+        "pure_score": 61.5,
+        "saved_odds": {
+          "base": "1.7",
+          "cur": "1.6"
+        }
       },
       {
         "gate": "11",
@@ -6603,7 +7739,11 @@
         "late_rank": 4,
         "win_prob": 10.2,
         "place_prob": 24.5,
-        "pure_score": 59.5
+        "pure_score": 59.5,
+        "saved_odds": {
+          "base": "49.2",
+          "cur": "76.9"
+        }
       },
       {
         "gate": "6",
@@ -6629,7 +7769,11 @@
         "late_rank": 1,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 59.3
+        "pure_score": 59.3,
+        "saved_odds": {
+          "base": "12.0",
+          "cur": "10.8"
+        }
       },
       {
         "gate": "2",
@@ -6655,7 +7799,11 @@
         "late_rank": 8,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 54.6
+        "pure_score": 54.6,
+        "saved_odds": {
+          "base": "9.1",
+          "cur": "11.7"
+        }
       },
       {
         "gate": "1",
@@ -6681,7 +7829,11 @@
         "late_rank": 10,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "48.1",
+          "cur": "32.1"
+        }
       },
       {
         "gate": "8",
@@ -6701,13 +7853,17 @@
         "is_front": false,
         "actual_ord": "6",
         "ai_tags": [],
-        "early_score": 6.0,
+        "early_score": 6,
         "late_score": 43.72,
         "early_rank": 9,
         "late_rank": 2,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "8.5",
+          "cur": "7.2"
+        }
       },
       {
         "gate": "5",
@@ -6733,7 +7889,11 @@
         "late_rank": 3,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 51.8
+        "pure_score": 51.8,
+        "saved_odds": {
+          "base": "54.4",
+          "cur": "47.1"
+        }
       },
       {
         "gate": "9",
@@ -6759,7 +7919,11 @@
         "late_rank": 9,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 50.4
+        "pure_score": 50.4,
+        "saved_odds": {
+          "base": "40.6",
+          "cur": "59.9"
+        }
       },
       {
         "gate": "4",
@@ -6785,7 +7949,11 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 48.5
+        "pure_score": 48.5,
+        "saved_odds": {
+          "base": "5.2",
+          "cur": "5.6"
+        }
       },
       {
         "gate": "7",
@@ -6811,7 +7979,11 @@
         "late_rank": 7,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "22.0",
+          "cur": "21.2"
+        }
       },
       {
         "gate": "10",
@@ -6837,9 +8009,37 @@
         "late_rank": 11,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "51.9",
+          "cur": "67.2"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        2,
+        7,
+        1,
+        3
+      ],
+      "late": [
+        3,
+        2,
+        1,
+        7,
+        4
+      ],
+      "pred": [
+        3,
+        2,
+        4,
+        6,
+        8
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -6874,7 +8074,11 @@
         "late_rank": 8,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 57.5
+        "pure_score": 57.5,
+        "saved_odds": {
+          "base": "4.0",
+          "cur": "3.5"
+        }
       },
       {
         "gate": "9",
@@ -6899,8 +8103,12 @@
         "early_rank": 8,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 55.8
+        "place_prob": 23,
+        "pure_score": 55.8,
+        "saved_odds": {
+          "base": "33.4",
+          "cur": "72"
+        }
       },
       {
         "gate": "8",
@@ -6926,7 +8134,11 @@
         "late_rank": 1,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 55.5
+        "pure_score": 55.5,
+        "saved_odds": {
+          "base": "20.9",
+          "cur": "12.6"
+        }
       },
       {
         "gate": "5",
@@ -6952,7 +8164,11 @@
         "late_rank": 2,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 54.9
+        "pure_score": 54.9,
+        "saved_odds": {
+          "base": "27.9",
+          "cur": "29.9"
+        }
       },
       {
         "gate": "10",
@@ -6978,7 +8194,11 @@
         "late_rank": 7,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 54.7
+        "pure_score": 54.7,
+        "saved_odds": {
+          "base": "24.3",
+          "cur": "12.1"
+        }
       },
       {
         "gate": "6",
@@ -7002,9 +8222,13 @@
         "late_score": 43.44,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "4.9",
+          "cur": "5.3"
+        }
       },
       {
         "gate": "1",
@@ -7030,7 +8254,11 @@
         "late_rank": 10,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "8.2",
+          "cur": "16.0"
+        }
       },
       {
         "gate": "3",
@@ -7056,7 +8284,11 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "3.4",
+          "cur": "3.3"
+        }
       },
       {
         "gate": "4",
@@ -7082,7 +8314,11 @@
         "late_rank": 4,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 50.7
+        "pure_score": 50.7,
+        "saved_odds": {
+          "base": "16.8",
+          "cur": "30.6"
+        }
       },
       {
         "gate": "11",
@@ -7108,7 +8344,11 @@
         "late_rank": 9,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 50.0
+        "pure_score": 50,
+        "saved_odds": {
+          "base": "10.0",
+          "cur": "12.5"
+        }
       },
       {
         "gate": "7",
@@ -7134,9 +8374,37 @@
         "late_rank": 5,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "15.2",
+          "cur": "11.0"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        2,
+        5,
+        6,
+        3
+      ],
+      "late": [
+        11,
+        4,
+        3,
+        7,
+        6
+      ],
+      "pred": [
+        1,
+        2,
+        3,
+        6,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -7171,7 +8439,11 @@
         "late_rank": 9,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 54.6
+        "pure_score": 54.6,
+        "saved_odds": {
+          "base": "6.7",
+          "cur": ""
+        }
       },
       {
         "gate": "2",
@@ -7196,8 +8468,12 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 54.1
+        "place_prob": 23,
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "37.9",
+          "cur": "26.8"
+        }
       },
       {
         "gate": "4",
@@ -7223,7 +8499,11 @@
         "late_rank": 1,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "17.4"
+        }
       },
       {
         "gate": "6",
@@ -7249,7 +8529,11 @@
         "late_rank": 2,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "9.0",
+          "cur": "6.5"
+        }
       },
       {
         "gate": "9",
@@ -7275,7 +8559,11 @@
         "late_rank": 6,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "63.6",
+          "cur": "54.0"
+        }
       },
       {
         "gate": "10",
@@ -7301,7 +8589,11 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "20.1",
+          "cur": "15.7"
+        }
       },
       {
         "gate": "1",
@@ -7327,7 +8619,11 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "4.1",
+          "cur": "15.9"
+        }
       },
       {
         "gate": "8",
@@ -7353,7 +8649,11 @@
         "late_rank": 3,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "53.2",
+          "cur": "35.0"
+        }
       },
       {
         "gate": "7",
@@ -7379,7 +8679,11 @@
         "late_rank": 4,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 48.5
+        "pure_score": 48.5,
+        "saved_odds": {
+          "base": "3.0",
+          "cur": "2.8"
+        }
       },
       {
         "gate": "11",
@@ -7405,7 +8709,11 @@
         "late_rank": 10,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 48.4
+        "pure_score": 48.4,
+        "saved_odds": {
+          "base": "6.0",
+          "cur": "6.0"
+        }
       },
       {
         "gate": "5",
@@ -7431,9 +8739,37 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 46.8
+        "pure_score": 46.8,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "45.4"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        3,
+        8,
+        6,
+        7
+      ],
+      "late": [
+        11,
+        7,
+        4,
+        6,
+        2
+      ],
+      "pred": [
+        7,
+        3,
+        6,
+        11,
+        1
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -7468,7 +8804,11 @@
         "late_rank": 4,
         "win_prob": 13.1,
         "place_prob": 31.4,
-        "pure_score": 61.8
+        "pure_score": 61.8,
+        "saved_odds": {
+          "base": "38.0",
+          "cur": "15.8"
+        }
       },
       {
         "gate": "1",
@@ -7494,7 +8834,11 @@
         "late_rank": 7,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "8.4",
+          "cur": "8.4"
+        }
       },
       {
         "gate": "6",
@@ -7520,7 +8864,11 @@
         "late_rank": 1,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "40.6",
+          "cur": "57.0"
+        }
       },
       {
         "gate": "4",
@@ -7546,7 +8894,11 @@
         "late_rank": 2,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "22.2",
+          "cur": "37.0"
+        }
       },
       {
         "gate": "7",
@@ -7572,7 +8924,11 @@
         "late_rank": 3,
         "win_prob": 10.9,
         "place_prob": 26.2,
-        "pure_score": 51.7
+        "pure_score": 51.7,
+        "saved_odds": {
+          "base": "1.6",
+          "cur": "1.6"
+        }
       },
       {
         "gate": "2",
@@ -7598,7 +8954,11 @@
         "late_rank": 9,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "8.7",
+          "cur": "10.5"
+        }
       },
       {
         "gate": "9",
@@ -7624,7 +8984,11 @@
         "late_rank": 8,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 50.7
+        "pure_score": 50.7,
+        "saved_odds": {
+          "base": "10.1",
+          "cur": "9.3"
+        }
       },
       {
         "gate": "8",
@@ -7650,7 +9014,11 @@
         "late_rank": 5,
         "win_prob": 10.2,
         "place_prob": 24.5,
-        "pure_score": 48.3
+        "pure_score": 48.3,
+        "saved_odds": {
+          "base": "14.3",
+          "cur": "14.8"
+        }
       },
       {
         "gate": "5",
@@ -7676,16 +9044,44 @@
         "late_rank": 6,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 44.1
+        "pure_score": 44.1,
+        "saved_odds": {
+          "base": "7.0",
+          "cur": "8.2"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        1,
+        7,
+        5,
+        9
+      ],
+      "late": [
+        9,
+        3,
+        6,
+        4,
+        7
+      ],
+      "pred": [
+        5,
+        7,
+        1,
+        2,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -7713,7 +9109,11 @@
         "late_rank": 5,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 61.3
+        "pure_score": 61.3,
+        "saved_odds": {
+          "base": "1.6",
+          "cur": "1.6"
+        }
       },
       {
         "gate": "3",
@@ -7739,7 +9139,11 @@
         "late_rank": 8,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "27.5",
+          "cur": "40.4"
+        }
       },
       {
         "gate": "6",
@@ -7765,7 +9169,11 @@
         "late_rank": 1,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 56.9
+        "pure_score": 56.9,
+        "saved_odds": {
+          "base": "14.8",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "9",
@@ -7790,8 +9198,12 @@
         "early_rank": 6,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 56.1
+        "place_prob": 23,
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "21.7",
+          "cur": "27.9"
+        }
       },
       {
         "gate": "11",
@@ -7817,7 +9229,11 @@
         "late_rank": 7,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 55.5
+        "pure_score": 55.5,
+        "saved_odds": {
+          "base": "9.7",
+          "cur": "9.5"
+        }
       },
       {
         "gate": "7",
@@ -7843,7 +9259,11 @@
         "late_rank": 2,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "15.4",
+          "cur": "18.5"
+        }
       },
       {
         "gate": "1",
@@ -7869,7 +9289,11 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "44.8",
+          "cur": "54.3"
+        }
       },
       {
         "gate": "5",
@@ -7895,7 +9319,11 @@
         "late_rank": 3,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "12.2",
+          "cur": "6.9"
+        }
       },
       {
         "gate": "10",
@@ -7921,7 +9349,11 @@
         "late_rank": 10,
         "win_prob": 8.4,
         "place_prob": 20.2,
-        "pure_score": 49.1
+        "pure_score": 49.1,
+        "saved_odds": {
+          "base": "22.6",
+          "cur": "15.9"
+        }
       },
       {
         "gate": "4",
@@ -7947,7 +9379,11 @@
         "late_rank": 6,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "9.5",
+          "cur": "11.1"
+        }
       },
       {
         "gate": "8",
@@ -7973,16 +9409,44 @@
         "late_rank": 9,
         "win_prob": 7.6,
         "place_prob": 18.2,
-        "pure_score": 44.5
+        "pure_score": 44.5,
+        "saved_odds": {
+          "base": "29.8",
+          "cur": "35.3"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        11,
+        7,
+        2,
+        4
+      ],
+      "late": [
+        5,
+        2,
+        1,
+        4,
+        7
+      ],
+      "pred": [
+        2,
+        4,
+        5,
+        11,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "6",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8009,8 +9473,12 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 12.1,
-        "place_prob": 29.0,
-        "pure_score": 57.1
+        "place_prob": 29,
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "14.7",
+          "cur": "19.9"
+        }
       },
       {
         "gate": "8",
@@ -8036,7 +9504,11 @@
         "late_rank": 1,
         "win_prob": 11.7,
         "place_prob": 28.1,
-        "pure_score": 55.5
+        "pure_score": 55.5,
+        "saved_odds": {
+          "base": "10.3",
+          "cur": "15.6"
+        }
       },
       {
         "gate": "2",
@@ -8062,7 +9534,11 @@
         "late_rank": 7,
         "win_prob": 11.6,
         "place_prob": 27.8,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "4.4",
+          "cur": "2.5"
+        }
       },
       {
         "gate": "1",
@@ -8088,7 +9564,11 @@
         "late_rank": 8,
         "win_prob": 11.5,
         "place_prob": 27.6,
-        "pure_score": 54.5
+        "pure_score": 54.5,
+        "saved_odds": {
+          "base": "3.9",
+          "cur": "3.5"
+        }
       },
       {
         "gate": "4",
@@ -8112,9 +9592,13 @@
         "late_score": 41.93,
         "early_rank": 4,
         "late_rank": 3,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 51.9
+        "pure_score": 51.9,
+        "saved_odds": {
+          "base": "8.3",
+          "cur": "8.8"
+        }
       },
       {
         "gate": "5",
@@ -8140,7 +9624,11 @@
         "late_rank": 4,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 50.7
+        "pure_score": 50.7,
+        "saved_odds": {
+          "base": "4.7",
+          "cur": "6.3"
+        }
       },
       {
         "gate": "6",
@@ -8166,7 +9654,11 @@
         "late_rank": 2,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "6.6",
+          "cur": "10.7"
+        }
       },
       {
         "gate": "9",
@@ -8192,7 +9684,11 @@
         "late_rank": 9,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 50.4
+        "pure_score": 50.4,
+        "saved_odds": {
+          "base": "11.5",
+          "cur": "17.5"
+        }
       },
       {
         "gate": "7",
@@ -8218,16 +9714,44 @@
         "late_rank": 5,
         "win_prob": 10.2,
         "place_prob": 24.5,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "38.8",
+          "cur": "40.4"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        6,
+        2,
+        4,
+        1
+      ],
+      "late": [
+        1,
+        9,
+        2,
+        3,
+        5
+      ],
+      "pred": [
+        5,
+        1,
+        2,
+        3,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8255,7 +9779,11 @@
         "late_rank": 6,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "6.7"
+        }
       },
       {
         "gate": "3",
@@ -8281,7 +9809,11 @@
         "late_rank": 7,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.3"
+        }
       },
       {
         "gate": "4",
@@ -8307,7 +9839,11 @@
         "late_rank": 1,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "20.6"
+        }
       },
       {
         "gate": "8",
@@ -8332,8 +9868,12 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 55.7
+        "place_prob": 25,
+        "pure_score": 55.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "9.4"
+        }
       },
       {
         "gate": "9",
@@ -8359,7 +9899,11 @@
         "late_rank": 8,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "11.7"
+        }
       },
       {
         "gate": "10",
@@ -8385,7 +9929,11 @@
         "late_rank": 9,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "41.6"
+        }
       },
       {
         "gate": "5",
@@ -8411,7 +9959,11 @@
         "late_rank": 3,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "8.9"
+        }
       },
       {
         "gate": "1",
@@ -8437,7 +9989,11 @@
         "late_rank": 10,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "30.7"
+        }
       },
       {
         "gate": "7",
@@ -8463,7 +10019,11 @@
         "late_rank": 4,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "6.0"
+        }
       },
       {
         "gate": "6",
@@ -8489,16 +10049,44 @@
         "late_rank": 5,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 49.9
+        "pure_score": 49.9,
+        "saved_odds": {
+          "base": "",
+          "cur": "3.5"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        6,
+        4,
+        2,
+        9
+      ],
+      "late": [
+        9,
+        2,
+        7,
+        3,
+        4
+      ],
+      "pred": [
+        6,
+        7,
+        3,
+        2,
+        5
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8525,8 +10113,12 @@
         "early_rank": 2,
         "late_rank": 3,
         "win_prob": 12.9,
-        "place_prob": 31.0,
-        "pure_score": 63.8
+        "place_prob": 31,
+        "pure_score": 63.8,
+        "saved_odds": {
+          "base": "11.3",
+          "cur": "14"
+        }
       },
       {
         "gate": "3",
@@ -8551,8 +10143,12 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 12.9,
-        "place_prob": 31.0,
-        "pure_score": 63.9
+        "place_prob": 31,
+        "pure_score": 63.9,
+        "saved_odds": {
+          "base": "14.3",
+          "cur": "10.6"
+        }
       },
       {
         "gate": "6",
@@ -8578,7 +10174,11 @@
         "late_rank": 1,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 56.5
+        "pure_score": 56.5,
+        "saved_odds": {
+          "base": "33.7",
+          "cur": "39.8"
+        }
       },
       {
         "gate": "2",
@@ -8602,9 +10202,13 @@
         "late_score": 31.97,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 54.2
+        "pure_score": 54.2,
+        "saved_odds": {
+          "base": "16.2",
+          "cur": "25.1"
+        }
       },
       {
         "gate": "7",
@@ -8630,7 +10234,11 @@
         "late_rank": 2,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "15.8",
+          "cur": "17.9"
+        }
       },
       {
         "gate": "4",
@@ -8656,7 +10264,11 @@
         "late_rank": 5,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 51.0
+        "pure_score": 51,
+        "saved_odds": {
+          "base": "4.2",
+          "cur": "3.3"
+        }
       },
       {
         "gate": "5",
@@ -8682,7 +10294,11 @@
         "late_rank": 4,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "8.4",
+          "cur": "10.9"
+        }
       },
       {
         "gate": "9",
@@ -8708,7 +10324,11 @@
         "late_rank": 8,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "2.1",
+          "cur": "2.0"
+        }
       },
       {
         "gate": "8",
@@ -8734,16 +10354,44 @@
         "late_rank": 7,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 49.1
+        "pure_score": 49.1,
+        "saved_odds": {
+          "base": "10.2",
+          "cur": "16.7"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        5,
+        1,
+        8,
+        7,
+        3
+      ],
+      "late": [
+        9,
+        4,
+        3,
+        6,
+        8
+      ],
+      "pred": [
+        9,
+        4,
+        3,
+        2,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261024",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -8771,7 +10419,11 @@
         "late_rank": 6,
         "win_prob": 11.7,
         "place_prob": 28.1,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "25.5"
+        }
       },
       {
         "gate": "3",
@@ -8797,7 +10449,11 @@
         "late_rank": 7,
         "win_prob": 11.7,
         "place_prob": 28.1,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "24.9"
+        }
       },
       {
         "gate": "8",
@@ -8823,7 +10479,11 @@
         "late_rank": 1,
         "win_prob": 11.5,
         "place_prob": 27.6,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "25.3"
+        }
       },
       {
         "gate": "7",
@@ -8849,7 +10509,11 @@
         "late_rank": 2,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 55.6
+        "pure_score": 55.6,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.3"
+        }
       },
       {
         "gate": "5",
@@ -8875,7 +10539,11 @@
         "late_rank": 3,
         "win_prob": 10.9,
         "place_prob": 26.2,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "1",
@@ -8901,7 +10569,11 @@
         "late_rank": 9,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "36.1"
+        }
       },
       {
         "gate": "6",
@@ -8927,7 +10599,11 @@
         "late_rank": 4,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 52.2
+        "pure_score": 52.2,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.7"
+        }
       },
       {
         "gate": "9",
@@ -8953,7 +10629,11 @@
         "late_rank": 8,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "21.2"
+        }
       },
       {
         "gate": "4",
@@ -8979,9 +10659,37 @@
         "late_rank": 5,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 51.8
+        "pure_score": 51.8,
+        "saved_odds": {
+          "base": "",
+          "cur": "11.1"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        5,
+        4,
+        3,
+        6,
+        9
+      ],
+      "late": [
+        1,
+        7,
+        6,
+        5,
+        2
+      ],
+      "pred": [
+        5,
+        7,
+        6,
+        2,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -9016,7 +10724,11 @@
         "late_rank": 6,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 55.8
+        "pure_score": 55.8,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "2",
@@ -9042,7 +10754,11 @@
         "late_rank": 8,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "1",
@@ -9067,8 +10783,12 @@
         "early_rank": 3,
         "late_rank": 9,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 54.6
+        "place_prob": 23,
+        "pure_score": 54.6,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "37.3"
+        }
       },
       {
         "gate": "10",
@@ -9094,7 +10814,11 @@
         "late_rank": 7,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 54.4
+        "pure_score": 54.4,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "6",
@@ -9120,7 +10844,11 @@
         "late_rank": 1,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "19.7"
+        }
       },
       {
         "gate": "7",
@@ -9146,7 +10874,11 @@
         "late_rank": 2,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "38.4",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "3",
@@ -9172,7 +10904,11 @@
         "late_rank": 10,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "27.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "8",
@@ -9198,7 +10934,11 @@
         "late_rank": 3,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 51.6
+        "pure_score": 51.6,
+        "saved_odds": {
+          "base": "23.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "4",
@@ -9224,7 +10964,11 @@
         "late_rank": 4,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "8.9",
+          "cur": "7.7"
+        }
       },
       {
         "gate": "5",
@@ -9278,7 +11022,31 @@
         "place_prob": 17.8,
         "pure_score": 42.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        3,
+        2,
+        4,
+        9
+      ],
+      "late": [
+        2,
+        7,
+        1,
+        9,
+        6
+      ],
+      "pred": [
+        2,
+        1,
+        3,
+        5,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
@@ -9311,9 +11079,13 @@
         "late_score": 40.16,
         "early_rank": 1,
         "late_rank": 5,
-        "win_prob": 13.0,
+        "win_prob": 13,
         "place_prob": 31.2,
-        "pure_score": 62.8
+        "pure_score": 62.8,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "3",
@@ -9339,7 +11111,11 @@
         "late_rank": 7,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 57.4
+        "pure_score": 57.4,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "6",
@@ -9365,7 +11141,11 @@
         "late_rank": 1,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 57.4
+        "pure_score": 57.4,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "37.3"
+        }
       },
       {
         "gate": "2",
@@ -9391,7 +11171,11 @@
         "late_rank": 8,
         "win_prob": 11.6,
         "place_prob": 27.8,
-        "pure_score": 55.8
+        "pure_score": 55.8,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "5",
@@ -9415,9 +11199,13 @@
         "late_score": 45.69,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "19.7"
+        }
       },
       {
         "gate": "7",
@@ -9443,7 +11231,11 @@
         "late_rank": 3,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "38.4",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "8",
@@ -9469,7 +11261,11 @@
         "late_rank": 4,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "27.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "4",
@@ -9495,7 +11291,11 @@
         "late_rank": 6,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "23.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "9",
@@ -9521,16 +11321,44 @@
         "late_rank": 9,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 46.6
+        "pure_score": 46.6,
+        "saved_odds": {
+          "base": "8.9",
+          "cur": "7.7"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        3,
+        2,
+        4,
+        9
+      ],
+      "late": [
+        2,
+        7,
+        1,
+        9,
+        6
+      ],
+      "pred": [
+        2,
+        1,
+        3,
+        5,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "2",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -9558,7 +11386,11 @@
         "late_rank": 6,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 59.7
+        "pure_score": 59.7,
+        "saved_odds": {
+          "base": "5.1",
+          "cur": "6.8"
+        }
       },
       {
         "gate": "2",
@@ -9584,7 +11416,11 @@
         "late_rank": 8,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 58.9
+        "pure_score": 58.9,
+        "saved_odds": {
+          "base": "1.8",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "4",
@@ -9610,7 +11446,11 @@
         "late_rank": 1,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 58.7
+        "pure_score": 58.7,
+        "saved_odds": {
+          "base": "12.0",
+          "cur": "9.0"
+        }
       },
       {
         "gate": "8",
@@ -9636,7 +11476,11 @@
         "late_rank": 3,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 56.4
+        "pure_score": 56.4,
+        "saved_odds": {
+          "base": "37.1",
+          "cur": "22.4"
+        }
       },
       {
         "gate": "5",
@@ -9662,7 +11506,11 @@
         "late_rank": 2,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "22.9",
+          "cur": "34.0"
+        }
       },
       {
         "gate": "1",
@@ -9686,9 +11534,13 @@
         "late_score": 31.43,
         "early_rank": 5,
         "late_rank": 10,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 53.9
+        "pure_score": 53.9,
+        "saved_odds": {
+          "base": "45.9",
+          "cur": "24.0"
+        }
       },
       {
         "gate": "3",
@@ -9712,9 +11564,13 @@
         "late_score": 31.94,
         "early_rank": 2,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "16.9",
+          "cur": "19.6"
+        }
       },
       {
         "gate": "6",
@@ -9740,7 +11596,11 @@
         "late_rank": 4,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "26.8",
+          "cur": "31.0"
+        }
       },
       {
         "gate": "10",
@@ -9766,7 +11626,11 @@
         "late_rank": 7,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "40.7",
+          "cur": "63.2"
+        }
       },
       {
         "gate": "7",
@@ -9792,7 +11656,11 @@
         "late_rank": 5,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "14.7",
+          "cur": "11.6"
+        }
       },
       {
         "gate": "9",
@@ -9818,9 +11686,37 @@
         "late_rank": 11,
         "win_prob": 7.6,
         "place_prob": 18.2,
-        "pure_score": 45.6
+        "pure_score": 45.6,
+        "saved_odds": {
+          "base": "14.5",
+          "cur": "8.0"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        9,
+        4,
+        11,
+        2,
+        1
+      ],
+      "late": [
+        8,
+        11,
+        6,
+        4,
+        10
+      ],
+      "pred": [
+        2,
+        4,
+        11,
+        7,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
@@ -9854,7 +11750,7 @@
         "early_rank": 2,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.8
       },
       {
@@ -9880,8 +11776,8 @@
         "early_rank": 6,
         "late_rank": 1,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 58.0
+        "place_prob": 23,
+        "pure_score": 58
       },
       {
         "gate": "9",
@@ -9906,7 +11802,7 @@
         "early_rank": 7,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.8
       },
       {
@@ -10117,14 +12013,38 @@
         "place_prob": 18.7,
         "pure_score": 47.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        10,
+        7,
+        9,
+        4
+      ],
+      "late": [
+        1,
+        11,
+        10,
+        4,
+        3
+      ],
+      "pred": [
+        7,
+        4,
+        2,
+        1,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "4",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -10229,7 +12149,7 @@
         "early_rank": 7,
         "late_rank": 1,
         "win_prob": 10.4,
-        "place_prob": 25.0,
+        "place_prob": 25,
         "pure_score": 54.4
       },
       {
@@ -10281,7 +12201,7 @@
         "early_rank": 3,
         "late_rank": 10,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 50.1
       },
       {
@@ -10358,7 +12278,7 @@
         "late_score": 38.19,
         "early_rank": 4,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 47.1
       },
@@ -10388,14 +12308,38 @@
         "place_prob": 20.4,
         "pure_score": 44.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        3,
+        5,
+        10,
+        7
+      ],
+      "late": [
+        10,
+        1,
+        8,
+        4,
+        5
+      ],
+      "pred": [
+        3,
+        1,
+        4,
+        7,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "5",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -10448,7 +12392,7 @@
         "early_rank": 2,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 58.1
       },
       {
@@ -10474,7 +12418,7 @@
         "early_rank": 6,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.9
       },
       {
@@ -10685,14 +12629,38 @@
         "place_prob": 20.4,
         "pure_score": 51.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        8,
+        5,
+        6,
+        3
+      ],
+      "late": [
+        1,
+        9,
+        7,
+        2,
+        10
+      ],
+      "pred": [
+        2,
+        5,
+        7,
+        8,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "6",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -10978,18 +12946,42 @@
         "late_score": 36.44,
         "early_rank": 7,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 46.9
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        11,
+        2,
+        4,
+        7,
+        8
+      ],
+      "late": [
+        2,
+        10,
+        8,
+        6,
+        7
+      ],
+      "pred": [
+        6,
+        7,
+        3,
+        2,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11015,9 +13007,13 @@
         "late_score": 34.44,
         "early_rank": 1,
         "late_rank": 6,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
-        "pure_score": 56.1
+        "win_prob": 10,
+        "place_prob": 24,
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "17.5",
+          "cur": "5.6"
+        }
       },
       {
         "gate": "1",
@@ -11043,7 +13039,11 @@
         "late_rank": 9,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "19.5",
+          "cur": "13.7"
+        }
       },
       {
         "gate": "2",
@@ -11069,7 +13069,11 @@
         "late_rank": 10,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "12.8",
+          "cur": "9.5"
+        }
       },
       {
         "gate": "10",
@@ -11095,7 +13099,11 @@
         "late_rank": 8,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "1.8",
+          "cur": "2.1"
+        }
       },
       {
         "gate": "11",
@@ -11121,7 +13129,11 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "17.7",
+          "cur": "15.8"
+        }
       },
       {
         "gate": "4",
@@ -11145,9 +13157,13 @@
         "late_score": 41.94,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "17.3",
+          "cur": "20.1"
+        }
       },
       {
         "gate": "5",
@@ -11171,9 +13187,13 @@
         "late_score": 41.94,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "25.3",
+          "cur": "30.6"
+        }
       },
       {
         "gate": "9",
@@ -11197,9 +13217,13 @@
         "late_score": 31.94,
         "early_rank": 8,
         "late_rank": 11,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "37.0",
+          "cur": "38.2"
+        }
       },
       {
         "gate": "8",
@@ -11225,7 +13249,11 @@
         "late_rank": 3,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 47.2
+        "pure_score": 47.2,
+        "saved_odds": {
+          "base": "41.1",
+          "cur": "52.5"
+        }
       },
       {
         "gate": "6",
@@ -11251,7 +13279,11 @@
         "late_rank": 4,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 46.1
+        "pure_score": 46.1,
+        "saved_odds": {
+          "base": "9.5",
+          "cur": "10.0"
+        }
       },
       {
         "gate": "7",
@@ -11277,16 +13309,44 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 46.1
+        "pure_score": 46.1,
+        "saved_odds": {
+          "base": "4.8",
+          "cur": "7.4"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        11,
+        2,
+        1,
+        3,
+        7
+      ],
+      "late": [
+        10,
+        7,
+        6,
+        5,
+        4
+      ],
+      "pred": [
+        10,
+        2,
+        9,
+        3,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "2",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11313,8 +13373,12 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 58.1
+        "place_prob": 25,
+        "pure_score": 58.1,
+        "saved_odds": {
+          "base": "6.7",
+          "cur": "14.2"
+        }
       },
       {
         "gate": "3",
@@ -11340,7 +13404,11 @@
         "late_rank": 8,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 54.1
+        "pure_score": 54.1,
+        "saved_odds": {
+          "base": "23.2",
+          "cur": "39.5"
+        }
       },
       {
         "gate": "11",
@@ -11366,7 +13434,11 @@
         "late_rank": 7,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 52.6
+        "pure_score": 52.6,
+        "saved_odds": {
+          "base": "5.1",
+          "cur": "9.1"
+        }
       },
       {
         "gate": "1",
@@ -11390,9 +13462,13 @@
         "late_score": 26.94,
         "early_rank": 3,
         "late_rank": 10,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "19.7",
+          "cur": "14.5"
+        }
       },
       {
         "gate": "6",
@@ -11416,9 +13492,13 @@
         "late_score": 41.94,
         "early_rank": 7,
         "late_rank": 1,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "27.2",
+          "cur": "58.6"
+        }
       },
       {
         "gate": "7",
@@ -11442,9 +13522,13 @@
         "late_score": 41.94,
         "early_rank": 8,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "10.9",
+          "cur": "12.1"
+        }
       },
       {
         "gate": "8",
@@ -11468,9 +13552,13 @@
         "late_score": 41.94,
         "early_rank": 9,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "43.7",
+          "cur": "82.5"
+        }
       },
       {
         "gate": "9",
@@ -11494,9 +13582,13 @@
         "late_score": 31.94,
         "early_rank": 10,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "18.2",
+          "cur": "17.4"
+        }
       },
       {
         "gate": "4",
@@ -11522,7 +13614,11 @@
         "late_rank": 4,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "2.4",
+          "cur": "1.7"
+        }
       },
       {
         "gate": "5",
@@ -11548,7 +13644,11 @@
         "late_rank": 5,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 47.5
+        "pure_score": 47.5,
+        "saved_odds": {
+          "base": "7.9",
+          "cur": "5.9"
+        }
       },
       {
         "gate": "10",
@@ -11574,16 +13674,44 @@
         "late_rank": 11,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 46.1
+        "pure_score": 46.1,
+        "saved_odds": {
+          "base": "17.4",
+          "cur": "24.1"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        9,
+        5,
+        7,
+        2,
+        10
+      ],
+      "late": [
+        4,
+        7,
+        8,
+        2,
+        11
+      ],
+      "pred": [
+        4,
+        10,
+        11,
+        5,
+        1
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "3",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -11611,7 +13739,11 @@
         "late_rank": 5,
         "win_prob": 11.1,
         "place_prob": 26.6,
-        "pure_score": 58.7
+        "pure_score": 58.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "11.6"
+        }
       },
       {
         "gate": "1",
@@ -11637,7 +13769,11 @@
         "late_rank": 9,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 56.5
+        "pure_score": 56.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.1"
+        }
       },
       {
         "gate": "2",
@@ -11663,7 +13799,11 @@
         "late_rank": 7,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "6.9"
+        }
       },
       {
         "gate": "7",
@@ -11689,7 +13829,11 @@
         "late_rank": 1,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 55.4
+        "pure_score": 55.4,
+        "saved_odds": {
+          "base": "",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "10",
@@ -11715,7 +13859,11 @@
         "late_rank": 6,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 53.5
+        "pure_score": 53.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "13.7"
+        }
       },
       {
         "gate": "5",
@@ -11739,9 +13887,13 @@
         "late_score": 44.89,
         "early_rank": 5,
         "late_rank": 2,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
-        "pure_score": 52.8
+        "win_prob": 10,
+        "place_prob": 24,
+        "pure_score": 52.8,
+        "saved_odds": {
+          "base": "",
+          "cur": "19.8"
+        }
       },
       {
         "gate": "4",
@@ -11767,7 +13919,11 @@
         "late_rank": 3,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "5.4"
+        }
       },
       {
         "gate": "8",
@@ -11793,7 +13949,11 @@
         "late_rank": 4,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 51.7
+        "pure_score": 51.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "27.2"
+        }
       },
       {
         "gate": "9",
@@ -11819,7 +13979,11 @@
         "late_rank": 10,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "6.1"
+        }
       },
       {
         "gate": "6",
@@ -11845,16 +14009,44 @@
         "late_rank": 8,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 44.1
+        "pure_score": 44.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "3.9"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        10,
+        1,
+        9,
+        8
+      ],
+      "late": [
+        5,
+        4,
+        6,
+        7,
+        8
+      ],
+      "pred": [
+        1,
+        6,
+        4,
+        2,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "4",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12062,7 +14254,7 @@
         "late_score": 42.67,
         "early_rank": 10,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 51.7
       },
@@ -12115,7 +14307,7 @@
         "early_rank": 6,
         "late_rank": 7,
         "win_prob": 7.9,
-        "place_prob": 19.0,
+        "place_prob": 19,
         "pure_score": 45.1
       },
       {
@@ -12144,14 +14336,38 @@
         "place_prob": 18.7,
         "pure_score": 44.6
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        10,
+        8,
+        3,
+        9
+      ],
+      "late": [
+        5,
+        3,
+        11,
+        1,
+        9
+      ],
+      "pred": [
+        3,
+        6,
+        8,
+        5,
+        11
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12307,7 +14523,7 @@
         "late_score": 45.69,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 53.1
       },
@@ -12359,8 +14575,8 @@
         "late_score": 29.44,
         "early_rank": 9,
         "late_rank": 9,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 48.1
       },
       {
@@ -12386,10 +14602,34 @@
         "early_rank": 6,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        4,
+        1,
+        2,
+        3
+      ],
+      "late": [
+        8,
+        5,
+        9,
+        6,
+        4
+      ],
+      "pred": [
+        1,
+        2,
+        4,
+        6,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -12500,8 +14740,8 @@
         "late_score": 45.69,
         "early_rank": 4,
         "late_rank": 2,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 53.1
       },
       {
@@ -12526,8 +14766,8 @@
         "late_score": 45.69,
         "early_rank": 7,
         "late_rank": 3,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 53.1
       },
       {
@@ -12552,8 +14792,8 @@
         "late_score": 45.69,
         "early_rank": 8,
         "late_rank": 4,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 53.1
       },
       {
@@ -12578,8 +14818,8 @@
         "late_score": 35.72,
         "early_rank": 6,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 53.5
       },
       {
@@ -12630,7 +14870,7 @@
         "late_score": 24.44,
         "early_rank": 5,
         "late_rank": 10,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 48.1
       },
@@ -12660,14 +14900,38 @@
         "place_prob": 20.9,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        6,
+        2,
+        9,
+        1
+      ],
+      "late": [
+        3,
+        5,
+        9,
+        4,
+        7
+      ],
+      "pred": [
+        3,
+        2,
+        1,
+        9,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1700",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12693,7 +14957,7 @@
         "late_score": 51.22,
         "early_rank": 5,
         "late_rank": 1,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 59.5
       },
@@ -12929,16 +15193,40 @@
         "late_rank": 9,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 45.0
+        "pure_score": 45
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        8,
+        2,
+        4,
+        6
+      ],
+      "late": [
+        7,
+        4,
+        10,
+        2,
+        5
+      ],
+      "pred": [
+        1,
+        6,
+        8,
+        7,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -12991,7 +15279,7 @@
         "early_rank": 1,
         "late_rank": 7,
         "win_prob": 12.1,
-        "place_prob": 29.0,
+        "place_prob": 29,
         "pure_score": 55.5
       },
       {
@@ -13172,18 +15460,42 @@
         "late_score": 36.94,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        8,
+        7,
+        5,
+        3
+      ],
+      "late": [
+        4,
+        1,
+        9,
+        8,
+        5
+      ],
+      "pred": [
+        1,
+        4,
+        5,
+        9,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "2000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -13421,7 +15733,31 @@
         "place_prob": 21.1,
         "pure_score": 42.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        5,
+        7,
+        3,
+        4
+      ],
+      "late": [
+        8,
+        2,
+        7,
+        4,
+        9
+      ],
+      "pred": [
+        8,
+        2,
+        5,
+        6,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -13456,7 +15792,11 @@
         "late_rank": 4,
         "win_prob": 10.6,
         "place_prob": 25.4,
-        "pure_score": 63.8
+        "pure_score": 63.8,
+        "saved_odds": {
+          "base": "",
+          "cur": "21.5"
+        }
       },
       {
         "gate": "1",
@@ -13482,7 +15822,11 @@
         "late_rank": 8,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 58.2
+        "pure_score": 58.2,
+        "saved_odds": {
+          "base": "",
+          "cur": "38.6"
+        }
       },
       {
         "gate": "2",
@@ -13508,7 +15852,11 @@
         "late_rank": 9,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "12.1"
+        }
       },
       {
         "gate": "5",
@@ -13534,7 +15882,11 @@
         "late_rank": 1,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55.7
+        "pure_score": 55.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "51.5"
+        }
       },
       {
         "gate": "11",
@@ -13560,7 +15912,11 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55.7
+        "pure_score": 55.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.4"
+        }
       },
       {
         "gate": "4",
@@ -13584,9 +15940,13 @@
         "late_score": 46.52,
         "early_rank": 4,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 54.4
+        "pure_score": 54.4,
+        "saved_odds": {
+          "base": "",
+          "cur": "15.3"
+        }
       },
       {
         "gate": "7",
@@ -13610,9 +15970,13 @@
         "late_score": 46.97,
         "early_rank": 7,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 54.2
+        "pure_score": 54.2,
+        "saved_odds": {
+          "base": "",
+          "cur": "20.6"
+        }
       },
       {
         "gate": "9",
@@ -13638,7 +16002,11 @@
         "late_rank": 10,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "32.2"
+        }
       },
       {
         "gate": "10",
@@ -13664,7 +16032,11 @@
         "late_rank": 11,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "53.5"
+        }
       },
       {
         "gate": "8",
@@ -13690,7 +16062,11 @@
         "late_rank": 5,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 48.5
+        "pure_score": 48.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "2.1"
+        }
       },
       {
         "gate": "6",
@@ -13714,18 +16090,46 @@
         "late_score": 38.44,
         "early_rank": 10,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 48.5
+        "pure_score": 48.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.8"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        2,
+        8,
+        6,
+        11,
+        4
+      ],
+      "late": [
+        1,
+        10,
+        11,
+        5,
+        8
+      ],
+      "pred": [
+        8,
+        6,
+        7,
+        11,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "11",
     "race_date": "20261025",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -13752,8 +16156,12 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 59.1
+        "place_prob": 25,
+        "pure_score": 59.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "28.0"
+        }
       },
       {
         "gate": "8",
@@ -13779,7 +16187,11 @@
         "late_rank": 1,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 56.5
+        "pure_score": 56.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "9.1"
+        }
       },
       {
         "gate": "4",
@@ -13805,7 +16217,11 @@
         "late_rank": 2,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 55.5
+        "pure_score": 55.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "4.3"
+        }
       },
       {
         "gate": "6",
@@ -13831,7 +16247,11 @@
         "late_rank": 3,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 52.5
+        "pure_score": 52.5,
+        "saved_odds": {
+          "base": "",
+          "cur": "3.9"
+        }
       },
       {
         "gate": "11",
@@ -13857,7 +16277,11 @@
         "late_rank": 7,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "7.4"
+        }
       },
       {
         "gate": "1",
@@ -13881,9 +16305,13 @@
         "late_score": 28.19,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "22.8"
+        }
       },
       {
         "gate": "7",
@@ -13907,9 +16335,13 @@
         "late_score": 43.19,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "29.0"
+        }
       },
       {
         "gate": "5",
@@ -13935,7 +16367,11 @@
         "late_rank": 5,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 50.7
+        "pure_score": 50.7,
+        "saved_odds": {
+          "base": "",
+          "cur": "41.8"
+        }
       },
       {
         "gate": "10",
@@ -13961,7 +16397,11 @@
         "late_rank": 8,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "38.9"
+        }
       },
       {
         "gate": "2",
@@ -13987,7 +16427,11 @@
         "late_rank": 11,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "",
+          "cur": "3.2"
+        }
       },
       {
         "gate": "9",
@@ -14013,16 +16457,44 @@
         "late_rank": 10,
         "win_prob": 7.7,
         "place_prob": 18.5,
-        "pure_score": 43.9
+        "pure_score": 43.9,
+        "saved_odds": {
+          "base": "",
+          "cur": "23.7"
+        }
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        6,
+        10,
+        5,
+        11
+      ],
+      "late": [
+        2,
+        6,
+        9,
+        4,
+        1
+      ],
+      "pred": [
+        2,
+        4,
+        6,
+        11,
+        8
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -14048,7 +16520,7 @@
         "late_score": 30.56,
         "early_rank": 1,
         "late_rank": 8,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 57.3
       },
@@ -14126,8 +16598,8 @@
         "late_score": 43.34,
         "early_rank": 6,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 52.4
       },
       {
@@ -14205,7 +16677,7 @@
         "early_rank": 10,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 50.4
       },
       {
@@ -14231,7 +16703,7 @@
         "early_rank": 9,
         "late_rank": 7,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 50.3
       },
       {
@@ -14286,14 +16758,38 @@
         "place_prob": 22.1,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        4,
+        1,
+        10,
+        2
+      ],
+      "late": [
+        1,
+        7,
+        10,
+        4,
+        2
+      ],
+      "pred": [
+        7,
+        5,
+        10,
+        3,
+        1
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -14341,7 +16837,7 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 21.0,
+        "early_score": 21,
         "late_score": 31.12,
         "early_rank": 2,
         "late_rank": 9,
@@ -14477,7 +16973,7 @@
         "late_rank": 3,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 50.0
+        "pure_score": 50
       },
       {
         "gate": "8",
@@ -14529,7 +17025,7 @@
         "late_rank": 5,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 49.0
+        "pure_score": 49
       },
       {
         "gate": "7",
@@ -14557,14 +17053,38 @@
         "place_prob": 22.1,
         "pure_score": 49.2
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        1,
+        8,
+        6,
+        5
+      ],
+      "late": [
+        10,
+        9,
+        3,
+        2,
+        8
+      ],
+      "pred": [
+        10,
+        4,
+        6,
+        9,
+        2
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -14591,7 +17111,7 @@
         "early_rank": 1,
         "late_rank": 4,
         "win_prob": 12.5,
-        "place_prob": 30.0,
+        "place_prob": 30,
         "pure_score": 64.2
       },
       {
@@ -14642,7 +17162,7 @@
         "late_score": 29.44,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 56.1
       },
@@ -14772,7 +17292,7 @@
         "late_score": 16.94,
         "early_rank": 5,
         "late_rank": 10,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 46.1
       },
@@ -14828,14 +17348,38 @@
         "place_prob": 19.7,
         "pure_score": 42.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        8,
+        3,
+        2,
+        5,
+        1
+      ],
+      "late": [
+        7,
+        3,
+        9,
+        6,
+        8
+      ],
+      "pred": [
+        8,
+        3,
+        2,
+        4,
+        7
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -14862,8 +17406,12 @@
         "early_rank": 1,
         "late_rank": 5,
         "win_prob": 12.5,
-        "place_prob": 30.0,
-        "pure_score": 66.2
+        "place_prob": 30,
+        "pure_score": 66.2,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "6",
@@ -14889,7 +17437,11 @@
         "late_rank": 1,
         "win_prob": 10.8,
         "place_prob": 25.9,
-        "pure_score": 57.0
+        "pure_score": 57,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "8",
@@ -14914,8 +17466,12 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 10.4,
-        "place_prob": 25.0,
-        "pure_score": 54.9
+        "place_prob": 25,
+        "pure_score": 54.9,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "37.3"
+        }
       },
       {
         "gate": "3",
@@ -14941,7 +17497,11 @@
         "late_rank": 8,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 54.3
+        "pure_score": 54.3,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "5",
@@ -14967,7 +17527,11 @@
         "late_rank": 3,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "19.7"
+        }
       },
       {
         "gate": "1",
@@ -14993,7 +17557,11 @@
         "late_rank": 10,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "38.4",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "10",
@@ -15019,7 +17587,11 @@
         "late_rank": 7,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "saved_odds": {
+          "base": "27.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "4",
@@ -15045,7 +17617,11 @@
         "late_rank": 4,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 49.8
+        "pure_score": 49.8,
+        "saved_odds": {
+          "base": "23.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "7",
@@ -15069,9 +17645,13 @@
         "late_score": 37.67,
         "early_rank": 9,
         "late_rank": 6,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 47.3
+        "pure_score": 47.3,
+        "saved_odds": {
+          "base": "8.9",
+          "cur": "7.7"
+        }
       },
       {
         "gate": "9",
@@ -15099,14 +17679,38 @@
         "place_prob": 20.4,
         "pure_score": 45.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        4,
+        9,
+        3,
+        10
+      ],
+      "late": [
+        8,
+        1,
+        9,
+        5,
+        7
+      ],
+      "pred": [
+        8,
+        3,
+        1,
+        10,
+        2
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -15289,7 +17893,7 @@
         "early_rank": 6,
         "late_rank": 4,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 50.9
       },
       {
@@ -15314,7 +17918,7 @@
         "late_score": 31.94,
         "early_rank": 8,
         "late_rank": 7,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 42.1
       },
@@ -15340,9 +17944,9 @@
         "late_score": 21.69,
         "early_rank": 9,
         "late_rank": 10,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 42.0
+        "pure_score": 42
       },
       {
         "gate": "6",
@@ -15370,14 +17974,38 @@
         "place_prob": 18.5,
         "pure_score": 40.4
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        9,
+        2,
+        10,
+        4
+      ],
+      "late": [
+        7,
+        1,
+        8,
+        5,
+        6
+      ],
+      "pred": [
+        7,
+        5,
+        4,
+        8,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "6",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -15404,7 +18032,7 @@
         "early_rank": 1,
         "late_rank": 4,
         "win_prob": 12.1,
-        "place_prob": 29.0,
+        "place_prob": 29,
         "pure_score": 61.3
       },
       {
@@ -15457,7 +18085,7 @@
         "late_rank": 7,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 58.0
+        "pure_score": 58
       },
       {
         "gate": "2",
@@ -15481,7 +18109,7 @@
         "late_score": 29.44,
         "early_rank": 4,
         "late_rank": 8,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 56.1
       },
@@ -15507,7 +18135,7 @@
         "late_score": 49.44,
         "early_rank": 3,
         "late_rank": 2,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 56.1
       },
@@ -15533,8 +18161,8 @@
         "late_score": 42.37,
         "early_rank": 6,
         "late_rank": 3,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 50.8
       },
       {
@@ -15613,7 +18241,7 @@
         "late_rank": 9,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 41.0
+        "pure_score": 41
       },
       {
         "gate": "9",
@@ -15638,17 +18266,41 @@
         "early_rank": 10,
         "late_rank": 10,
         "win_prob": 7.5,
-        "place_prob": 18.0,
+        "place_prob": 18,
         "pure_score": 38.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        2,
+        5,
+        6,
+        8
+      ],
+      "late": [
+        10,
+        6,
+        3,
+        9,
+        5
+      ],
+      "pred": [
+        5,
+        9,
+        10,
+        8,
+        3
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -15858,7 +18510,7 @@
         "late_rank": 9,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 48.0
+        "pure_score": 48
       },
       {
         "gate": "6",
@@ -15912,14 +18564,38 @@
         "place_prob": 20.9,
         "pure_score": 47.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        7,
+        5,
+        9,
+        6,
+        8
+      ],
+      "late": [
+        1,
+        4,
+        3,
+        10,
+        8
+      ],
+      "pred": [
+        6,
+        5,
+        3,
+        1,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "8",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -15997,7 +18673,7 @@
         "late_score": 43.64,
         "early_rank": 6,
         "late_rank": 4,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 60.8
       },
@@ -16051,7 +18727,7 @@
         "late_rank": 6,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 57.0
+        "pure_score": 57
       },
       {
         "gate": "3",
@@ -16179,11 +18855,35 @@
         "late_score": 33.75,
         "early_rank": 10,
         "late_rank": 8,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 44.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        10,
+        5,
+        2,
+        8
+      ],
+      "late": [
+        3,
+        5,
+        1,
+        6,
+        8
+      ],
+      "pred": [
+        3,
+        5,
+        7,
+        1,
+        8
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
@@ -16480,14 +19180,34 @@
         "place_prob": 20.4,
         "pure_score": 52.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        8,
+        7
+      ],
+      "late": [
+        4,
+        8,
+        7
+      ],
+      "pred": [
+        1,
+        4,
+        6,
+        8,
+        2
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "2",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -16513,8 +19233,8 @@
         "late_score": 35.68,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 58.9
       },
       {
@@ -16539,9 +19259,9 @@
         "late_score": 51.1,
         "early_rank": 6,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
-        "pure_score": 59.0
+        "win_prob": 10,
+        "place_prob": 24,
+        "pure_score": 59
       },
       {
         "gate": "5",
@@ -16592,8 +19312,8 @@
         "early_rank": 4,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 57.0
+        "place_prob": 23,
+        "pure_score": 57
       },
       {
         "gate": "3",
@@ -16777,7 +19497,31 @@
         "place_prob": 19.4,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        11,
+        6,
+        9,
+        3
+      ],
+      "late": [
+        7,
+        9,
+        3,
+        11,
+        5
+      ],
+      "pred": [
+        4,
+        7,
+        9,
+        1,
+        6
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
@@ -16812,7 +19556,8 @@
         "late_rank": 4,
         "win_prob": 10.9,
         "place_prob": 26.2,
-        "pure_score": 64.1
+        "pure_score": 64.1,
+        "distance": "1200"
       },
       {
         "gate": "2",
@@ -16838,7 +19583,8 @@
         "late_rank": 7,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 60.6
+        "pure_score": 60.6,
+        "distance": "1200"
       },
       {
         "gate": "5",
@@ -16864,7 +19610,8 @@
         "late_rank": 1,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "distance": "1200"
       },
       {
         "gate": "1",
@@ -16890,7 +19637,8 @@
         "late_rank": 9,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 55.8
+        "pure_score": 55.8,
+        "distance": "1200"
       },
       {
         "gate": "9",
@@ -16914,9 +19662,10 @@
         "late_score": 35.06,
         "early_rank": 8,
         "late_rank": 8,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "distance": "1200"
       },
       {
         "gate": "6",
@@ -16942,7 +19691,8 @@
         "late_rank": 3,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.8
+        "pure_score": 52.8,
+        "distance": "1200"
       },
       {
         "gate": "8",
@@ -16968,7 +19718,8 @@
         "late_rank": 2,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "distance": "1200"
       },
       {
         "gate": "4",
@@ -16994,7 +19745,8 @@
         "late_rank": 5,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1200"
       },
       {
         "gate": "7",
@@ -17020,7 +19772,8 @@
         "late_rank": 6,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1200"
       },
       {
         "gate": "10",
@@ -17046,7 +19799,8 @@
         "late_rank": 11,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 47.7
+        "pure_score": 47.7,
+        "distance": "1200"
       },
       {
         "gate": "11",
@@ -17072,16 +19826,41 @@
         "late_rank": 10,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "distance": "1200"
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        6,
+        5,
+        4,
+        9,
+        1
+      ],
+      "late": [
+        3,
+        4,
+        6,
+        5,
+        1
+      ],
+      "pred": [
+        6,
+        11,
+        1,
+        3,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "4",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -17109,7 +19888,8 @@
         "late_rank": 7,
         "win_prob": 10.2,
         "place_prob": 24.5,
-        "pure_score": 60.1
+        "pure_score": 60.1,
+        "distance": "1300"
       },
       {
         "gate": "8",
@@ -17135,7 +19915,8 @@
         "late_rank": 1,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.9
+        "pure_score": 56.9,
+        "distance": "1300"
       },
       {
         "gate": "3",
@@ -17160,8 +19941,9 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 56.1
+        "place_prob": 23,
+        "pure_score": 56.1,
+        "distance": "1300"
       },
       {
         "gate": "10",
@@ -17187,7 +19969,8 @@
         "late_rank": 6,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 55.8
+        "pure_score": 55.8,
+        "distance": "1300"
       },
       {
         "gate": "4",
@@ -17213,7 +19996,8 @@
         "late_rank": 2,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 54.8
+        "pure_score": 54.8,
+        "distance": "1300"
       },
       {
         "gate": "1",
@@ -17239,7 +20023,8 @@
         "late_rank": 11,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "distance": "1300"
       },
       {
         "gate": "11",
@@ -17265,7 +20050,8 @@
         "late_rank": 9,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 52.2
+        "pure_score": 52.2,
+        "distance": "1300"
       },
       {
         "gate": "5",
@@ -17291,7 +20077,8 @@
         "late_rank": 4,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 49.8
+        "pure_score": 49.8,
+        "distance": "1300"
       },
       {
         "gate": "6",
@@ -17317,7 +20104,8 @@
         "late_rank": 3,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1300"
       },
       {
         "gate": "7",
@@ -17343,7 +20131,8 @@
         "late_rank": 5,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 49.7
+        "pure_score": 49.7,
+        "distance": "1300"
       },
       {
         "gate": "9",
@@ -17369,16 +20158,41 @@
         "late_rank": 10,
         "win_prob": 8.4,
         "place_prob": 20.2,
-        "pure_score": 49.1
+        "pure_score": 49.1,
+        "distance": "1300"
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        4,
+        5,
+        2,
+        8,
+        6
+      ],
+      "late": [
+        3,
+        10,
+        4,
+        8,
+        2
+      ],
+      "pred": [
+        8,
+        4,
+        11,
+        3,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "5",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -17406,7 +20220,8 @@
         "late_rank": 6,
         "win_prob": 10.1,
         "place_prob": 24.2,
-        "pure_score": 57.9
+        "pure_score": 57.9,
+        "distance": "1400"
       },
       {
         "gate": "8",
@@ -17432,7 +20247,8 @@
         "late_rank": 1,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "distance": "1400"
       },
       {
         "gate": "5",
@@ -17458,7 +20274,8 @@
         "late_rank": 2,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "distance": "1400"
       },
       {
         "gate": "1",
@@ -17484,7 +20301,8 @@
         "late_rank": 10,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 52.6
+        "pure_score": 52.6,
+        "distance": "1400"
       },
       {
         "gate": "7",
@@ -17510,7 +20328,8 @@
         "late_rank": 3,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 52.8
+        "pure_score": 52.8,
+        "distance": "1400"
       },
       {
         "gate": "3",
@@ -17536,7 +20355,8 @@
         "late_rank": 11,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1400"
       },
       {
         "gate": "4",
@@ -17562,7 +20382,8 @@
         "late_rank": 4,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1400"
       },
       {
         "gate": "9",
@@ -17588,7 +20409,8 @@
         "late_rank": 7,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1400"
       },
       {
         "gate": "10",
@@ -17614,7 +20436,8 @@
         "late_rank": 8,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 50.1
+        "pure_score": 50.1,
+        "distance": "1400"
       },
       {
         "gate": "6",
@@ -17640,7 +20463,8 @@
         "late_rank": 5,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 49.2
+        "pure_score": 49.2,
+        "distance": "1400"
       },
       {
         "gate": "11",
@@ -17666,16 +20490,41 @@
         "late_rank": 9,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 49.0
+        "pure_score": 49,
+        "distance": "1400"
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        3,
+        11,
+        9,
+        8,
+        6
+      ],
+      "late": [
+        2,
+        11,
+        6,
+        10,
+        8
+      ],
+      "pred": [
+        2,
+        3,
+        4,
+        8,
+        10
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "6",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -17961,9 +20810,9 @@
         "late_score": 26.64,
         "early_rank": 15,
         "late_rank": 11,
-        "win_prob": 6.0,
+        "win_prob": 6,
         "place_prob": 14.4,
-        "pure_score": 46.0
+        "pure_score": 46
       },
       {
         "gate": "13",
@@ -17987,7 +20836,7 @@
         "late_score": 25.88,
         "early_rank": 12,
         "late_rank": 12,
-        "win_prob": 6.0,
+        "win_prob": 6,
         "place_prob": 14.4,
         "pure_score": 45.7
       },
@@ -18095,14 +20944,24 @@
         "place_prob": 13.9,
         "pure_score": 44.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        1,
+        14,
+        8
+      ],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "7",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -18208,7 +21067,7 @@
         "late_rank": 1,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 57.0
+        "pure_score": 57
       },
       {
         "gate": "1",
@@ -18260,7 +21119,7 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55.0
+        "pure_score": 55
       },
       {
         "gate": "5",
@@ -18284,7 +21143,7 @@
         "late_score": 45.69,
         "early_rank": 5,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -18362,7 +21221,7 @@
         "late_score": 38.19,
         "early_rank": 10,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 47.1
       },
@@ -18392,14 +21251,38 @@
         "place_prob": 18.5,
         "pure_score": 45.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        10,
+        2,
+        8,
+        1,
+        7
+      ],
+      "late": [
+        4,
+        5,
+        8,
+        9,
+        6
+      ],
+      "pred": [
+        10,
+        11,
+        9,
+        2,
+        4
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "8",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -18425,8 +21308,8 @@
         "late_score": 52.11,
         "early_rank": 2,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 59.7
       },
       {
@@ -18609,7 +21492,7 @@
         "late_rank": 8,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.0
+        "pure_score": 53
       },
       {
         "gate": "3",
@@ -18689,14 +21572,38 @@
         "place_prob": 20.6,
         "pure_score": 51.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [
+        5,
+        1,
+        4,
+        3,
+        6
+      ],
+      "late": [
+        10,
+        9,
+        3,
+        4,
+        8
+      ],
+      "pred": [
+        5,
+        6,
+        1,
+        3,
+        9
+      ],
+      "high": []
+    }
   },
   {
     "meet_code": "3",
     "meet_name": "부산경남",
     "race_no": "9",
     "race_date": "20261030",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -18723,7 +21630,7 @@
         "early_rank": 5,
         "late_rank": 3,
         "win_prob": 10.4,
-        "place_prob": 25.0,
+        "place_prob": 25,
         "pure_score": 59.9
       },
       {
@@ -18750,7 +21657,7 @@
         "late_rank": 1,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.0
+        "pure_score": 56
       },
       {
         "gate": "8",
@@ -18776,7 +21683,7 @@
         "late_rank": 2,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56.0
+        "pure_score": 56
       },
       {
         "gate": "2",
@@ -18801,7 +21708,7 @@
         "early_rank": 1,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 55.1
       },
       {
@@ -18852,7 +21759,7 @@
         "late_score": 27.8,
         "early_rank": 3,
         "late_rank": 11,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 51.8
       },
@@ -18878,7 +21785,7 @@
         "late_score": 33.74,
         "early_rank": 9,
         "late_rank": 7,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 51.7
       },
@@ -18983,17 +21890,23 @@
         "early_rank": 6,
         "late_rank": 6,
         "win_prob": 7.9,
-        "place_prob": 19.0,
+        "place_prob": 19,
         "pure_score": 45.8
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -19229,7 +22142,7 @@
         "late_rank": 6,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 45.0
+        "pure_score": 45
       },
       {
         "gate": "8",
@@ -19257,14 +22170,20 @@
         "place_prob": 18.7,
         "pure_score": 40.9
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -19318,7 +22237,7 @@
         "late_rank": 5,
         "win_prob": 11.9,
         "place_prob": 28.6,
-        "pure_score": 58.0
+        "pure_score": 58
       },
       {
         "gate": "6",
@@ -19528,14 +22447,20 @@
         "place_prob": 18.7,
         "pure_score": 38.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -19692,7 +22617,7 @@
         "early_rank": 5,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 48.1
       },
       {
@@ -19745,7 +22670,7 @@
         "late_rank": 6,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 43.0
+        "pure_score": 43
       },
       {
         "gate": "9",
@@ -19799,14 +22724,20 @@
         "place_prob": 19.9,
         "pure_score": 41.5
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -19833,7 +22764,7 @@
         "early_rank": 1,
         "late_rank": 2,
         "win_prob": 12.5,
-        "place_prob": 30.0,
+        "place_prob": 30,
         "pure_score": 65.6
       },
       {
@@ -19884,7 +22815,7 @@
         "late_score": 30.99,
         "early_rank": 3,
         "late_rank": 9,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 57.6
       },
@@ -19910,7 +22841,7 @@
         "late_score": 50.35,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 57.9
       },
@@ -19988,7 +22919,7 @@
         "late_score": 37.67,
         "early_rank": 5,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 47.3
       },
@@ -20066,18 +22997,24 @@
         "late_score": 31.94,
         "early_rank": 10,
         "late_rank": 8,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 42.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -20208,7 +23145,7 @@
         "early_rank": 4,
         "late_rank": 9,
         "win_prob": 10.4,
-        "place_prob": 25.0,
+        "place_prob": 25,
         "pure_score": 55.6
       },
       {
@@ -20313,7 +23250,7 @@
         "late_rank": 6,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 46.0
+        "pure_score": 46
       },
       {
         "gate": "9",
@@ -20338,17 +23275,23 @@
         "early_rank": 10,
         "late_rank": 10,
         "win_prob": 7.5,
-        "place_prob": 18.0,
+        "place_prob": 18,
         "pure_score": 40.4
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "2",
     "meet_name": "제주",
     "race_no": "6",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -20612,14 +23555,20 @@
         "place_prob": 19.7,
         "pure_score": 43.2
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -20645,8 +23594,8 @@
         "late_score": 34.66,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 56.5
       },
       {
@@ -20672,7 +23621,7 @@
         "early_rank": 2,
         "late_rank": 9,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 54.1
       },
       {
@@ -20775,7 +23724,7 @@
         "late_score": 27.34,
         "early_rank": 3,
         "late_rank": 11,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.5
       },
@@ -20909,7 +23858,13 @@
         "place_prob": 20.4,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -21128,7 +24083,13 @@
         "place_prob": 27.8,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -21161,8 +24122,8 @@
         "late_score": 36.84,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 58.7
       },
       {
@@ -21189,7 +24150,7 @@
         "late_rank": 8,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 58.0
+        "pure_score": 58
       },
       {
         "gate": "10",
@@ -21240,7 +24201,7 @@
         "early_rank": 3,
         "late_rank": 9,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 56.1
       },
       {
@@ -21425,14 +24386,20 @@
         "place_prob": 19.7,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "4",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -21459,7 +24426,7 @@
         "early_rank": 7,
         "late_rank": 2,
         "win_prob": 12.1,
-        "place_prob": 29.0,
+        "place_prob": 29,
         "pure_score": 56.4
       },
       {
@@ -21484,7 +24451,7 @@
         "late_score": 48.2,
         "early_rank": 6,
         "late_rank": 1,
-        "win_prob": 12.0,
+        "win_prob": 12,
         "place_prob": 28.8,
         "pure_score": 56.1
       },
@@ -21670,14 +24637,20 @@
         "place_prob": 24.7,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -21703,8 +24676,8 @@
         "late_score": 34.66,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 56.5
       },
       {
@@ -21730,7 +24703,7 @@
         "early_rank": 2,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 54.1
       },
       {
@@ -21756,7 +24729,7 @@
         "early_rank": 7,
         "late_rank": 1,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 54.1
       },
       {
@@ -21782,7 +24755,7 @@
         "early_rank": 6,
         "late_rank": 6,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 54.5
       },
       {
@@ -21967,14 +24940,20 @@
         "place_prob": 20.4,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "6",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -22028,7 +25007,7 @@
         "late_rank": 2,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 55.0
+        "pure_score": 55
       },
       {
         "gate": "1",
@@ -22079,7 +25058,7 @@
         "early_rank": 7,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 53.7
       },
       {
@@ -22156,7 +25135,7 @@
         "late_score": 31.36,
         "early_rank": 8,
         "late_rank": 7,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.2
       },
@@ -22264,7 +25243,13 @@
         "place_prob": 19.4,
         "pure_score": 45.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -22297,8 +25282,8 @@
         "late_score": 51.93,
         "early_rank": 2,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 59.9
       },
       {
@@ -22324,7 +25309,7 @@
         "early_rank": 1,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.5
       },
       {
@@ -22561,7 +25546,13 @@
         "place_prob": 19.4,
         "pure_score": 48.5
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -22668,7 +25659,7 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 8.0,
+        "early_score": 8,
         "late_score": 45.22,
         "early_rank": 8,
         "late_rank": 3,
@@ -22804,7 +25795,7 @@
         "late_rank": 8,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 48.0
+        "pure_score": 48
       },
       {
         "gate": "3",
@@ -22858,14 +25849,20 @@
         "place_prob": 18.2,
         "pure_score": 43.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1700",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -23073,7 +26070,7 @@
         "late_score": 44.44,
         "early_rank": 5,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 52.1
       },
@@ -23095,7 +26092,7 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 4.0,
+        "early_score": 4,
         "late_score": 42.42,
         "early_rank": 10,
         "late_rank": 4,
@@ -23127,7 +26124,7 @@
         "late_rank": 11,
         "win_prob": 8.4,
         "place_prob": 20.2,
-        "pure_score": 49.0
+        "pure_score": 49
       },
       {
         "gate": "7",
@@ -23155,14 +26152,20 @@
         "place_prob": 19.4,
         "pure_score": 46.8
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "10",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -23344,7 +26347,7 @@
         "late_score": 33.18,
         "early_rank": 8,
         "late_rank": 9,
-        "win_prob": 11.0,
+        "win_prob": 11,
         "place_prob": 26.4,
         "pure_score": 52.9
       },
@@ -23398,16 +26401,22 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 45.0
+        "pure_score": 45
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "11",
     "race_date": "20261031",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -23459,8 +26468,8 @@
         "late_score": 49.88,
         "early_rank": 5,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 58.6
       },
       {
@@ -23486,7 +26495,7 @@
         "early_rank": 4,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 56.1
       },
       {
@@ -23697,14 +26706,20 @@
         "place_prob": 17.3,
         "pure_score": 42.2
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "1",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -23834,7 +26849,7 @@
         "late_score": 45.69,
         "early_rank": 3,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -23860,7 +26875,7 @@
         "late_score": 45.69,
         "early_rank": 8,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -23886,7 +26901,7 @@
         "late_score": 45.69,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -23992,9 +27007,15 @@
         "late_rank": 11,
         "win_prob": 8.5,
         "place_prob": 20.4,
-        "pure_score": 50.0
+        "pure_score": 50
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
@@ -24183,7 +27204,7 @@
         "late_score": 29.05,
         "early_rank": 2,
         "late_rank": 11,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 52.8
       },
@@ -24291,7 +27312,13 @@
         "place_prob": 20.2,
         "pure_score": 49.2
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
@@ -24326,7 +27353,7 @@
         "late_rank": 7,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 58.0
+        "pure_score": 58
       },
       {
         "gate": "2",
@@ -24480,7 +27507,7 @@
         "late_score": 45.69,
         "early_rank": 4,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -24506,7 +27533,7 @@
         "late_score": 45.69,
         "early_rank": 9,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -24585,17 +27612,23 @@
         "early_rank": 6,
         "late_rank": 6,
         "win_prob": 7.9,
-        "place_prob": 19.0,
+        "place_prob": 19,
         "pure_score": 46.8
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "4",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -24621,8 +27654,8 @@
         "late_score": 50.68,
         "early_rank": 2,
         "late_rank": 1,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 58.9
       },
       {
@@ -24674,7 +27707,7 @@
         "early_rank": 6,
         "late_rank": 3,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 56.8
       },
       {
@@ -24777,7 +27810,7 @@
         "late_score": 45.69,
         "early_rank": 3,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -24803,7 +27836,7 @@
         "late_score": 35.05,
         "early_rank": 9,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -24881,18 +27914,24 @@
         "late_score": 23.19,
         "early_rank": 5,
         "late_rank": 11,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 47.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "5",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -24918,8 +27957,8 @@
         "late_score": 39.23,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 60.6
       },
       {
@@ -25074,7 +28113,7 @@
         "late_score": 47.13,
         "early_rank": 8,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 54.7
       },
@@ -25179,17 +28218,23 @@
         "early_rank": 11,
         "late_rank": 11,
         "win_prob": 7.9,
-        "place_prob": 19.0,
+        "place_prob": 19,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "4",
     "meet_name": "영천",
     "race_no": "6",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -25217,7 +28262,11 @@
         "late_rank": 6,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 59.9
+        "pure_score": 59.9,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.8"
+        }
       },
       {
         "gate": "8",
@@ -25243,7 +28292,11 @@
         "late_rank": 1,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 59.9
+        "pure_score": 59.9,
+        "saved_odds": {
+          "base": "10.6",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "1",
@@ -25268,8 +28321,12 @@
         "early_rank": 1,
         "late_rank": 8,
         "win_prob": 9.6,
-        "place_prob": 23.0,
-        "pure_score": 58.1
+        "place_prob": 23,
+        "pure_score": 58.1,
+        "saved_odds": {
+          "base": "29.0",
+          "cur": "37.3"
+        }
       },
       {
         "gate": "2",
@@ -25295,7 +28352,11 @@
         "late_rank": 11,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 56.7
+        "pure_score": 56.7,
+        "saved_odds": {
+          "base": "1.9",
+          "cur": "1.8"
+        }
       },
       {
         "gate": "11",
@@ -25321,7 +28382,11 @@
         "late_rank": 5,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 56.8
+        "pure_score": 56.8,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "19.7"
+        }
       },
       {
         "gate": "9",
@@ -25347,7 +28412,11 @@
         "late_rank": 7,
         "win_prob": 9.1,
         "place_prob": 21.8,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "38.4",
+          "cur": "18.1"
+        }
       },
       {
         "gate": "7",
@@ -25371,9 +28440,13 @@
         "late_score": 46.2,
         "early_rank": 9,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 54.4
+        "pure_score": 54.4,
+        "saved_odds": {
+          "base": "27.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "5",
@@ -25399,7 +28472,11 @@
         "late_rank": 2,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.6
+        "pure_score": 53.6,
+        "saved_odds": {
+          "base": "23.0",
+          "cur": "33.8"
+        }
       },
       {
         "gate": "4",
@@ -25425,7 +28502,11 @@
         "late_rank": 4,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "8.9",
+          "cur": "7.7"
+        }
       },
       {
         "gate": "10",
@@ -25479,14 +28560,20 @@
         "place_prob": 17.3,
         "pure_score": 43.7
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -25642,7 +28729,7 @@
         "late_score": 29.84,
         "early_rank": 4,
         "late_rank": 10,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 52.5
       },
@@ -25776,14 +28863,20 @@
         "place_prob": 19.7,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "2",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -25862,7 +28955,7 @@
         "early_rank": 3,
         "late_rank": 8,
         "win_prob": 12.9,
-        "place_prob": 31.0,
+        "place_prob": 31,
         "pure_score": 55.2
       },
       {
@@ -25914,7 +29007,7 @@
         "early_rank": 4,
         "late_rank": 2,
         "win_prob": 12.5,
-        "place_prob": 30.0,
+        "place_prob": 30,
         "pure_score": 53.5
       },
       {
@@ -25995,7 +29088,13 @@
         "place_prob": 27.1,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -26028,8 +29127,8 @@
         "late_score": 34.44,
         "early_rank": 1,
         "late_rank": 6,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 56.1
       },
       {
@@ -26132,7 +29231,7 @@
         "late_score": 26.94,
         "early_rank": 3,
         "late_rank": 11,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -26158,7 +29257,7 @@
         "late_score": 42.34,
         "early_rank": 4,
         "late_rank": 1,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.5
       },
@@ -26184,7 +29283,7 @@
         "late_score": 41.94,
         "early_rank": 7,
         "late_rank": 2,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -26210,7 +29309,7 @@
         "late_score": 41.94,
         "early_rank": 8,
         "late_rank": 3,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -26236,7 +29335,7 @@
         "late_score": 31.94,
         "early_rank": 10,
         "late_rank": 9,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 50.1
       },
@@ -26292,14 +29391,20 @@
         "place_prob": 20.6,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "4",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -26559,7 +29664,7 @@
         "late_score": 36.74,
         "early_rank": 6,
         "late_rank": 6,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 46.6
       },
@@ -26589,14 +29694,20 @@
         "place_prob": 18.5,
         "pure_score": 45.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -26622,8 +29733,8 @@
         "late_score": 36.22,
         "early_rank": 1,
         "late_rank": 7,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 59.5
       },
       {
@@ -26832,7 +29943,7 @@
         "late_rank": 11,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 52.0
+        "pure_score": 52
       },
       {
         "gate": "8",
@@ -26886,14 +29997,20 @@
         "place_prob": 19.4,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "6",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1700",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -27049,7 +30166,7 @@
         "late_score": 35.69,
         "early_rank": 10,
         "late_rank": 8,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -27183,14 +30300,20 @@
         "place_prob": 19.9,
         "pure_score": 48.8
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "2300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -27454,14 +30577,20 @@
         "place_prob": 20.9,
         "pure_score": 46.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -27540,7 +30669,7 @@
         "early_rank": 3,
         "late_rank": 7,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 57.1
       },
       {
@@ -27697,7 +30826,7 @@
         "late_rank": 9,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 49.0
+        "pure_score": 49
       },
       {
         "gate": "10",
@@ -27747,18 +30876,24 @@
         "late_score": 27.99,
         "early_rank": 11,
         "late_rank": 11,
-        "win_prob": 8.0,
+        "win_prob": 8,
         "place_prob": 19.2,
         "pure_score": 47.6
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -27785,7 +30920,7 @@
         "early_rank": 5,
         "late_rank": 2,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 56.2
       },
       {
@@ -27806,12 +30941,12 @@
         "is_front": false,
         "actual_ord": "-",
         "ai_tags": [],
-        "early_score": 9.0,
+        "early_score": 9,
         "late_score": 38.09,
         "early_rank": 10,
         "late_rank": 7,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 56.3
       },
       {
@@ -27940,7 +31075,7 @@
         "late_score": 45.69,
         "early_rank": 8,
         "late_rank": 4,
-        "win_prob": 9.0,
+        "win_prob": 9,
         "place_prob": 21.6,
         "pure_score": 53.1
       },
@@ -27994,7 +31129,7 @@
         "late_rank": 9,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 51.0
+        "pure_score": 51
       },
       {
         "gate": "3",
@@ -28048,7 +31183,13 @@
         "place_prob": 19.7,
         "pure_score": 48.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
@@ -28082,7 +31223,7 @@
         "early_rank": 1,
         "late_rank": 6,
         "win_prob": 12.1,
-        "place_prob": 29.0,
+        "place_prob": 29,
         "pure_score": 57.1
       },
       {
@@ -28289,18 +31430,24 @@
         "late_score": 38.19,
         "early_rank": 9,
         "late_rank": 5,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 47.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   },
   {
     "meet_code": "1",
     "meet_name": "서울",
     "race_no": "11",
     "race_date": "20261101",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -28326,8 +31473,8 @@
         "late_score": 36.81,
         "early_rank": 1,
         "late_rank": 6,
-        "win_prob": 10.0,
-        "place_prob": 24.0,
+        "win_prob": 10,
+        "place_prob": 24,
         "pure_score": 58.1
       },
       {
@@ -28379,7 +31526,7 @@
         "early_rank": 6,
         "late_rank": 5,
         "win_prob": 9.6,
-        "place_prob": 23.0,
+        "place_prob": 23,
         "pure_score": 55.6
       },
       {
@@ -28590,6 +31737,12 @@
         "place_prob": 18.2,
         "pure_score": 44.1
       }
-    ]
+    ],
+    "saved_derby": {
+      "early": [],
+      "late": [],
+      "pred": [],
+      "high": []
+    }
   }
 ]
