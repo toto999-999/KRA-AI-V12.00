@@ -108,17 +108,18 @@
             display: flex; align-items: center; justify-content: space-between; min-height: 38px;
         }
         .pad-display-label { font-size: 0.72rem; color: #38bdf8; font-weight: 800; }
-        .pad-display-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+        .pad-display-chips { display: flex; gap: 5px; flex-wrap: wrap; }
         .pad-chip {
-            background: #0284c7; color: white; width: 26px; height: 26px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 900;
+            background: #0284c7; color: white; width: 25px; height: 25px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 900;
         }
         .pad-chip.high { background: #f59e0b; color: #000; }
 
-        .keypad-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 8px; }
+        /* 🎯 [새로움] 1~16번 지원: 8개씩 2줄 완벽 대칭 */
+        .keypad-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; margin-bottom: 8px; }
         .key-btn {
             background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white;
-            height: 38px; border-radius: 8px; font-size: 0.95rem; font-weight: 900; cursor: pointer;
+            height: 38px; border-radius: 7px; font-size: 0.9rem; font-weight: 900; cursor: pointer;
             display: flex; align-items: center; justify-content: center; transition: all 0.15s;
         }
         .key-btn:active { background: #38bdf8; color: #0f172a; transform: scale(0.95); }
@@ -260,10 +261,10 @@
                     </div>
                 </div>
 
-                <!-- 🎯 더비온 2.0 원터치 승부패드 -->
+                <!-- 🎯 더비온 2.0 원터치 승부패드 (1~16번 완벽 지원) -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
-                        <div class="pad-title">🔥 더비온 2.0 원터치 승부패드</div>
+                        <div class="pad-title">🔥 더비온 2.0 원터치 승부패드 (1~16번)</div>
                         <button class="pad-reset-btn" onclick="resetDerbyPad()">비우기 🔄</button>
                     </div>
 
@@ -279,6 +280,7 @@
                         <div class="pad-display-chips" id="currentPadChips"></div>
                     </div>
 
+                    <!-- 🎯 1~16번 터치 키패드 (8개씩 2줄) -->
                     <div class="keypad-grid" id="keypadGrid"></div>
 
                     <div class="analysis-badge-bar" id="derbyAnalysisSummary">
@@ -430,10 +432,11 @@
         function getRaceStorageKey(race) { return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
         function getDistanceStorageKey(race) { return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
 
+        // 🎯 [핵심] 1~16번 풀게이트 키패드 생성 (8개씩 2줄)
         function initKeypad() {
             const grid = document.getElementById('keypadGrid');
             grid.innerHTML = '';
-            for (let i = 1; i <= 14; i++) {
+            for (let i = 1; i <= 16; i++) {
                 const btn = document.createElement('button');
                 btn.className = 'key-btn';
                 btn.id = `key_btn_${i}`;
@@ -492,7 +495,8 @@
                 chips.appendChild(chip);
             });
 
-            for (let i = 1; i <= 14; i++) {
+            // 🎯 1~16번 선택 하이라이트 동기화
+            for (let i = 1; i <= 16; i++) {
                 const btn = document.getElementById(`key_btn_${i}`);
                 if (btn) {
                     if (list.includes(i)) btn.classList.add('selected');
@@ -501,7 +505,6 @@
             }
         }
 
-        // 🎯 [버그 해결] 비우기를 누르면 오직 '지금 보고 있는 그 경주 1개'만 격리 비움!
         function resetDerbyPad() {
             derbyInputs = { early: [], late: [], pred: [], high: [] };
             const race = allRaceData[currentRaceIdx];
@@ -646,14 +649,12 @@
             evaluateHits(race, { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 });
         }
 
-        // 🎯 [핵심 버그 수정 1] 진짜 결과가 있는 경주인지 완주 기록(rc_time) 엄격 검증!
         function hasFinishedRace(race) {
             if (!race || !race.horses) return false;
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
             if (!h1st || !h2nd) return false;
 
-            // 완주 시간 검증 (1:23.4 또는 58.2 등 콜론/마침표가 있는 유효 기록만 인정!)
             const isValidTime = (t) => {
                 const s = String(t || "").trim();
                 return s.length >= 3 && s !== "-" && (s.includes(":") || s.includes("."));
@@ -663,7 +664,7 @@
         }
 
         function evaluateHits(race, picks) {
-            if (!hasFinishedRace(race)) return; // 미래 경주는 적중 검사 완전 패스!
+            if (!hasFinishedRace(race)) return;
 
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -902,7 +903,6 @@
             }
         }
 
-        // 🎯 [버그 해결 2] 날짜/경주 바꿀 때 이전 경주 안전 저장 및 인덱스 완벽 동기화
         function changeDate() {
             autoSaveCurrentRaceState();
             populateRaceSelect(document.getElementById('dateSelect').value);
@@ -937,7 +937,6 @@
             }
         }
 
-        // 🎯 [핵심 버그 수정 2] currentRaceIdx를 함수 진입 즉각 동기화!
         function renderRace(idx) {
             currentRaceIdx = idx;
             const raceSelect = document.getElementById('raceSelect');
@@ -947,7 +946,7 @@
             if (!race) return;
 
             document.getElementById('distanceInput').value = race.distance;
-            loadDerbyPadForRace(); // 고유 경주 패드 로드
+            loadDerbyPadForRace();
             renderRaceUIOnly(idx);
         }
 
@@ -962,7 +961,6 @@
 
             const resBar = document.getElementById('resultBar');
             
-            // 🎯 완주 타임이 검증된 '진짜 결과 경주'만 결과 바 표출!
             if (hasFinishedRace(race)) {
                 const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
                 const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -971,7 +969,7 @@
                 const s3 = h3rd ? ` - 3착 [${h3rd.gate}번 ${h3rd.name}]` : "";
                 resBar.textContent = `🏁 실제 결과: 1착 [${h1st.gate}번 ${h1st.name}] - 2착 [${h2nd.gate}번 ${h2nd.name}]${s3}`;
             } else {
-                resBar.style.display = 'none'; // 미래 경주는 무조건 숨김!
+                resBar.style.display = 'none';
             }
 
             const savedOddsRaw = localStorage.getItem(getRaceStorageKey(race));
@@ -984,7 +982,6 @@
 
             race.horses.forEach((h, i) => {
                 const ord = parseInt(String(h.actual_ord).trim(), 10);
-                // 미래 경주는 실제 착순 뱃지 숨김
                 const actualTag = (isFinished && ord >= 1 && ord <= 3) ? `<span style="background:#ffd700; color:#7a5800; font-size:0.7rem; padding:1px 5px; border-radius:4px; font-weight:bold;">실제 ${ord}착</span>` : "";
 
                 const savedObj = savedOddsMap[h.gate] || h.saved_odds;
@@ -1138,7 +1135,7 @@
                 if (putRes.ok) {
                     toast.innerHTML = "✨ 깃허브 전체 저장 성공! 모든 경주가 완벽하게 보존되었습니다.";
                     setTimeout(() => { toast.style.display = 'none'; }, 2500);
-                    alert("☁️ [모든 경주 전체 데이터] 깃허브 저장 완료!\n\n이제 스마트폰에서 [📥 깃허브 전체 불러오기]를 누르시면 1경주부터 모든 경주가 그대로 복원됩니다.");
+                    alert("☁️ [모든 경주 전체 데이터] 깃허브 저장 완료!\n\n스마트폰에서 [📥 깃허브 전체 불러오기]를 누르시면 1경주부터 모든 경주가 그대로 복원됩니다.");
                 } else {
                     const errData = await putRes.json();
                     throw new Error(errData.message || "저장 실패");
