@@ -18157,7 +18157,11 @@
         "late_rank": 4,
         "win_prob": 12.1,
         "place_prob": 29,
-        "pure_score": 61.3
+        "pure_score": 61.3,
+        "saved_odds": {
+          "base": "12.8",
+          "cur": "12.2"
+        }
       },
       {
         "gate": "7",
@@ -18183,7 +18187,11 @@
         "late_rank": 1,
         "win_prob": 11.5,
         "place_prob": 27.6,
-        "pure_score": 58.4
+        "pure_score": 58.4,
+        "saved_odds": {
+          "base": "9.3",
+          "cur": "12.4"
+        }
       },
       {
         "gate": "1",
@@ -18209,7 +18217,11 @@
         "late_rank": 7,
         "win_prob": 11.4,
         "place_prob": 27.4,
-        "pure_score": 58
+        "pure_score": 58,
+        "saved_odds": {
+          "base": "8.6",
+          "cur": "11.7"
+        }
       },
       {
         "gate": "2",
@@ -18235,7 +18247,11 @@
         "late_rank": 8,
         "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "7.7",
+          "cur": "5.3"
+        }
       },
       {
         "gate": "4",
@@ -18261,7 +18277,11 @@
         "late_rank": 2,
         "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 56.1
+        "pure_score": 56.1,
+        "saved_odds": {
+          "base": "28.9",
+          "cur": "32.5"
+        }
       },
       {
         "gate": "8",
@@ -18287,7 +18307,11 @@
         "late_rank": 3,
         "win_prob": 10,
         "place_prob": 24,
-        "pure_score": 50.8
+        "pure_score": 50.8,
+        "saved_odds": {
+          "base": "48.7",
+          "cur": "28.3"
+        }
       },
       {
         "gate": "5",
@@ -18313,7 +18337,11 @@
         "late_rank": 5,
         "win_prob": 8.8,
         "place_prob": 21.1,
-        "pure_score": 44.9
+        "pure_score": 44.9,
+        "saved_odds": {
+          "base": "2.4",
+          "cur": "2.4"
+        }
       },
       {
         "gate": "6",
@@ -18339,7 +18367,11 @@
         "late_rank": 6,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 43.6
+        "pure_score": 43.6,
+        "saved_odds": {
+          "base": "22.4",
+          "cur": "22.3"
+        }
       },
       {
         "gate": "10",
@@ -18365,7 +18397,11 @@
         "late_rank": 9,
         "win_prob": 8.1,
         "place_prob": 19.4,
-        "pure_score": 41
+        "pure_score": 41,
+        "saved_odds": {
+          "base": "8.1",
+          "cur": "7.6"
+        }
       },
       {
         "gate": "9",
@@ -18391,7 +18427,11 @@
         "late_rank": 10,
         "win_prob": 7.5,
         "place_prob": 18,
-        "pure_score": 38.1
+        "pure_score": 38.1,
+        "saved_odds": {
+          "base": "5.5",
+          "cur": "6.7"
+        }
       }
     ],
     "saved_derby": {
@@ -18747,7 +18787,11 @@
         "late_rank": 7,
         "win_prob": 11.6,
         "place_prob": 27.8,
-        "pure_score": 64.1
+        "pure_score": 64.1,
+        "saved_odds": {
+          "base": "31.4",
+          "cur": "34.5"
+        }
       },
       {
         "gate": "7",
@@ -18773,7 +18817,11 @@
         "late_rank": 1,
         "win_prob": 11.2,
         "place_prob": 26.9,
-        "pure_score": 61.9
+        "pure_score": 61.9,
+        "saved_odds": {
+          "base": "3.7",
+          "cur": "7.8"
+        }
       },
       {
         "gate": "9",
@@ -18799,7 +18847,11 @@
         "late_rank": 4,
         "win_prob": 11,
         "place_prob": 26.4,
-        "pure_score": 60.8
+        "pure_score": 60.8,
+        "saved_odds": {
+          "base": "23.6",
+          "cur": "41.1"
+        }
       },
       {
         "gate": "4",
@@ -18825,7 +18877,11 @@
         "late_rank": 2,
         "win_prob": 10.5,
         "place_prob": 25.2,
-        "pure_score": 58.2
+        "pure_score": 58.2,
+        "saved_odds": {
+          "base": "19.3",
+          "cur": "22.8"
+        }
       },
       {
         "gate": "10",
@@ -18851,7 +18907,11 @@
         "late_rank": 6,
         "win_prob": 10.3,
         "place_prob": 24.7,
-        "pure_score": 57
+        "pure_score": 57,
+        "saved_odds": {
+          "base": "12.4",
+          "cur": "11.6"
+        }
       },
       {
         "gate": "3",
@@ -18877,7 +18937,11 @@
         "late_rank": 9,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 53.9
+        "pure_score": 53.9,
+        "saved_odds": {
+          "base": "2.1",
+          "cur": "1.7"
+        }
       },
       {
         "gate": "8",
@@ -18903,7 +18967,11 @@
         "late_rank": 3,
         "win_prob": 9.5,
         "place_prob": 22.8,
-        "pure_score": 52.4
+        "pure_score": 52.4,
+        "saved_odds": {
+          "base": "21.5",
+          "cur": "20.7"
+        }
       },
       {
         "gate": "5",
@@ -18929,7 +18997,11 @@
         "late_rank": 5,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "5.2",
+          "cur": "4.3"
+        }
       },
       {
         "gate": "2",
@@ -18955,7 +19027,11 @@
         "late_rank": 10,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 48.1
+        "pure_score": 48.1,
+        "saved_odds": {
+          "base": "20.2",
+          "cur": "31.8"
+        }
       },
       {
         "gate": "6",
@@ -18981,7 +19057,11 @@
         "late_rank": 8,
         "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 44.1
+        "pure_score": 44.1,
+        "saved_odds": {
+          "base": "52.0",
+          "cur": "41.2"
+        }
       }
     ],
     "saved_derby": {
@@ -21270,7 +21350,11 @@
         "late_rank": 5,
         "win_prob": 10.7,
         "place_prob": 25.7,
-        "pure_score": 62.9
+        "pure_score": 62.9,
+        "saved_odds": {
+          "base": "6.7",
+          "cur": "4.1"
+        }
       },
       {
         "gate": "4",
@@ -21296,7 +21380,11 @@
         "late_rank": 2,
         "win_prob": 9.8,
         "place_prob": 23.5,
-        "pure_score": 57.5
+        "pure_score": 57.5,
+        "saved_odds": {
+          "base": "9.5",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "3",
@@ -21322,7 +21410,11 @@
         "late_rank": 8,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 57.1
+        "pure_score": 57.1,
+        "saved_odds": {
+          "base": "14.6",
+          "cur": "15.1"
+        }
       },
       {
         "gate": "7",
@@ -21348,7 +21440,11 @@
         "late_rank": 1,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 57
+        "pure_score": 57,
+        "saved_odds": {
+          "base": "20.0",
+          "cur": "32.9"
+        }
       },
       {
         "gate": "1",
@@ -21374,7 +21470,11 @@
         "late_rank": 9,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 54.7
+        "pure_score": 54.7,
+        "saved_odds": {
+          "base": "4.7",
+          "cur": "8.7"
+        }
       },
       {
         "gate": "9",
@@ -21400,7 +21500,11 @@
         "late_rank": 7,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55
+        "pure_score": 55,
+        "saved_odds": {
+          "base": "8.4",
+          "cur": "13.4"
+        }
       },
       {
         "gate": "5",
@@ -21426,7 +21530,11 @@
         "late_rank": 3,
         "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "26.3",
+          "cur": "41.2"
+        }
       },
       {
         "gate": "8",
@@ -21452,7 +21560,11 @@
         "late_rank": 4,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "11.8",
+          "cur": "9.5"
+        }
       },
       {
         "gate": "10",
@@ -21478,7 +21590,11 @@
         "late_rank": 10,
         "win_prob": 8.2,
         "place_prob": 19.7,
-        "pure_score": 48.2
+        "pure_score": 48.2,
+        "saved_odds": {
+          "base": "5.3",
+          "cur": "4.6"
+        }
       },
       {
         "gate": "6",
@@ -21504,7 +21620,11 @@
         "late_rank": 6,
         "win_prob": 8,
         "place_prob": 19.2,
-        "pure_score": 47.1
+        "pure_score": 47.1,
+        "saved_odds": {
+          "base": "6.3",
+          "cur": "5.0"
+        }
       },
       {
         "gate": "11",
@@ -21530,7 +21650,11 @@
         "late_rank": 11,
         "win_prob": 7.7,
         "place_prob": 18.5,
-        "pure_score": 45.1
+        "pure_score": 45.1,
+        "saved_odds": {
+          "base": "13.2",
+          "cur": "19.1"
+        }
       }
     ],
     "saved_derby": {
@@ -21591,7 +21715,11 @@
         "late_rank": 1,
         "win_prob": 10,
         "place_prob": 24,
-        "pure_score": 59.7
+        "pure_score": 59.7,
+        "saved_odds": {
+          "base": "2.8",
+          "cur": "5.1"
+        }
       },
       {
         "gate": "1",
@@ -21617,7 +21745,11 @@
         "late_rank": 7,
         "win_prob": 9.9,
         "place_prob": 23.8,
-        "pure_score": 58.9
+        "pure_score": 58.9,
+        "saved_odds": {
+          "base": "10.4",
+          "cur": "6.1"
+        }
       },
       {
         "gate": "2",
@@ -21643,7 +21775,11 @@
         "late_rank": 9,
         "win_prob": 9.4,
         "place_prob": 22.6,
-        "pure_score": 55.9
+        "pure_score": 55.9,
+        "saved_odds": {
+          "base": "57.8",
+          "cur": "45.4"
+        }
       },
       {
         "gate": "9",
@@ -21669,7 +21805,11 @@
         "late_rank": 6,
         "win_prob": 9.3,
         "place_prob": 22.3,
-        "pure_score": 55.4
+        "pure_score": 55.4,
+        "saved_odds": {
+          "base": "17.0",
+          "cur": "12.6"
+        }
       },
       {
         "gate": "4",
@@ -21695,7 +21835,11 @@
         "late_rank": 2,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "30.8",
+          "cur": "29.3"
+        }
       },
       {
         "gate": "7",
@@ -21721,7 +21865,11 @@
         "late_rank": 3,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "18.5",
+          "cur": "20.0"
+        }
       },
       {
         "gate": "8",
@@ -21747,7 +21895,11 @@
         "late_rank": 4,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "22.1",
+          "cur": "20.2"
+        }
       },
       {
         "gate": "11",
@@ -21773,7 +21925,11 @@
         "late_rank": 8,
         "win_prob": 8.9,
         "place_prob": 21.4,
-        "pure_score": 53
+        "pure_score": 53,
+        "saved_odds": {
+          "base": "16.4",
+          "cur": "19.8"
+        }
       },
       {
         "gate": "3",
@@ -21799,7 +21955,11 @@
         "late_rank": 11,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 52.1
+        "pure_score": 52.1,
+        "saved_odds": {
+          "base": "5.2",
+          "cur": "3.9"
+        }
       },
       {
         "gate": "6",
@@ -21825,7 +21985,11 @@
         "late_rank": 5,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 51.8
+        "pure_score": 51.8,
+        "saved_odds": {
+          "base": "3.2",
+          "cur": "3.2"
+        }
       },
       {
         "gate": "10",
@@ -21851,7 +22015,11 @@
         "late_rank": 10,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 51.1
+        "pure_score": 51.1,
+        "saved_odds": {
+          "base": "39.7",
+          "cur": "28.9"
+        }
       }
     ],
     "saved_derby": {
@@ -21912,7 +22080,11 @@
         "late_rank": 3,
         "win_prob": 10.4,
         "place_prob": 25,
-        "pure_score": 59.9
+        "pure_score": 59.9,
+        "saved_odds": {
+          "base": "7.5",
+          "cur": "8.2"
+        }
       },
       {
         "gate": "4",
@@ -21938,7 +22110,11 @@
         "late_rank": 1,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56
+        "pure_score": 56,
+        "saved_odds": {
+          "base": "6.9",
+          "cur": "6.9"
+        }
       },
       {
         "gate": "8",
@@ -21964,7 +22140,11 @@
         "late_rank": 2,
         "win_prob": 9.7,
         "place_prob": 23.3,
-        "pure_score": 56
+        "pure_score": 56,
+        "saved_odds": {
+          "base": "5.4",
+          "cur": "9.8"
+        }
       },
       {
         "gate": "2",
@@ -21990,7 +22170,11 @@
         "late_rank": 8,
         "win_prob": 9.6,
         "place_prob": 23,
-        "pure_score": 55.1
+        "pure_score": 55.1,
+        "saved_odds": {
+          "base": "18.8",
+          "cur": "9.3"
+        }
       },
       {
         "gate": "3",
@@ -22016,7 +22200,11 @@
         "late_rank": 9,
         "win_prob": 9.2,
         "place_prob": 22.1,
-        "pure_score": 53.1
+        "pure_score": 53.1,
+        "saved_odds": {
+          "base": "21.3",
+          "cur": "17.8"
+        }
       },
       {
         "gate": "1",
@@ -22042,7 +22230,11 @@
         "late_rank": 11,
         "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 51.8
+        "pure_score": 51.8,
+        "saved_odds": {
+          "base": "2.5",
+          "cur": "2.0"
+        }
       },
       {
         "gate": "10",
@@ -22068,7 +22260,11 @@
         "late_rank": 7,
         "win_prob": 9,
         "place_prob": 21.6,
-        "pure_score": 51.7
+        "pure_score": 51.7,
+        "saved_odds": {
+          "base": "72.8",
+          "cur": "86.0"
+        }
       },
       {
         "gate": "7",
@@ -22094,7 +22290,11 @@
         "late_rank": 4,
         "win_prob": 8.7,
         "place_prob": 20.9,
-        "pure_score": 50.2
+        "pure_score": 50.2,
+        "saved_odds": {
+          "base": "12.0",
+          "cur": "16.9"
+        }
       },
       {
         "gate": "9",
@@ -22120,7 +22320,11 @@
         "late_rank": 10,
         "win_prob": 8.6,
         "place_prob": 20.6,
-        "pure_score": 49.4
+        "pure_score": 49.4,
+        "saved_odds": {
+          "base": "11.3",
+          "cur": "18.5"
+        }
       },
       {
         "gate": "6",
@@ -22146,7 +22350,11 @@
         "late_rank": 5,
         "win_prob": 8.3,
         "place_prob": 19.9,
-        "pure_score": 47.8
+        "pure_score": 47.8,
+        "saved_odds": {
+          "base": "16.6",
+          "cur": "21.1"
+        }
       },
       {
         "gate": "5",
@@ -22172,7 +22380,11 @@
         "late_rank": 6,
         "win_prob": 7.9,
         "place_prob": 19,
-        "pure_score": 45.8
+        "pure_score": 45.8,
+        "saved_odds": {
+          "base": "24.7",
+          "cur": "23.5"
+        }
       }
     ],
     "saved_derby": {
