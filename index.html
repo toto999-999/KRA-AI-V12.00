@@ -115,7 +115,6 @@
         }
         .pad-chip.high { background: #f59e0b; color: #000; }
 
-        /* 🎯 [새로움] 1~16번 지원: 8개씩 2줄 완벽 대칭 */
         .keypad-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; margin-bottom: 8px; }
         .key-btn {
             background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white;
@@ -261,7 +260,7 @@
                     </div>
                 </div>
 
-                <!-- 🎯 더비온 2.0 원터치 승부패드 (1~16번 완벽 지원) -->
+                <!-- 🎯 더비온 2.0 원터치 승부패드 (1~16번 지원) -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
                         <div class="pad-title">🔥 더비온 2.0 원터치 승부패드 (1~16번)</div>
@@ -280,7 +279,6 @@
                         <div class="pad-display-chips" id="currentPadChips"></div>
                     </div>
 
-                    <!-- 🎯 1~16번 터치 키패드 (8개씩 2줄) -->
                     <div class="keypad-grid" id="keypadGrid"></div>
 
                     <div class="analysis-badge-bar" id="derbyAnalysisSummary">
@@ -432,7 +430,6 @@
         function getRaceStorageKey(race) { return `odds_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
         function getDistanceStorageKey(race) { return `dist_v12_${race.race_date}_${race.meet_name}_${race.race_no}`; }
 
-        // 🎯 [핵심] 1~16번 풀게이트 키패드 생성 (8개씩 2줄)
         function initKeypad() {
             const grid = document.getElementById('keypadGrid');
             grid.innerHTML = '';
@@ -495,7 +492,6 @@
                 chips.appendChild(chip);
             });
 
-            // 🎯 1~16번 선택 하이라이트 동기화
             for (let i = 1; i <= 16; i++) {
                 const btn = document.getElementById(`key_btn_${i}`);
                 if (btn) {
@@ -993,6 +989,7 @@
                     curVal = savedObj;
                 }
 
+                // 🎯 마감직전 onkeydown을 handleOddsKey로 정확히 수정!
                 list.innerHTML += `
                     <div class="horse-card" id="card_${i}">
                         <div class="horse-left">
@@ -1020,7 +1017,7 @@
                                     <input type="number" step="0.1" class="odds-input" id="odds_${i}" placeholder="배당"
                                            value="${curVal}"
                                            oninput="handleOddsInput()"
-                                           onkeydown="handleBaseOddsKey(event, ${i})">
+                                           onkeydown="handleOddsKey(event, ${i})">
                                 </div>
                             </div>
                             <div style="margin-top:2px;">
@@ -1039,6 +1036,7 @@
             calculateDerbyMatrix();
         }
 
+        // 🎯 10분전 배당 엔터 ➔ 아래쪽 10분전 배당으로 이동
         function handleBaseOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -1048,12 +1046,15 @@
             }
         }
 
+        // 🎯 [핵심 버그 수정] 마감직전 배당 엔터 ➔ 아래쪽 마감직전 배당으로 쏙쏙 이동!
         function handleOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const nextCurInput = document.getElementById(`odds_${index + 1}`);
-                if (nextCurInput) { nextCurInput.focus(); nextCurInput.select(); }
-                else {
+                if (nextCurInput) {
+                    nextCurInput.focus();
+                    nextCurInput.select();
+                } else {
                     document.activeElement.blur();
                     document.getElementById('matrixCard').scrollIntoView({ behavior: 'smooth' });
                 }
