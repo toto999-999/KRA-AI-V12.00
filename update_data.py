@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 # =========================================================================
-# 프로그램 명칭: KRA전국 승부예상AI_V12.00
+# 프로그램 명칭: KRA전국 승부예상AI_V12.00 (실시간 롤링 동기화 엔진)
 # =========================================================================
 VERSION = "KRA전국 승부예상AI_V12.00"
 API_KEY = os.environ.get("KRA_API_KEY", "")
@@ -15,9 +15,7 @@ URL = "http://apis.data.go.kr/B551015/racedetailresult/getracedetailresult"
 
 KST = timezone(timedelta(hours=9))
 
-# 🎯 [요청 반영] 10월 23일 경기부터 시작 (이전 과거 경기는 전량 제거)
-START_DATE = f"{datetime.now(KST).year}1023"
-
+# 수집 대상 경마장 (서울, 영천/부경, 제주, 부산경남)
 MEET_CONFIG = [
     ("1", "서울"),
     ("4", "영천"),
@@ -81,7 +79,6 @@ def scrape_kra_timetable_and_distances(date_str):
         for idx, (m_name, r_no, dist) in enumerate(matches):
             norm_meet = "부산경남" if m_name in ["부경", "영천"] else m_name
             r_num = str(int(r_no))
-            
             dist_map[(str(date_str), norm_meet, r_num)] = dist
             if m_name == "영천":
                 dist_map[(str(date_str), "영천", r_num)] = dist
@@ -90,7 +87,7 @@ def scrape_kra_timetable_and_distances(date_str):
             if item_tuple not in timeline_order:
                 timeline_order.append(item_tuple)
                 
-        print(f"📡 [마사회 실시간 타임라인 크롤링] {date_str}: {len(timeline_order)}개 경주 확보")
+        print(f"📡 [마사회 실시간 타임라인] {date_str}: {len(timeline_order)}개 경주 확보")
     except Exception as e:
         print(f"⚠️ 실시간 타임라인 크롤링 예외 ({date_str}): {e}")
         
@@ -169,19 +166,11 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             elif str(pre_ord).strip() in ["1", "2", "01", "02"] and int(gate) <= 4: is_front = True
 
             ord_no = "-"
+            # 완주 기록(rc_time)이 실제로 있는 경기만 1착/2착 착순을 인정하는 안전 장치
+            isValidTime = len(rc_time.strip()) >= 3 and (":" in rc_time or "." in rc_time)
             direct_ord = gv(["ordNo", "ord_no", "ord", "rc_ord", "rcOrd", "rank", "rankNo", "chaksun"])
-            if direct_ord and direct_ord.isdigit() and int(direct_ord) > 0 and int(direct_ord) <= 20:
+            if isValidTime and direct_ord and direct_ord.isdigit() and 0 < int(direct_ord) <= 20:
                 ord_no = str(int(direct_ord))
-            else:
-                for child in it:
-                    tag_low = (child.tag.split("}")[-1] if "}" in child.tag else child.tag).lower()
-                    if any(ex in tag_low for ex in ["pre", "cnt", "s1f", "g1p", "g2p", "g3p", "g4p", "pass", "time", "rec"]):
-                        continue
-                    if any(k in tag_low for k in ["ord", "rank", "plc", "place", "chak"]):
-                        txt = child.text.strip() if child.text else ""
-                        if txt.isdigit() and int(txt) > 0 and int(txt) <= 20:
-                            ord_no = str(int(txt))
-                            break
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
@@ -211,7 +200,7 @@ def fetch_meet_data(meet_code, meet_name, date_str):
                 "weight": weight, "track": track, "rc_time": rc_time, "past_time": past_time,
                 "g1f_time": g1f_time, "win_odds": win_odds, "pre_ord": pre_ord,
                 "rc_cnt": rc_cnt, "ord1_cnt": ord1_cnt, "ord2_cnt": ord2_cnt,
-                "is_front": is_front, "actual_ord": ord_no, "ai_tags": []
+                "is_front": is_front, "actual_ord": ord_no
             })
 
         for r in races.values():
@@ -219,72 +208,6 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             real_d = live_dist_map.get((str(r["race_date"]), norm_m, str(int(r["race_no"]))))
             if real_d:
                 r["distance"] = real_d
-
-            dist = int(r["distance"])
-            meet = r["meet_name"]
-
-            raw_scores = []
-            for h in r["horses"]:
-                g = int(h["gate"]) if str(h["gate"]).isdigit() else 5
-                try: clean_w = float(re.sub(r'[^0-9.]', '', str(h["weight"])))
-                except: clean_w = 55.0
-
-                tot_rc = int(re.sub(r'[^0-9]', '', str(h.get("rc_cnt", "0"))) or 0)
-                ord1_cnt = int(re.sub(r'[^0-9]', '', str(h.get("ord1_cnt", "0"))) or 0)
-                ord2_cnt = int(re.sub(r'[^0-9]', '', str(h.get("ord2_cnt", "0"))) or 0)
-                quinella_rate = round(((ord1_cnt + ord2_cnt) / tot_rc) * 100, 1) if tot_rc >= 3 else 20.0
-                win_rate = round((ord1_cnt / tot_rc) * 100, 1) if tot_rc >= 3 else 10.0
-
-                raw_jk = JOCKEY_RATES.get(h["jockey"], 12.0)
-                tr_rate = TRAINER_RATES.get(h["trainer"], 14.0)
-
-                # ⚡ 초반 점수 (타이브레이커 미세 가중치로 동점 방지)
-                early_score = 0.0
-                if h["is_front"]: early_score += 30.0
-                if g <= 3: early_score += 15.0
-                elif g <= 5: early_score += 8.0
-                early_score += (55.0 - clean_w) * 2.0
-                early_score += (raw_jk * 0.35)
-                early_score += (16 - g) * 0.05  # 안쪽 게이트 우위 미세점수
-                h["early_score"] = round(early_score, 2)
-
-                # 🚀 후반 점수 (타이브레이커 미세 가중치로 동점 방지)
-                late_score = 0.0
-                if not h["is_front"]: late_score += 20.0
-                if 4 <= g <= 8: late_score += 10.0
-                late_score += (55.0 - clean_w) * 2.5
-                late_score += (tr_rate * 0.4) + (raw_jk * 0.3)
-                if get_norm_meet(meet) == "부산경남" and dist >= 1400: late_score += 12.0
-                late_score += (raw_jk * 0.02)
-                h["late_score"] = round(late_score, 2)
-
-                power = 25.0 + (win_rate * 0.8) + (quinella_rate * 0.3) + (raw_jk * 0.35) + (tr_rate * 0.35)
-                power += (55.0 - clean_w) * 2.0
-
-                if meet == "제주" and g <= 3: power += 8.0
-                elif dist <= 1300 and g <= 3: power += 4.0
-                elif get_norm_meet(meet) == "부산경남" and dist >= 1400 and (not h["is_front"]): power += 5.0
-
-                raw_scores.append(max(5.0, power))
-
-            # 🎯 초반 랭킹 (1위부터 N위까지 엄격 분리)
-            horses_by_early = sorted(r["horses"], key=lambda x: (x["early_score"], -int(x.get("gate", 99))), reverse=True)
-            for rank, horse in enumerate(horses_by_early, 1):
-                horse["early_rank"] = rank
-
-            # 🎯 후반 랭킹 (1위부터 N위까지 엄격 분리)
-            horses_by_late = sorted(r["horses"], key=lambda x: (x["late_score"], -int(x.get("gate", 99))), reverse=True)
-            for rank, horse in enumerate(horses_by_late, 1):
-                horse["late_rank"] = rank
-
-            total_power = sum(raw_scores) or 100.0
-            for idx, h in enumerate(r["horses"]):
-                prob = round((raw_scores[idx] / total_power) * 100, 1)
-                h["win_prob"] = prob
-                h["place_prob"] = round(min(85.0, prob * 2.4), 1)
-                h["pure_score"] = round(raw_scores[idx], 1)
-
-            r["horses"].sort(key=lambda x: x["win_prob"], reverse=True)
 
         return list(races.values())
 
@@ -296,31 +219,39 @@ def sync_active_races():
     now = datetime.now(KST)
     existing_races = {}
 
-    # 기존 데이터 중 START_DATE(10월 23일) 이후 경기만 유지하고 이전 경기는 전량 제거!
+    # 10주 롤링 보관 (70일 이전 지난 과거 경기는 자동 소거)
+    cutoff_date = (now - timedelta(days=70)).strftime("%Y%m%d")
+
     if os.path.exists("race_data.json"):
         try:
             with open("race_data.json", "r", encoding="utf-8") as f:
                 old_list = json.load(f)
                 for r in old_list:
                     r_date = str(r.get('race_date', ''))
-                    if r_date >= START_DATE:
+                    if r_date >= cutoff_date:
                         k = f"{r_date}_{r.get('meet_name')}_{r.get('race_no')}"
                         existing_races[k] = r
-            print(f"📦 10/23 이후 보존 경주 로드 완료: {len(existing_races)}개 경주 (이전 데이터 자동 소거)")
+            print(f"📦 최근 10주 유효 경주 로드 완료: {len(existing_races)}개")
         except:
             existing_races = {}
 
-    # 10월 23일, 24일, 25일 및 그 이후 경마일 날짜 생성
+    # 🎯 [핵심 수정] 목요일/금요일 최신 출마표 완벽 수집:
+    # 지난 7일(결과 확정용) + 오늘(목) + 다가오는 주말 4일간(금/토/일/월 출마표)을 무조건 수집!
     dates_to_fetch = []
-    base_dt = datetime.strptime(START_DATE, "%Y%m%d").replace(tzinfo=KST)
     
-    # 10/23부터 향후 10일치 날짜 확보
-    for i in range(12):
-        d = (base_dt + timedelta(days=i)).strftime("%Y%m%d")
-        dates_to_fetch.append(d)
+    # 지난 7일치 (실제 결과 업데이트용)
+    for i in range(7, 0, -1):
+        dates_to_fetch.append((now - timedelta(days=i)).strftime("%Y%m%d"))
+    
+    # 오늘 날짜
+    dates_to_fetch.append(now.strftime("%Y%m%d"))
+    
+    # 🎯 목요일에 열리는 다가오는 금/토/일 출마표 수집 (앞으로 4일치)
+    for i in range(1, 5):
+        dates_to_fetch.append((now + timedelta(days=i)).strftime("%Y%m%d"))
 
     unique_dates = sorted(list(set(dates_to_fetch)))
-    print(f"🔄 수집 대상 날짜 (10/23부터 시작): {unique_dates}")
+    print(f"🔄 마사회 실시간 수집 대상 날짜: {unique_dates}")
 
     for dt in unique_dates:
         t_order, d_map = scrape_kra_timetable_and_distances(dt)
@@ -337,15 +268,19 @@ def sync_active_races():
                 k = f"{r.get('race_date')}_{r.get('meet_name')}_{r.get('race_no')}"
                 if k in existing_races:
                     old_race = existing_races[k]
+                    # 사용자가 입력해 둔 더비온 패드와 배당 보존
+                    if old_race.get("saved_derby"):
+                        r["saved_derby"] = old_race["saved_derby"]
                     for new_h in r.get("horses", []):
-                        if new_h.get("actual_ord") == "-":
-                            old_h = next((h for h in old_race.get("horses", []) if h.get("gate") == new_h.get("gate")), None)
-                            if old_h and old_h.get("actual_ord") not in ["-", "", None]:
+                        old_h = next((h for h in old_race.get("horses", []) if str(h.get("gate")) == str(new_h.get("gate"))), None)
+                        if old_h:
+                            if old_h.get("saved_odds"):
+                                new_h["saved_odds"] = old_h["saved_odds"]
+                            if new_h.get("actual_ord") == "-" and old_h.get("actual_ord") not in ["-", "", None]:
                                 new_h["actual_ord"] = old_h.get("actual_ord")
                 existing_races[k] = r
 
-    # 최종 리스트: 10월 23일 이후 경기만 확정 필터링
-    final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= START_DATE]
+    final_list = [r for k, r in existing_races.items() if str(r.get("race_date", "")) >= cutoff_date]
     
     def get_timeline_weight(race_item):
         dt = race_item["race_date"]
@@ -374,7 +309,7 @@ def main():
     if all_races:
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: 10/23 이후 데이터 {len(all_races)}개 경주 동기화 완료! (이전 경주 삭제 완료)")
+        print(f"🎉 성공: 목요일 최신 출마표 및 주말 경기 동기화 완료! (총 {len(all_races)}개 경주)")
     else:
         print("❌ 수집된 데이터가 없습니다.")
 
