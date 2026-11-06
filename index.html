@@ -80,7 +80,6 @@
             text-align: center; color: #0284c7; outline: none; background: transparent;
         }
 
-        /* 🎯 더비온 2.0 원터치 승부패드 스타일 */
         .derby-pad-card {
             background: linear-gradient(135deg, #0f172a, #1e293b); color: white;
             border-radius: 14px; padding: 14px; margin-bottom: 14px; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
@@ -129,7 +128,6 @@
             font-size: 0.76rem; font-weight: bold; line-height: 1.5; color: #e2e8f0;
         }
 
-        /* 7대 승식 최적 마권 카드 */
         .bet-matrix-card {
             background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 14px; margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
@@ -260,7 +258,6 @@
                     </div>
                 </div>
 
-                <!-- 🎯 더비온 2.0 원터치 승부패드 (1~16번 지원) -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
                         <div class="pad-title">🔥 더비온 2.0 원터치 승부패드 (1~16번)</div>
@@ -288,7 +285,6 @@
 
                 <div id="resultBar" class="result-bar"></div>
 
-                <!-- 7대 승식 최적 마권 및 복기 적중 카드 -->
                 <div class="bet-matrix-card" id="matrixCard">
                     <div class="matrix-title">
                         <span>👑 실시간 7대 승식 최적 마권</span>
@@ -520,7 +516,7 @@
             const saved = localStorage.getItem(getDerbyStorageKey(race));
             if (saved) {
                 try { derbyInputs = JSON.parse(saved); }
-                catch(e) { derbyInputs = { early: [], late: [], pred: [], high: [] }; }
+                catch(e) { derbyInputs = race.saved_derby || { early: [], late: [], pred: [], high: [] }; }
             } else if (race.saved_derby) {
                 derbyInputs = JSON.parse(JSON.stringify(race.saved_derby));
             } else {
@@ -645,18 +641,21 @@
             evaluateHits(race, { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 });
         }
 
+        // 🎯 [핵심 수정] 날짜 기준으로 미래 경기만 차단하고, 과거/오늘 경주는 결과 100% 인정!
         function hasFinishedRace(race) {
             if (!race || !race.horses) return false;
+            
+            // 오늘 날짜(KST 기준)
+            const now = new Date();
+            const nowKST = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            const todayStr = nowKST.toISOString().slice(0, 10).replace(/-/g, '');
+
+            // 미래 경주는 결과 차단
+            if (String(race.race_date || "") > todayStr) return false;
+
             const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
             const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
-            if (!h1st || !h2nd) return false;
-
-            const isValidTime = (t) => {
-                const s = String(t || "").trim();
-                return s.length >= 3 && s !== "-" && (s.includes(":") || s.includes("."));
-            };
-
-            return isValidTime(h1st.rc_time) || isValidTime(h2nd.rc_time);
+            return !!(h1st && h2nd);
         }
 
         function evaluateHits(race, picks) {
@@ -957,6 +956,7 @@
 
             const resBar = document.getElementById('resultBar');
             
+            // 🎯 날짜 기반 진짜 결과가 있는 경주만 표출
             if (hasFinishedRace(race)) {
                 const h1st = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 1);
                 const h2nd = race.horses.find(h => parseInt(String(h.actual_ord).trim(), 10) === 2);
@@ -989,7 +989,6 @@
                     curVal = savedObj;
                 }
 
-                // 🎯 마감직전 onkeydown을 handleOddsKey로 정확히 수정!
                 list.innerHTML += `
                     <div class="horse-card" id="card_${i}">
                         <div class="horse-left">
@@ -1036,7 +1035,6 @@
             calculateDerbyMatrix();
         }
 
-        // 🎯 10분전 배당 엔터 ➔ 아래쪽 10분전 배당으로 이동
         function handleBaseOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -1046,7 +1044,6 @@
             }
         }
 
-        // 🎯 [핵심 버그 수정] 마감직전 배당 엔터 ➔ 아래쪽 마감직전 배당으로 쏙쏙 이동!
         function handleOddsKey(e, index) {
             if (e.key === 'Enter') {
                 e.preventDefault();
