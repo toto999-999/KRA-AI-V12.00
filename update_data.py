@@ -66,7 +66,6 @@ def scrape_kra_timetable_and_distances(date_str):
     dist_map = {}
     
     try:
-        # 타임아웃을 4초로 단축하여 불필요한 대기 방지
         req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, timeout=4) as res:
             html = res.read().decode('utf-8', errors='ignore')
@@ -92,6 +91,8 @@ LIVE_DIST_CACHE = {}
 
 def fetch_meet_data(meet_code, meet_name, date_str):
     global LIVE_TIMELINE_CACHE, LIVE_DIST_CACHE
+    now_kst_str = datetime.now(KST).strftime("%Y%m%d")
+
     if date_str not in LIVE_DIST_CACHE:
         t_order, d_map = scrape_kra_timetable_and_distances(date_str)
         LIVE_TIMELINE_CACHE[date_str] = t_order
@@ -159,11 +160,12 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             if s1f_rank in ["1", "2", "01", "02"]: is_front = True
             elif str(pre_ord).strip() in ["1", "2", "01", "02"] and int(gate) <= 4: is_front = True
 
+            # 🎯 [핵심 개선] 미래 경주(내일 이후)는 순위 무조건 차단, 과거/오늘 경주는 공식 착순 100% 반영!
             ord_no = "-"
-            isValidTime = len(rc_time.strip()) >= 3 and (":" in rc_time or "." in rc_time)
-            direct_ord = gv(["ordNo", "ord_no", "ord", "rc_ord", "rcOrd", "rank", "rankNo", "chaksun"])
-            if isValidTime and direct_ord and direct_ord.isdigit() and 0 < int(direct_ord) <= 20:
-                ord_no = str(int(direct_ord))
+            if date_str <= now_kst_str:
+                direct_ord = gv(["ord", "ordNo", "ord_no", "rc_ord", "rcOrd", "rank"])
+                if direct_ord and direct_ord.isdigit() and 0 < int(direct_ord) <= 20:
+                    ord_no = str(int(direct_ord))
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
@@ -225,27 +227,25 @@ def sync_active_races():
         except:
             existing_races = {}
 
-    # 🎯 [초고속 최적화] 경마가 없는 평일(월·화·수)은 아예 제외!
-    # 실제 경마일(금/토/일)과 오늘(목)만 골라서 수집하므로 속도가 4배 이상 빨라집니다.
     target_dates = []
     
-    # 1. 지난 7일 중 금, 토, 일만 추출 (실제 결과 복기용)
+    # 1. 지난 7일 중 경마일(금/토/일) 추출
     for i in range(7, 0, -1):
         d_obj = now - timedelta(days=i)
-        if d_obj.weekday() in [4, 5, 6]: # 금(4), 토(5), 일(6)
+        if d_obj.weekday() in [4, 5, 6]:
             target_dates.append(d_obj.strftime("%Y%m%d"))
             
     # 2. 오늘 날짜 추가
     target_dates.append(now.strftime("%Y%m%d"))
     
-    # 3. 다가오는 금, 토, 일 날짜 추가 (이번 주 확정 출마표)
+    # 3. 다가오는 금/토/일 출마표 추가
     for i in range(1, 5):
         d_obj = now + timedelta(days=i)
         if d_obj.weekday() in [4, 5, 6]:
             target_dates.append(d_obj.strftime("%Y%m%d"))
 
     unique_dates = sorted(list(set(target_dates)))
-    print(f"⚡ 초고속 실시간 수집 대상 경마일: {unique_dates}")
+    print(f"⚡ 실시간 수집 대상 경마일: {unique_dates}")
 
     for dt in unique_dates:
         t_order, d_map = scrape_kra_timetable_and_distances(dt)
@@ -272,6 +272,7 @@ def sync_active_races():
                         if old_h:
                             if old_h.get("saved_odds"):
                                 new_h["saved_odds"] = old_h["saved_odds"]
+                            # 새 착순이 아직 미입력('-')인 경우 기존 착순 보존
                             if new_h.get("actual_ord") == "-" and old_h.get("actual_ord") not in ["-", "", None]:
                                 new_h["actual_ord"] = old_h.get("actual_ord")
                 existing_races[k] = r
@@ -305,7 +306,7 @@ def main():
     if all_races:
         with open("race_data.json", "w", encoding="utf-8") as f:
             json.dump(all_races, f, ensure_ascii=False, indent=2)
-        print(f"🎉 성공: 초고속 동기화 완료! (총 {len(all_races)}개 경주)")
+        print(f"🎉 성공: 동기화 완료! (총 {len(all_races)}개 경주)")
 
 if __name__ == "__main__":
     main()
