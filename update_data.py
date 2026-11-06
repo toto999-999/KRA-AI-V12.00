@@ -160,12 +160,27 @@ def fetch_meet_data(meet_code, meet_name, date_str):
             if s1f_rank in ["1", "2", "01", "02"]: is_front = True
             elif str(pre_ord).strip() in ["1", "2", "01", "02"] and int(gate) <= 4: is_front = True
 
-            # 🎯 [핵심 개선] 미래 경주(내일 이후)는 순위 무조건 차단, 과거/오늘 경주는 공식 착순 100% 반영!
+            # 🎯 [핵심] 모든 마사회 순위 태그를 100% 낚아채는 강력한 순위 추출 엔진
             ord_no = "-"
-            if date_str <= now_kst_str:
-                direct_ord = gv(["ord", "ordNo", "ord_no", "rc_ord", "rcOrd", "rank"])
-                if direct_ord and direct_ord.isdigit() and 0 < int(direct_ord) <= 20:
-                    ord_no = str(int(direct_ord))
+            direct_ord = gv(["ordNo", "ord_no", "ord", "rc_ord", "rcOrd", "rank", "rankNo", "chaksun"])
+            if direct_ord and direct_ord.isdigit() and 0 < int(direct_ord) <= 20:
+                ord_no = str(int(direct_ord))
+            else:
+                # 보조 탐색기 (과거/오늘 경주일 때만 모든 태그 검사)
+                if date_str <= now_kst_str:
+                    for child in it:
+                        tag_low = (child.tag.split("}")[-1] if "}" in child.tag else child.tag).lower()
+                        if any(ex in tag_low for ex in ["pre", "cnt", "s1f", "g1p", "g2p", "g3p", "g4p", "pass", "time", "rec"]):
+                            continue
+                        if any(k in tag_low for k in ["ord", "rank", "plc", "place", "chak"]):
+                            txt = child.text.strip() if child.text else ""
+                            if txt.isdigit() and 0 < int(txt) <= 20:
+                                ord_no = str(int(txt))
+                                break
+
+            # 미래 경주는 절대 착순 인정하지 않음
+            if date_str > now_kst_str:
+                ord_no = "-"
 
             key = f"{meet_name}_{rc_no}_{date_str}"
             if key not in races:
@@ -229,7 +244,7 @@ def sync_active_races():
 
     target_dates = []
     
-    # 1. 지난 7일 중 경마일(금/토/일) 추출
+    # 1. 지난 7일 중 경마일(금/토/일) 추출 (실제 결과 업데이트)
     for i in range(7, 0, -1):
         d_obj = now - timedelta(days=i)
         if d_obj.weekday() in [4, 5, 6]:
@@ -272,7 +287,7 @@ def sync_active_races():
                         if old_h:
                             if old_h.get("saved_odds"):
                                 new_h["saved_odds"] = old_h["saved_odds"]
-                            # 새 착순이 아직 미입력('-')인 경우 기존 착순 보존
+                            # 새 착순이 아직 미입력('-')인 경우에만 기존 착순 보존
                             if new_h.get("actual_ord") == "-" and old_h.get("actual_ord") not in ["-", "", None]:
                                 new_h["actual_ord"] = old_h.get("actual_ord")
                 existing_races[k] = r
