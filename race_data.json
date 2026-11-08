@@ -36645,7 +36645,7 @@
         "trainer": "조용배",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:12.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36654,7 +36654,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "2",
@@ -36663,7 +36663,7 @@
         "trainer": "유현명",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:11.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36672,7 +36672,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "3",
@@ -36681,7 +36681,7 @@
         "trainer": "김도현",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:12.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36690,7 +36690,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "4",
@@ -36699,7 +36699,7 @@
         "trainer": "박재호",
         "weight": "57.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:11.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36708,7 +36708,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "5",
@@ -36717,7 +36717,7 @@
         "trainer": "강은석",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:11.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36726,7 +36726,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "6",
@@ -36735,7 +36735,7 @@
         "trainer": "라이스",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:10.6",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36744,7 +36744,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "7",
@@ -36753,7 +36753,7 @@
         "trainer": "이정표",
         "weight": "51",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:12.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36762,7 +36762,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       }
     ],
     "saved_derby": {
@@ -36806,7 +36806,7 @@
         "trainer": "권승주",
         "weight": "57",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:25.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36815,7 +36815,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "2",
@@ -36824,7 +36824,7 @@
         "trainer": "조용배",
         "weight": "53",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36833,7 +36833,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       },
       {
         "gate": "3",
@@ -36842,7 +36842,7 @@
         "trainer": "임성실",
         "weight": "56.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36851,7 +36851,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "4",
@@ -36860,7 +36860,7 @@
         "trainer": "방동석",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.6",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36869,7 +36869,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "5",
@@ -36878,7 +36878,7 @@
         "trainer": "손병철",
         "weight": "52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36887,7 +36887,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "6",
@@ -36896,7 +36896,7 @@
         "trainer": "임금만",
         "weight": "54",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:25.1",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36905,7 +36905,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "9"
       },
       {
         "gate": "7",
@@ -36914,7 +36914,7 @@
         "trainer": "김도현",
         "weight": "55",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36923,7 +36923,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "8",
@@ -36932,7 +36932,7 @@
         "trainer": "문현철",
         "weight": "54",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.1",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36941,7 +36941,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "9",
@@ -36950,7 +36950,7 @@
         "trainer": "구영준",
         "weight": "55.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -36959,7 +36959,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -37003,7 +37003,7 @@
         "trainer": "손병직",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.6",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37012,7 +37012,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "2",
@@ -37021,7 +37021,7 @@
         "trainer": "윤영훈",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37030,7 +37030,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "3",
@@ -37039,7 +37039,7 @@
         "trainer": "문현철",
         "weight": "54",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.9",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37048,7 +37048,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "4",
@@ -37057,7 +37057,7 @@
         "trainer": "구민성",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.1",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37066,7 +37066,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "5",
@@ -37075,7 +37075,7 @@
         "trainer": "안우성",
         "weight": "54",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37084,7 +37084,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "6",
@@ -37093,7 +37093,7 @@
         "trainer": "최기홍",
         "weight": "58",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37102,7 +37102,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -37111,7 +37111,7 @@
         "trainer": "민장기",
         "weight": "58",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:26.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37120,7 +37120,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "11"
       },
       {
         "gate": "8",
@@ -37129,7 +37129,7 @@
         "trainer": "임성실",
         "weight": "52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:23.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37138,7 +37138,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       },
       {
         "gate": "9",
@@ -37147,7 +37147,7 @@
         "trainer": "조용배",
         "weight": "51",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37156,7 +37156,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "10",
@@ -37165,7 +37165,7 @@
         "trainer": "이상영",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:25.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37174,7 +37174,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "10"
       },
       {
         "gate": "11",
@@ -37183,7 +37183,7 @@
         "trainer": "하무선",
         "weight": "57.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:24.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -37192,7 +37192,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "9"
       }
     ],
     "saved_derby": {
@@ -38795,7 +38795,7 @@
         "trainer": "문병기",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:55.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38804,7 +38804,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "2",
@@ -38813,7 +38813,7 @@
         "trainer": "서인석",
         "weight": "53.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:53.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38822,7 +38822,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       },
       {
         "gate": "3",
@@ -38831,7 +38831,7 @@
         "trainer": "서홍수",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:51.5",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38840,7 +38840,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -38849,7 +38849,7 @@
         "trainer": "성상현",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:51.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38858,7 +38858,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "5",
@@ -38867,7 +38867,7 @@
         "trainer": "전승규",
         "weight": "57.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:52.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38876,7 +38876,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "6",
@@ -38885,7 +38885,7 @@
         "trainer": "심승태",
         "weight": "52",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:55.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38894,7 +38894,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "7",
@@ -38903,7 +38903,7 @@
         "trainer": "이신우",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:55.5",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38912,7 +38912,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "8",
@@ -38921,7 +38921,7 @@
         "trainer": "김동균",
         "weight": "52",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:52.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38930,7 +38930,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -38974,7 +38974,7 @@
         "trainer": "이관호",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -38983,7 +38983,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "2",
@@ -38992,7 +38992,7 @@
         "trainer": "토니",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:29.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39001,7 +39001,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "3",
@@ -39010,7 +39010,7 @@
         "trainer": "정호익",
         "weight": "58",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:30.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39019,7 +39019,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "4",
@@ -39028,7 +39028,7 @@
         "trainer": "차우호",
         "weight": "51",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:29.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39037,7 +39037,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "5",
@@ -39046,7 +39046,7 @@
         "trainer": "김동철",
         "weight": "53",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:27.9",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39055,7 +39055,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "6",
@@ -39064,7 +39064,7 @@
         "trainer": "박지헌",
         "weight": "52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39073,7 +39073,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -39082,7 +39082,7 @@
         "trainer": "박병일",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.5",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39091,7 +39091,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "8",
@@ -39100,7 +39100,7 @@
         "trainer": "이동국",
         "weight": "51",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39109,7 +39109,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       }
     ],
     "saved_derby": {
@@ -39153,7 +39153,7 @@
         "trainer": "이동국",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39162,7 +39162,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "2",
@@ -39171,7 +39171,7 @@
         "trainer": "김동철",
         "weight": "53",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39180,7 +39180,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "3",
@@ -39189,7 +39189,7 @@
         "trainer": "박병일",
         "weight": "53",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39198,7 +39198,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "4",
@@ -39207,7 +39207,7 @@
         "trainer": "정호익",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39216,7 +39216,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "5",
@@ -39225,7 +39225,7 @@
         "trainer": "이관호",
         "weight": "53.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:16.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39234,7 +39234,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "10"
       },
       {
         "gate": "6",
@@ -39243,7 +39243,7 @@
         "trainer": "강성오",
         "weight": "55",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:17.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39252,7 +39252,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "11"
       },
       {
         "gate": "7",
@@ -39261,7 +39261,7 @@
         "trainer": "서홍수",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:14.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39270,7 +39270,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "8",
@@ -39279,7 +39279,7 @@
         "trainer": "이강서",
         "weight": "55.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:16.1",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39288,7 +39288,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "9"
       },
       {
         "gate": "9",
@@ -39297,7 +39297,7 @@
         "trainer": "신삼영",
         "weight": "55.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39306,7 +39306,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       },
       {
         "gate": "10",
@@ -39315,7 +39315,7 @@
         "trainer": "박천서",
         "weight": "51.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:14.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39324,7 +39324,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "11",
@@ -39333,7 +39333,7 @@
         "trainer": "신삼영",
         "weight": "55",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:15.6",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39342,7 +39342,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       }
     ],
     "saved_derby": {
@@ -39386,7 +39386,7 @@
         "trainer": "함완식",
         "weight": "55",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.6",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39395,7 +39395,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "2",
@@ -39404,7 +39404,7 @@
         "trainer": "조현수",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:30.0",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39413,7 +39413,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "6"
       },
       {
         "gate": "3",
@@ -39422,7 +39422,7 @@
         "trainer": "강성오",
         "weight": "51",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:31.4",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39431,16 +39431,16 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "8"
       },
       {
         "gate": "4",
         "name": "벌교의스타",
-        "jockey": "정정희",
+        "jockey": "다실바",
         "trainer": "안병기",
         "weight": "56",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39449,7 +39449,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -39458,7 +39458,7 @@
         "trainer": "전승규",
         "weight": "54.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.7",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39467,7 +39467,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "4"
       },
       {
         "gate": "6",
@@ -39476,7 +39476,7 @@
         "trainer": "차우호",
         "weight": "52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:28.8",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39485,7 +39485,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "5"
       },
       {
         "gate": "7",
@@ -39494,7 +39494,7 @@
         "trainer": "박병일",
         "weight": "*52.5",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:30.2",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39503,7 +39503,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "7"
       },
       {
         "gate": "8",
@@ -39512,7 +39512,7 @@
         "trainer": "이준철",
         "weight": "55",
         "track": "양호",
-        "rc_time": "-",
+        "rc_time": "1:27.3",
         "past_time": "",
         "g1f_time": "",
         "win_odds": "0",
@@ -39521,7 +39521,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       }
     ],
     "saved_derby": {
