@@ -32550,7 +32550,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32747,7 +32747,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32962,7 +32962,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -33177,7 +33177,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -33822,7 +33822,7 @@
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -39554,7 +39554,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261113",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -39733,7 +39733,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261113",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -39930,7 +39930,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261113",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -40145,7 +40145,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261113",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -40360,7 +40360,7 @@
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261113",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -41025,7 +41025,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "48.7",
+          "cur": "35.9"
+        }
       },
       {
         "gate": "2",
@@ -41043,7 +41047,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "27.2",
+          "cur": "35.8"
+        }
       },
       {
         "gate": "3",
@@ -41061,7 +41069,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "50.0",
+          "cur": "76.5"
+        }
       },
       {
         "gate": "4",
@@ -41079,7 +41091,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "29.2",
+          "cur": "21.9"
+        }
       },
       {
         "gate": "5",
@@ -41097,7 +41113,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "65.9",
+          "cur": "69.6"
+        }
       },
       {
         "gate": "6",
@@ -41115,7 +41135,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "21.9",
+          "cur": "15.9"
+        }
       },
       {
         "gate": "7",
@@ -41133,7 +41157,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "144.1",
+          "cur": "100.5"
+        }
       },
       {
         "gate": "8",
@@ -41151,7 +41179,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "1.2",
+          "cur": "1.2"
+        }
       },
       {
         "gate": "9",
@@ -41169,7 +41201,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "19.7",
+          "cur": "11.5"
+        }
       },
       {
         "gate": "10",
@@ -41187,7 +41223,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "6.0",
+          "cur": "7.5"
+        }
       },
       {
         "gate": "11",
@@ -41205,7 +41245,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "91.2",
+          "cur": "99.2"
+        }
       }
     ],
     "saved_derby": {
@@ -41230,7 +41274,9 @@
         9,
         4
       ],
-      "high": []
+      "high": [
+        7
+      ]
     }
   },
   {
