@@ -265,14 +265,13 @@
                     </div>
                 </div>
 
-                <!-- 🎯 더비온 2.0 승부패드 + 현장 실제착순 원터치 입력기 -->
+                <!-- 🎯 더비온 2.0 승부패드 (1~16번 지원) -->
                 <div class="derby-pad-card">
                     <div class="pad-header">
                         <div class="pad-title">🔥 더비온 2.0 승부패드 (1~16번)</div>
                         <button class="pad-reset-btn" onclick="resetDerbyPad()">비우기 🔄</button>
                     </div>
 
-                    <!-- 5개 탭: 초반, 후반, 예상, 고배당, 🏁실제착순 -->
                     <div class="pad-tabs">
                         <div class="pad-tab active" id="tab_early" onclick="setPadMode('early')">⚡초반우위</div>
                         <div class="pad-tab" id="tab_late" onclick="setPadMode('late')">🚀후반우위</div>
@@ -432,7 +431,6 @@
         let currentRaceIdx = 0;
 
         let currentPadMode = 'early';
-        // 🎯 [새로움] result 모드 추가 (1착, 2착, 3착 관리)
         let derbyInputs = { early: [], late: [], pred: [], high: [], result: [] };
 
         function getDerbyStorageKey(race) { return `derby_${race.race_date}_${race.meet_name}_${race.race_no}`; }
@@ -468,7 +466,6 @@
             updatePadDisplay();
         }
 
-        // 🎯 번호 터치 시 실제착순 모드와 더비온 모드 분기 처리
         function toggleKey(num) {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -481,11 +478,10 @@
                 if (idx > -1) {
                     rList.splice(idx, 1);
                 } else {
-                    if (rList.length >= 3) rList.shift(); // 3마리 초과 시 밀어내기
+                    if (rList.length >= 3) rList.shift();
                     rList.push(num);
                 }
 
-                // 말 객체에 즉시 실제 1착, 2착, 3착 순위 주입!
                 race.horses.forEach(h => {
                     const g = parseInt(h.gate, 10);
                     if (rList[0] === g) h.actual_ord = "1";
@@ -514,7 +510,7 @@
             updatePadDisplay();
             calculateDerbyMatrix();
             renderHorseBadgesOnly();
-            renderRaceUIOnly(currentRaceIdx); // 상단 결과 바 및 카드 착순 뱃지 즉시 리로드!
+            renderRaceUIOnly(currentRaceIdx);
         }
 
         function updatePadDisplay() {
@@ -598,7 +594,6 @@
             }
             if (!derbyInputs.result) derbyInputs.result = [];
 
-            // 마사회에서 가져온 기존 착순이 있으면 result 탭에도 자동 반영
             if (derbyInputs.result.length === 0 && race.horses) {
                 const h1 = race.horses.find(h => String(h.actual_ord).trim() === "1");
                 const h2 = race.horses.find(h => String(h.actual_ord).trim() === "2");
@@ -638,6 +633,7 @@
             }
         }
 
+        // 🎯 [오타 완벽 수정됨] (pred||[])
         function calculateDerbyMatrix() {
             const race = allRaceData[currentRaceIdx];
             if (!race) return;
@@ -658,7 +654,7 @@
             }
 
             const countMap = {};
-            [...(early||[]), ...(late||[]), ...(pred||[] run)].forEach(n => { countMap[n] = (countMap[n] || 0) + 1; });
+            [...(early||[]), ...(late||[]), ...(pred||[])].forEach(n => { countMap[n] = (countMap[n] || 0) + 1; });
 
             const rank3 = [];
             const rank2 = [];
@@ -729,10 +725,9 @@
             evaluateHits(race, { h1, h2, h3, bonusHigh, exactaFirst, exactaSecond, rank2, rank1 });
         }
 
-        // 🎯 현장 직접 입력 또는 마사회 결과 존재 여부 판별
         function hasFinishedRace(race) {
             if (!race || !race.horses) return false;
-            if (race.manual_result && race.manual_result.length >= 2) return true; // 현장 수동 입력 시 즉시 결과 인정!
+            if (race.manual_result && race.manual_result.length >= 2) return true;
             
             const now = new Date();
             const nowKST = new Date(now.getTime() + (9 * 60 * 60 * 1000));
@@ -1045,7 +1040,6 @@
 
             const resBar = document.getElementById('resultBar');
             
-            // 🎯 현장 직접 입력 또는 마사회 공식 결과가 있을 때 결과 바 즉시 표출!
             if (hasFinishedRace(race)) {
                 const h1st = race.horses.find(h => String(h.actual_ord).trim() === "1");
                 const h2nd = race.horses.find(h => String(h.actual_ord).trim() === "2");
@@ -1281,7 +1275,7 @@
             } catch (e) {
                 toast.innerHTML = `❌ 불러오기 실패: ${e.message}`;
                 setTimeout(() => { toast.style.display = 'none'; }, 4000);
-                alert(`❌ 불러오기 실패: ${e.message}`);
+                alert(`❌ 불러오기 실패: ${e.message}\n토큰 유효성 및 파일 상태를 확인해주세요.`);
             }
         }
 
