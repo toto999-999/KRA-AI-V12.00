@@ -327,7 +327,12 @@
         6,
         3
       ],
-      "high": []
+      "high": [],
+      "result": [
+        4,
+        10,
+        3
+      ]
     }
   },
   {
@@ -28801,7 +28806,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -28998,7 +29003,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -29213,7 +29218,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -29428,7 +29433,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -29643,7 +29648,7 @@
     "meet_name": "제주",
     "race_no": "5",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -29898,7 +29903,7 @@
     "meet_name": "제주",
     "race_no": "6",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -30113,7 +30118,7 @@
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -30328,7 +30333,7 @@
     "meet_name": "부산경남",
     "race_no": "1",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -30561,7 +30566,7 @@
     "meet_name": "부산경남",
     "race_no": "2",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -30740,7 +30745,7 @@
     "meet_name": "부산경남",
     "race_no": "3",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -31152,7 +31157,7 @@
     "meet_name": "부산경남",
     "race_no": "5",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -31385,7 +31390,7 @@
     "meet_name": "부산경남",
     "race_no": "6",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -31618,7 +31623,7 @@
     "meet_name": "부산경남",
     "race_no": "7",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -31851,7 +31856,7 @@
     "meet_name": "부산경남",
     "race_no": "8",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32084,7 +32089,7 @@
     "meet_name": "부산경남",
     "race_no": "9",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32317,7 +32322,7 @@
     "meet_name": "부산경남",
     "race_no": "10",
     "race_date": "20261106",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32550,7 +32555,7 @@
     "meet_name": "제주",
     "race_no": "1",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32747,7 +32752,7 @@
     "meet_name": "제주",
     "race_no": "2",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "900",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -32962,7 +32967,7 @@
     "meet_name": "제주",
     "race_no": "3",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -33177,7 +33182,7 @@
     "meet_name": "제주",
     "race_no": "4",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1110",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -33822,7 +33827,7 @@
     "meet_name": "제주",
     "race_no": "7",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1300",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -34037,7 +34042,7 @@
     "meet_name": "서울",
     "race_no": "1",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1000",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -34234,7 +34239,7 @@
     "meet_name": "서울",
     "race_no": "2",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -34431,7 +34436,7 @@
     "meet_name": "서울",
     "race_no": "3",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1700",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -34664,7 +34669,7 @@
     "meet_name": "서울",
     "race_no": "4",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -34861,7 +34866,7 @@
     "meet_name": "서울",
     "race_no": "5",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -35237,7 +35242,7 @@
     "meet_name": "서울",
     "race_no": "7",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1600",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -35452,7 +35457,7 @@
     "meet_name": "서울",
     "race_no": "8",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1700",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -35649,7 +35654,7 @@
     "meet_name": "서울",
     "race_no": "9",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1800",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -35828,7 +35833,7 @@
     "meet_name": "서울",
     "race_no": "10",
     "race_date": "20261107",
-    "distance": "1200",
+    "distance": "1400",
     "track": "양호",
     "version": "KRA전국 승부예상AI_V12.00",
     "horses": [
@@ -39592,7 +39597,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "3",
@@ -39610,7 +39615,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "4",
@@ -39682,7 +39687,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "8",
@@ -39725,8 +39730,18 @@
         5,
         7
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        3,
+        7,
+        2
+      ]
+    },
+    "manual_result": [
+      3,
+      7,
+      2
+    ]
   },
   {
     "meet_code": "2",
@@ -39771,7 +39786,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "3",
@@ -39825,7 +39840,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "6",
@@ -39843,7 +39858,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "7",
@@ -39922,8 +39937,18 @@
         4,
         2
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        2,
+        6,
+        5
+      ]
+    },
+    "manual_result": [
+      2,
+      6,
+      5
+    ]
   },
   {
     "meet_code": "2",
@@ -40004,7 +40029,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "5",
@@ -40022,7 +40047,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "6",
@@ -40094,7 +40119,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "10",
@@ -40137,8 +40162,18 @@
         7,
         2
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        9,
+        5,
+        4
+      ]
+    },
+    "manual_result": [
+      9,
+      5,
+      4
+    ]
   },
   {
     "meet_code": "2",
@@ -40201,7 +40236,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -40273,7 +40308,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -40327,7 +40362,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -40352,8 +40387,18 @@
         3,
         2
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        7,
+        3,
+        10
+      ]
+    },
+    "manual_result": [
+      7,
+      3,
+      10
+    ]
   },
   {
     "meet_code": "2",
@@ -40380,7 +40425,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "2",
@@ -40398,7 +40443,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "3",
@@ -40542,7 +40587,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -40567,8 +40612,18 @@
         8,
         4
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        2,
+        1,
+        10
+      ]
+    },
+    "manual_result": [
+      2,
+      1,
+      10
+    ]
   },
   {
     "meet_code": "2",
@@ -40782,7 +40837,8 @@
         3,
         5
       ],
-      "high": []
+      "high": [],
+      "result": []
     }
   },
   {
@@ -41179,7 +41235,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-",
+        "actual_ord": "2",
         "saved_odds": {
           "base": "1.2",
           "cur": "1.2"
@@ -41201,7 +41257,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-",
+        "actual_ord": "3",
         "saved_odds": {
           "base": "19.7",
           "cur": "11.5"
@@ -41223,7 +41279,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-",
+        "actual_ord": "1",
         "saved_odds": {
           "base": "6.0",
           "cur": "7.5"
@@ -41276,8 +41332,18 @@
       ],
       "high": [
         7
+      ],
+      "result": [
+        10,
+        8,
+        9
       ]
-    }
+    },
+    "manual_result": [
+      10,
+      8,
+      9
+    ]
   },
   {
     "meet_code": "3",
@@ -41304,7 +41370,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "2",
@@ -41340,7 +41406,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "4",
@@ -41430,7 +41496,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "9",
@@ -41509,8 +41575,18 @@
         8,
         3
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        1,
+        8,
+        3
+      ]
+    },
+    "manual_result": [
+      1,
+      8,
+      3
+    ]
   },
   {
     "meet_code": "3",
@@ -41681,7 +41757,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "10",
@@ -41699,7 +41775,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "11",
@@ -41717,7 +41793,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -41742,8 +41818,18 @@
         3,
         9
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        9,
+        11,
+        10
+      ]
+    },
+    "manual_result": [
+      9,
+      11,
+      10
+    ]
   },
   {
     "meet_code": "3",
@@ -41770,7 +41856,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "21.2",
+          "cur": ""
+        }
       },
       {
         "gate": "2",
@@ -41788,7 +41878,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "13.2",
+          "cur": ""
+        }
       },
       {
         "gate": "3",
@@ -41806,7 +41900,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "41.4",
+          "cur": ""
+        }
       },
       {
         "gate": "4",
@@ -41824,7 +41922,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "4.6",
+          "cur": ""
+        }
       },
       {
         "gate": "5",
@@ -41842,7 +41944,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "63.6",
+          "cur": ""
+        }
       },
       {
         "gate": "6",
@@ -41860,7 +41966,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "8.6",
+          "cur": ""
+        }
       },
       {
         "gate": "7",
@@ -41878,7 +41988,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1",
+        "saved_odds": {
+          "base": "4.3",
+          "cur": ""
+        }
       },
       {
         "gate": "8",
@@ -41896,7 +42010,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "11.0",
+          "cur": ""
+        }
       },
       {
         "gate": "9",
@@ -41914,7 +42032,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "-",
+        "saved_odds": {
+          "base": "62.7",
+          "cur": ""
+        }
       },
       {
         "gate": "10",
@@ -41932,7 +42054,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2",
+        "saved_odds": {
+          "base": "2.5",
+          "cur": ""
+        }
       },
       {
         "gate": "11",
@@ -41950,7 +42076,11 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3",
+        "saved_odds": {
+          "base": "47.8",
+          "cur": ""
+        }
       }
     ],
     "saved_derby": {
@@ -41975,8 +42105,18 @@
         8,
         6
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        7,
+        10,
+        11
+      ]
+    },
+    "manual_result": [
+      7,
+      10,
+      11
+    ]
   },
   {
     "meet_code": "3",
@@ -42093,7 +42233,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "7",
@@ -42111,7 +42251,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "8",
@@ -42183,7 +42323,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       }
     ],
     "saved_derby": {
@@ -42208,8 +42348,18 @@
         4,
         7
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        11,
+        6,
+        7
+      ]
+    },
+    "manual_result": [
+      11,
+      6,
+      7
+    ]
   },
   {
     "meet_code": "3",
@@ -42236,7 +42386,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "2",
@@ -42290,7 +42440,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -42344,7 +42494,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "8",
@@ -42387,8 +42537,18 @@
         4,
         5
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        1,
+        4,
+        7
+      ]
+    },
+    "manual_result": [
+      1,
+      4,
+      7
+    ]
   },
   {
     "meet_code": "3",
