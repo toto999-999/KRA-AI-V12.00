@@ -43413,7 +43413,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -43431,7 +43431,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -43485,7 +43485,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -43510,8 +43510,18 @@
         6,
         3
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        7,
+        10,
+        6
+      ]
+    },
+    "manual_result": [
+      7,
+      10,
+      6
+    ]
   },
   {
     "meet_code": "2",
