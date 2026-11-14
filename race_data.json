@@ -47241,7 +47241,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "8",
@@ -47277,7 +47277,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "10",
@@ -47295,7 +47295,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "11",
@@ -47338,8 +47338,18 @@
         11,
         10
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        10,
+        7,
+        9
+      ]
+    },
+    "manual_result": [
+      10,
+      7,
+      9
+    ]
   },
   {
     "meet_code": "4",
