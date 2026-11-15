@@ -48157,7 +48157,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "2",
@@ -48283,7 +48283,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "9",
@@ -48301,7 +48301,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       }
     ],
     "saved_derby": {
@@ -48327,8 +48327,17 @@
         7
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        9,
+        8,
+        1
+      ]
+    },
+    "manual_result": [
+      9,
+      8,
+      1
+    ]
   },
   {
     "meet_code": "4",
@@ -48391,7 +48400,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "4",
@@ -48463,7 +48472,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "8",
@@ -48481,7 +48490,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -48506,8 +48515,18 @@
         5,
         1
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        3,
+        7,
+        8
+      ]
+    },
+    "manual_result": [
+      3,
+      7,
+      8
+    ]
   },
   {
     "meet_code": "1",
@@ -50387,7 +50406,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "4",
@@ -50477,7 +50496,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "9",
@@ -50495,7 +50514,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "10",
@@ -50536,11 +50555,9 @@
     ],
     "saved_derby": {
       "early": [
-        3,
-        11,
-        1,
-        6,
-        9
+        9,
+        8,
+        3
       ],
       "late": [
         1,
@@ -50552,12 +50569,22 @@
       "pred": [
         1,
         3,
-        7,
         9,
+        7,
         8
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        9,
+        8,
+        3
+      ]
+    },
+    "manual_result": [
+      9,
+      8,
+      3
+    ]
   },
   {
     "meet_code": "1",
@@ -50584,7 +50611,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "2",
@@ -50620,7 +50647,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -50746,7 +50773,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -50771,8 +50798,18 @@
         1,
         5
       ],
-      "high": []
-    }
+      "high": [],
+      "result": [
+        1,
+        3,
+        10
+      ]
+    },
+    "manual_result": [
+      1,
+      3,
+      10
+    ]
   },
   {
     "meet_code": "1",
@@ -51004,7 +51041,8 @@
         11,
         10
       ],
-      "high": []
+      "high": [],
+      "result": []
     }
   }
 ]
