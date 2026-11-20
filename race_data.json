@@ -51045,7 +51045,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -51117,7 +51117,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -51135,7 +51135,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "9",
@@ -51197,8 +51197,17 @@
         9
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        7,
+        3,
+        8
+      ]
+    },
+    "manual_result": [
+      7,
+      3,
+      8
+    ]
   },
   {
     "meet_code": "2",
@@ -52521,7 +52530,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "2",
@@ -52557,7 +52566,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -52647,7 +52656,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "9",
@@ -52719,8 +52728,17 @@
         4
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        8,
+        3,
+        1
+      ]
+    },
+    "manual_result": [
+      8,
+      3,
+      1
+    ]
   },
   {
     "meet_code": "3",
@@ -52765,7 +52783,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "3",
@@ -52837,7 +52855,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "7",
@@ -52909,7 +52927,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "11",
@@ -52953,8 +52971,17 @@
         10
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        6,
+        2,
+        10
+      ]
+    },
+    "manual_result": [
+      6,
+      2,
+      10
+    ]
   },
   {
     "meet_code": "3",
