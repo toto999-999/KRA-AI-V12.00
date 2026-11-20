@@ -51963,7 +51963,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -51981,7 +51981,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "6",
@@ -52035,7 +52035,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "9",
@@ -52097,8 +52097,17 @@
         6
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        8,
+        4,
+        5
+      ]
+    },
+    "manual_result": [
+      8,
+      4,
+      5
+    ]
   },
   {
     "meet_code": "2",
