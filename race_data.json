@@ -55024,7 +55024,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "4",
@@ -55114,7 +55114,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "9",
@@ -55150,7 +55150,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -55176,8 +55176,17 @@
         10
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        3,
+        8,
+        10
+      ]
+    },
+    "manual_result": [
+      3,
+      8,
+      10
+    ]
   },
   {
     "meet_code": "2",
@@ -55204,7 +55213,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "2",
@@ -55258,7 +55267,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -55312,7 +55321,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -55392,8 +55401,17 @@
         10
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        7,
+        4,
+        1
+      ]
+    },
+    "manual_result": [
+      7,
+      4,
+      1
+    ]
   },
   {
     "meet_code": "2",
@@ -55474,7 +55492,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -55546,7 +55564,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "9",
@@ -55564,7 +55582,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "10",
@@ -55608,8 +55626,17 @@
         5
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        9,
+        4,
+        8
+      ]
+    },
+    "manual_result": [
+      9,
+      4,
+      8
+    ]
   },
   {
     "meet_code": "2",
@@ -55636,7 +55663,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "2",
@@ -55672,7 +55699,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "4",
@@ -55798,7 +55825,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -55824,8 +55851,17 @@
         9
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        1,
+        10,
+        3
+      ]
+    },
+    "manual_result": [
+      1,
+      10,
+      3
+    ]
   },
   {
     "meet_code": "2",
@@ -55888,7 +55924,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "4",
@@ -55960,7 +55996,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "8",
@@ -55996,7 +56032,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "10",
@@ -56040,8 +56076,17 @@
         4
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        3,
+        7,
+        9
+      ]
+    },
+    "manual_result": [
+      3,
+      7,
+      9
+    ]
   },
   {
     "meet_code": "2",
@@ -56284,7 +56329,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "2",
@@ -56356,7 +56401,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "6",
@@ -56374,7 +56419,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "7",
@@ -56488,8 +56533,17 @@
         10
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        1,
+        6,
+        5
+      ]
+    },
+    "manual_result": [
+      1,
+      6,
+      5
+    ]
   },
   {
     "meet_code": "1",
@@ -56588,7 +56642,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "6",
@@ -56606,7 +56660,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -56624,7 +56678,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -56704,8 +56758,17 @@
         4
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        7,
+        5,
+        6
+      ]
+    },
+    "manual_result": [
+      7,
+      5,
+      6
+    ]
   },
   {
     "meet_code": "1",
@@ -56786,7 +56849,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -56876,7 +56939,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "10",
@@ -56912,7 +56975,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       }
     ],
     "saved_derby": {
@@ -56938,8 +57001,17 @@
         9
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        9,
+        4,
+        11
+      ]
+    },
+    "manual_result": [
+      9,
+      4,
+      11
+    ]
   },
   {
     "meet_code": "1",
@@ -56966,7 +57038,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "2",
@@ -56984,7 +57056,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "3",
@@ -57110,7 +57182,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -57136,8 +57208,17 @@
         6
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        2,
+        9,
+        1
+      ]
+    },
+    "manual_result": [
+      2,
+      9,
+      1
+    ]
   },
   {
     "meet_code": "1",
@@ -57254,7 +57335,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -57290,7 +57371,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "9",
@@ -57344,7 +57425,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -57370,8 +57451,17 @@
         6
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        8,
+        11,
+        6
+      ]
+    },
+    "manual_result": [
+      8,
+      11,
+      6
+    ]
   },
   {
     "meet_code": "1",
@@ -57434,7 +57524,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "4",
@@ -57470,7 +57560,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "6",
@@ -57524,7 +57614,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "9",
@@ -57604,8 +57694,17 @@
         8
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        5,
+        3,
+        8
+      ]
+    },
+    "manual_result": [
+      5,
+      3,
+      8
+    ]
   },
   {
     "meet_code": "1",
@@ -57722,7 +57821,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "7",
@@ -57758,7 +57857,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "9",
@@ -57812,7 +57911,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       }
     ],
     "saved_derby": {
@@ -57838,8 +57937,17 @@
         1
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        6,
+        11,
+        8
+      ]
+    },
+    "manual_result": [
+      6,
+      11,
+      8
+    ]
   },
   {
     "meet_code": "1",
