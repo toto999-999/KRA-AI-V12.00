@@ -56131,7 +56131,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "3",
@@ -56149,7 +56149,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "4",
@@ -56203,7 +56203,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -56301,8 +56301,17 @@
         4
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        3,
+        2,
+        6
+      ]
+    },
+    "manual_result": [
+      3,
+      2,
+      6
+    ]
   },
   {
     "meet_code": "1",
@@ -58100,7 +58109,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "9",
@@ -58118,7 +58127,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "10",
@@ -58136,7 +58145,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "11",
@@ -58180,8 +58189,17 @@
         2
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        8,
+        9,
+        10
+      ]
+    },
+    "manual_result": [
+      8,
+      9,
+      10
+    ]
   },
   {
     "meet_code": "1",
@@ -58244,7 +58262,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "4",
@@ -58316,7 +58334,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "8",
@@ -58352,7 +58370,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "10",
@@ -58414,8 +58432,17 @@
         2
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        7,
+        9,
+        3
+      ]
+    },
+    "manual_result": [
+      7,
+      9,
+      3
+    ]
   },
   {
     "meet_code": "1",
@@ -58496,7 +58523,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "2"
       },
       {
         "gate": "5",
@@ -58514,7 +58541,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "1"
       },
       {
         "gate": "6",
@@ -58532,7 +58559,7 @@
         "ord1_cnt": "0",
         "ord2_cnt": "0",
         "is_front": false,
-        "actual_ord": "-"
+        "actual_ord": "3"
       },
       {
         "gate": "7",
@@ -58648,8 +58675,17 @@
         9
       ],
       "high": [],
-      "result": []
-    }
+      "result": [
+        5,
+        4,
+        6
+      ]
+    },
+    "manual_result": [
+      5,
+      4,
+      6
+    ]
   },
   {
     "meet_code": "1",
